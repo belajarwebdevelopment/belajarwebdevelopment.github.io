@@ -62,9 +62,9 @@
                         });
 
                         geoPosisi.then((location) => {
-                            //$("#posisi").html('Lat : '+location.latitude+'<br>Long : '+location.longitude);
-                            let x = document.getElementById("posisi");
-                            x.innerHTML =  location.latitude;
+                            $("#posisi").html('Lat : '+location.latitude+'<br>Long : '+location.longitude);
+                            //let x = document.getElementById("posisi");
+                            //x.innerHTML =  location.latitude;
                             Koordinat = location;
                         });
                     });
