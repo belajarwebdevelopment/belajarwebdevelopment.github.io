@@ -38,17 +38,18 @@
                         Psr = $("#pilih_psr").children("option:selected").text();
                         if (Psr == "Daftar Pasar") {
                             $.mobile.changePage("#page4", {role : "dialog"});
+                            $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a href="#page1"><< Kembali</a>`);
                             return false;
                         }
                         $.mobile.changePage("#page2", {role : "dialog"});
                         $(".jumbo_page2").html(`
                             <h1 class="display-5">Halo, Apa Kabar!</h1>
-                            <p>Anda sedang berada di <b>`+Psr+`</b>.<br><b id="posisi"></b>  
+                            <p>Anda sedang berada di <b>`+Psr+`</b>.<p id="posisi"></p>  
                             <hr class="my-4">
                             <p>Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
                             <p align="right"><a href="#page1" id="gantiPsr">ganti pasar</a></p>
                         `);
-
+                        /*    
                         const geoPosisi = new Promise((resolve, reject) => {
                             if (navigator.geolocation) {
                                 navigator.geolocation.getCurrentPosition(function(pos) {
@@ -60,16 +61,31 @@
                                 reject("Browser Anda tidak mendukung fitur Geolocation atau GPS Anda belum diaktifkan");
                             } 
                         });
+                        */
+                        const geoPosisi = new Promise((resolve, reject) => {
+                            if (navigator.geolocation) {
+                                navigator.geolocation.watchPosition(function(pos) {
+                                    let lat = pos.coords.latitude;
+                                    let long = pos.coords.longitude;
+                                    resolve({latitude : lat, longitude : long});
+                                });                         
+                            } else {
+                                reject("Browser Anda tidak mendukung fitur Geolocation atau GPS Anda belum diaktifkan");
+                            } 
+                        });
 
                         geoPosisi.then((location) => {
-                            $("#posisi").html('Lat : '+location.latitude+'<br>Long : '+location.longitude);
-                            //let x = document.getElementById("posisi");
-                            //x.innerHTML =  location.latitude;
+                            $("#posisi").html('Lat : <b>'+location.latitude+'</b><br>Long : <b>'+location.longitude)+'</b>';
                             Koordinat = location;
                         });
                     });
 
                     $(".next_uttp").on("click", function() {
+                        if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
+                            $.mobile.changePage('#page4', {role : "dialog"});
+                            $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama pedagang/wtu, los pasar, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a href="#page2"><< Kembali</a></p>`);
+                            return;
+                        }
                         $.mobile.changePage("#page3", {role : "dialog"});
                         $(".jumbo_page3").html(`
                             <p>Anda sedang berada di <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
@@ -358,9 +374,7 @@
             });
         </script>
         <div class="container py-5 my-2 border" data-role="page" id="page4">
-            <div class="alert alert-danger" role="alert">
-                Anda belum memilih pasar, Silahkan pilih dahulu ...
-                <br><br><a href="#page1"><< Kembali</a>
+            <div class="alert alert-danger msg_container" role="alert">
             </div>
         </div>
         </form>
