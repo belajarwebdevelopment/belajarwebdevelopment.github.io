@@ -79,7 +79,7 @@
                             Koordinat = location;
                         });
                         */
-                        const watcId = navigator.geolocation.watchPosition(position => $("#posisi").html(position.coords.latitude));
+                        const watcId = navigator.geolocation.watchPosition(position => $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>'));
                     });
 
                     $(".next_uttp").on("click", function() {
