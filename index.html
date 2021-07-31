@@ -61,7 +61,7 @@
                                 reject("Browser Anda tidak mendukung fitur Geolocation atau GPS Anda belum diaktifkan");
                             } 
                         });
-                        */
+                        
                         const geoPosisi = new Promise((resolve, reject) => {
                             if (navigator.geolocation) {
                                 navigator.geolocation.watchPosition(function(pos) {
@@ -78,6 +78,8 @@
                             $("#posisi").html('Lat : <b>'+location.latitude+'</b><br>Long : <b>'+location.longitude)+'</b>';
                             Koordinat = location;
                         });
+                        */
+                        const watcId = navigator.geolocation.watchPosition(position => $("#posisi").html(position.coords.latitude));
                     });
 
                     $(".next_uttp").on("click", function() {
