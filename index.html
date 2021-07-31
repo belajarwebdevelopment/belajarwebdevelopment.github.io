@@ -83,6 +83,18 @@
                             $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>');
                             Koordinat = {latitude : position.coords.latitude, longitude : position.coords.longitude};
                         });
+
+                        //Cek apakah inputan nomor HP adalah number
+                        $("#hp").on('keyup', function() {
+                            //console.log($(this).val().charAt($(this).val().length-1))
+                            pola = /[0-9]|-/g;
+                            karakter = $(this).val().charAt($(this).val().length-1);
+                            if (pola.test(karakter)) {
+                                return;
+                            } else {
+                                alert("Maaf, hanya bisa memasukkan angka dan tanda '-'");
+                            }
+                        });
                     });
 
                     $(".next_uttp").on("click", function() {
@@ -95,7 +107,7 @@
                         $(".jumbo_page3").html(`
                             <p>Lokasi : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
                             <hr class="my-4">
-                            <p>Silahkan mengisi data UTTP nya, jika lebih dari satu, klik tombol '+'.</p>
+                            <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
                         `);
                     });
 
