@@ -79,8 +79,10 @@
                             Koordinat = location;
                         });
                         */
-                        const watcId = navigator.geolocation.watchPosition(position => $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>'));
-                    });
+                        const watcId = navigator.geolocation.watchPosition(position => {
+                            $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>'));
+                            Koordinat = {latitude : position.coords.latitude, longitude : position.coords.longitude};
+                        });
 
                     $(".next_uttp").on("click", function() {
                         if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
