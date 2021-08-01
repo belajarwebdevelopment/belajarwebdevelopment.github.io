@@ -203,6 +203,7 @@
                         </div>
                     </div>      
                 </div>
+                <!--
                 <div class="col-md-6 py-2" hidden>
                     <div class="mr-1 px-2 py-2 border">
                         <div class="mb-3 px-2 py-2 bg-primary">
@@ -253,8 +254,11 @@
     
                     </div>
                 </div>
+                -->
             </div>
+            
             <div class="row mx-1 gx-5 mb-3" hidden>
+                <!--
                 <div class="col-md-6 py-2">
                     <div class="mr-1 px-2 py-2 border">
                         <div class="mb-3 px-2 py-2 bg-success">
@@ -355,6 +359,7 @@
     
                     </div>
                 </div>
+            -->
             </div>
             <div>
                 <div class="col text-center pb-2">
@@ -363,6 +368,16 @@
             </div>                
         </div>        
         <script language="javascript">
+            var resetFormDataWTU = function() {
+                $("#hp").val('');
+                $("#los").val('');
+                $("#Nama").val('');
+            }
+
+            var resetFormAll = function() {
+                $("#pendataanForm").trigger('reset');
+            }
+
             var setInputForm = function(Index, kap, d, state) {
                 $("#kap"+Index).val(kap).attr('readonly', state);   
                 $("#d"+Index).val(d).attr('readonly', state);   
@@ -393,10 +408,23 @@
                         setInputForm(this_Index,kap,d,true);
                     }
                 });
+
+                $(".submit").on('click', function() {
+                    $.mobile.changePage("#page5", {role:"dialog"});
+                    $(".msg_container_page5").html(`<p>Data telah berhasil dimasukkan....<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br>
+                    <li><a href=#>Input UTTP Pedagang Yg Sama</a></li>
+                    <li><a href=#>Ganti Pedagang</a></li>
+                    <li>Ganti Pasar</li>
+                    </p>`);
+                });
             });
         </script>
         <div class="container py-5 my-2 border" data-role="page" id="page4">
             <div class="alert alert-danger msg_container" role="alert">
+            </div>
+        </div>
+        <div class="container py-5 my-2 border" data-role="page" id="page5">
+            <div class="alert alert-primary msg_container_page5" role="alert">
             </div>
         </div>
         </form>
