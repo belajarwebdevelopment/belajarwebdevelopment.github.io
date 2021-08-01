@@ -87,12 +87,13 @@
                         //Cek apakah inputan nomor HP adalah number
                         $("#hp").on('keyup', function() {
                             //console.log($(this).val().charAt($(this).val().length-1))
-                            pola = /[0-9]|-/g;
+                            pola = /[0-9]|-|\s/g;
                             karakter = $(this).val().charAt($(this).val().length-1);
                             if (pola.test(karakter)) {
                                 return;
                             } else {
                                 alert("Maaf, hanya bisa memasukkan angka dan tanda '-'");
+                                $(this).val($(this).val().slice(0,$(this).val().length-1));
                             }
                         });
                     });
