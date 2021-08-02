@@ -15,8 +15,7 @@
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
-                    <!--<label for="pilih_psr" class="form-label">Pilih Pasar</label>-->
-                    <select class="form-control" id="pilih_psr">
+                    <select class="form-control" id="pilih_psr" name="pilih_psr">
                         <option selected>Daftar Pasar</option>
                         <option >Pasar Nusukan</option>
                         <option >Pasar Legi</option>
@@ -27,97 +26,9 @@
             </div>
             <div class="row mx-1">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-danger pilihPsr" data-role="none">SUBMIT</button>
+                    <button type="button" class="btn btn-danger pilihPsr" data-role="none">PILIH</button>
                 </div>
             </div>
-            <script language="javascript">
-                $(function() {
-                    var Psr = '';
-                    var Koordinat = {};
-                    $(".pilihPsr").on('click', function() {
-                        Psr = $("#pilih_psr").children("option:selected").text();
-                        if (Psr == "Daftar Pasar") {
-                            $.mobile.changePage("#page4", {role : "dialog"});
-                            $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a href="#page1"><< Kembali</a>`);
-                            return false;
-                        }
-                        $.mobile.changePage("#page2", {role : "dialog"});
-                        $(".jumbo_page2").html(`
-                            <h1 class="display-5">Halo, Apa Kabar!</h1>
-                            <p>Anda sedang berada di <b>`+Psr+`</b>.<p id="posisi"></p>  
-                            <hr class="my-4">
-                            <p>Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
-                            <p align="right"><a href="#page1" id="gantiPsr">ganti pasar</a></p>
-                        `);
-                        /*    
-                        const geoPosisi = new Promise((resolve, reject) => {
-                            if (navigator.geolocation) {
-                                navigator.geolocation.getCurrentPosition(function(pos) {
-                                    let lat = pos.coords.latitude;
-                                    let long = pos.coords.longitude;
-                                    resolve({latitude : lat, longitude : long});
-                                });                         
-                            } else {
-                                reject("Browser Anda tidak mendukung fitur Geolocation atau GPS Anda belum diaktifkan");
-                            } 
-                        });
-                        
-                        const geoPosisi = new Promise((resolve, reject) => {
-                            if (navigator.geolocation) {
-                                navigator.geolocation.watchPosition(function(pos) {
-                                    let lat = pos.coords.latitude;
-                                    let long = pos.coords.longitude;
-                                    resolve({latitude : lat, longitude : long});
-                                });                         
-                            } else {
-                                reject("Browser Anda tidak mendukung fitur Geolocation atau GPS Anda belum diaktifkan");
-                            } 
-                        });
-
-                        geoPosisi.then((location) => {
-                            $("#posisi").html('Lat : <b>'+location.latitude+'</b><br>Long : <b>'+location.longitude)+'</b>';
-                            Koordinat = location;
-                        });
-                        */
-                        const watcId = navigator.geolocation.watchPosition(position => {
-                            $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>');
-                            Koordinat = {latitude : position.coords.latitude, longitude : position.coords.longitude};
-                        });
-
-                        //Cek apakah inputan nomor HP adalah number
-                        $("#hp").on('keyup', function() {
-                            //console.log($(this).val().charAt($(this).val().length-1))
-                            pola = /[0-9]|-|\s/g;
-                            karakter = $(this).val().charAt($(this).val().length-1);
-                            if (pola.test(karakter)) {
-                                return;
-                            } else {
-                                alert("Maaf, hanya bisa memasukkan angka dan tanda '-'");
-                                $(this).val($(this).val().slice(0,$(this).val().length-1));
-                            }
-                        });
-                    });
-
-                    $(".next_uttp").on("click", function() {
-                        if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
-                            $.mobile.changePage('#page4', {role : "dialog"});
-                            $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama pedagang/wtu, los pasar, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a href="#page2"><< Kembali</a></p>`);
-                            return;
-                        }
-                        $.mobile.changePage("#page3", {role : "dialog"});
-                        $(".jumbo_page3").html(`
-                            <p>Lokasi : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
-                            <hr class="my-4">
-                            <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
-                        `);
-                    });
-
-                    $(".jumbo_page2").on("click","#gantiPsr", function() {
-                        $("#pendataanForm").trigger('reset');
-                    });
-                });
-            </script>
-
         </div>
         <div class="container py-5 my-2 border" data-role="page" id="page2">
             <div class="jumbotron jumbo_page2">
@@ -128,19 +39,19 @@
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
                     <label for="Nama" class="form-label">Nama Pedagang / WTU</label>
-                    <input type="text" class="form-control" id="Nama" placeholder="">            
+                    <input type="text" class="form-control" id="Nama" name="Nama" placeholder="">            
                 </div>
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
                     <label for="los" class="form-label">Nomer Los Pasar</label>
-                    <input type="text" class="form-control" id="los" placeholder="">            
+                    <input type="text" class="form-control" name="los" id="los" placeholder="">            
                 </div>
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
                     <label for="hp" class="form-label">Nomor Handphone Pedagang</label>
-                    <input type="text" class="form-control" id="hp" placeholder="">            
+                    <input type="text" class="form-control" name="hp" id="hp" placeholder="">            
                 </div>
             </div>
             <div class="row mx-1 gx-5 mb-3">
@@ -161,8 +72,8 @@
         
                         <div class="mb-3">
                             <label for="uttp1" class="form-label">Jenis UTTP</label>
-                            <select class="form-control pilih_uttp" id="uttp1">
-                                <option value="" selected>Pilih jenis UTTP</option>
+                            <select class="form-control pilih_uttp" name="uttp1" id="uttp1">
+                                <option value="">Pilih jenis UTTP</option>
                                 <option value="TM - 25 kg - 20 g">TM - 25 kg</option>
                                 <option value="TM - 10 kg - 10 g">TM - 10 kg</option>
                                 <option value="TM - 5 kg - 5 g">TM - 5 kg</option>
@@ -183,190 +94,110 @@
                               </select>                        
                         </div>
                         <div class="mb-3"><label for="kap1" class="form-label">Kapasitas</label>
-                            <input type="text" class="form-control" id="kap1" placeholder="">     
+                            <input type="text" class="form-control" name="kap1" id="kap1" placeholder="">     
                         </div>        
                         <div class="mb-3">
                             <label for="d1" class="form-label">Dayabaca</label>
-                            <input type="text" class="form-control" id="d1" placeholder=""> 
+                            <input type="text" class="form-control" name="d1" id="d1" placeholder=""> 
                         </div>      
                         <div class="mb-3">
                             <label for="merk1" class="form-label">Merek (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="merk1" placeholder=""> 
+                            <input type="text" class="form-control" name="merk1" id="merk1" placeholder=""> 
                         </div>      
                         <div class="mb-3">
                             <label for="model1" class="form-label">Model (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="model1" placeholder=""> 
+                            <input type="text" class="form-control" name="model1" id="model1" placeholder=""> 
                         </div>
                         <div class="mb-3">
                             <label for="tahunTera1" class="form-label">Tahun Tera</label>
-                            <input type="text" class="form-control" id="tahunTera1" placeholder=""> 
+                            <!--<input type="text" class="form-control" name="tahunTera1" id="tahunTera1" placeholder="">-->
+                            <select class="form-control" name="tahunTera1" id="tahunTera1">
+                                <option val="">Pilih Tahun Tera</option>
+                                <option val="2021">2021</option>
+                                <option val="2020">2020</option>
+                                <option val="2019">2019</option>
+                                <option val="2018">2018</option>
+                                <option val="2017">2017</option>
+                                <option val="2016">2016</option>
+                            </select> 
                         </div>
                     </div>      
                 </div>
-                <!--
-                <div class="col-md-6 py-2" hidden>
-                    <div class="mr-1 px-2 py-2 border">
-                        <div class="mb-3 px-2 py-2 bg-primary">
-                            <h4 style="color : #FFFFFF;">UTTP 2</h4>
-                        </div>
-                        <div class="mb-3">
-                            <label for="uttp2" class="form-label">Jenis UTTP</label>
-                            <select class="form-control pilih_uttp" id="uttp2">
-                                <option value="" selected>Pilih jenis UTTP</option>
-                                <option value="TM - 25 kg - 20 g">TM - 25 kg</option>
-                                <option value="TM - 10 kg - 10 g">TM - 10 kg</option>
-                                <option value="TM - 5 kg - 5 g">TM - 5 kg</option>
-                                <option value="TM - 3 kg - 3 g">TM - 3 kg</option>
-                                <option value="TS - 500 kg - 100 g">TS - 500 kg</option>
-                                <option value="TS - 300 kg - 100 g">TS - 300 kg</option>
-                                <option value="TS - 150 kg - 100 g">TS - 150 kg</option>
-                                <option value="DL - 110 kg - 100 g">DL - 110 kg</option>
-                                <option value="DL - 50 kg - 100 g">DL - 50 kg</option>
-                                <option value="DL - 25 kg - 100 g">DL - 25 kg</option>
-                                <option value="N - 1000 g - 500 mg">N - 1000 g</option>
-                                <option value="N - 500 g - 250 mg">N - 500 g</option>
-                                <option value="N - 250 g - 125 mg">N - 250 g</option>
-                                <option value="N - 100 g - 50 mg">N - 100 g</option>
-                                <option value="N - 50 g - 25 mg">N - 50 g</option>
-                                <option value="TE - - ">TE</option>
-                                <option value="TP - - ">TP</option>
-                              </select>                        
-                        </div>
-                        <div class="mb-3"><label for="kap2" class="form-label">Kapasitas</label>
-                            <input type="text" class="form-control" id="kap2" placeholder="">     
-                        </div>        
-                        <div class="mb-3">
-                            <label for="d2" class="form-label">Dayabaca</label>
-                            <input type="text" class="form-control" id="d2" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="merk2" class="form-label">Merek (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="merk2" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="model2" class="form-label">Model (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="model2" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="tahunTera2" class="form-label">Tahun Tera</label>
-                            <input type="text" class="form-control" id="tahunTera2" placeholder=""> 
-                        </div>
-    
-                    </div>
-                </div>
-                -->
-            </div>
-            
-            <div class="row mx-1 gx-5 mb-3" hidden>
-                <!--
-                <div class="col-md-6 py-2">
-                    <div class="mr-1 px-2 py-2 border">
-                        <div class="mb-3 px-2 py-2 bg-success">
-                            <h4 style="color : #FFFFFF;">UTTP 3</h4>
-                        </div>
-        
-                        <div class="mb-3">
-                            <label for="uttp1" class="form-label">Jenis UTTP</label>
-                            <select class="form-control pilih_uttp" id="uttp3">
-                                <option value="" selected>Pilih jenis UTTP</option>
-                                <option value="TM - 25 kg - 20 g">TM - 25 kg</option>
-                                <option value="TM - 10 kg - 10 g">TM - 10 kg</option>
-                                <option value="TM - 5 kg - 5 g">TM - 5 kg</option>
-                                <option value="TM - 3 kg - 3 g">TM - 3 kg</option>
-                                <option value="TS - 500 kg - 100 g">TS - 500 kg</option>
-                                <option value="TS - 300 kg - 100 g">TS - 300 kg</option>
-                                <option value="TS - 150 kg - 100 g">TS - 150 kg</option>
-                                <option value="DL - 110 kg - 100 g">DL - 110 kg</option>
-                                <option value="DL - 50 kg - 100 g">DL - 50 kg</option>
-                                <option value="DL - 25 kg - 100 g">DL - 25 kg</option>
-                                <option value="N - 1000 g - 500 mg">N - 1000 g</option>
-                                <option value="N - 500 g - 250 mg">N - 500 g</option>
-                                <option value="N - 250 g - 125 mg">N - 250 g</option>
-                                <option value="N - 100 g - 50 mg">N - 100 g</option>
-                                <option value="N - 50 g - 25 mg">N - 50 g</option>
-                                <option value="TE - - ">TE</option>
-                                <option value="TP - - ">TP</option>
-                              </select>                        
-                        </div>
-                        <div class="mb-3"><label for="kap3" class="form-label">Kapasitas</label>
-                            <input type="text" class="form-control" id="kap3" placeholder="">     
-                        </div>        
-                        <div class="mb-3">
-                            <label for="d3" class="form-label">Dayabaca</label>
-                            <input type="text" class="form-control" id="d3" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="merk3" class="form-label">Merek (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="merk3" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="model3" class="form-label">Model (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="model3" placeholder=""> 
-                        </div>
-                        <div class="mb-3">
-                            <label for="tahunTera3" class="form-label">Tahun Tera</label>
-                            <input type="text" class="form-control" id="tahunTera3" placeholder=""> 
-                        </div>
-                    </div>      
-                </div>
-                <div class="col-md-6 py-2" hidden>
-                    <div class="mr-1 px-2 py-2 border">
-                        <div class="mb-3 px-2 py-2 bg-success">
-                            <h4 style="color : #FFFFFF;">UTTP 4</h4>
-                        </div>
-                        <div class="mb-3">
-                            <label for="uttp4" class="form-label">Jenis UTTP</label>
-                            <select class="form-control pilih_uttp" id="uttp4">
-                                <option value="" selected>Pilih jenis UTTP</option>
-                                <option value="TM - 25 kg - 20 g">TM - 25 kg</option>
-                                <option value="TM - 10 kg - 10 g">TM - 10 kg</option>
-                                <option value="TM - 5 kg - 5 g">TM - 5 kg</option>
-                                <option value="TM - 3 kg - 3 g">TM - 3 kg</option>
-                                <option value="TS - 500 kg - 100 g">TS - 500 kg</option>
-                                <option value="TS - 300 kg - 100 g">TS - 300 kg</option>
-                                <option value="TS - 150 kg - 100 g">TS - 150 kg</option>
-                                <option value="DL - 110 kg - 100 g">DL - 110 kg</option>
-                                <option value="DL - 50 kg - 100 g">DL - 50 kg</option>
-                                <option value="DL - 25 kg - 100 g">DL - 25 kg</option>
-                                <option value="N - 1000 g - 500 mg">N - 1000 g</option>
-                                <option value="N - 500 g - 250 mg">N - 500 g</option>
-                                <option value="N - 250 g - 125 mg">N - 250 g</option>
-                                <option value="N - 100 g - 50 mg">N - 100 g</option>
-                                <option value="N - 50 g - 25 mg">N - 50 g</option>
-                                <option value="TE - - ">TE</option>
-                                <option value="TP - - ">TP</option>
-                              </select>                        
-                        </div>
-                        <div class="mb-3"><label for="kap4" class="form-label">Kapasitas</label>
-                            <input type="text" class="form-control" id="kap4" placeholder="">     
-                        </div>        
-                        <div class="mb-3">
-                            <label for="d4" class="form-label">Dayabaca</label>
-                            <input type="text" class="form-control" id="d4" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="merk4" class="form-label">Merek (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="merk4" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="model4" class="form-label">Model (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" id="model4" placeholder=""> 
-                        </div>      
-                        <div class="mb-3">
-                            <label for="tahunTera4" class="form-label">Tahun Tera</label>
-                            <input type="text" class="form-control" id="tahunTera4" placeholder=""> 
-                        </div>
-    
-                    </div>
-                </div>
-            -->
             </div>
             <div>
                 <div class="col text-center pb-2">
-                    <button type="button" class="btn btn-info submit" data-role="none">Submit</button>
+                    <button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none">Submit</button>
                 </div>
             </div>                
         </div>        
+        <div class="container py-5 my-2 border" data-role="page" id="page4">
+            <div class="alert alert-danger msg_container" role="alert">
+            </div>
+        </div>
+        <div class="container py-5 my-2 border" data-role="page" id="page5">
+            <div class="alert alert-primary msg_container_page5" role="alert">
+            </div>
+        </div>
+        </form>
+
+        <script language="javascript">
+            $(function() {
+                var Psr = '';
+                var Koordinat = {};
+                $(".pilihPsr").on('click', function() {
+                    Psr = $("#pilih_psr").children("option:selected").text();
+                    if (Psr == "Daftar Pasar") {
+                        $.mobile.changePage("#page4", {role : "dialog"});
+                        $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a href="#page1"><< Kembali</a>`);
+                        return false;
+                    }
+                    $.mobile.changePage("#page2", {role : "dialog"});
+                    $(".jumbo_page2").html(`
+                        <h1 class="display-5">Halo, Apa Kabar!</h1>
+                        <p>Anda sedang berada di <b>`+Psr+`</b>.<p id="posisi"></p>  
+                        <hr class="my-4">
+                        <p>Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
+                        <p align="right"><a href="#page1" id="gantiPsr">ganti pasar</a></p>
+                    `);
+
+                    const watcId = navigator.geolocation.watchPosition(position => {
+                        $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>');
+                        Koordinat = {latitude : position.coords.latitude, longitude : position.coords.longitude};
+                    });
+
+                    //Cek apakah inputan nomor HP adalah number
+                    $("#hp").on('keyup', function() {
+                        pola = /[0-9]|-|\s/g;
+                        karakter = $(this).val().charAt($(this).val().length-1);
+                        if (pola.test(karakter)) {
+                            return;
+                        } else {
+                            alert("Maaf, hanya bisa memasukkan angka dan tanda '-'");
+                            $(this).val($(this).val().slice(0,$(this).val().length-1));
+                        }
+                    });
+                });
+
+                $(".next_uttp").on("click", function() {
+                    if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
+                        $.mobile.changePage('#page4', {role : "dialog"});
+                        $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama pedagang/wtu, los pasar, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a href="#page2"><< Kembali</a></p>`);
+                        return;
+                    }
+                    $.mobile.changePage("#page3", {role : "dialog"});
+                    $(".jumbo_page3").html(`
+                        <p>Lokasi : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
+                        <hr class="my-4">
+                        <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
+                    `);
+                });
+
+                $(".jumbo_page2").on("click","#gantiPsr", function() {
+                    $("#pendataanForm").trigger('reset');
+                });
+            });
+        </script>
+
         <script language="javascript">
             var resetFormDataWTU = function() {
                 $("#hp").val('');
@@ -389,6 +220,15 @@
                     $("#kap"+Index).focus();
                 }
             } 
+
+            var resetFormUTTP_v2 = function(ids) {
+                $("#uttp1").val('').trigger('change');
+                let arr = ["kap","d","merk","model","tahunTera"]
+                for (i=0;i<arr.length;i++) {
+                    $("#"+arr[i]+ids).val("");
+                }
+            }
+
             var resetFormUTTP = function(id) {
                 let arr = ["kap","d","merk","model","tahunTera"]
                 for (i=0;i<arr.length;i++) {
@@ -402,31 +242,46 @@
                     setInputForm(this_Index,'','',false);
                     resetFormUTTP(this_Index);
                     let theString = $(this).children("option:selected").val().split("-");
-                    if (theString[0].trim() != 'TE' && theString[0].trim() != 'TP') {
+                    if (theString[0].trim() != 'TE' && theString[0].trim() != 'TP' && $(this).children("option:selected").val() != '') {
                         let kap = theString[1].trim();
                         let d = theString[2].trim();
                         setInputForm(this_Index,kap,d,true);
                     }
                 });
 
-                $(".submit").on('click', function() {
+                $("#entry_the_data").on('click', function() {
+                    let datas = JSON.stringify($("form#pendataanForm").serializeArray());
                     $.mobile.changePage("#page5", {role:"dialog"});
-                    $(".msg_container_page5").html(`<p>Data telah berhasil dimasukkan....<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br>
-                    <li><a href=#>Input UTTP Pedagang Yg Sama</a></li>
-                    <li><a href=#>Ganti Pedagang</a></li>
-                    <li>Ganti Pasar</li>
+                    $(".msg_container_page5").html(`<p>Data telah berhasil dimasukkan....`+datas+`<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br>
+                    <li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li>
+                    <li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li>
+                    <li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li>
                     </p>`);
                 });
             });
         </script>
-        <div class="container py-5 my-2 border" data-role="page" id="page4">
-            <div class="alert alert-danger msg_container" role="alert">
-            </div>
-        </div>
-        <div class="container py-5 my-2 border" data-role="page" id="page5">
-            <div class="alert alert-primary msg_container_page5" role="alert">
-            </div>
-        </div>
-        </form>
+
+        <script language="javascript">
+            $(function() {
+                $("#page5").on("click", ".add_data", function() {
+                    if ($(this)[0].id == "add_uttp") {
+                        $.mobile.changePage("#page3", {role:"dialog"});
+                        resetFormUTTP_v2(1);
+                        return;
+                    }
+                    if ($(this)[0].id == "ganti_pedagang") {
+                        $.mobile.changePage("#page2", {role:"dialog"});
+                        resetFormDataWTU();
+                        resetFormUTTP_v2(1);
+                        return;
+                    }
+                    if ($(this)[0].id == "ganti_pasar") {
+                        $.mobile.changePage("#page1", {role:"dialog"});
+                        resetFormAll();
+                        return;
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
