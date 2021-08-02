@@ -169,7 +169,7 @@
                     $("#hp").on('keyup', function() {
                         pola = /[0-9]|-|\s/g;
                         karakter = $(this).val().charAt($(this).val().length-1);
-                        if (pola.test(karakter)) {
+                        if (pola.test(karakter) || $(this).val() == '') {
                             return;
                         } else {
                             alert("Maaf, hanya bisa memasukkan angka dan tanda '-'");
@@ -223,17 +223,19 @@
 
             var resetFormUTTP_v2 = function(ids) {
                 $("#uttp1").val('').trigger('change');
-                let arr = ["kap","d","merk","model","tahunTera"]
+                $("#tahunTera1").val('').trigger('change');
+                let arr = ["kap","d","merk","model"]
                 for (i=0;i<arr.length;i++) {
                     $("#"+arr[i]+ids).val("");
                 }
             }
 
             var resetFormUTTP = function(id) {
-                let arr = ["kap","d","merk","model","tahunTera"]
+                let arr = ["kap","d","merk","model"]
                 for (i=0;i<arr.length;i++) {
                     $("#"+arr[i]+id).val("");
                 }
+                $("#tahunTera1").val('').trigger('change');
             }
 
             $(function() {
