@@ -7,6 +7,9 @@
     </head>
 	
     <body>
+		<input type="text" name="jeneng" id="jeneng">
+		<input type="text" name="alat" id="alat">
+		<button id="sendBtn">Send Data</button>
 		<button id="getBtn">Get Data</button>
 	<div id="app"></div>
 		<script language="javascript">
@@ -15,10 +18,29 @@
 				
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
 				fetch(webAppUrl).then(d => d.json()).then(d => {
-						document.getElementById("app").textContent = d[0].UTTP;
+						//document.getElementById("app").textContent = d[0].UTTP;
+						alert(d[0].Nama);
 					});	
 			}
+
+			function sendData() {
+				//alert("Cliked");
+				
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
+				fetch(webAppUrl,{
+					method : 'POST',
+					mode : 'no-cors',
+					cache : 'no-cache',
+					credentials : 'omit',
+					headers : {
+						'Content-type' : 'application/json'
+					},
+					redirect : 'follow',
+					body : JSON.stringify({nama : document.getElementById('jeneng').value, uttp : document.getElementById('alat').value})
+				})
+			}
 			
+			document.getElementById("sendBtn").addEventListener("click",sendData);		
 			document.getElementById("getBtn").addEventListener("click",getData);
         </script>
     </body>
