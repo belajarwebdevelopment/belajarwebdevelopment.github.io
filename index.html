@@ -94,19 +94,19 @@
                               </select>                        
                         </div>
                         <div class="mb-3"><label for="kap1" class="form-label">Kapasitas</label>
-                            <input type="text" class="form-control" name="kap1" id="kap1" placeholder="">     
+                            <input type="text" class="form-control" name="kap1" id="kap1" placeholder="" readonly>     
                         </div>        
                         <div class="mb-3">
                             <label for="d1" class="form-label">Dayabaca</label>
-                            <input type="text" class="form-control" name="d1" id="d1" placeholder=""> 
+                            <input type="text" class="form-control" name="d1" id="d1" placeholder="" readonly> 
                         </div>      
                         <div class="mb-3">
                             <label for="merk1" class="form-label">Merek (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" name="merk1" id="merk1" placeholder=""> 
+                            <input type="text" class="form-control" name="merk1" id="merk1" placeholder="" readonly> 
                         </div>      
                         <div class="mb-3">
                             <label for="model1" class="form-label">Model (Khusus TE dan TP)</label>
-                            <input type="text" class="form-control" name="model1" id="model1" placeholder=""> 
+                            <input type="text" class="form-control" name="model1" id="model1" placeholder="" readonly> 
                         </div>
                         <div class="mb-3">
                             <label for="tahunTera1" class="form-label">Tahun Tera</label>
@@ -126,7 +126,9 @@
             </div>
             <div>
                 <div class="col text-center pb-2">
-                    <button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none">Submit</button>
+					<input type="hidden" class="form-control" name="lat" id="lat">
+					<input type="hidden" class="form-control" name="long" id="long">
+					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none">Submit</button>
                 </div>
             </div>                
         </div>        
@@ -177,7 +179,8 @@
                         }
                     });
                 });
-
+				
+				
                 $(".next_uttp").on("click", function() {
                     if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
                         $.mobile.changePage('#page4', {role : "dialog"});
@@ -185,6 +188,8 @@
                         return;
                     }
                     $.mobile.changePage("#page3", {role : "dialog"});
+					$("#lat").val(Koordinat.latitude.toString().replace(".",","));
+					$("#long").val(Koordinat.longitude.toString().replace(".",","));
                     $(".jumbo_page3").html(`
                         <p>Lokasi : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
                         <hr class="my-4">
@@ -252,16 +257,68 @@
                 });
 
                 $("#entry_the_data").on('click', function() {
-                    let datas = JSON.stringify($("form#pendataanForm").serializeArray());
-                    $.mobile.changePage("#page5", {role:"dialog"});
-                    $(".msg_container_page5").html(`<p>Data telah berhasil dimasukkan....`+datas+`<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br>
-                    <li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li>
-                    <li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li>
-                    <li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li>
-                    </p>`);
+                    if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
+						alert("Proses memasukkan data gagal. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
+						return false;
+					}
+				
+                    if ($("#tahunTera1 :selected").text() == "" || $("#tahunTera1 :selected").text() == "Pilih Tahun Tera") {
+						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
+						return false;
+					}
+					console.log("Berhasil");
+					siapkanData();
+					/*
+					let datas = JSON.stringify($("form#pendataanForm").serializeArray());
+                    */
+					$.mobile.changePage("#page5", {role:"dialog"});
+                    $(".msg_container_page5").html('<p>Data telah berhasil dimasukkan...<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
                 });
+
             });
         </script>
+		
+		<script language="javascript">
+			function getData() {
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
+				fetch(webAppUrl).then(d => d.json()).then(d => {
+						alert(d[0].Nama);
+					});	
+			}
+			
+			function sendData(dataObj) {
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
+				fetch(webAppUrl,{
+					method : 'POST',
+					mode : 'no-cors',
+					cache : 'no-cache',
+					credentials : 'omit',
+					headers : {
+						'Content-type' : 'application/json'
+					},
+					redirect : 'follow',
+					body : JSON.stringify(dataObj)
+					//body : JSON.stringify({nama : document.getElementById('jeneng').value, uttp : document.getElementById('alat').value})
+				})
+			}
+
+			function siapkanData() {
+				const form = document.querySelector('#pendataanForm');
+				const data = new FormData(form);
+				const SerializePair = {};
+				
+				for (const [name, value] of data) {
+					SerializePair[name] = value;
+				}
+				
+				console.log(SerializePair);				
+				sendData(SerializePair);
+			}
+			
+			//document.getElementById("entry_the_data").addEventListener("click",siapkanData);		
+			//document.getElementById("getBtn").addEventListener("click",getData);
+        </script>
+		
 
         <script language="javascript">
             $(function() {

@@ -14,18 +14,13 @@
 	<div id="app"></div>
 		<script language="javascript">
 			function getData() {
-				//alert("Cliked");
-				
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
 				fetch(webAppUrl).then(d => d.json()).then(d => {
-						//document.getElementById("app").textContent = d[0].UTTP;
 						alert(d[0].Nama);
 					});	
 			}
-
+			
 			function sendData() {
-				//alert("Cliked");
-				
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
 				fetch(webAppUrl,{
 					method : 'POST',
