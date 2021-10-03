@@ -93,18 +93,18 @@
                                 <option value="TP - - ">TP</option>
                               </select>                        
                         </div>
-                        <div class="mb-3"><label for="kap1" class="form-label">Kapasitas</label>
+                        <div class="mb-3 to_hide" hidden><label for="kap1" class="form-label">Kapasitas</label>
                             <input type="text" class="form-control" name="kap1" id="kap1" placeholder="" readonly>     
                         </div>        
-                        <div class="mb-3">
+                        <div class="mb-3 to_hide" hidden>
                             <label for="d1" class="form-label">Dayabaca</label>
                             <input type="text" class="form-control" name="d1" id="d1" placeholder="" readonly> 
                         </div>      
-                        <div class="mb-3">
+                        <div class="mb-3 to_hide" hidden>
                             <label for="merk1" class="form-label">Merek (Khusus TE dan TP)</label>
                             <input type="text" class="form-control" name="merk1" id="merk1" placeholder="" readonly> 
                         </div>      
-                        <div class="mb-3">
+                        <div class="mb-3 to_hide" hidden>
                             <label for="model1" class="form-label">Model (Khusus TE dan TP)</label>
                             <input type="text" class="form-control" name="model1" id="model1" placeholder="" readonly> 
                         </div>
@@ -231,7 +231,7 @@
                 $("#tahunTera1").val('').trigger('change');
                 let arr = ["kap","d","merk","model"]
                 for (i=0;i<arr.length;i++) {
-                    $("#"+arr[i]+ids).val("");
+                    $("#"+arr[i]+ids).val("").attr('readonly', true);
                 }
             }
 
@@ -242,17 +242,23 @@
                 }
                 $("#tahunTera1").val('').trigger('change');
             }
-
+			
+			var ShowhideSomeInput = function(state) {
+				$(".to_hide").attr('hidden', state);
+			}
+			
             $(function() {
                 $(".pilih_uttp").on('change', function() {
                     let this_Index = $(this)[0].id.charAt($(this)[0].id.length-1);
                     setInputForm(this_Index,'','',false);
                     resetFormUTTP(this_Index);
+					ShowhideSomeInput(false);
                     let theString = $(this).children("option:selected").val().split("-");
                     if (theString[0].trim() != 'TE' && theString[0].trim() != 'TP' && $(this).children("option:selected").val() != '') {
                         let kap = theString[1].trim();
                         let d = theString[2].trim();
                         setInputForm(this_Index,kap,d,true);
+						ShowhideSomeInput(true);
                     }
                 });
 
