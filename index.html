@@ -195,6 +195,7 @@
                         <hr class="my-4">
                         <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
                     `);
+					$(".to_hide").attr('hidden', true);
                 });
 
                 $(".jumbo_page2").on("click","#gantiPsr", function() {
@@ -332,6 +333,7 @@
                     if ($(this)[0].id == "add_uttp") {
                         $.mobile.changePage("#page3", {role:"dialog"});
                         resetFormUTTP_v2(1);
+						ShowhideSomeInput(true);
                         return;
                     }
                     if ($(this)[0].id == "ganti_pedagang") {
