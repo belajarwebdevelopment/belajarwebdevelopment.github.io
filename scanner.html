@@ -4,6 +4,7 @@
     </head>
     <body>
         <video id="video" autoplay></video>
+        <h4 id="qrcode_str"></h4>
         <script language="javascript" async>
             const video = document.querySelector("#video");
             //Check if device has camera
@@ -11,14 +12,14 @@
                 const constrain = {
                     video : {
                         widht : {
-                            min : 1280,
-                            ideal : 1280,
-                            max : 1280
+                            min : 1000,
+                            ideal : 1000,
+                            max : 1000
                         },
                         height : {
-                            min : 720,
-                            ideal : 720,
-                            max : 720
+                            min : 850,
+                            ideal : 850,
+                            max : 850
                         },
                         facingMode : {
                             exact: 'environment'
@@ -30,26 +31,28 @@
                 //start video stream
                 navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
 
+                const container_hasil = document.querySelector('#qrcode_str');
+
                 //Mendklarasi class barcode detector
-                const barcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+                const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
 
                 const deteksiKode = () => {
                     //Mulai mendeteksi qrcode
-                    barcodeDetector.detect(video).then(codes => {
+                    qrcodeDetector.detect(video).then(codes => {
                         
                         if (codes.length === 0) return;
                         
                         for (const qrcode of codes) {
-                            alert('Berhasil');
+                            container_hasil.innerHTML = qrcode
                         }
 
                     })
                     .catch(err => {
-                        alert('Gagal');
+                        container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
                     });
                 }
 
-                setInterval(deteksiKode, 100);
+                setInterval(deteksiKode, 5000);
             }
         </script>
     </body>
