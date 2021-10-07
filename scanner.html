@@ -11,7 +11,11 @@
             //Check if device has camera
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 const constrain = {
-                    video : true,
+                    video : {
+                        facingMode : {
+                            exact: 'environment'
+                        }
+                    },
                     audio : false   
                 }
 
