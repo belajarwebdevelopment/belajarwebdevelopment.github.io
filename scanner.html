@@ -11,16 +11,6 @@
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 const constrain = {
                     video : {
-                        widht : {
-                            min : 1000,
-                            ideal : 1000,
-                            max : 1000
-                        },
-                        height : {
-                            min : 850,
-                            ideal : 850,
-                            max : 850
-                        },
                         facingMode : {
                             exact: 'environment'
                         }
@@ -42,9 +32,9 @@
                         
                         if (codes.length === 0) return;
                         
-                        for (const qrcode of codes) {
-                            container_hasil.innerHTML = qrcode
-                        }
+                        //for (const qrcode of codes) {
+                        container_hasil.innerHTML = codes;
+                        //}
 
                     })
                     .catch(err => {
