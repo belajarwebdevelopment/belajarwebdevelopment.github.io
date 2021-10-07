@@ -31,6 +31,25 @@
 
                 //start video stream
                 navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
+
+                //Mendklarasi class barcode detector
+                const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+
+                const deteksiKode = () => {
+                    //Mulai mendeteksi qrcode
+                    bqrcodeDetector.detect(video).then(codes => {
+                        
+                        if (codes.length === 0) return;
+                        
+                        for (const qrcode of codes) {
+                            alert(qrcode);
+                        }
+
+                    })
+                    .catch(err => {
+                        alert(err);
+                    });
+                }
             }
         </script>
     </body>
