@@ -1,0 +1,23 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <video id="video"  width="640" height="480" autoplay>
+
+        </video>
+        <script language="javascript">
+            const video = document.querySelector("#video");
+            //Check if device has camera
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                const constrain = {
+                    video : true,
+                    audio : false   
+                }
+
+                //start video stream
+                navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
+            }
+        </script>
+    </body>
+</html>
