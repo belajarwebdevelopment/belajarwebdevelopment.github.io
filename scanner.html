@@ -33,11 +33,13 @@
                         if (codes.length === 0) return;
                         
                         for (const qrcode of codes) {
+                            container_hasil.innerHTML = "";
                             container_hasil.innerHTML = qrcode.rawValue;
                         }
 
                     })
                     .catch(err => {
+                        container_hasil.innerHTML = "";
                         container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
                     });
                 }
