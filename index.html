@@ -273,7 +273,7 @@
 						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
 						return false;
 					}
-					console.log("Berhasil");
+					//console.log("Berhasil");
 					siapkanData();
 					/*
 					let datas = JSON.stringify($("form#pendataanForm").serializeArray());
@@ -286,13 +286,16 @@
         </script>
 		
 		<script language="javascript">
-			function getData() {
+			/*
+            function getData() {
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
-				fetch(webAppUrl).then(d => d.json()).then(d => {
+				//https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec
+                fetch(webAppUrl).then(d => d.json()).then(d => {
 						alert(d[0].Nama);
 					});	
 			}
-			
+			*/
+
 			function sendData(dataObj) {
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
 				fetch(webAppUrl,{
@@ -307,6 +310,11 @@
 					body : JSON.stringify(dataObj)
 					//body : JSON.stringify({nama : document.getElementById('jeneng').value, uttp : document.getElementById('alat').value})
 				})
+                .then(respon => {
+                    respon => respon.json();
+                    console.log('Success...!', respon);
+                })
+                .catch(error => console.error('Error..!', error));
 			}
 
 			function siapkanData() {
@@ -318,7 +326,7 @@
 					SerializePair[name] = value;
 				}
 				
-				console.log(SerializePair);				
+				//console.log(SerializePair);				
 				sendData(SerializePair);
 			}
 			
