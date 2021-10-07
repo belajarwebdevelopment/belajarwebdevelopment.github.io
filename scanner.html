@@ -37,7 +37,7 @@
 
                 const deteksiKode = () => {
                     //Mulai mendeteksi qrcode
-                    bqrcodeDetector.detect(video).then(codes => {
+                    qrcodeDetector.detect(video).then(codes => {
                         
                         if (codes.length === 0) return;
                         
