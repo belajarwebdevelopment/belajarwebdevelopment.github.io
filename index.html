@@ -157,6 +157,7 @@
                 <div class="col text-center pb-2">
 					<input type="hidden" class="form-control" name="lat" id="lat">
 					<input type="hidden" class="form-control" name="long" id="long">
+                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none">Pair with QRCode</button>
 					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none">Submit</button>
 					<button class="btn btn-info form-control d-none" id="loading_data" type="button" disabled data-role="none">
 						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -172,6 +173,9 @@
         <div class="container py-5 my-2 border" data-role="page" id="page5">
             <div class="alert alert-primary msg_container_page5" role="alert">
             </div>
+        </div>
+        <div class="container py-5 my-2 border" data-role="page" id="page6">
+            <video id="video" autoplay></video>
         </div>
         </form>
 
@@ -396,5 +400,48 @@
                 });
             });
         </script>
+
+        <script language="javascript" async>
+            const video = document.querySelector("#video");
+            //Check if device has camera
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                const constrain = {
+                    video : {
+                        facingMode : {
+                            exact: 'environment'
+                        }
+                    },
+                    audio : false   
+                }
+
+                //start video stream
+                navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
+
+                const container_hasil = document.querySelector('#qrcode_str');
+
+                //Mendklarasi class barcode detector
+                const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+
+                const deteksiKode = () => {
+                    //Mulai mendeteksi qrcode
+                    qrcodeDetector.detect(video).then(codes => {
+                        
+                        if (codes.length === 0) return;
+                        
+                        for (const qrcode of codes) {
+                            container_hasil.innerHTML = "";
+                            container_hasil.innerHTML = qrcode.rawValue;
+                        }
+
+                    })
+                    .catch(err => {
+                        container_hasil.innerHTML = "";
+                        container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
+                    });
+                }
+
+                setInterval(deteksiKode, 1000);
+            }
+        </script>        
     </body>
 </html>
