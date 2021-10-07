@@ -14,13 +14,13 @@
                     video : {
                         widht : {
                             min : 1280,
-                            ideal : 1920,
-                            max : 2560
+                            ideal : 1280,
+                            max : 1280
                         },
                         height : {
                             min : 720,
-                            ideal : 1080,
-                            max : 1440
+                            ideal : 720,
+                            max : 720
                         },
                         facingMode : {
                             exact: 'environment'
@@ -37,7 +37,7 @@
 
                 const deteksiKode = () => {
                     //Mulai mendeteksi qrcode
-                    bqrcodeDetector.detect(video).then(codes => {
+                    qrcodeDetector.detect(video).then(codes => {
                         
                         if (codes.length === 0) return;
                         
