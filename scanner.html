@@ -33,11 +33,11 @@
                 navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
 
                 //Mendklarasi class barcode detector
-                const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+                const barcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
 
                 const deteksiKode = () => {
                     //Mulai mendeteksi qrcode
-                    qrcodeDetector.detect(video).then(codes => {
+                    barcodeDetector.detect(video).then(codes => {
                         
                         if (codes.length === 0) return;
                         
