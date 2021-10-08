@@ -151,8 +151,8 @@
                             </select> 
                         </div>
                         <div class="mb-3">
-                            <label for="qrcode" class="form-label">Kode QR</label>
-                            <input type="text" class="form-control" name="qrcode" id="qrcode" placeholder="" readonly>
+                            <label for="qr_code" class="form-label">Kode QR</label>
+                            <input type="text" class="form-control" name="qr_code" id="qr_code" placeholder="" readonly>
                         </div>
                     </div>      
                 </div>
@@ -451,8 +451,8 @@
                         
                         for (const qrcode of codes) {
                             $.mobile.changePage("#page3", {role : "dialog"});
-                            //document.querySelector('#qrcode').innerHTML = "";
-                            document.querySelector('#qrcode').innerHTML = qrcode.rawValue;
+                            document.querySelector('#qr_code').innerHTML = "";
+                            document.querySelector('#qr_code').innerHTML = qrcode.rawValue;
                             document.querySelector('#entry_the_data').hidden = false;
                             document.querySelector('#pair_the_data').hidden = true;
                         }
@@ -460,8 +460,8 @@
                     })
                     .catch(err => {
                         $.mobile.changePage("#page3", {role : "dialog"});
-                        //document.querySelector('#qrcode').innerHTML = "";
-                        document.querySelector('#qrcode').innerHTML = "Maaf, Pembacaan gagal. Ulangi proses scan";
+                        document.querySelector('#qr_code').innerHTML = "";
+                        document.querySelector('#qr_code').innerHTML = "Maaf, Pembacaan gagal. Ulangi proses scan";
                         document.querySelector('#entry_the_data').hidden = true;
                         document.querySelector('#pair_the_data').hidden = false;
                     });
