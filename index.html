@@ -450,7 +450,7 @@
                         if (codes.length === 0) return;
                         
                         for (const qrcode of codes) {
-                            $.mobile.changePage("#page4", {role : "dialog"});
+                            $.mobile.changePage("#page3", {role : "dialog"});
                             document.querySelector('#qrcode').innerHTML = "";
                             document.querySelector('#qrcode').innerHTML = qrcode.rawValue;
                             document.querySelector('#entry_the_data').hidden = false;
@@ -459,7 +459,7 @@
 
                     })
                     .catch(err => {
-                        $.mobile.changePage("#page4", {role : "dialog"});
+                        $.mobile.changePage("#page3", {role : "dialog"});
                         document.querySelector('#qrcode').innerHTML = "";
                         document.querySelector('#qrcode').innerHTML = "Maaf, Pembacaan gagal. Ulangi proses scan";
                         document.querySelector('#entry_the_data').hidden = true;
