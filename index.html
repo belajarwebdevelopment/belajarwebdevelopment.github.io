@@ -158,7 +158,7 @@
 					<input type="hidden" class="form-control" name="lat" id="lat">
 					<input type="hidden" class="form-control" name="long" id="long">
                     <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none">Pair with QRCode</button>
-					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none">Submit</button>
+					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" hidden>Submit</button>
 					<button class="btn btn-info form-control d-none" id="loading_data" type="button" disabled data-role="none">
 						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 						Loading...
@@ -300,7 +300,7 @@
                     }
                 });
 
-                $("#entry_the_data").on('click', function() {
+                $("#pair_the_data").on('click', function() {
                     if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
 						alert("Proses memasukkan data gagal. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
 						return false;
@@ -310,11 +310,28 @@
 						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
 						return false;
 					}
+
+                    $.mobile.changePage("#page6", {role : "dialog"});
+
+                });
+
+                $("#entry_the_data").on('click', function() {
+                    /*
+                    if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
+						alert("Proses memasukkan data gagal. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
+						return false;
+					}
+				
+                    if ($("#tahunTera1 :selected").text() == "" || $("#tahunTera1 :selected").text() == "Pilih Tahun Tera") {
+						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
+						return false;
+					}
+                    */
 					siapkanData();
-/*
+                    /*
 					$.mobile.changePage("#page5", {role:"dialog"});
                     $(".msg_container_page5").html('<p>Data telah berhasil dimasukkan...<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
-*/
+                    */
                 });
 
             });
