@@ -282,6 +282,7 @@
                 for (i=0;i<arr.length;i++) {
                     $("#"+arr[i]+id).val("");
                 }
+                $("#qr_code").val("");
                 $("#tahunTera1").val('').trigger('change');
             }
 			
@@ -451,6 +452,7 @@
                         
                         for (const qrcode of codes) {
                             $.mobile.changePage("#page3", {role : "dialog"});
+                            document.querySelector("#video").style.border = "5px solid green";
                             document.querySelector('#qr_code').value = "";
                             document.querySelector('#qr_code').value = qrcode.rawValue;
                             document.querySelector('#entry_the_data').hidden = false;
@@ -460,6 +462,7 @@
                     })
                     .catch(err => {
                         $.mobile.changePage("#page3", {role : "dialog"});
+                        document.querySelector("#video").style.border = "5px solid red";
                         document.querySelector('#qr_code').value = "";
                         document.querySelector('#qr_code').value = "Maaf, Pembacaan gagal. Ulangi proses scan";
                         document.querySelector('#entry_the_data').hidden = true;
