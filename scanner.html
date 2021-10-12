@@ -5,6 +5,22 @@
     <body>
         <video id="video" autoplay></video>
         <h4 id="qrcode_str"></h4>
+        <script language="javascript">
+			function sendData(dataObj) {
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbw41Z_jbwHWjqjeK8K6LcO-GcSwwPYgcPcqRKNPwghVWwooVpOE6RYRlv28P2rHnMwChQ/exec";
+
+                fetch(webAppUrl,{
+					method : 'POST',
+					body : JSON.stringify(dataObj)
+				}).then(respon => respon.json()).then(respon => {
+					let pesan = respon.msg;
+					$.mobile.changePage("#page5", {role:"dialog"});
+                    $(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
+					
+				});
+
+			}            
+        </script>
         <script language="javascript" async>
             const video = document.querySelector("#video");
             //Check if device has camera
@@ -31,12 +47,14 @@
                     qrcodeDetector.detect(video).then(codes => {
                         
                         if (codes.length === 0) return;
-                        
+                        /*
                         for (const qrcode of codes) {
                             container_hasil.innerHTML = "";
                             container_hasil.innerHTML = qrcode.rawValue;
                         }
-
+                        */
+                       container_hasil.innerHTML = "";
+                       container_hasil.innerHTML = qrcode.rawValue;
                     })
                     .catch(err => {
                         container_hasil.innerHTML = "";
