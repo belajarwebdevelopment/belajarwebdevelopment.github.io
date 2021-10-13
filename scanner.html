@@ -4,9 +4,11 @@
     </head>
     <body>
         <video id="video" autoplay></video>
+        <!--
         <div class="spinner-border m-5 d-none" role="status" data-role="none">
             <span class="visually-hidden">Loading...</span>
         </div>
+        -->
         <h4 id="qrcode_str" style="color : red;"></h4>
         <script language="javascript">
 			function sendData(dataObj) {
@@ -52,12 +54,12 @@
                         if (codes.length === 0) return;
                         
                         for (const qrcode of codes) {
-                            let dataObjToSend = {'kode_qr' : qrcode.rawValue};
-                            sendData(qrcode.rawValue);
-                            /*
+                            let dataObjToSend = {kode_qr : qrcode.rawValue};
+                            //sendData(qrcode.rawValue);
+                            
                             container_hasil.innerHTML = "";
                             container_hasil.innerHTML = qrcode.rawValue;
-                            */
+                            
                         }
                         
                     })
