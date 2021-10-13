@@ -10,17 +10,20 @@
         </div>
         -->
         <h4 id="qrcode_str" style="color : red;"></h4>
+        <h4 id="qrcode_str_from_webapp" style="color : blue;"></h4>
         <script language="javascript">
 			function sendData(dataObj) {
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwVy2nU4I8JuK_7p_4L5X82Ex29cNRbOfXXGbM3XPhkCFBYHHyR6ad4cq3WJ49AbV_KqA/exec";
+
+                const container_hasil_from_webapp = document.querySelector('#qrcode_str_from_webapp');
 
                 fetch(webAppUrl,{
 					method : 'POST',
 					body : JSON.stringify(dataObj)
 				}).then(respon => respon.json()).then(respon => {
 					let pesan = respon.result;
-                    container_hasil.innerHTML = "";
-                    container_hasil.innerHTML = pesan;
+                    container_hasil_from_webapp.innerHTML = "";
+                    container_hasil_from_webapp.innerHTML = pesan;
 					
 				});
 
@@ -55,7 +58,7 @@
                         
                         for (const qrcode of codes) {
                             let dataObjToSend = {kode_qr : qrcode.rawValue};
-                            //sendData(qrcode.rawValue);
+                            sendData(qrcode.rawValue);
                             
                             container_hasil.innerHTML = "";
                             container_hasil.innerHTML = qrcode.rawValue;
