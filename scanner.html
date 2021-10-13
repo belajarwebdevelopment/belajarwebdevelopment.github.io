@@ -13,7 +13,7 @@
         <h4 id="qrcode_str_from_webapp" style="color : blue;"></h4>
         <script language="javascript">
 			function sendData(dataObj) {
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbyredmWgbcAz6_3TlgSy369Hh6WLl5KhiwWxvTC7R5B8xwh3rPVbJj6FuM5RuNUjsLb_Q/exec";
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbxxFaaCxJPKlO2cpm3Y0Q5jolkx9pgMXp2ScwYBOwUE7nlEbSPn6pplWiEEq3lgY8HkbQ/exec";
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str_from_webapp');
 
@@ -58,7 +58,7 @@
                         
                         for (const qrcode of codes) {
                             let dataObjToSend = {kode_qr : qrcode.rawValue};
-                            sendData(qrcode.rawValue);
+                            sendData(dataObjToSend);
                             
                             container_hasil.innerHTML = "";
                             container_hasil.innerHTML = qrcode.rawValue;
