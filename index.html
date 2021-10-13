@@ -455,7 +455,7 @@
                 //start video stream
                 navigator.mediaDevices.getUserMedia(constrain).then(stream => {
 					video.srcObject = stream;
-					document.querySelector("#video").style.border = "none";
+					document.querySelector("#video").style.border = none;
 				});
 
                 //const container_hasil = document.querySelector('#qrcode_str');
