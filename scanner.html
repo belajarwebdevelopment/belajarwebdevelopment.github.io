@@ -9,11 +9,11 @@
             <span class="visually-hidden">Loading...</span>
         </div>
         -->
-        <h4 id="qrcode_str" style="color : red;"></h4>
-        <h4 id="qrcode_str_from_webapp" style="color : blue;"></h4>
+        <h2 id="qrcode_str" style="color : red;"></h2>
+        <h2 id="qrcode_str_from_webapp" style="color : blue;"></h2>
         <script language="javascript">
 			function sendData(dataObj) {
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbxZiAmLt7xoRtLzOGVak4LeYEWE7UAjSvLA73uzzSZA9O0cMIt5IiETisMmYqs8yM53wg/exec";
+				const webAppUrl = "https://script.google.com/macros/s/AKfycby7Z_DkeiHpN83U7eQKY4bLFrfHJk4mDIONmWhF8e8nYmwInOwqylXG7i2zi7OJYnqBBg/exec";
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str_from_webapp');
 
@@ -21,9 +21,9 @@
 					method : 'POST',
 					body : JSON.stringify(dataObj)
 				}).then(respon => respon.json()).then(respon => {
-					let pesan = respon.result;
+					//let pesan = respon.result;
                     container_hasil_from_webapp.innerHTML = "";
-                    container_hasil_from_webapp.innerHTML = pesan;
+                    container_hasil_from_webapp.innerHTML = "<ul><li>Kode : "+respon.kode+"</li><li>WTU : "+respon.wtu+"</li><li>Pasar : "+respon.pasar+"</li><li>UTTP : "+respon.uttp+"</li><li>Status : "+respon.status_tera+"</li></ul>";
 					
 				});
 
