@@ -150,6 +150,14 @@
                                 <option val="2016">2016</option>
                             </select> 
                         </div>
+                        <div class="mb-3">
+                            <label for="sn" class="form-label">Serial Number (optional)</label>
+                            <input type="text" class="form-control" name="sn" id="sn" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="qr_code" class="form-label">Kode QR</label>
+                            <input type="text" class="form-control" name="qr_code" id="qr_code" placeholder="" readonly>
+                        </div>
                     </div>      
                 </div>
             </div>
@@ -157,7 +165,8 @@
                 <div class="col text-center pb-2">
 					<input type="hidden" class="form-control" name="lat" id="lat">
 					<input type="hidden" class="form-control" name="long" id="long">
-					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none">Submit</button>
+                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none">Pair with QRCode</button>
+					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" hidden>Submit</button>
 					<button class="btn btn-info form-control d-none" id="loading_data" type="button" disabled data-role="none">
 						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 						Loading...
@@ -172,6 +181,9 @@
         <div class="container py-5 my-2 border" data-role="page" id="page5">
             <div class="alert alert-primary msg_container_page5" role="alert">
             </div>
+        </div>
+        <div class="container py-5 my-2 border" data-role="page" id="page6">
+            <video id="video" autoplay></video>
         </div>
         </form>
 
@@ -220,6 +232,7 @@
                         $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama pedagang/wtu, los pasar, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a href="#page2"><< Kembali</a></p>`);
                         return;
                     }
+                    setPage3Button();
                     $.mobile.changePage("#page3", {role : "dialog"});
 					$("#lat").val(Koordinat.latitude.toString().replace(".",","));
 					$("#long").val(Koordinat.longitude.toString().replace(".",","));
@@ -238,6 +251,11 @@
         </script>
 
         <script language="javascript">
+            var setPage3Button = function() {
+                document.querySelector("#entry_the_data").hidden = true;
+                document.querySelector("#pair_the_data").hidden = false;
+            }
+
             var resetFormDataWTU = function() {
                 $("#hp").val('');
                 $("#los").val('');
@@ -267,6 +285,8 @@
                 for (i=0;i<arr.length;i++) {
                     $("#"+arr[i]+ids).val("").attr('readonly', true);
                 }
+                $("#qr_code").val("");
+                $("#sn").val("");
             }
 
             var resetFormUTTP = function(id) {
@@ -274,6 +294,8 @@
                 for (i=0;i<arr.length;i++) {
                     $("#"+arr[i]+id).val("");
                 }
+                $("#qr_code").val("");
+                $("#sn").val("");
                 $("#tahunTera1").val('').trigger('change');
             }
 			
@@ -296,7 +318,7 @@
                     }
                 });
 
-                $("#entry_the_data").on('click', function() {
+                $("#pair_the_data").on('click', function() {
                     if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
 						alert("Proses memasukkan data gagal. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
 						return false;
@@ -306,11 +328,28 @@
 						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
 						return false;
 					}
+
+                    $.mobile.changePage("#page6", {role : "dialog"});
+
+                });
+
+                $("#entry_the_data").on('click', function() {
+                    /*
+                    if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
+						alert("Proses memasukkan data gagal. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
+						return false;
+					}
+				
+                    if ($("#tahunTera1 :selected").text() == "" || $("#tahunTera1 :selected").text() == "Pilih Tahun Tera") {
+						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
+						return false;
+					}
+                    */
 					siapkanData();
-/*
+                    /*
 					$.mobile.changePage("#page5", {role:"dialog"});
                     $(".msg_container_page5").html('<p>Data telah berhasil dimasukkan...<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
-*/
+                    */
                 });
 
             });
@@ -330,8 +369,9 @@
 			*/	
 
 			function sendData(dataObj) {
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
-				const btnKirim = document.getElementById('entry_the_data');
+				//const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbw41Z_jbwHWjqjeK8K6LcO-GcSwwPYgcPcqRKNPwghVWwooVpOE6RYRlv28P2rHnMwChQ/exec";
+                const btnKirim = document.getElementById('entry_the_data');
 				const btnLoading = document.getElementById('loading_data');
 				btnKirim.classList.toggle('d-none');
 				btnLoading.classList.toggle('d-none');
@@ -365,7 +405,7 @@
 				for (const [name, value] of data) {
 					SerializePair[name] = value;
 				}
-
+                //alert(SerializePair);
 				sendData(SerializePair);
 			}
 			
@@ -378,6 +418,7 @@
             $(function() {
                 $("#page5").on("click", ".add_data", function() {
                     if ($(this)[0].id == "add_uttp") {
+                        setPage3Button();
                         $.mobile.changePage("#page3", {role:"dialog"});
                         resetFormUTTP_v2(1);
 						ShowhideSomeInput(true);
@@ -397,5 +438,59 @@
                 });
             });
         </script>
+
+        <script language="javascript" async>
+            const video = document.querySelector("#video");
+            //Check if device has camera
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                const constrain = {
+                    video : {
+                        facingMode : {
+                            exact: 'environment'
+                        }
+                    },
+                    audio : false   
+                }
+
+                //start video stream
+                navigator.mediaDevices.getUserMedia(constrain).then(stream => {
+					video.srcObject = stream;
+					document.querySelector("#video").style.border = none;
+				});
+
+                //const container_hasil = document.querySelector('#qrcode_str');
+
+                //Mendklarasi class barcode detector
+                const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+
+                const deteksiKode = () => {
+                    //Mulai mendeteksi qrcode
+                    qrcodeDetector.detect(video).then(codes => {
+                        
+                        if (codes.length === 0) return;
+                        
+                        for (const qrcode of codes) {
+                            $.mobile.changePage("#page3", {role : "dialog"});
+                            document.querySelector("#video").style.border = "5px solid green";
+                            document.querySelector('#qr_code').value = "";
+                            document.querySelector('#qr_code').value = qrcode.rawValue;
+                            document.querySelector('#entry_the_data').hidden = false;
+                            document.querySelector('#pair_the_data').hidden = true;
+                        }
+
+                    })
+                    .catch(err => {
+                        $.mobile.changePage("#page3", {role : "dialog"});
+                        document.querySelector("#video").style.border = "5px solid red";
+                        document.querySelector('#qr_code').value = "";
+                        document.querySelector('#qr_code').value = "Maaf, Pembacaan gagal. Ulangi proses scan";
+                        document.querySelector('#entry_the_data').hidden = true;
+                        document.querySelector('#pair_the_data').hidden = false;
+                    });
+                }
+
+                setInterval(deteksiKode, 1000);
+            }
+        </script>        
     </body>
 </html>
