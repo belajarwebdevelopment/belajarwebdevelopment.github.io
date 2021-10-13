@@ -441,6 +441,7 @@
 
         <script language="javascript" async>
             const video = document.querySelector("#video");
+			video.style.border = "5px solid green";
             //Check if device has camera
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 const constrain = {
@@ -451,7 +452,6 @@
                     },
                     audio : false   
                 }
-				document.querySelector("#video").style.border = "5px solid black";
                 //start video stream
                 navigator.mediaDevices.getUserMedia(constrain).then(stream => {
 					video.srcObject = stream;
