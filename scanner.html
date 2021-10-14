@@ -12,7 +12,7 @@
         <h2 id="qrcode_str" style="color : red;"></h2>
         <h2 id="qrcode_str_from_webapp" style="color : blue;"></h2>
         <script language="javascript">
-            /*
+            
 			function sendData(dataObj) {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycby7Z_DkeiHpN83U7eQKY4bLFrfHJk4mDIONmWhF8e8nYmwInOwqylXG7i2zi7OJYnqBBg/exec";
 
@@ -31,7 +31,7 @@
 				});
 
 			}    
-            */        
+                    
         </script>
         <script language="javascript" async>
             const video = document.querySelector("#video");
@@ -62,7 +62,7 @@
                         
                         for (const qrcode of codes) {
                             let dataObjToSend = {kode_qr : qrcode.rawValue};
-                            //sendData(dataObjToSend);
+                            sendData(dataObjToSend);
                             
                             container_hasil.innerHTML = "";
                             container_hasil.innerHTML = qrcode.rawValue;
