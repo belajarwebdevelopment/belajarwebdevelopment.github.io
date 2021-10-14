@@ -138,6 +138,10 @@
                             <input type="text" class="form-control" name="model1" id="model1" placeholder="" readonly> 
                         </div>
                         <div class="mb-3">
+                            <label for="sn" class="form-label">Serial Number (optional)</label>
+                            <input type="text" class="form-control" name="sn" id="sn" placeholder="">
+                        </div>                        
+                        <div class="mb-3">
                             <label for="tahunTera1" class="form-label">Tahun Tera</label>
                             <!--<input type="text" class="form-control" name="tahunTera1" id="tahunTera1" placeholder="">-->
                             <select class="form-control" name="tahunTera1" id="tahunTera1">
@@ -149,10 +153,6 @@
                                 <option val="2017">2017</option>
                                 <option val="2016">2016</option>
                             </select> 
-                        </div>
-                        <div class="mb-3">
-                            <label for="sn" class="form-label">Serial Number (optional)</label>
-                            <input type="text" class="form-control" name="sn" id="sn" placeholder="">
                         </div>
                         <div class="mb-3">
                             <label for="qr_code" class="form-label">Kode QR</label>
@@ -328,7 +328,7 @@
 						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
 						return false;
 					}
-                    document.querySelector("#video").style.border = "5px solid black";
+                    document.querySelector("#video").style.border = "none";
                     $.mobile.changePage("#page6", {role : "dialog"});
 
                 });
@@ -370,7 +370,7 @@
 
 			function sendData(dataObj) {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbw1IEQQw-v5LFs_y28WTUlXifXCCKyHqYWetdX5PiDsHmILGxdrnxbCrL4CY2ECzMuY6g/exec";
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbze6_QmbSeYc2NCh1k8RdxXq_k69mjh53602Ea-NJvwzG3vloxL39AC2KtYy2o9tyAiYQ/exec";
                 const btnKirim = document.getElementById('entry_the_data');
 				const btnLoading = document.getElementById('loading_data');
 				btnKirim.classList.toggle('d-none');
@@ -392,7 +392,8 @@
 					console.log(respon.result);
 					let pesan = respon.msg;
 					$.mobile.changePage("#page5", {role:"dialog"});
-                    $(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
+                    //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
+                    $(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
 					
 				});
 			}
