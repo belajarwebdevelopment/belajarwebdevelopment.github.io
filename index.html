@@ -328,7 +328,7 @@
 						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
 						return false;
 					}
-
+                    document.querySelector("#video").style.border = "5px solid black";
                     $.mobile.changePage("#page6", {role : "dialog"});
 
                 });
@@ -441,7 +441,7 @@
 
         <script language="javascript" async>
             const video = document.querySelector("#video");
-			video.style.border = "5px solid black";
+			//video.style.border = "5px solid black";
             //Check if device has camera
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 const constrain = {
