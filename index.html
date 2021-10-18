@@ -330,6 +330,7 @@
 					}
                     document.querySelector("#video").style.border = "none";
                     $.mobile.changePage("#page6", {role : "dialog"});
+                    siapkanKamera();
 
                 });
 
@@ -444,54 +445,56 @@
         </script>
 
         <script language="javascript" async>
-            const video = document.querySelector("#video");
-            //Check if device has camera
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                const constrain = {
-                    video : {
-                        facingMode : {
-                            exact: 'environment'
-                        }
-                    },
-                    audio : false   
-                }
-                //start video stream
-                navigator.mediaDevices.getUserMedia(constrain).then(stream => {
-					video.srcObject = stream;
-				});
-
-                //const container_hasil = document.querySelector('#qrcode_str');
-
-                //Mendklarasi class barcode detector
-                const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
-
-                const deteksiKode = () => {
-                    //Mulai mendeteksi qrcode
-                    qrcodeDetector.detect(video).then(codes => {
-                        
-                        if (codes.length === 0) return;
-                        
-                        for (const qrcode of codes) {
-                            $.mobile.changePage("#page3", {role : "dialog"});
-                            document.querySelector("#video").style.border = "5px solid green";
-                            document.querySelector('#qr_code').value = "";
-                            document.querySelector('#qr_code').value = qrcode.rawValue;
-                            document.querySelector('#entry_the_data').hidden = false;
-                            document.querySelector('#pair_the_data').hidden = true;
-                        }
-
-                    })
-                    .catch(err => {
-                        $.mobile.changePage("#page3", {role : "dialog"});
-                        document.querySelector("#video").style.border = "5px solid red";
-                        document.querySelector('#qr_code').value = "";
-                        document.querySelector('#qr_code').value = "Maaf, Pembacaan gagal. Ulangi proses scan";
-                        document.querySelector('#entry_the_data').hidden = true;
-                        document.querySelector('#pair_the_data').hidden = false;
+            function siapkanKamera() {
+                const video = document.querySelector("#video");
+                //Check if device has camera
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    const constrain = {
+                        video : {
+                            facingMode : {
+                                exact: 'environment'
+                            }
+                        },
+                        audio : false   
+                    }
+                    //start video stream
+                    navigator.mediaDevices.getUserMedia(constrain).then(stream => {
+                        video.srcObject = stream;
                     });
-                }
 
-                setInterval(deteksiKode, 1000);
+                    //const container_hasil = document.querySelector('#qrcode_str');
+
+                    //Mendklarasi class barcode detector
+                    const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+
+                    const deteksiKode = () => {
+                        //Mulai mendeteksi qrcode
+                        qrcodeDetector.detect(video).then(codes => {
+                            
+                            if (codes.length === 0) return;
+                            
+                            for (const qrcode of codes) {
+                                $.mobile.changePage("#page3", {role : "dialog"});
+                                document.querySelector("#video").style.border = "5px solid green";
+                                document.querySelector('#qr_code').value = "";
+                                document.querySelector('#qr_code').value = qrcode.rawValue;
+                                document.querySelector('#entry_the_data').hidden = false;
+                                document.querySelector('#pair_the_data').hidden = true;
+                            }
+
+                        })
+                        .catch(err => {
+                            $.mobile.changePage("#page3", {role : "dialog"});
+                            document.querySelector("#video").style.border = "5px solid red";
+                            document.querySelector('#qr_code').value = "";
+                            document.querySelector('#qr_code').value = "Maaf, Pembacaan gagal. Ulangi proses scan";
+                            document.querySelector('#entry_the_data').hidden = true;
+                            document.querySelector('#pair_the_data').hidden = false;
+                        });
+                    }
+
+                    setInterval(deteksiKode, 1000);
+                }
             }
         </script>        
     </body>
