@@ -488,7 +488,7 @@
                                 document.querySelector('#pair_the_data').hidden = true;
                             }
 
-                            return false;
+                            //return false;
 
                         })
                         .catch(err => {
@@ -498,11 +498,12 @@
                             document.querySelector('#qr_code').value = "Maaf, Pembacaan gagal. Ulangi proses scan";
                             document.querySelector('#entry_the_data').hidden = true;
                             document.querySelector('#pair_the_data').hidden = false;
-                            return false;
+                            //return false;
                         });
                     }
-
-                    setInterval(deteksiKode, 1000);
+                    
+                    //deteksiKode();
+                    //setInterval(deteksiKode, 1000);
                 }
             }
         </script>        
