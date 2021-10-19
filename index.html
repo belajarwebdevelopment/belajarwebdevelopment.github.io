@@ -73,6 +73,12 @@
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
+                    <label for="komoditi" class="form-label">Barang yg dijual</label>
+                    <input type="text" class="form-control" id="komoditi" name="komoditi" placeholder="">            
+                </div>
+            </div>
+            <div class="row mx-1 gx-5 mb-3">
+                <div class="col">
                     <label for="los" class="form-label">Nomer Los Pasar</label>
                     <input type="text" class="form-control" name="los" id="los" placeholder="">            
                 </div>
@@ -482,6 +488,8 @@
                                 document.querySelector('#pair_the_data').hidden = true;
                             }
 
+                            return;
+
                         })
                         .catch(err => {
                             $.mobile.changePage("#page3", {role : "dialog"});
@@ -490,6 +498,7 @@
                             document.querySelector('#qr_code').value = "Maaf, Pembacaan gagal. Ulangi proses scan";
                             document.querySelector('#entry_the_data').hidden = true;
                             document.querySelector('#pair_the_data').hidden = false;
+                            return;
                         });
                     }
 
