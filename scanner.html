@@ -30,6 +30,10 @@
                     container_hasil_from_webapp.innerHTML = "";
                     container_hasil_from_webapp.innerHTML = "<ul><li>Kode : "+respon.kode+"</li><li>WTU : "+respon.wtu+"</li><li>Pasar : "+respon.pasar+"</li><li>UTTP : "+respon.uttp+"</li><li>Status : "+respon.status_tera+"</li></ul>";
 					
+				})
+				.catch(err => {
+					container_hasil_from_webapp.innerHTML = "";
+					container_hasil_from_webapp.innerHTML = "Data Untuk Kode ini Tidak Diketemukan";
 				});
 
 			}    
@@ -72,7 +76,7 @@
 								container_hasil.innerHTML = qrcode.rawValue;
 								
 							}
-							//clearInterval(setInterval_ID);
+							clearInterval(setInterval_ID);
 							//navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
 								//track.stop();
 							//});
@@ -80,7 +84,7 @@
 						.catch(err => {
 							container_hasil.innerHTML = "";
 							container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
-							//clearInterval(setInterval_ID);
+							clearInterval(setInterval_ID);
 							//navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
 								//track.stop();
 							//});
