@@ -37,7 +37,64 @@
             //sendData({kode_qr : "prlegi0005"});
         </script>
         <script language="javascript" async>
-            
+            function prepareTheCam() {
+				const video = document.querySelector("#video");
+				//Check if device has camera
+				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+					const constrain = {
+						video : {
+							facingMode : {
+								exact: 'environment'
+							}
+						},
+						audio : false   
+					}
+
+					//start video stream
+					navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
+
+					const container_hasil = document.querySelector('#qrcode_str');
+
+					//Mendklarasi class barcode detector
+					const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+
+					const deteksiKode = () => {
+						//Mulai mendeteksi qrcode
+						qrcodeDetector.detect(video).then(codes => {
+							
+							if (codes.length === 0) return;
+							
+							for (const qrcode of codes) {
+								let dataObjToSend = {kode_qr : qrcode.rawValue};
+								sendData(dataObjToSend);
+								
+								container_hasil.innerHTML = "";
+								container_hasil.innerHTML = qrcode.rawValue;
+								
+							}
+							clearInterval(setInterval_ID);
+							navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
+								track.stop();
+							});
+						})
+						.catch(err => {
+							container_hasil.innerHTML = "";
+							container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
+							clearInterval(setInterval_ID);
+							navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
+								track.stop();
+							});
+
+						});
+					}
+
+					var setInterval_ID = setInterval(deteksiKode, 1000);
+				}
+				
+			} 
+			
+			prepareTheCam();
+/*
             const video = document.querySelector("#video");
             //Check if device has camera
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -82,7 +139,7 @@
 
                 setInterval(deteksiKode, 1000);
             }
-            
+*/            
         </script>
     </body>
 </html>
