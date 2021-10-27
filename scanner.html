@@ -55,7 +55,7 @@
 					}
 
 					//start video stream
-					const my_stream = navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
+					navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
 
 					const container_hasil = document.querySelector('#qrcode_str');
 
@@ -77,7 +77,7 @@
 								
 							}
 							clearInterval(setInterval_ID);
-							my_stream.getTracks().forEach(function(track) {
+							stream.getTracks().forEach(function(track) {
 								track.stop();
 							});
 							//navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
@@ -88,9 +88,9 @@
 							container_hasil.innerHTML = "";
 							container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
 							clearInterval(setInterval_ID);
-							/*my_stream.getTracks().forEach(function(track) {
+							stream.getTracks().forEach(function(track) {
 								track.stop();
-							});*/
+							});
 
 						});
 					}
