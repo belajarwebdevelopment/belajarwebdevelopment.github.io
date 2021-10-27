@@ -40,7 +40,7 @@
             
             //sendData({kode_qr : "prlegi0005"});
         </script>
-        <script language="javascript">
+        <script language="javascript" async>
             function prepareTheCam() {
 				const video = document.querySelector("#video");
 				//Check if device has camera
@@ -77,9 +77,11 @@
 								
 							}
 							clearInterval(setInterval_ID);
+							/*
 							localStream.getTracks().forEach(function(track) {
 								track.stop();
 							});
+							*/
 							//navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
 								//track.stop();
 							//});
@@ -88,10 +90,11 @@
 							container_hasil.innerHTML = "";
 							container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
 							clearInterval(setInterval_ID);
+							/*
 							localStream.getTracks().forEach(function(track) {
 								track.stop();
 							});
-
+							*/
 						});
 					}
 
