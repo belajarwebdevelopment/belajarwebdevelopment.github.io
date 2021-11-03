@@ -6,12 +6,7 @@
         <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">-->
     </head>
     <body>
-        <video id="video" autoplay></video>
-        <!--
-        <div class="spinner-border m-5 d-none" role="status" data-role="none">
-            <span class="visually-hidden">Reading data...</span>
-        </div>
-        -->
+        <video id="video" width="100%" height="60%" autoplay></video>
         <h2 id="qrcode_str" style="color : red;"></h2>
         <h2 id="qrcode_str_from_webapp" style="color : blue;"></h2>
         <script language="javascript">
@@ -66,6 +61,40 @@
 					console.log(qrcodeDetector.detect(video));
 				}
 			}*/
+/*
+						qrcodeDetector.detect(video).then(codes => {
+							
+							if (codes.length === 0) return;
+							
+							for (const qrcode of codes) {
+								let dataObjToSend = {kode_qr : qrcode.rawValue};
+								sendData(dataObjToSend);
+								
+								container_hasil.innerHTML = "";
+								container_hasil.innerHTML = qrcode.rawValue;
+								
+							}
+							clearInterval(setInterval_ID);
+							
+							localStream.getTracks().forEach(function(track) {
+								track.stop();
+							});
+							
+							//navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
+								//track.stop();
+							//});
+						})
+						.catch(err => {
+							container_hasil.innerHTML = "";
+							container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
+							clearInterval(setInterval_ID);
+							
+							localStream.getTracks().forEach(function(track) {
+								track.stop();
+							});
+							
+						});
+*/
 			
 			async function prepareTheCam() {
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -73,7 +102,22 @@
 						console.log(m);
 						//Mendeklarasi class QRCode detector
 						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
-						//const 
+						const container_hasil = document.querySelector('#qrcode_str');
+						const deteksiKode = () => {
+							qrcodeDetector.detect(video)
+							.then(codes => {
+								if (codes.length === 0) return;
+								
+								for (const qrcode of codes) {
+									container_hasil.innerHTML = "";
+									container_hasil.innerHTML = qrcode.rawValue;
+								}
+							})
+							.catch(e => {
+								container_hasil = "";
+								container_hasil = "Maaf Kode Tidak Terbaca";
+							});
+						} 
 					});
 				}
 				/*
