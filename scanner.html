@@ -121,26 +121,32 @@
 									if (codes.length === 0) return;
 									
 									for (const qrcode of codes) {
-										container_hasil.innerHTML = "";
-										container_hasil.innerHTML = qrcode.rawValue;
+										//container_hasil.innerHTML = "";
+										//container_hasil.innerHTML = qrcode.rawValue;
+										var code = qrcode.rawValue;
 									} 
 									clearInterval(intervalID);
-									resolve("Pemindaian Berhasil..");
+									resolve(code);
 								})
 								.catch(e => {
-									container_hasil.innerHTML = "";
-									container_hasil.innerHTML = e;
+									//container_hasil.innerHTML = "";
+									//container_hasil.innerHTML = e;
 									clearInterval(intervalID);
-									reject("Pemindaian Gagal!!");
+									reject(e);
 								});
 							},1000);
 						});
 						
-						pindai.then(() => {
+						pindai.then(msg => {
+							container_hasil.innerHTML = "";
+							container_hasil.innerHTML = msg;
 							theCam.getTracks().forEach(track => track.stop())
 						})
-						.catch(e => console.log(e))
-						//theCam.getTracks().forEach(track => track.stop());
+						.catch(e => {
+							container_hasil.innerHTML = "";
+							container_hasil.innerHTML = e;
+							theCam.getTracks().forEach(track => track.stop())						
+						})
 					}
 					catch(err) {
 						alert(err)
