@@ -82,11 +82,11 @@
 						});
 */
 			
-			function jeda() {
+			function jeda(waktu) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
 						resolve('Done');
-					},4000);
+					},waktu);
 				});
 			}
 			
@@ -109,9 +109,11 @@
 					try {
 						const theCam = await prepareTheCam(video);
 						console.log(theCam);
-						container_hasil.innerHTML = "Kamera siap";
-						await jeda();
-						container_hasil.innerHTML = "Memindai QRCode...";
+						container_hasil.innerHTML = "Kamera siap...menunggu pemindai siap";
+						await jeda(1500);
+						container_hasil.innerHTML = "Pemindai siap";
+						await jeda(1500);
+						container_hasil.innerHTML = "Sedang Memindai QRCode...";
 						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
 						const intervalID = setInterval(() => {
 							qrcodeDetector.detect(video).then(codes => {
@@ -122,11 +124,15 @@
 									container_hasil.innerHTML = qrcode.rawValue;
 								} 
 								clearInterval(intervalID);
+								await jeda(700);
+								theCam.getTracks().forEach(track => track.stop());
 							})
 							.catch(e => {
 								container_hasil.innerHTML = "";
 								container_hasil.innerHTML = e;
 								clearInterval(intervalID);
+								await jeda(700);
+								theCam.getTracks().forEach(track => track.stop());
 							});
 						},1000);
 						//await jeda();
