@@ -91,10 +91,6 @@
 			}
 			
 			function prepareTheCam(video) {
-				return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
-			}
-			
-			async function startScan() {
 				const constrain = {
 					video : {
 						facingMode : {
@@ -104,6 +100,10 @@
 					audio : false   
 				}
 
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);				
+			}
+			
+			async function startScan() {
 				const container_hasil = document.querySelector('#qrcode_str');
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 					try {
@@ -124,15 +124,15 @@
 									container_hasil.innerHTML = qrcode.rawValue;
 								} 
 								clearInterval(intervalID);
-								await jeda(700);
-								theCam.getTracks().forEach(track => track.stop());
+								//await jeda(700);
+								//theCam.getTracks().forEach(track => track.stop());
 							})
 							.catch(e => {
 								container_hasil.innerHTML = "";
 								container_hasil.innerHTML = e;
 								clearInterval(intervalID);
-								await jeda(700);
-								theCam.getTracks().forEach(track => track.stop());
+								//await jeda(700);
+								//theCam.getTracks().forEach(track => track.stop());
 							});
 						},1000);
 						//await jeda();
