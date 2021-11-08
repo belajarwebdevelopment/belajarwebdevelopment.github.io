@@ -39,20 +39,6 @@
             //sendData({kode_qr : "prlegi0005"});
         </script>
 		<script>
-			delay = new Promise((resolve, reject) => {
-				setTimeout(() => {
-					resolve("Janji ditepati");
-				},10000);
-			});
-			
-			const constrain = {
-				video : {
-					facingMode : {
-						exact: 'environment'
-					}
-				},
-				audio : false   
-			}
 			
 			/*function deteksi_code(video) {
 				//Mendeklarasi class QRcode detector 
@@ -96,10 +82,63 @@
 						});
 */
 			
-			async function prepareTheCam() {
+			function jeda() {
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve('Done');
+					},4000);
+				});
+			}
+			
+			function prepareTheCam(video) {
+				return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+			}
+			
+			async function startScan() {
+				const constrain = {
+					video : {
+						facingMode : {
+							exact: 'environment'
+						}
+					},
+					audio : false   
+				}
+
+				const container_hasil = document.querySelector('#qrcode_str');
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+					try {
+						const theCam = await prepareTheCam(video);
+						console.log(theCam);
+						container_hasil.innerHTML = "Kamera siap";
+						await jeda();
+						container_hasil.innerHTML = "Memindai QRCode...";
+						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
+						const intervalID = setInterval(() => {
+							qrcodeDetector.detect(video).then(codes => {
+								if (codes.length === 0) return;
+								
+								for (const qrcode of codes) {
+									container_hasil.innerHTML = "";
+									container_hasil.innerHTML = qrcode.rawValue;
+								} 
+								clearInterval(intervalID);
+							})
+							.catch(e => {
+								container_hasil.innerHTML = "";
+								container_hasil.innerHTML = e;
+								clearInterval(intervalID);
+							});
+						},1000);
+						//await jeda();
+						//theCam.getTracks().forEach(track => track.stop());
+					}
+					catch(err) {
+						alert(err)
+					}
+					/*
 					await navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream).then(m => {
 						console.log(m);
+						
 						//Mendeklarasi class QRCode detector
 						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
 						const container_hasil = document.querySelector('#qrcode_str');
@@ -118,7 +157,9 @@
 								container_hasil = "Maaf Kode Tidak Terbaca";
 							});
 						} 
+						
 					});
+					*/
 				}
 				/*
 				await delay.then(() => console.log(delay));
@@ -130,7 +171,7 @@
 				*/
 			}
 			
-			prepareTheCam();
+			startScan();
 		</script>
 
         <!--
