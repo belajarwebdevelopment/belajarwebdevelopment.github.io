@@ -115,24 +115,32 @@
 						await jeda(700);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
 						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
-						const intervalID = await setInterval(() => {
-							qrcodeDetector.detect(video).then(codes => {
-								if (codes.length === 0) return;
-								
-								for (const qrcode of codes) {
+						const pindai = new Promise((resolve, reject) => {
+							const intervalID = setInterval(() => {
+								qrcodeDetector.detect(video).then(codes => {
+									if (codes.length === 0) return;
+									
+									for (const qrcode of codes) {
+										container_hasil.innerHTML = "";
+										container_hasil.innerHTML = qrcode.rawValue;
+									} 
+									clearInterval(intervalID);
+									resolve("Pemindaian Berhasil..");
+								})
+								.catch(e => {
 									container_hasil.innerHTML = "";
-									container_hasil.innerHTML = qrcode.rawValue;
-								} 
-								clearInterval(intervalID);
-							})
-							.catch(e => {
-								container_hasil.innerHTML = "";
-								container_hasil.innerHTML = e;
-								clearInterval(intervalID);
-							});
-						},1000);
+									container_hasil.innerHTML = e;
+									clearInterval(intervalID);
+									reject("Pemindaian Gagal!!");
+								});
+							},1000);
+						});
 						
-						theCam.getTracks().forEach(track => track.stop());
+						pindai.then(() => {
+							theCam.getTracks().forEach(track => track.stop())
+						})
+						.catch(e => console.log(e))
+						//theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
 						alert(err)
