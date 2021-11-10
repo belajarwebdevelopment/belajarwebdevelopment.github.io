@@ -65,7 +65,7 @@
 				container_hasil.innerHTML = msg;
 			}
 
-			function pindai() {
+			function pindai(video) {
 				return new Promise((resolve, reject) => {
 					const intervalID = setInterval(() => {
 						qrcodeDetector.detect(video).then(codes => {
@@ -116,7 +116,7 @@
 							},1000);
 						});*/
 						
-						const pindai = pindai()	
+						const pindai = pindai(video);	
 
 						await pindai.then(msg => {
 							tampilkanHasil(container_hasil,msg);
