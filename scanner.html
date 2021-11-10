@@ -95,9 +95,9 @@
 							},1000);
 						});
 						
-						pindai.then(async (msg) => {
+						pindai.then(msg => {
 							tampilkanHasil(container_hasil,msg);
-							await jeda(3000);
+							jeda(3000);
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
