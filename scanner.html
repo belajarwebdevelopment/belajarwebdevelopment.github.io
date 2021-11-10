@@ -96,12 +96,12 @@
 						});
 						
 						await pindai.then(msg => {
-							setTimeout(tampilkanHasil(container_hasil,msg),3000);
+							tampilkanHasil(container_hasil,msg);
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
 						});
-
+						await jeda(3000);
 						theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
