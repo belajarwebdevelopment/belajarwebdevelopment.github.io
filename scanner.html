@@ -38,50 +38,7 @@
             
             //sendData({kode_qr : "prlegi0005"});
         </script>
-		<script>
-			
-			/*function deteksi_code(video) {
-				//Mendeklarasi class QRcode detector 
-				const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
-				const deteksiKode = () => {
-					console.log(qrcodeDetector.detect(video));
-				}
-			}*/
-/*
-						qrcodeDetector.detect(video).then(codes => {
-							
-							if (codes.length === 0) return;
-							
-							for (const qrcode of codes) {
-								let dataObjToSend = {kode_qr : qrcode.rawValue};
-								sendData(dataObjToSend);
-								
-								container_hasil.innerHTML = "";
-								container_hasil.innerHTML = qrcode.rawValue;
-								
-							}
-							clearInterval(setInterval_ID);
-							
-							localStream.getTracks().forEach(function(track) {
-								track.stop();
-							});
-							
-							//navigator.mediaDevices.getUserMedia(constrain).getTracks().forEach(function(track) {
-								//track.stop();
-							//});
-						})
-						.catch(err => {
-							container_hasil.innerHTML = "";
-							container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
-							clearInterval(setInterval_ID);
-							
-							localStream.getTracks().forEach(function(track) {
-								track.stop();
-							});
-							
-						});
-*/
-			
+		<script>			
 			function jeda(waktu) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
@@ -103,12 +60,17 @@
 				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);				
 			}
 			
+			function tampilkanHasil(msg) {
+				container_hasil.innerHTML = "";
+				container_hasil.innerHTML = msg;
+			}
+
 			async function startScan() {
 				const container_hasil = document.querySelector('#qrcode_str');
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 					try {
 						const theCam = await prepareTheCam(video);
-						console.log(theCam);
+						//console.log(theCam);
 						container_hasil.innerHTML = "Kamera siap...";
 						await jeda(700);
 						container_hasil.innerHTML = "Pemindai siap...";
@@ -121,70 +83,32 @@
 									if (codes.length === 0) return;
 									
 									for (const qrcode of codes) {
-										//container_hasil.innerHTML = "";
-										//container_hasil.innerHTML = qrcode.rawValue;
 										var code = qrcode.rawValue;
 									} 
 									clearInterval(intervalID);
 									resolve(code);
 								})
 								.catch(e => {
-									//container_hasil.innerHTML = "";
-									//container_hasil.innerHTML = e;
 									clearInterval(intervalID);
 									reject(e);
 								});
 							},1000);
 						});
 						
-						pindai.then(msg => {
-							container_hasil.innerHTML = "";
-							container_hasil.innerHTML = msg;
-							theCam.getTracks().forEach(track => track.stop())
+						await pindai.then(msg => {
+							tampilkanHasil(msg);
+							jeda(3000);
 						})
 						.catch(e => {
-							container_hasil.innerHTML = "";
-							container_hasil.innerHTML = e;
-							theCam.getTracks().forEach(track => track.stop())						
-						})
+							tampilkanHasil(e);
+						});
+
+						theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
-						alert(err)
+						alert(err);
 					}
-					/*
-					await navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream).then(m => {
-						console.log(m);
-						
-						//Mendeklarasi class QRCode detector
-						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
-						const container_hasil = document.querySelector('#qrcode_str');
-						const deteksiKode = () => {
-							qrcodeDetector.detect(video)
-							.then(codes => {
-								if (codes.length === 0) return;
-								
-								for (const qrcode of codes) {
-									container_hasil.innerHTML = "";
-									container_hasil.innerHTML = qrcode.rawValue;
-								}
-							})
-							.catch(e => {
-								container_hasil = "";
-								container_hasil = "Maaf Kode Tidak Terbaca";
-							});
-						} 
-						
-					});
-					*/
 				}
-				/*
-				await delay.then(() => console.log(delay));
-				console.log('HI');
-				video.srcObject.getTracks().forEach(function(track) {
-					track.stop()
-					console.log('TEST');
-				});
-				*/
 			}
 			
 			startScan();
@@ -255,52 +179,6 @@
 			} 
 			
 			prepareTheCam();
-/*
-            const video = document.querySelector("#video");
-            //Check if device has camera
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                const constrain = {
-                    video : {
-                        facingMode : {
-                            exact: 'environment'
-                        }
-                    },
-                    audio : false   
-                }
-
-                //start video stream
-                navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);
-
-                const container_hasil = document.querySelector('#qrcode_str');
-
-                //Mendklarasi class barcode detector
-                const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
-
-                const deteksiKode = () => {
-                    //Mulai mendeteksi qrcode
-                    qrcodeDetector.detect(video).then(codes => {
-                        
-                        if (codes.length === 0) return;
-                        
-                        for (const qrcode of codes) {
-                            let dataObjToSend = {kode_qr : qrcode.rawValue};
-                            sendData(dataObjToSend);
-                            
-                            container_hasil.innerHTML = "";
-                            container_hasil.innerHTML = qrcode.rawValue;
-                            
-                        }
-                        
-                    })
-                    .catch(err => {
-                        container_hasil.innerHTML = "";
-                        container_hasil.innerHTML = "Maaf, Kode tidak terbaca";
-                    });
-                }
-
-                setInterval(deteksiKode, 1000);
-            }
-*/            
         </script>
 		-->
     </body>
