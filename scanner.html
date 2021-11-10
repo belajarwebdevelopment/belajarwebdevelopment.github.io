@@ -60,7 +60,7 @@
 				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);				
 			}
 			
-			function tampilkanHasil(msg) {
+			function tampilkanHasil(container_hasil,msg) {
 				container_hasil.innerHTML = "";
 				container_hasil.innerHTML = msg;
 			}
@@ -96,11 +96,11 @@
 						});
 						
 						await pindai.then(msg => {
-							tampilkanHasil(msg);
+							tampilkanHasil(container_hasil,msg);
 							jeda(3000);
 						})
 						.catch(e => {
-							tampilkanHasil(e);
+							tampilkanHasil(container_hasil,e);
 						});
 
 						theCam.getTracks().forEach(track => track.stop());
