@@ -65,6 +65,27 @@
 				container_hasil.innerHTML = msg;
 			}
 
+			function pindai() {
+				return new Promise((resolve, reject) => {
+					const intervalID = setInterval(() => {
+						qrcodeDetector.detect(video).then(codes => {
+							if (codes.length === 0) return;
+							
+							for (const qrcode of codes) {
+								var code = qrcode.rawValue;
+							} 
+							clearInterval(intervalID);
+							resolve(code);
+						})
+						.catch(e => {
+							clearInterval(intervalID);
+							reject(e);
+						});
+					},1000);
+				});
+
+			}
+
 			async function startScan() {
 				const container_hasil = document.querySelector('#qrcode_str');
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -77,7 +98,7 @@
 						await jeda(700);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
 						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
-						const pindai = new Promise((resolve, reject) => {
+						/*const pindai = new Promise((resolve, reject) => {
 							const intervalID = setInterval(() => {
 								qrcodeDetector.detect(video).then(codes => {
 									if (codes.length === 0) return;
@@ -93,8 +114,10 @@
 									reject(e);
 								});
 							},1000);
-						});
+						});*/
 						
+						const pindai = pindai()	
+
 						await pindai.then(msg => {
 							tampilkanHasil(container_hasil,msg);
 						})
