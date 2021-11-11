@@ -108,7 +108,7 @@
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
 						await jeda(700);
 						container_hasil.innerHTML = "Sedang Memindai..."
-						enable_spinner.style.visibility = "visible";
+						enable_spinner.hidden = "false";
 						
 						const pindai_ = pindai(video);	
 
