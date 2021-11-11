@@ -66,6 +66,7 @@
 			}
 
 			function pindai(video) {
+				const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
 				return new Promise((resolve, reject) => {
 					const intervalID = setInterval(() => {
 						qrcodeDetector.detect(video).then(codes => {
@@ -97,8 +98,8 @@
 						container_hasil.innerHTML = "Pemindai siap...";
 						await jeda(700);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
-						const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
-						/*const pindai = new Promise((resolve, reject) => {
+						/*const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
+						const pindai = new Promise((resolve, reject) => {
 							const intervalID = setInterval(() => {
 								qrcodeDetector.detect(video).then(codes => {
 									if (codes.length === 0) return;
