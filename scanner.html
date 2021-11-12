@@ -77,8 +77,12 @@
 				const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
 				return new Promise((resolve, reject) => {
 					const intervalID = setInterval(() => {
-						qrcodeDetector.detect(video).then(codes => {
+						qrcodeDetector.detect(video).then(async (codes) => {
 							if (codes.length === 0) return;
+							
+							container_hasil.innerHTML = "Sedang Memindai..."
+							enable_spinner.hidden = false;
+							await jeda(1000);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
@@ -106,9 +110,9 @@
 						container_hasil.innerHTML = "Pemindai siap...";
 						await jeda(700);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
-						await jeda(700);
-						container_hasil.innerHTML = "Sedang Memindai..."
-						enable_spinner.hidden = false;
+						//await jeda(700);
+						//container_hasil.innerHTML = "Sedang Memindai..."
+						//enable_spinner.hidden = false;
 						
 						const pindai_ = pindai(video);	
 
