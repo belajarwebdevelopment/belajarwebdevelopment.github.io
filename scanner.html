@@ -80,13 +80,14 @@
 						qrcodeDetector.detect(video).then(async (codes) => {
 							if (codes.length === 0) return;
 							
-							container_hasil.innerHTML = "Sedang Memindai..."
-							enable_spinner.hidden = false;
-							await jeda(1000);
+							//container_hasil.innerHTML = "Sedang Memindai..."
+							//enable_spinner.hidden = false;
+							await jeda(700);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
 							} 
+							
 							clearInterval(intervalID);
 							resolve(code);
 						})
