@@ -80,9 +80,9 @@
 						qrcodeDetector.detect(video).then(async (codes) => {
 							if (codes.length === 0) return;
 							
-							//container_hasil.innerHTML = "Sedang Memindai..."
-							//enable_spinner.hidden = false;
-							await jeda(2000);
+							container_hasil.innerHTML = "Sedang Memindai..."
+							enable_spinner.hidden = false;
+							await jeda(4000);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
@@ -95,7 +95,7 @@
 							clearInterval(intervalID);
 							reject(e);
 						});
-					},3000);
+					},5000);
 				});
 
 			}
