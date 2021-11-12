@@ -6,17 +6,15 @@
     </head>
     <body>
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
-		<div class="d-flex align-items-center text-success">
-			<strong id="qrcode_str"></strong>
-			<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
-		</div>
-            <video id="video" autoplay width="100%" height="60%"></video>
+			<div class="d-flex align-items-center text-success">
+				<strong id="qrcode_str"></strong>
+				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
+			</div>
+			<div>
+				<video id="video" autoplay width="100%" height="60%"></video>
+			</div>	
         </div>
-		<!--
-        <video id="video" width="100%" height="60%" autoplay></video>
-        <h2 id="qrcode_str" style="color : red;"></h2>
-        <h2 id="qrcode_str_from_webapp" style="color : blue;"></h2>
-        -->
+
 		<script language="javascript">
             
 			function sendData(dataObj) {
@@ -82,12 +80,12 @@
 							
 							container_hasil.innerHTML = "Sedang Memindai..."
 							enable_spinner.hidden = false;
-							await jeda(4000);
+							await jeda(2000);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
 							} 
-							
+							enable_spinner.hidden = true;
 							clearInterval(intervalID);
 							resolve(code);
 						})
@@ -95,7 +93,7 @@
 							clearInterval(intervalID);
 							reject(e);
 						});
-					},5000);
+					},2100);
 				});
 
 			}
@@ -111,9 +109,6 @@
 						container_hasil.innerHTML = "Pemindai siap...";
 						await jeda(700);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
-						//await jeda(700);
-						//container_hasil.innerHTML = "Sedang Memindai..."
-						//enable_spinner.hidden = false;
 						
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
