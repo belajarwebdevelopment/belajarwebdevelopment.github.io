@@ -77,8 +77,9 @@
 					const intervalID = setInterval(() => {
 						qrcodeDetector.detect(video).then(async (codes) => {
 							if (codes.length === 0) return;
-							
-							container_hasil.innerHTML = "Sedang Memindai..."
+							container_hasil.innerHTML = "QRCode terdeteksi";
+							await jeda(850);
+							container_hasil.innerHTML = "Sedang Memindai...";
 							enable_spinner.hidden = false;
 							await jeda(2000);
 							
