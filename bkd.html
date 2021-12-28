@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.7">
+        <style>
+            .mainDiv {
+                text-align: center;
+                padding: 5px;
+                background-color: black;
+                max-width: 100%;
+                /*#353232;*/
+            }
+            .formDiv {
+                text-align: left;
+                width: 20%;
+                padding: 5px;
+                background-color: #FFFFFF;
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 20px;
+                margin: auto;
+                margin-top: 40px;
+                margin-bottom: 40px;
+                background-color: #1CABE2;
+                border-radius: 10px;
+            }
+
+            table, th, td{
+                border: 1px solid #FFFFFF;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 16px;
+                color: #FFFFFF;
+                max-width: 100%;
+                overflow-x: auto;
+
+            }
+            th,td {
+                padding : 20px;
+            }
+            #dataTabel1, #dataTabel2 {
+                border-collapse: collapse;
+            }
+
+            label {
+                color: #FFFFFF;
+            }
+
+            input {
+                width: 100%;
+                /*padding: 12px 20px;*/
+                border-radius: 3px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 0.2px solid #1CABE2;
+                padding: 3px 5px;
+                margin-bottom: 10px;
+            }
+
+            button {
+                border : 0.5px solid #C1C1C1;
+                background-color: #00416A;
+                color : #FFFFFF;
+                padding: 7px 10px;
+                /*display : inline-block;*/
+                margin-top: 10px;
+                float : right;
+                box-shadow: 8px 16px 32px 8px rgba(0,0,0,0.2), 0 12px 40px 0 rgba(0,0,0,0.19);
+                border-radius: 4px;
+            }
+        </style>        
+    </head>
+    <body bgcolor="#242526">
+        <hr>
+        <h1 align="center" style="font-family: Arial, Helvetica, sans-serif;color:lightcyan;margin-top: 20px;padding: 20px;border-radius: 10px;">Aplikasi Menentukan Kelas dan BKD Timbangan</h1>
+        <hr>
+            <div class="formDiv">
+                <form id="form1">
+                    <label>Max (g)</label>
+                    <br><input type="text">
+                    <br><label>d (g)</label>
+                    <br><input type="text">
+                    <br><label>e (g)</label>
+                    <br><input type="text">
+                    <button>Hitung</button>
+                </form>
+            </div>
+    
+        <hr>
+        <!--<div class="mainDiv">-->
+            <h2 align="center" style="font-family:Arial, Helvetica, sans-serif;color: #FFFFFF;" id="dataJudul1" hidden></h2>
+            <table id="dataTabel1" align="center" hidden>
+                <thead>
+                    <tr><th style="color:#353232; background-color: #FFFFFF;">Muatan <br></th><th style="background-color: #ee8946;">BKD Tera <br></th><th style="background-color: #ca3f3f;">BKD Tera Ulang <br></th><th style="background-color: #26a7e2;">Min Menimbang <br></th></tr>
+                </thead>
+                <tbody id="konten1">
+                </tbody>
+            </table>
+        <!--</div>-->
+        <h2 align="center" style="font-family:Arial, Helvetica, sans-serif;color: #FFFFFF;" id="dataJudul2" hidden></h2>
+        <table id="dataTabel2" align="center" hidden>
+            <thead>
+                <tr><th style="color:#353232; background-color: #FFFFFF;">Muatan <br></th><th style="background-color: #ee8946;">BKD Tera <br></th><th style="background-color: #ca3f3f;">BKD Tera Ulang <br></th><th style="background-color: #26a7e2;">Min Menimbang <br></th></tr>
+            </thead>
+            <tbody id="konten2">
+            </tbody>
+        </table>
+    <script language="javascript" src="bkd.js"></script>
+    </body>
+</html>
