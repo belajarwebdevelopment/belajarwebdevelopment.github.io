@@ -75,7 +75,6 @@ const execHitung = function(kapMax,IntVerifikasi) {
         .reduce((preVal,curVal) => (preVal[curVal] = uKelas[curVal], preVal),{});
     
     let tag = Object.keys(uKelasFiltered).forEach((a,index) => {
-        //document.getElementById("alert2Kelas").hidden = true;
         if (index == 1) {
             document.getElementById("alert2Kelas").hidden = false;
         }
@@ -83,9 +82,9 @@ const execHitung = function(kapMax,IntVerifikasi) {
         let konten = `${arr.map(idx => `<tr><td>
             ${idx['mn']} - ${idx['mx']} g
         </td><td>
-            ${idx['bkdTera']} g
+            ${Math.round(idx['bkdTera']*100000)/100000} g
         </td><td>
-            ${idx['bkdTera']*2} g
+            ${Math.round(idx['bkdTera']*2*100000)/100000} g
         </td><td>${uKelasFiltered[a][1]} g</td></tr>`).join('')}`;
     
         document.querySelector(`#dataJudul${index+1}`).hidden = false;
@@ -104,35 +103,12 @@ const clearForm = function() {
 let tombol = document.getElementById('hitung');
 tombol.addEventListener("click",() => {
     setHidden();
-    let kapMax = parseInt(document.getElementById('max').value);
-    let IntVerifikasi = parseInt(document.getElementById('e').value);
+    let kapMax = parseFloat(document.getElementById('max').value);
+    let IntVerifikasi = parseFloat(document.getElementById('e').value);
     execHitung(kapMax,IntVerifikasi);
-    clearForm();
+    //clearForm();
 });
 
-// const uKelas = tabelBKD(300000,100).getClass()['Kelas'];
-// const uKelasFiltered = Object.keys(uKelas)
-//     .filter(key => uKelas[key][0] == true)
-//     .reduce((preVal,curVal) => (preVal[curVal] = uKelas[curVal], preVal),{});
-
-// const tag = Object.keys(uKelasFiltered).forEach((a,index) => {
-//     //console.log(index);
-//     if (index == 1) {
-//         document.getElementById("alert2Kelas").toggleAttribute('hidden');
-//     }
-//     let arr = Object.values(uKelasFiltered[a][2]);
-//     let konten = `${arr.map(idx => `<tr><td>
-//         ${idx['mn']} - ${idx['mx']} g
-//     </td><td>
-//         ${idx['bkdTera']} g
-//     </td><td>
-//         ${idx['bkdTera']*2} g
-//     </td><td>${uKelasFiltered[a][1]} g</td></tr>`).join('')}`;
-
-//     document.querySelector(`#dataJudul${index+1}`).hidden = false;
-//     document.querySelector(`#dataJudul${index+1}`).innerHTML = `Kelas ${a.split('_')[0]}`;
-//     document.querySelector(`#dataTabel${index+1}`).hidden = false;
-//     document.querySelector(`#konten${index+1}`).innerHTML = konten;
-// });
-
+let tombolReset = document.getElementById('reset');
+tombolReset.addEventListener('click', () => clearForm());
 
