@@ -60,14 +60,22 @@ function tabelBKD(max,e) {
 
 }
 
+const setHidden = () => {
+    document.getElementById("alert2Kelas").hidden = true;
+    document.querySelector(`#dataTabel1`).hidden = true;
+    document.querySelector(`#dataTabel2`).hidden = true;
+    document.querySelector(`#dataJudul1`).hidden = true;
+    document.querySelector(`#dataJudul2`).hidden = true;
+}
+
 const execHitung = function(kapMax,IntVerifikasi) {
-    const uKelas = tabelBKD(kapMax,IntVerifikasi).getClass()['Kelas'];
-    const uKelasFiltered = Object.keys(uKelas)
+    let uKelas = tabelBKD(kapMax,IntVerifikasi).getClass()['Kelas'];
+    let uKelasFiltered = Object.keys(uKelas)
         .filter(key => uKelas[key][0] == true)
         .reduce((preVal,curVal) => (preVal[curVal] = uKelas[curVal], preVal),{});
     
-    const tag = Object.keys(uKelasFiltered).forEach((a,index) => {
-        document.getElementById("alert2Kelas").hidden = true;
+    let tag = Object.keys(uKelasFiltered).forEach((a,index) => {
+        //document.getElementById("alert2Kelas").hidden = true;
         if (index == 1) {
             document.getElementById("alert2Kelas").hidden = false;
         }
@@ -81,8 +89,10 @@ const execHitung = function(kapMax,IntVerifikasi) {
         </td><td>${uKelasFiltered[a][1]} g</td></tr>`).join('')}`;
     
         document.querySelector(`#dataJudul${index+1}`).hidden = false;
+        document.querySelector(`#dataJudul${index+1}`).innerHTML = "";       
         document.querySelector(`#dataJudul${index+1}`).innerHTML = `Kelas ${a.split('_')[0]}`;
         document.querySelector(`#dataTabel${index+1}`).hidden = false;
+        document.querySelector(`#konten${index+1}`).innerHTML = "";
         document.querySelector(`#konten${index+1}`).innerHTML = konten;
     });    
 } 
@@ -93,6 +103,7 @@ const clearForm = function() {
 
 let tombol = document.getElementById('hitung');
 tombol.addEventListener("click",() => {
+    setHidden();
     let kapMax = parseInt(document.getElementById('max').value);
     let IntVerifikasi = parseInt(document.getElementById('e').value);
     execHitung(kapMax,IntVerifikasi);
