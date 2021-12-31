@@ -60,29 +60,68 @@ function tabelBKD(max,e) {
 
 }
 
+const execHitung = function(kapMax,IntVerifikasi) {
+    const uKelas = tabelBKD(kapMax,IntVerifikasi).getClass()['Kelas'];
+    const uKelasFiltered = Object.keys(uKelas)
+        .filter(key => uKelas[key][0] == true)
+        .reduce((preVal,curVal) => (preVal[curVal] = uKelas[curVal], preVal),{});
+    
+    const tag = Object.keys(uKelasFiltered).forEach((a,index) => {
+        document.getElementById("alert2Kelas").hidden = true;
+        if (index == 1) {
+            document.getElementById("alert2Kelas").hidden = false;
+        }
+        let arr = Object.values(uKelasFiltered[a][2]);
+        let konten = `${arr.map(idx => `<tr><td>
+            ${idx['mn']} - ${idx['mx']} g
+        </td><td>
+            ${idx['bkdTera']} g
+        </td><td>
+            ${idx['bkdTera']*2} g
+        </td><td>${uKelasFiltered[a][1]} g</td></tr>`).join('')}`;
+    
+        document.querySelector(`#dataJudul${index+1}`).hidden = false;
+        document.querySelector(`#dataJudul${index+1}`).innerHTML = `Kelas ${a.split('_')[0]}`;
+        document.querySelector(`#dataTabel${index+1}`).hidden = false;
+        document.querySelector(`#konten${index+1}`).innerHTML = konten;
+    });    
+} 
 
-const uKelas = tabelBKD(30000,5).getClass()['Kelas'];
-const uKelasFiltered = Object.keys(uKelas)
-    .filter(key => uKelas[key][0] == true)
-    .reduce((preVal,curVal) => (preVal[curVal] = uKelas[curVal], preVal),{});
+const clearForm = function() {
+    document.getElementById('form1').reset();
+}
 
-const tag = Object.keys(uKelasFiltered).forEach((a,index) => {
-    //console.log(Object.values(uKelasFiltered[a][2]));
-    let arr = Object.values(uKelasFiltered[a][2]);
-    let konten = `${arr.map(idx => `<tr><td>
-        ${idx['mn']} - ${idx['mx']} g
-    </td><td>
-        ${idx['bkdTera']} g
-    </td><td>
-        ${idx['bkdTera']*2} g
-    </td>`).join('')}<td rowspan='2'>${uKelasFiltered[a][1]} g</td></tr>`;
-
-    document.querySelector(`#dataJudul${index+1}`).hidden = false;
-    document.querySelector(`#dataJudul${index+1}`).innerHTML = `Kelas ${a}`;
-    document.querySelector(`#dataTabel${index+1}`).hidden = false;
-    document.querySelector(`#konten${index+1}`).innerHTML = konten;
+let tombol = document.getElementById('hitung');
+tombol.addEventListener("click",() => {
+    let kapMax = parseInt(document.getElementById('max').value);
+    let IntVerifikasi = parseInt(document.getElementById('e').value);
+    execHitung(kapMax,IntVerifikasi);
+    clearForm();
 });
 
-// console.dir(uKelasFiltered);
-// console.dir(tag);
+// const uKelas = tabelBKD(300000,100).getClass()['Kelas'];
+// const uKelasFiltered = Object.keys(uKelas)
+//     .filter(key => uKelas[key][0] == true)
+//     .reduce((preVal,curVal) => (preVal[curVal] = uKelas[curVal], preVal),{});
+
+// const tag = Object.keys(uKelasFiltered).forEach((a,index) => {
+//     //console.log(index);
+//     if (index == 1) {
+//         document.getElementById("alert2Kelas").toggleAttribute('hidden');
+//     }
+//     let arr = Object.values(uKelasFiltered[a][2]);
+//     let konten = `${arr.map(idx => `<tr><td>
+//         ${idx['mn']} - ${idx['mx']} g
+//     </td><td>
+//         ${idx['bkdTera']} g
+//     </td><td>
+//         ${idx['bkdTera']*2} g
+//     </td><td>${uKelasFiltered[a][1]} g</td></tr>`).join('')}`;
+
+//     document.querySelector(`#dataJudul${index+1}`).hidden = false;
+//     document.querySelector(`#dataJudul${index+1}`).innerHTML = `Kelas ${a.split('_')[0]}`;
+//     document.querySelector(`#dataTabel${index+1}`).hidden = false;
+//     document.querySelector(`#konten${index+1}`).innerHTML = konten;
+// });
+
 
