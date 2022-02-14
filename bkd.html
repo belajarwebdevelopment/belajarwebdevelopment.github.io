@@ -1,131 +1,63 @@
-<!DOCTYPE html> 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=0.7">
-        <style>
-            .mainDiv {
-                text-align: center;
-                padding: 5px;
-                background-color: black;
-                max-width: 100%;
-                /*#353232;*/
-            }
-            .formDiv {
-                text-align: left;
-                width: 30%;
-                padding: 5px;
-                background-color: #FFFFFF;
-                font-family: Arial, Helvetica, sans-serif;
-                padding: 20px;
-                margin: auto;
-                margin-top: 40px;
-                margin-bottom: 40px;
-                background-color: #1CABE2;
-                border-radius: 10px;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar CSS</title>
+    <link rel="stylesheet" href="learnCSS.css">
+</head>
 
-            table, th, td{
-                border: 1px solid #FFFFFF;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 16px;
-                color: #FFFFFF;
-                max-width: 100%;
-                overflow-x: auto;
+<body bgcolor="#1c2525">
+    <h1 align="center" class="judul">Aplikasi <font color="#0bacc5">Hitung BKD</font></h1> 
+    <hr>
 
-            }
-            th,td {
-                padding : 20px;
-            }
-            #dataTabel1, #dataTabel2 {
-                border-collapse: collapse;
-            }
-
-            label {
-                color: #FFFFFF;
-            }
-
-            input {
-                width: 100%;
-                /*padding: 12px 20px;*/
-                border-radius: 3px;
-                margin: 8px 0;
-                box-sizing: border-box;
-                border: 0.2px solid #1CABE2;
-                padding: 3px 5px;
-                margin-bottom: 10px;
-            }
-
-            #hitung {
-                border : 0.5px solid #C1C1C1;
-                background-color: #00416A;
-                color : #FFFFFF;
-                padding: 7px 10px;
-                /*display : inline-block;*/
-                margin-top: 10px;
-                float : right;
-                box-shadow: 8px 16px 32px 8px rgba(0,0,0,0.2), 0 12px 40px 0 rgba(0,0,0,0.19);
-                border-radius: 4px;
-            }
-
-            #reset {
-                border : 0.5px solid #C1C1C1;
-                background-color: #ca3f3f;
-                color : #FFFFFF;
-                padding: 7px 10px;
-                /*display : inline-block;*/
-                margin-top: 10px;
-                float : right;
-                box-shadow: 8px 16px 32px 8px rgba(0,0,0,0.2), 0 12px 40px 0 rgba(0,0,0,0.19);
-                border-radius: 4px;
-                margin-right: 2px;
-            }
-
-            #alert2Kelas {
-                text-align: center;
-                color: yellow;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-        </style>        
-    </head>
-    <body bgcolor="#242526">
-        <hr>
-        <h1 align="center" style="font-family: Arial, Helvetica, sans-serif;color:lightcyan;margin-top: 20px;padding: 20px;border-radius: 10px;">Tools bantu untuk menentukan Kelas & BKD</h1>
-        <hr>
-            <div class="formDiv">
-                <form id="form1">
-                    <label>Max (g)</label>
-                    <br><input type="text" name="max" id="max">
-                    <br><label>d (g)</label>
-                    <br><input type="text" name="d" id="d">
-                    <br><label>e (g)</label>
-                    <br><input type="text" name="e" id="e">
-                </form>
-                <button id="hitung">Hitung</button>
-                <button id="reset">Reset Form</button>
-            </div>
-    
-        <hr>
-        <h2 id="alert2Kelas" hidden>BKD masuk di 2 kelas</h2>
-        <hr>
-        <!--<div class="mainDiv">-->
-            <h2 align="center" style="font-family:Arial, Helvetica, sans-serif;color: #FFFFFF;" id="dataJudul1" hidden></h2>
-            <table id="dataTabel1" align="center" hidden>
-                <thead>
-                    <tr><th style="color:#353232; background-color: #FFFFFF;">Muatan <br></th><th style="background-color: #ee8946;">BKD Tera <br></th><th style="background-color: #ca3f3f;">BKD Tera Ulang <br></th><th style="background-color: #26a7e2;">Min Menimbang <br></th></tr>
-                </thead>
-                <tbody id="konten1">
-                </tbody>
+    <div class="container">
+        <div class="header">
+            <img class="headerImg" src="gb.png">
+        </div>
+        
+        <div class="formulir">
+            <form id="form1">
+                <table class="formTable">
+                    <tr><td colspan="2">Kapasitas Maks (g)</td></tr>
+                    <tr><td colspan="2" class="line"><input type="text" name="max" id="max" class="m_input"></td></tr>
+                    <tr><td colspan="2">d (Dayabaca) (g)</td></tr>
+                    <tr><td colspan="2" class="line"><input type="text" name="d" id="d" class="m_input"></td></tr>
+                    <tr><td colspan="2">e (Interval Skala Verifikasi) (g)</td></tr>
+                    <tr><td colspan="2" class="line"><input type="text" name="e" id="e" class="m_input"></td></tr>
+                    <tr><td colspan="2">Muatan Yg Akan dicek (g)</td></tr>
+                    <tr><td colspan="2" class="line"><input type="text" name="muatan" id="muatan" disabled></td></tr>
+                    <tr><td><label>Konversi satuan Range - Muatan ke "kg"</label><input type="checkbox" name="changeSat" id="changeSat" value="kg" disabled></td></tr>
+                </table>
+            </form>
+            <table class="buttonTable" style="width: 100%;">
+                <tr><td align="right" style="width:100%;"><button id="hitung">Hitung</button><button id="reset">Reset</button></td></tr>
             </table>
-        <!--</div>-->
-        <h2 align="center" style="font-family:Arial, Helvetica, sans-serif;color: #FFFFFF;" id="dataJudul2" hidden></h2>
-        <table id="dataTabel2" align="center" hidden>
-            <thead>
-                <tr><th style="color:#353232; background-color: #FFFFFF;">Muatan <br></th><th style="background-color: #ee8946;">BKD Tera <br></th><th style="background-color: #ca3f3f;">BKD Tera Ulang <br></th><th style="background-color: #26a7e2;">Min Menimbang <br></th></tr>
-            </thead>
-            <tbody id="konten2">
-            </tbody>
-        </table>
+        </div>
+           
+    </div>
+    <hr>
+    <h2 id="alert2Kelas" hidden><u>BKD masuk di 2 kelas</u></h2>
+    <h2 align="center" id="dataJudul1" hidden></h2>
+    <table class="resultTable" id="dataTabel1" align="center" hidden>
+        <thead>
+            <tr><th style="color:#353232; background-color: #FFFFFF;">Muatan <br></th><th style="background-color: #ee8946;">BKD Tera <br></th><th style="background-color: #ca3f3f;">BKD Tera Ulang <br></th><th style="background-color: #26a7e2;">Min<br></th></tr>
+        </thead>
+        <tbody id="konten1">
+        </tbody>
+    </table>
+
+    <h2 align="center" id="dataJudul2" hidden></h2>
+    <table class="resultTable" id="dataTabel2" align="center" hidden>
+        <thead>
+            <tr><th style="color:#353232; background-color: #FFFFFF;">Muatan <br></th><th style="background-color: #ee8946;">BKD Tera <br></th><th style="background-color: #ca3f3f;">BKD Tera Ulang <br></th><th style="background-color: #26a7e2;">Min Menimbang <br></th></tr>
+        </thead>
+        <tbody id="konten2">
+        </tbody>
+    </table>
+
     <script language="javascript" src="bkd.js"></script>
-    </body>
+</body>
 </html>
+
