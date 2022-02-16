@@ -154,7 +154,7 @@ const resetKontenStyle = (nama_kelas) => {
     }
 }
 
-/* ###################################################### MAIN PROGRAM ############################################# */
+/* ###################################################### MAIN PROGRAM ########################################################## */
 let tombol = document.getElementById('hitung');
 tombol.addEventListener("click",() => {
     setHidden();
@@ -195,3 +195,8 @@ loadInput.addEventListener("keyup", () => {
     pilihRange("konten2", parseFloat(loadInput.value), clickBoxKlik.checked, "highlight2");
 });
 
+let maxInputChange = document.getElementById("max");
+maxInputChange.addEventListener("keyup", () => {
+    document.getEelementById("d").value = "";
+    document.getEelementById("e").value = "";    
+});
