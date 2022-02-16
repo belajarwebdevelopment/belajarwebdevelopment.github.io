@@ -197,6 +197,8 @@ loadInput.addEventListener("keyup", () => {
 
 let maxInputChange = document.getElementById("max");
 maxInputChange.addEventListener("keyup", () => {
-    document.getElementById("d").value = "";
+    /*document.getElementById("d").value = "";
     document.getElementById("e").value = "";    
+    */
+    alert("Selamat siang");
 });
