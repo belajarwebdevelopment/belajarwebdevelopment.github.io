@@ -197,6 +197,6 @@ loadInput.addEventListener("keyup", () => {
 
 let maxInputChange = document.getElementById("max");
 maxInputChange.addEventListener("keyup", () => {
-    document.getEelementById("d").setAttribute('value','');
-    document.getEelementById("e").setAttribute('value','');    
+    document.getElementById("d").setAttribute('value','');
+    document.getElementById("e").setAttribute('value','');    
 });
