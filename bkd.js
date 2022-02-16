@@ -172,7 +172,10 @@ tombolReset.addEventListener('click', () => {
 
 let m_inputClass = document.getElementsByClassName("m_input");
 for (i=0;i<m_inputClass.length;i++) {
-    m_inputClass[i].onkeyup = () => setDisabled();
+    m_inputClass[i].onkeyup = () => {
+        setDisabled();
+        setHidden();
+    }
 }
 
 let clickBoxKlik = document.getElementById("changeSat");
@@ -191,3 +194,4 @@ loadInput.addEventListener("keyup", () => {
     pilihRange("konten1", parseFloat(loadInput.value), clickBoxKlik.checked, "highlight1");
     pilihRange("konten2", parseFloat(loadInput.value), clickBoxKlik.checked, "highlight2");
 });
+
