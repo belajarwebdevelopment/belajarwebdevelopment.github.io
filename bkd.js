@@ -155,7 +155,7 @@ const resetKontenStyle = (nama_kelas) => {
 }
 
 const CheckIfFormEmpty = () => {
-    if (document.getElementById('max').value == "" || document.getElementById('me').value == "") {
+    if (document.getElementById('max').value == "" || document.getElementById('e').value == "") {
         return false;
     } else {
         return true;
@@ -165,7 +165,8 @@ const CheckIfFormEmpty = () => {
 /* ###################################################### MAIN PROGRAM ########################################################## */
 let tombol = document.getElementById('hitung');
 tombol.addEventListener("click",() => {
-    if (CheckIfFormEmpty == true) {
+    console.log(CheckIfFormEmpty());
+    if (CheckIfFormEmpty() == true) {
         setHidden();
         let kapMax = parseFloat(document.getElementById('max').value);
         let IntVerifikasi = parseFloat(document.getElementById('e').value);
