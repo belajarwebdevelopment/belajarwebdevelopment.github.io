@@ -154,14 +154,24 @@ const resetKontenStyle = (nama_kelas) => {
     }
 }
 
+const CheckIfFormEmpty = () => {
+    if (document.getElementById('max').value == "" || document.getElementById('me').value == "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 /* ###################################################### MAIN PROGRAM ########################################################## */
 let tombol = document.getElementById('hitung');
 tombol.addEventListener("click",() => {
-    setHidden();
-    let kapMax = parseFloat(document.getElementById('max').value);
-    let IntVerifikasi = parseFloat(document.getElementById('e').value);
-    execHitung(kapMax,IntVerifikasi);
-    setEnabled(); 
+    if (CheckIfFormEmpty == true) {
+        setHidden();
+        let kapMax = parseFloat(document.getElementById('max').value);
+        let IntVerifikasi = parseFloat(document.getElementById('e').value);
+        execHitung(kapMax,IntVerifikasi);
+        setEnabled();     
+    }
 });
 
 let tombolReset = document.getElementById('reset');
