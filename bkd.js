@@ -162,14 +162,28 @@ const CheckIfFormEmpty = () => {
     }
 }
 
+const jeda = (waktu) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('Done');
+        },waktu);
+    });
+}
+
 /* ###################################################### MAIN PROGRAM ########################################################## */
 let tombol = document.getElementById('hitung');
-tombol.addEventListener("click",() => {
-    console.log(CheckIfFormEmpty());
+tombol.addEventListener("click",async () => {
     if (CheckIfFormEmpty() == true) {
         setHidden();
         let kapMax = parseFloat(document.getElementById('max').value);
         let IntVerifikasi = parseFloat(document.getElementById('e').value);
+        let loader = document.getElementById('spinner');
+        let blur = document.getElementById('kontainer');
+        blur.style.filter = "blur(2px)";
+        loader.hidden = false;
+        await jeda(1500);
+        loader.hidden = true;
+        blur.style.filter = "";
         execHitung(kapMax,IntVerifikasi);
         setEnabled();     
     }
