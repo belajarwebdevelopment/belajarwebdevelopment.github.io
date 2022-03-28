@@ -149,15 +149,14 @@
                         </div>                        
                         <div class="mb-3">
                             <label for="tahunTera1" class="form-label">Tahun Tera</label>
-                            <!--<input type="text" class="form-control" name="tahunTera1" id="tahunTera1" placeholder="">-->
                             <select class="form-control" name="tahunTera1" id="tahunTera1">
-                                <option val="">Pilih Tahun Tera</option>
+                                <!--<option val="">Pilih Tahun Tera</option>
                                 <option val="2021">2021</option>
                                 <option val="2020">2020</option>
                                 <option val="2019">2019</option>
                                 <option val="2018">2018</option>
                                 <option val="2017">2017</option>
-                                <option val="2016">2016</option>
+                                <option val="2016">2016</option>-->
                             </select> 
                         </div>
                         <div class="mb-3">
@@ -196,6 +195,25 @@
             <video id="video" autoplay style="max-width : 100%; max-height : 100%;"></video>
         </div>
         </form>
+
+        <script language="javascript">
+            const ListOfTahunTera = () => {
+                let URLWebApp = "https://script.google.com/macros/s/AKfycbz2Bz051C2QYjMBBW2Nrynu4m2RQwnv41fGT9CweW0aYClzGfcGLLJ2Qy2lFeyesNHEtQ/exec";
+				
+				fetch(URLWebApp).then(d => d.json()).then(d => {
+                    let nowYear = d[0].tahun;
+                    let selectId = document.getElementById('tahunTera1');
+                    for (let year = nowYear; year >= 2016; year--) {
+                        let optionElemen = document.createElement('option');
+                        optionElemen.value = year;
+                        optionElemen.innerHTML = year;
+                        selectId.appendChild(optionElemen);
+                    }
+				});	
+            }
+
+            ListOfTahunTera();
+        </script>
 
         <script language="javascript">
             $(function() {
@@ -397,11 +415,13 @@
 				const btnLoading = document.getElementById('loading_data');
 				btnKirim.classList.toggle('d-none');
 				btnLoading.classList.toggle('d-none');
+                /*
                 fetch(webAppUrl,{
                     method : 'GET'
                 }).then(result => result.json()).then(result => {
                     alert(result[0].tahun);
                 });
+                */
 				fetch(webAppUrl,{
 					method : 'POST',
 					//mode : 'no-cors',
