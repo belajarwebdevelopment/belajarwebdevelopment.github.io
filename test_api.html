@@ -14,12 +14,13 @@
 	<div id="app"></div>
 		<script language="javascript">
 			function getData() {
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbz2Bz051C2QYjMBBW2Nrynu4m2RQwnv41fGT9CweW0aYClzGfcGLLJ2Qy2lFeyesNHEtQ/exec";
+				
 				fetch(webAppUrl).then(d => d.json()).then(d => {
-						alert(d[0].Nama);
-					});	
+						console.log(d[0].tahun);
+				});	
 			}
-			
+			/*
 			function sendData() {
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
 				fetch(webAppUrl,{
@@ -34,8 +35,8 @@
 					body : JSON.stringify({nama : document.getElementById('jeneng').value, uttp : document.getElementById('alat').value})
 				})
 			}
-			
-			document.getElementById("sendBtn").addEventListener("click",sendData);		
+			*/
+			//document.getElementById("sendBtn").addEventListener("click",sendData);		
 			document.getElementById("getBtn").addEventListener("click",getData);
         </script>
     </body>
