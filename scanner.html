@@ -90,9 +90,9 @@
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
 							} 
-							enable_spinner.hidden = true;
 							clearInterval(intervalID);
 							resolve(code);
+							enable_spinner.hidden = true;
 						})
 						.catch(e => {
 							clearInterval(intervalID);
