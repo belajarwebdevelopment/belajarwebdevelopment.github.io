@@ -104,6 +104,7 @@
 			}
 
 			async function mainScanProcess() {
+				let data = '';
 				const container_hasil = document.querySelector('#qrcode_str');
 				const enable_spinner = document.querySelector('.spinner');
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -118,8 +119,8 @@
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
 						await pindai_.then(msg => {
-							tampilkanHasil(container_hasil,JSON.stringify({'kode_qr' : msg}));
-							//let data = {'kode_qr' : msg};
+							//tampilkanHasil(container_hasil,JSON.stringify({'kode_qr' : msg}));
+							data = {'kode_qr' : msg};
 							//sendData(msg);
 
 						})
@@ -133,6 +134,7 @@
 						alert(err);
 					}
 				}
+				sendData(data);
 			}
 			
 			mainScanProcess();
