@@ -85,7 +85,7 @@
 							await jeda(800);
 							container_hasil.innerHTML = "Sedang Memindai...";
 							enable_spinner.hidden = false;
-							//await jeda(2000);
+							await jeda(2000);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
@@ -127,7 +127,7 @@
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
 						});
-						await jeda(2000);
+						//await jeda(2000);
 						theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
