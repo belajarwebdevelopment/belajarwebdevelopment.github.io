@@ -1,3 +1,11 @@
 #qrcode_str {
     padding: 5px;
 }
+
+.dataTabel {
+    border : 1px solid black;
+}
+
+.tHead {
+    background-color: #7f3e98;
+}
