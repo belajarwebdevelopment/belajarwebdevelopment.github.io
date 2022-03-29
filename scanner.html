@@ -118,9 +118,9 @@
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
 						await pindai_.then(msg => {
-							//tampilkanHasil(container_hasil,`<ul><li>Joni</li><li>Jonjon</li></ul>`);
-							let data = {'kode_qr' : msg};
-							sendData(msg);
+							tampilkanHasil(container_hasil,msg);
+							//let data = {'kode_qr' : msg};
+							//sendData(msg);
 
 						})
 						.catch(e => {
