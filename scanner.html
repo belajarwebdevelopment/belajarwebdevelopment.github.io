@@ -135,21 +135,21 @@
 						await pindai_.then(msg => {
 							//tampilkanHasil(container_hasil,JSON.stringify({'kode_qr' : msg}));
 							data = {'kode_qr' : msg};
-							//sendData(msg);
+							sendData(data);
 
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
 						});
-						//await jeda(2000);
+						await jeda(2000);
 						theCam.getTracks().forEach(track => track.stop());
-						enable_spinner.hidden = true;
+						//enable_spinner.hidden = true;
 					}
 					catch(err) {
 						alert(err);
 					}
 				}
-				sendData(data);
+				//sendData(data);
 			}
 			
 			mainScanProcess();
