@@ -60,8 +60,14 @@
 
 			}    
             
-            //sendData({kode_qr : "prlegi0005"});
+			function sendDataAndWait(TheData) {
+				return new Promise((resolve) => {
+					sendData(TheData);
+					resolve('Done');
+				});
+			}
         </script>
+
 		<script>			
 			function jeda(waktu) {
 				return new Promise((resolve) => {
@@ -134,9 +140,7 @@
 
 						await pindai_.then(async msg => {
 							data = {'kode_qr' : msg};
-							tampilkanHasil(container_hasil,data);
-							//await jeda(2000);
-							sendData(data);
+							await sendDataAndWait(data);
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
