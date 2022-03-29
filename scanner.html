@@ -31,7 +31,39 @@
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str');
                 //document.getElementById('entry_the_data').classList.toggle('d-none');
-                fetch(webAppUrl,{
+				return new Promise((resolve) => {
+					fetch(webAppUrl,{
+						method : 'POST',
+						body : JSON.stringify(dataObj)
+					})
+					.then(respon => respon.json()).then(respon => {
+						//let pesan = respon.result;
+						container_hasil_from_webapp.innerHTML = "";
+						//container_hasil_from_webapp.innerHTML = "<ul><li>Kode : "+respon.kode+"</li><li>WTU : "+respon.wtu+"</li><li>Pasar : "+respon.pasar+"</li><li>UTTP : "+respon.uttp+"</li><li>Status : "+respon.status_tera+"</li></ul>";
+						container_hasil_from_webapp.innerHTML = 
+							`<table class='dataTabel'>
+								<thead>
+									<tr class='tHead'><th colspan='2'>Data UTTP</th></tr>
+								</thead>
+								<tbody>
+									<tr><td>QRCode</td><td></td></tr>
+									<tr><td>Pasar</td><td></td></tr>
+									<tr><td>Pemilik/WTU</td><td></td></tr>
+									<tr><td>UTTP</td><td></td></tr>
+									<tr><td>Tahun Tera</td><td></td></tr>
+								</tbody>
+							</table>`
+						resolve('done');
+					})
+					.catch(err => {
+						container_hasil_from_webapp.innerHTML = "";
+						container_hasil_from_webapp.innerHTML = "Data Untuk Kode ini Tidak Diketemukan";
+						reject('Not done');
+					});
+
+				});
+/*
+				fetch(webAppUrl,{
 					method : 'POST',
 					body : JSON.stringify(dataObj)
 				}).then(respon => respon.json()).then(respon => {
@@ -57,15 +89,16 @@
 					container_hasil_from_webapp.innerHTML = "";
 					container_hasil_from_webapp.innerHTML = "Data Untuk Kode ini Tidak Diketemukan";
 				});
-
+*/
 			}    
-            
+            /*
 			function sendDataAndWait(TheData) {
 				return new Promise((resolve) => {
 					sendData(TheData);
 					resolve('Done');
 				});
 			}
+			*/
         </script>
 
 		<script>			
