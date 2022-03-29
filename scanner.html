@@ -132,16 +132,13 @@
 						
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
-						await pindai_.then(async msg => {
+						await pindai_.then(msg => {
 							data = {'kode_qr' : msg};
-							await sendData(data);
-							await jeda(2000);
+							sendData(data);
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
-							//await jeda(2000);
 						});
-						//await jeda(10000);
 						theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
