@@ -144,8 +144,11 @@
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
 						});
-						await sendDataAndWait(data);
-						theCam.getTracks().forEach(track => track.stop());
+						
+						await sendDataAndWait(data).then(
+							theCam.getTracks().forEach(track => track.stop());
+						);
+						//theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
 						alert(err);
