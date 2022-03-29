@@ -106,7 +106,7 @@
 							} 
 							clearInterval(intervalID);
 							resolve(code);
-							//enable_spinner.hidden = true;
+							enable_spinner.hidden = true;
 						})
 						.catch(e => {
 							clearInterval(intervalID);
@@ -136,7 +136,6 @@
 							//tampilkanHasil(container_hasil,JSON.stringify({'kode_qr' : msg}));
 							data = {'kode_qr' : msg};
 							sendData(data);
-
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
