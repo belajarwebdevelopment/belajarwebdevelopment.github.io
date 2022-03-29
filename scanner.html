@@ -171,14 +171,14 @@
 						
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
-						await pindai_.then(async msg => {
+						await pindai_.then(msg => {
 							data = {'kode_qr' : msg};
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
 						});
 
-						const kirimDataDanTunggu = sendDataAndWait(data);
+						const kirimDataDanTunggu = sendData(data);
 						await kirimDataDanTunggu.then(() => {
 							theCam.getTracks().forEach(track => track.stop());
 						});
