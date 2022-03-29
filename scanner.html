@@ -22,6 +22,8 @@
 
                 //const webAppUrl = "https://script.google.com/macros/s/AKfycbxfbUnDkY7TMTfuTG65gGvjdTopUqlu8Co72qJZkpuknv5ZN3wGJ5QJO_Z7CuORMWUS/exec";
 
+				// The last change 29_03_2022 const webAppUrl = "https://script.google.com/macros/s/AKfycbxa3B25ROWCWUTdb9e8Dh14TnUxFcVFT4-lJpOBHzXB29M9w71qCNGftpe1707XyUep/exec";
+
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbxa3B25ROWCWUTdb9e8Dh14TnUxFcVFT4-lJpOBHzXB29M9w71qCNGftpe1707XyUep/exec";
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str_from_webapp');
@@ -114,7 +116,7 @@
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
 						await pindai_.then(msg => {
-							tampilkanHasil(container_hasil,msg);
+							tampilkanHasil(container_hasil,`<ul><li>Joni</li><li>Jonjon</li></ul>`);
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
