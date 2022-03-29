@@ -145,7 +145,7 @@
 							} 
 							clearInterval(intervalID);
 							resolve(code);
-							enable_spinner.hidden = true;
+							//enable_spinner.hidden = true;
 						})
 						.catch(e => {
 							clearInterval(intervalID);
@@ -172,17 +172,25 @@
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
 						await pindai_.then(msg => {
-							data = {'kode_qr' : msg};
+							//data = {'kode_qr' : msg};
+							const kirimDataDanTunggu = sendData({'kode_qr' : msg});
+							await kirimDataDanTunggu.then(async () => {
+								enable_spinner.hidden = true;
+								await jeda(500);
+								theCam.getTracks().forEach(track => track.stop());
+							});
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
+							theCam.getTracks().forEach(track => track.stop());
 						});
-
+						/*			
 						const kirimDataDanTunggu = sendData(data);
 						await kirimDataDanTunggu.then(async () => {
 							await jeda(500);
 							theCam.getTracks().forEach(track => track.stop());
 						});
+						*/
 						//theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
