@@ -134,7 +134,9 @@
 
 						await pindai_.then(msg => {
 							data = {'kode_qr' : msg};
-							sendData(data);
+							tampilkanHasil(data);
+							await jeda(2000);
+							//sendData(data);
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
