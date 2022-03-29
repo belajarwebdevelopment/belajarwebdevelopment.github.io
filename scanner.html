@@ -179,7 +179,8 @@
 						});
 
 						const kirimDataDanTunggu = sendData(data);
-						await kirimDataDanTunggu.then(() => {
+						await kirimDataDanTunggu.then(async () => {
+							await jeda(500);
 							theCam.getTracks().forEach(track => track.stop());
 						});
 						//theCam.getTracks().forEach(track => track.stop());
