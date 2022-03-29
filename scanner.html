@@ -146,9 +146,9 @@
 						});
 
 						const kirimDataDanTunggu = sendDataAndWait(data);
-						await kirimDataDanTunggu.then(
+						await kirimDataDanTunggu.then(() => {
 							theCam.getTracks().forEach(track => track.stop());
-						);
+						});
 						//theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
