@@ -144,8 +144,9 @@
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
 						});
-						
-						await sendDataAndWait(data).then(
+
+						const kirimDataDanTunggu = sendDataAndWait(data);
+						await kirimDataDanTunggu.then(
 							theCam.getTracks().forEach(track => track.stop());
 						);
 						//theCam.getTracks().forEach(track => track.stop());
