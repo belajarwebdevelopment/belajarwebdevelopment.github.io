@@ -140,11 +140,11 @@
 
 						await pindai_.then(async msg => {
 							data = {'kode_qr' : msg};
-							await sendDataAndWait(data);
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
 						});
+						await sendDataAndWait(data);
 						theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
