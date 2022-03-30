@@ -7,7 +7,7 @@
     </head>
     <body>
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
-			<div class="d-flex align-items-center" style="background-color : #52B2BF;color : #FFFFFF;">
+			<div class="d-flex align-items-center konten" style="background-color : #52B2BF;color : #FFFFFF;">
 				<strong id="qrcode_str"></strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
@@ -29,13 +29,14 @@
 				
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str');
-                //document.getElementById('entry_the_data').classList.toggle('d-none');
+				const kontenDiv = document.querySelector('.konten');
 				return new Promise((resolve,reject) => {
 					fetch(webAppUrl,{
 						method : 'POST',
 						body : JSON.stringify(dataObj)
 					})
 					.then(respon => respon.json()).then(respon => {
+						kontenDiv.style = "background-color : #FFFFFF";
 						container_hasil_from_webapp.innerHTML = "";
 						//container_hasil_from_webapp.innerHTML = "<ul><li>Kode : "+respon.kode+"</li><li>WTU : "+respon.wtu+"</li><li>Pasar : "+respon.pasar+"</li><li>UTTP : "+respon.uttp+"</li><li>Status : "+respon.status_tera+"</li></ul>";
 						container_hasil_from_webapp.innerHTML = 
@@ -43,7 +44,7 @@
 								<thead>
 									<tr class='tHead'><th colspan='2'>Data UTTP</th></tr>
 								</thead>
-								<tbody>
+								<tbody class='tBody'>
 									<tr><td>QRCode</td><td></td></tr>
 									<tr><td>Pasar</td><td></td></tr>
 									<tr><td>Pemilik/WTU</td><td></td></tr>

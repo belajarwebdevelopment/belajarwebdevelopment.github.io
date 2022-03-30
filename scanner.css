@@ -3,9 +3,26 @@
 }
 
 .dataTabel {
-    border : 1px solid black;
+    border : 2px solid #000000;
+    border-collapse : separate;
+
 }
 
 .tHead {
     background-color: #7f3e98;
+    color : #FFFFFF;
+    font-family : Tahoma;
+}
+
+.tBody {
+    background-color: #FFFFF5;
+    font-family : Tahoma;
+    color : #7f3e98;
+}
+
+td {
+	border-left : 1px solid #7f3e98; 
+    border-right : 1px solid #7f3e98;
+    border-bottom : 1px solid #7f3e98;
+    padding : 4px 4px 4px 4px;
 }
