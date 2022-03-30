@@ -51,7 +51,7 @@ td {
     position: absolute;
     width: 160px;
     height: 14px;
-    background: #353b48;
+    background: white;
     transform: skewX(50deg);
     transition: .4s linear;
   }
