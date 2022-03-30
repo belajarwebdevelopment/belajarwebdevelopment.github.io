@@ -9,7 +9,6 @@
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
 			<div class="d-flex align-items-center" style="background-color : #52B2BF;color : #FFFFFF;">
 				<strong id="qrcode_str"></strong>
-				<!--<strong id="qrcode_str_from_webapp"></strong>-->
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
 			<div>
@@ -37,7 +36,6 @@
 						body : JSON.stringify(dataObj)
 					})
 					.then(respon => respon.json()).then(respon => {
-						//let pesan = respon.result;
 						container_hasil_from_webapp.innerHTML = "";
 						//container_hasil_from_webapp.innerHTML = "<ul><li>Kode : "+respon.kode+"</li><li>WTU : "+respon.wtu+"</li><li>Pasar : "+respon.pasar+"</li><li>UTTP : "+respon.uttp+"</li><li>Status : "+respon.status_tera+"</li></ul>";
 						container_hasil_from_webapp.innerHTML = 
@@ -62,43 +60,8 @@
 					});
 
 				});
-/*
-				fetch(webAppUrl,{
-					method : 'POST',
-					body : JSON.stringify(dataObj)
-				}).then(respon => respon.json()).then(respon => {
-					//let pesan = respon.result;
-                    container_hasil_from_webapp.innerHTML = "";
-                    //container_hasil_from_webapp.innerHTML = "<ul><li>Kode : "+respon.kode+"</li><li>WTU : "+respon.wtu+"</li><li>Pasar : "+respon.pasar+"</li><li>UTTP : "+respon.uttp+"</li><li>Status : "+respon.status_tera+"</li></ul>";
-					container_hasil_from_webapp.innerHTML = 
-						`<table class='dataTabel'>
-							<thead>
-								<tr class='tHead'><th colspan='2'>Data UTTP</th></tr>
-							</thead>
-							<tbody>
-								<tr><td>QRCode</td><td></td></tr>
-								<tr><td>Pasar</td><td></td></tr>
-								<tr><td>Pemilik/WTU</td><td></td></tr>
-								<tr><td>UTTP</td><td></td></tr>
-								<tr><td>Tahun Tera</td><td></td></tr>
-							</tbody>
-						</table>`
-					
-				})
-				.catch(err => {
-					container_hasil_from_webapp.innerHTML = "";
-					container_hasil_from_webapp.innerHTML = "Data Untuk Kode ini Tidak Diketemukan";
-				});
-*/
+
 			}    
-            /*
-			function sendDataAndWait(TheData) {
-				return new Promise((resolve) => {
-					sendData(TheData);
-					resolve('Done');
-				});
-			}
-			*/
         </script>
 
 		<script>			
@@ -172,8 +135,8 @@
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
 						await pindai_.then(async msg => {
-							//data = {'kode_qr' : msg};
-							const kirimDataDanTunggu = sendData({'kode_qr' : msg});
+							data = {'kode_qr' : msg};
+							const kirimDataDanTunggu = sendData(data);
 							await kirimDataDanTunggu.then(async () => {
 								enable_spinner.hidden = true;
 								await jeda(500);
@@ -184,14 +147,6 @@
 							tampilkanHasil(container_hasil,e);
 							theCam.getTracks().forEach(track => track.stop());
 						});
-						/*			
-						const kirimDataDanTunggu = sendData(data);
-						await kirimDataDanTunggu.then(async () => {
-							await jeda(500);
-							theCam.getTracks().forEach(track => track.stop());
-						});
-						*/
-						//theCam.getTracks().forEach(track => track.stop());
 					}
 					catch(err) {
 						alert(err);
