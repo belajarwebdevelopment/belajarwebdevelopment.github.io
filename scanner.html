@@ -11,8 +11,12 @@
 				<strong id="qrcode_str"></strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
-			<div>
+			<div id="videoDiv">
 				<video id="video" autoplay width="100%" height="70%"></video>
+			</div>
+			<div id="tombolDiv">
+				<button class="btn">Scan Lagi</button>
+				<button class="btn">Scan Lagi</button>
 			</div>
         </div>
 
@@ -144,6 +148,7 @@
 								enable_spinner.hidden = true;
 								await jeda(500);
 								theCam.getTracks().forEach(track => track.stop());
+								document.querySelector('#videoDiv').hidden = true;
 							});
 						})
 						.catch(e => {
