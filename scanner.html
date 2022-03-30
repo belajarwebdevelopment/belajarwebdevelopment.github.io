@@ -25,8 +25,9 @@
 
 				// The last change 29_03_2022 const webAppUrl = "https://script.google.com/macros/s/AKfycbxa3B25ROWCWUTdb9e8Dh14TnUxFcVFT4-lJpOBHzXB29M9w71qCNGftpe1707XyUep/exec";
 
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbxa3B25ROWCWUTdb9e8Dh14TnUxFcVFT4-lJpOBHzXB29M9w71qCNGftpe1707XyUep/exec";
+				//const webAppUrl = "https://script.google.com/macros/s/AKfycbxa3B25ROWCWUTdb9e8Dh14TnUxFcVFT4-lJpOBHzXB29M9w71qCNGftpe1707XyUep/exec";
 				
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str');
 				const kontenDiv = document.querySelector('.konten');
@@ -38,7 +39,6 @@
 					.then(respon => respon.json()).then(respon => {
 						kontenDiv.style = "background-color : #FFFFFF";
 						container_hasil_from_webapp.innerHTML = "";
-						//container_hasil_from_webapp.innerHTML = "<ul><li>Kode : "+respon.kode+"</li><li>WTU : "+respon.wtu+"</li><li>Pasar : "+respon.pasar+"</li><li>UTTP : "+respon.uttp+"</li><li>Status : "+respon.status_tera+"</li></ul>";
 						container_hasil_from_webapp.innerHTML = 
 							`<table class='dataTabel'>
 								<thead>
@@ -46,7 +46,7 @@
 								</thead>
 								<tbody class='tBody'>
 									<tr><td>QRCode</td><td>${respon.kode}</td></tr>
-									<tr><td>UTTP</td><td></td>${respon.uttp}</tr>
+									<tr><td>UTTP</td><td>${respon.uttp}</td></tr>
 									<tr><td>Pemilik/WTU</td><td>${respon.wtu}</td></tr>
 									<tr><td>Pasar</td><td>${respon.pasar}</td></tr>
 									<tr><td>Tahun Tera</td><td>${respon.status_tera}</td></tr>
