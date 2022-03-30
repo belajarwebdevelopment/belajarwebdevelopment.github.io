@@ -171,7 +171,7 @@
 						
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
 
-						await pindai_.then(msg => {
+						await pindai_.then(async msg => {
 							//data = {'kode_qr' : msg};
 							const kirimDataDanTunggu = sendData({'kode_qr' : msg});
 							await kirimDataDanTunggu.then(async () => {
