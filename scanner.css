@@ -28,16 +28,16 @@ td {
 }
 
 .tombolDiv {
-	border-width: 4px;
+	/*border-width: 4px;
     border-color: #7f3e98;
-    border-style: double;    
+    border-style: double;*/    
     width : 100%;
     height : auto;
     margin : auto auto;
     padding : 4px;
     display : flex;
     /*background-color: #A9A9B0; */  
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 20px;
 }
 
