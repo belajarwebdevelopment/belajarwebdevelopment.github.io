@@ -34,13 +34,23 @@ td {
     margin : auto auto;
     padding : 4px;
     display : flex;
-    
-    
-    
+    background-color: #A9A9B0;   
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+#scanImg {
+    width : 150px;
+    height : 150px;
+}
+
+p.ungu {
+    color : #812aa3; 
+    font-weight: bold;
 }
 
 .reScan{
-	border : 1px solid #A7C7E7;
+	/*border : 1px solid #A7C7E7;*/
     border-radius : 2%;
     width : 49%;
     height : 250px;
@@ -48,16 +58,19 @@ td {
     margin-right : auto;
     margin-left : auto;
     position : relative;
+    background-color: #FFFFFF;
     border-bottom : 50px solid #A7C7E7;
+    align-content: center;
 }
 
 .tandaiTera {
-	border : 1px solid #0492c2;
+	/*border : 1px solid #0492c2;*/
     border-radius : 2%;
     width : 49%;
     height : 250px;
     display : inline-block;
     margin-right : auto;
+    background-color: #FFFFFF;
     margin-left : auto;
     position : relative;
     border-bottom : 50px solid #0492c2;
