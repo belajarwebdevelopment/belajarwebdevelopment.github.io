@@ -5,6 +5,7 @@
 .banner {
     background-color: #52B2BF;
     padding : 3px;
+    display : block;
 }
 
 .dataTabel {
