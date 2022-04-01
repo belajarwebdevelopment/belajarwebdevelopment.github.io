@@ -48,9 +48,40 @@ td {
     padding-bottom: 20px;
 }
 
+.editDiv {
+    width : 100%;
+    height : auto;
+    margin : auto auto;
+    padding : 4px;
+    display : flex;
+    padding-top: 10px;
+    padding-bottom: 20px;    
+}
+
+.editData {
+	border : 1px solid #ffc0cb;
+    border-radius : 2%;
+    width : 96%;
+    height : 250px;
+    display : inline-block;
+    text-align: left;
+    /*margin-right : auto;*/
+    background-color: #FFFFFF;
+    /*margin-left : auto;*/
+    /*position : left;*/
+    box-shadow: 2px 4px 10px #7f3e98;
+    border-bottom : 50px solid #ffc0cb;    
+}
+
 #scanImg {
     width : 50%;
     height : 50%;
+}
+
+#editImg {
+    width : 50%;
+    height : 100%;
+    float : left;
 }
 
 p.keterangan {
@@ -93,4 +124,3 @@ p.ungu {
     border-bottom : 50px solid #0492c2;
 }
 
-  
