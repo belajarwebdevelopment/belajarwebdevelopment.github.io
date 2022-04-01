@@ -2,6 +2,11 @@
     padding: 5px;
 }
 
+.banner {
+    background-color: #52B2BF;
+    padding : 3px;
+}
+
 .dataTabel {
     border : 2px solid #000000;
     border-collapse : separate;
