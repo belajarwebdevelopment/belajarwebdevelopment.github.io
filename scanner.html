@@ -27,14 +27,14 @@
 			</div>
 			<div class="tombolDiv">
 				<div class="reScan">
-					<img src="scanQr.webp" id="scanImg">
+					<a href="scanner.html"><img src="scanQr.webp" id="scanImg"></a>
 					<p class="ungu"><a href="scanner.html" style="color : #7f3e98;">Scan QRCode</a></p>
-					<p class="keterangan">Klik menu ini jika akan men-scan QRCode lagi</p>
+					<p class="keterangan"><a href="scanner.html" style="color : #000000;">Klik menu ini jika akan men-scan QRCode lagi</a></p>
 				</div>	
 				<div class="tandaiTera">
-					<img src="tanda-sah.png" id="scanImg">
-					<p class="ungu">Tandai Tera</p>
-					<p class="keterangan">Klik menu ini jika ingin update data di atas menjadi status sudah ditera</p>
+					<a href=# onclick="tandaiTera()" ><img src="tanda-sah.png" id="scanImg"></a>
+					<p class="ungu"><a href=# onclick="tandaiTera()" style="color : #7f3e98;">Tandai Tera</a></p>
+					<p class="keterangan"><a href=# onclick="tandaiTera()" style="color : #000000;">Klik menu ini jika ingin update data di atas menjadi status sudah ditera</a></p>
 				</div>
 			</div>			
         </div>
@@ -42,6 +42,22 @@
 
 		</footer>
 		<script language="javascript">
+			//var QRCodeToTera = "trsari002";
+			function tandaiTera() {
+				dataObjTera = {'kode_qr' : 'trsari010'};
+				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbz1oEddSFw-aLnGxdw7eyrT2MQil7v83MFTowxkJAjImhHw9jY3h7s-4wusmQhPdFhJcg/exec";
+
+				fetch(webAppUrlTera,{
+					method : 'POST',
+					body : JSON.stringify(dataObjTera)
+				})
+				.then(respon => respon.json()).then(respon => {
+					console.log(respon.pesan);
+				})
+				.catch(err => {
+					console.log('Gagal');
+				});
+			}
             
 			function sendData(dataObj) {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycby7Z_DkeiHpN83U7eQKY4bLFrfHJk4mDIONmWhF8e8nYmwInOwqylXG7i2zi7OJYnqBBg/exec";
@@ -62,6 +78,7 @@
 						body : JSON.stringify(dataObj)
 					})
 					.then(respon => respon.json()).then(respon => {
+						QRCodeToTera = respon.kode;
 						kontenDiv.style = "background-color : #FFFFFF";
 						container_hasil_from_webapp.innerHTML = "";
 						container_hasil_from_webapp.innerHTML = 
