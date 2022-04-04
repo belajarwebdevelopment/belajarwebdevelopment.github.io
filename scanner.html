@@ -30,14 +30,19 @@
 					<p class="keterangan"><a href="scanner.html" style="color : #000000;">Klik menu ini jika akan men-scan QRCode lagi</a></p>
 				</div>	
 				<div class="tandaiTera">
-					<img src="tanda-sah.png" id="scanImg">
-					<p class="ungu">Tandai Tera</p>
-					<p class="keterangan">Klik menu ini jika ingin update data di atas menjadi status sudah ditera</p>
+					<a href=# onclick="tandaiTera()" ><img src="tanda-sah.png" id="scanImg"></a>
+					<p class="ungu"><a href=# onclick="tandaiTera()" style="color : #7f3e98;">Tandai Tera</a></p>
+					<p class="keterangan"><a href=# onclick="tandaiTera()" style="color : #000000;">Klik menu ini jika ingin update data di atas menjadi status sudah ditera</a></p>
 				</div>
 			</div>			
         </div>
 
 		<script language="javascript">
+			const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
+
+			function tandaiTera() {
+				console.log("Tandai Tera.");
+			}
             
 			function sendData(dataObj) {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycby7Z_DkeiHpN83U7eQKY4bLFrfHJk4mDIONmWhF8e8nYmwInOwqylXG7i2zi7OJYnqBBg/exec";
@@ -48,7 +53,7 @@
 
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycbxa3B25ROWCWUTdb9e8Dh14TnUxFcVFT4-lJpOBHzXB29M9w71qCNGftpe1707XyUep/exec";
 				
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
+				//const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str');
 				const kontenDiv = document.querySelector('.konten');
