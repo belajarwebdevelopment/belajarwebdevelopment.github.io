@@ -124,3 +124,9 @@ p.ungu {
     border-bottom : 50px solid #0492c2;
 }
 
+.loader {
+    background-color: #52B2BF;
+    width : 200px;
+    height : 70px;
+}
+
