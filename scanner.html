@@ -38,10 +38,12 @@
         </div>
 
 		<script language="javascript">
+			let QRCodeToTera = "";
+
 			const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
 
 			function tandaiTera() {
-				console.log("Tandai Tera.");
+				alert(QRCodeToTera);
 			}
             
 			function sendData(dataObj) {
@@ -63,6 +65,7 @@
 						body : JSON.stringify(dataObj)
 					})
 					.then(respon => respon.json()).then(respon => {
+						QRCodeToTera = respon.kode;
 						kontenDiv.style = "background-color : #FFFFFF";
 						container_hasil_from_webapp.innerHTML = "";
 						container_hasil_from_webapp.innerHTML = 
