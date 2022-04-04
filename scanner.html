@@ -38,12 +38,21 @@
         </div>
 
 		<script language="javascript">
-			let QRCodeToTera = "";
-
-			const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
-
+			//var QRCodeToTera = "trsari002";
 			function tandaiTera() {
-				alert(QRCodeToTera);
+				dataObjTera = {'kode_qr' : 'trsari010'};
+				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbz1oEddSFw-aLnGxdw7eyrT2MQil7v83MFTowxkJAjImhHw9jY3h7s-4wusmQhPdFhJcg/exec";
+
+				fetch(webAppUrlTera,{
+					method : 'POST',
+					body : JSON.stringify(dataObjTera)
+				})
+				.then(respon => respon.json()).then(respon => {
+					console.log(respon.pesan);
+				})
+				.catch(err => {
+					console.log('Gagal');
+				});
 			}
             
 			function sendData(dataObj) {
@@ -55,7 +64,7 @@
 
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycbxa3B25ROWCWUTdb9e8Dh14TnUxFcVFT4-lJpOBHzXB29M9w71qCNGftpe1707XyUep/exec";
 				
-				//const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str');
 				const kontenDiv = document.querySelector('.konten');
