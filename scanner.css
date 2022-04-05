@@ -132,11 +132,12 @@ p.ungu {
 .loader {
     background-color: #52B2BF;
     width : 170px;
-    height : 50px;
+    height : auto;
     position: fixed;
     top : 200px;
     left : 100px;
     padding: 5px;
+    text-align: center;
 }
 
 .spinner {
@@ -159,7 +160,8 @@ p.ungu {
   .JudulLoader {
       width : 70%;
       display : inline-block;
-      height : 30px;
+      /*height : 30px;*/
+      height : auto;
       color : #ffffff;
       vertical-align: middle;
   }
@@ -172,3 +174,10 @@ p.ungu {
       background-color: #000000;
   }
 
+  .closeIcon {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right : 0;
+      top : 0;
+  }

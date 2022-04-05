@@ -11,8 +11,8 @@
 		<div class="covering" hidden>
 			
 		</div>
-		<div class="loader" hidden>
-			<!--<img src ="icon.jpg" alt="Klik utk menutup dialog ini."/>-->
+		<div class="loader" hidden>			
+			<img class="closeIcon" src ="icon.jpg" onclick="tutupDialog()" alt="Klik utk menutup dialog ini." hidden>
 			<h4 class="JudulLoader">Loading....</h4>
 			<div class="spinner"></div>
 		</div>	
@@ -54,7 +54,7 @@
 			function tandaiTera() {
 				dataObjTera = {'kode_qr' : 'mjsongo001'};
 				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
-				//console.log('mulai....');
+
 				document.querySelector(".loader").hidden = false;
 				document.querySelector(".covering").hidden = false;
 				fetch(webAppUrlTera,{
@@ -63,20 +63,29 @@
 				})
 				.then(respon => respon.json())
 				.then(resp => {
-					document.querySelector(".loader").innerHTML = `<h4 class="JudulLoader">${resp.pesan}</h4>`;
-					//console.log(resp.pesan);
-					//console.log("Finished");
-					//document.querySelector(".loader").hidden = true;
-					//document.querySelector(".covering").hidden = true;
+					document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">${resp.pesan}</h4>`;
+					document.querySelector(".spinner").hidden = true;
+					document.querySelector(".closeIcon").hidden = false;
+					
 				})
 				.catch(err => {
-					//console.log(`Pesan Kesalahan : ${err}`);
-					document.querySelector(".loader").innerHTML = err;
-					//document.querySelector(".loader").hidden = true;
-					//document.querySelector(".covering").hidden = true;
+					document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">Proses gagal ${err}</h4>`;
+					document.querySelector(".spinner").hidden = true;
+					document.querySelector(".closeIcon").hidden = false;
 				});
 			}
             
+			function tutupDialog() {
+				console.log('ET');
+				
+				document.querySelector(".loader").hidden = true;
+				document.querySelector(".covering").hidden = true;
+				
+			}
+
+			//let iconClose = document.querySelector('.closeIcon');
+			//iconClose.addEventListener('click',tutupDialog);
+
 			function sendData(dataObj) {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycby7Z_DkeiHpN83U7eQKY4bLFrfHJk4mDIONmWhF8e8nYmwInOwqylXG7i2zi7OJYnqBBg/exec";
 
