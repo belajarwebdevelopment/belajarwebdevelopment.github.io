@@ -8,14 +8,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     </head>
     <body>
-		<div class="covering" hidden>
+		<div class="covering" data-role="none">
 			
 		</div>
-		<div class="loader" hidden>			
-			<img class="closeIcon" src ="icon.jpg" onclick="tutupDialog()" alt="Klik utk menutup dialog ini." hidden>
+		
+		<div class="loader" data-role="none">			
+			<!--<img class="closeIcon" src ="icon.jpg">-->
 			<h4 class="JudulLoader">Loading....</h4>
 			<div class="spinner"></div>
+			<button class="closeIcon">Tutup</button>
 		</div>	
+		
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
 			<div><h2 class="banner">WTU & UTTP Scanner</h2></div>
 			<div class="d-flex align-items-center konten" style="background-color : #52B2BF;color : #FFFFFF;">
@@ -42,7 +45,7 @@
 				<div class="tandaiTera">
 					<a href=# onclick="tandaiTera()" ><img src="tanda-sah.png" id="scanImg"></a>
 					<p class="ungu"><a href=# onclick="tandaiTera()" style="color : #7f3e98;">Tandai Tera</a></p>
-					<p class="keterangan"><a href=# onclick="tandaiTera()" style="color : #000000;">Klik menu ini jika ingin update data di atas menjadi status sudah ditera</a></p>
+					<p class="keterangan"><a href=# onclick="bukaDialog();" style="color : #000000;">Klik menu ini jika ingin update data di atas menjadi status sudah ditera</a></p>
 				</div>
 			</div>			
         </div>
@@ -55,36 +58,38 @@
 				dataObjTera = {'kode_qr' : 'mjsongo001'};
 				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
 
-				document.querySelector(".loader").hidden = false;
-				document.querySelector(".covering").hidden = false;
+				bukaDialog();
+				//document.querySelector(".loader").hidden = false;
+				//document.querySelector(".covering").hidden = false;
 				fetch(webAppUrlTera,{
 					method : 'POST',
 					body : JSON.stringify(dataObjTera)
 				})
 				.then(respon => respon.json())
 				.then(resp => {
-					document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">${resp.pesan}</h4>`;
-					document.querySelector(".spinner").hidden = true;
-					document.querySelector(".closeIcon").hidden = false;
+					//document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">${resp.pesan}</h4>`;
+					//document.querySelector(".spinner").hidden = true;
+					//document.querySelector(".closeIcon").hidden = false;
 					
 				})
 				.catch(err => {
-					document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">Proses gagal ${err}</h4>`;
-					document.querySelector(".spinner").hidden = true;
-					document.querySelector(".closeIcon").hidden = false;
+					//document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">Proses gagal ${err}</h4>`;
+					//document.querySelector(".spinner").hidden = true;
+					//document.querySelector(".closeIcon").hidden = false;
 				});
 			}
             
-			function tutupDialog() {
-				console.log('ET');
-				
-				document.querySelector(".loader").hidden = true;
-				document.querySelector(".covering").hidden = true;
+			function bukaDialog() {
+				let loaderDialog = document.querySelector(".loader");
+				loaderDialog.getElementsByClassName('closeIcon')[0].removeEventListener('click', function() {
+					loaderDialog.style = "display : none";
+				});
+				loaderDialog.getElementsByClassName('closeIcon')[0].addEventListener('click', function() {
+					loaderDialog.style = "display : none";
+				});
+				loaderDialog.style = "display : block";
 				
 			}
-
-			//let iconClose = document.querySelector('.closeIcon');
-			//iconClose.addEventListener('click',tutupDialog);
 
 			function sendData(dataObj) {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycby7Z_DkeiHpN83U7eQKY4bLFrfHJk4mDIONmWhF8e8nYmwInOwqylXG7i2zi7OJYnqBBg/exec";
