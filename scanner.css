@@ -71,7 +71,7 @@ td {
     /*margin-left : auto;*/
     /*position : left;*/
     box-shadow: 2px 4px 10px #7f3e98;
-    border-bottom : 50px solid #ffc0cb;    
+    border-bottom : 40px solid #7f3e98;    
 }
 
 #scanImg {
@@ -110,7 +110,8 @@ p.ungu {
     margin-left : auto;
     position : static;
     background-color: #FFFFFF;
-    border-bottom : 50px solid #A7C7E7;
+    /*border-bottom : 50px solid #A7C7E7;*/
+    border-bottom : 40px solid #52B2BF;
     align-content: center;
     box-shadow: 2px 4px 10px #7f3e98;
 }
@@ -126,7 +127,8 @@ p.ungu {
     margin-left : auto;
     position : static;
     box-shadow: 2px 4px 10px #7f3e98;
-    border-bottom : 50px solid #0492c2;
+    /*border-bottom : 50px solid #0492c2;*/
+    border-bottom : 40px solid #52B2BF;
 }
 
 .loader {
