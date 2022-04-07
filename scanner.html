@@ -53,9 +53,14 @@
 
 		</footer>
 		<script language="javascript">
+			function camStatus() {
+				let cam = document.getElementById('video');
+				return cam.ended;
+			}
+
 			function editData() {
-				if (!document.getElementById('video').hidden) {
-					alert('Tidak bisa update data, kamera sedang aktif');
+				if (camStatus) {
+					alert('Tidak bisa edit data, kamera sedang aktif');
 					return false;
 				}				
 			}
@@ -68,11 +73,10 @@
 			
 			var QRCodeToTera = "";
 			function tandaiTera() {
-				if (!document.getElementById('video').hidden) {
-					alert('Tidak bisa update data, kamera sedang aktif');
+				if (camStatus) {
+					alert('Tidak bisa tandai tera, kamera sedang aktif');
 					return false;
 				}
-				
 				dataObjTera = {'kode_qr' : 'mjsongo001'};
 				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
 
@@ -184,7 +188,8 @@
 					audio : false   
 				}
 
-				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);				
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
 			}
 
 			function tampilkanHasil(container_hasil,msg) {
