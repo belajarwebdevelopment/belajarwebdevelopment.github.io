@@ -24,16 +24,16 @@
 				<strong id="qrcode_str"></strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
-			<!--
+			
 			<div id="videoDiv">
 				<video id="video" autoplay width="100%" height="70%"></video>
 			</div>
-			-->
+			
 			<div id="editDiv">
 				<div class="editData">
-					<img src="edit_icon.png" id="editImg">
-					<p class="ungu">Edit Data</p>
-					<p class="keterangan">Klik menu ini jika ingin mengubah QRCode Data UTTP di atas</p>
+					<a href=# onclick="editData()" style="color : #7f3e98;"><img src="edit_icon.png" id="editImg"></a>
+					<p class="ungu"><a href=# onclick="editData()" style="color : #7f3e98;">Edit Data</a></p>
+					<p class="keterangan"><a href=# onclick="editData()" style="color : #000000;">Klik menu ini jika ingin mengubah QRCode Data UTTP di atas</a></p>
 				</div>
 			</div>
 			<div class="tombolDiv">
@@ -53,8 +53,26 @@
 
 		</footer>
 		<script language="javascript">
+			function editData() {
+				if (!document.getElementById('video').hidden) {
+					alert('Tidak bisa update data, kamera sedang aktif');
+					return false;
+				}				
+			}
+
+			function afterUpdateProccess(serverResp) {
+				document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">${serverResp}</h4>`;
+				document.querySelector(".spinner").style = "display : none";
+				document.querySelector(".closeIcon").style = "display : inline-block";
+			}
+			
 			var QRCodeToTera = "";
 			function tandaiTera() {
+				if (!document.getElementById('video').hidden) {
+					alert('Tidak bisa update data, kamera sedang aktif');
+					return false;
+				}
+				
 				dataObjTera = {'kode_qr' : 'mjsongo001'};
 				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
 
@@ -65,24 +83,21 @@
 				})
 				.then(respon => respon.json())
 				.then(resp => {
-					document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">Update Tera ${resp.pesan}</h4>`;
-					document.querySelector(".spinner").style = "display : none";
-					document.querySelector(".closeIcon").style = "display : inline-block";
+					afterUpdateProccess(resp.pesan);
 				})
 				.catch(err => {
-					document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">Proses gagal ${err}</h4>`;
-					document.querySelector(".spinner").style = "display : none";
-					document.querySelector(".closeIcon").style = "display : inline-block";
+					afterUpdateProccess(err);
 				});
 			}
-            
-			function bukaDialog() {
-				let setAwal = () => {
+
+			function setAwal() {
 					document.querySelector(".judulLoader").innerHTML = `Loading....`;
 					document.querySelector(".spinner").style = "display : inline-block";
 					document.querySelector(".closeIcon").style = "display : none";
-				}
+			}
 
+			
+			function bukaDialog() {
 				let loaderDialog = document.querySelector(".loader");
 				let covering = document.querySelector(".covering");
 
@@ -150,7 +165,7 @@
 			}    
         </script>
 
-		<script>			
+		<script>	
 			function jeda(waktu) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
@@ -171,7 +186,7 @@
 
 				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);				
 			}
-			
+
 			function tampilkanHasil(container_hasil,msg) {
 				container_hasil.innerHTML = "";
 				container_hasil.innerHTML = msg;
@@ -194,7 +209,6 @@
 							} 
 							clearInterval(intervalID);
 							resolve(code);
-							//enable_spinner.hidden = true;
 						})
 						.catch(e => {
 							clearInterval(intervalID);
@@ -242,6 +256,7 @@
 			}
 			
 			mainScanProcess();
+
 		</script>
 
     </body>
