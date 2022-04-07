@@ -59,7 +59,7 @@
 			}
 
 			function editData() {
-				if (camStatus) {
+				if (camStatus() == false) {
 					alert('Tidak bisa edit data, kamera sedang aktif');
 					return false;
 				}				
@@ -73,7 +73,7 @@
 			
 			var QRCodeToTera = "";
 			function tandaiTera() {
-				if (camStatus) {
+				if (camStatus() == false) {
 					alert('Tidak bisa tandai tera, kamera sedang aktif');
 					return false;
 				}
