@@ -79,7 +79,7 @@
 					alert('Tidak bisa menandai tera, kamera masih aktif');
 					return false;
 				}
-				dataObjTera = {'kode_qr' : 'mjsongo002'};
+				dataObjTera = {'kode_qr' : QRCodeToTera};
 				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
 
 				bukaDialog();
@@ -190,8 +190,8 @@
 					audio : false   
 				}
 
-				//return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
-				return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
 			}
 
 			function tampilkanHasil(container_hasil,msg) {
