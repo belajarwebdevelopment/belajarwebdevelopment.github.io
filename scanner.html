@@ -70,7 +70,7 @@
 
 			function afterUpdateProccess(serverResp) {
 				document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">${serverResp}</h4>`;
-				//document.querySelector(".spinner").style = "display : none";
+				document.querySelector(".spinner").style = "display : none";
 				document.querySelector(".closeIcon").style = "display : inline-block";
 			}
 			
@@ -102,7 +102,7 @@
 
 			function setAwal() {
 					document.querySelector(".judulLoader").innerHTML = `Loadingss....`;
-					//document.querySelector(".spinner").style = "display : inline-block";
+					document.querySelector(".spinner").style = "display : inline-block";
 					document.querySelector(".closeIcon").style = "display : none";
 			}
 
@@ -252,7 +252,7 @@
 								enable_spinner.hidden = true;
 								await jeda(500);
 								theCam.getTracks().forEach(track => track.stop());
-								document.querySelector('#videoDiv').hidden = true;
+								//document.querySelector('#videoDiv').hidden = true;
 							});
 						})
 						.catch(e => {
