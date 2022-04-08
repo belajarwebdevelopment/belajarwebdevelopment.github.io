@@ -14,7 +14,7 @@
 .dataTabel {
     border : 2px solid #000000;
     border-collapse : separate;
-
+    width : 100%;
 }
 
 .tHead {
@@ -136,7 +136,7 @@ p.ungu {
 .loader {
     display : none;
     background-color: #52B2BF;
-    width : 200px;
+    width : 95%;
     height : auto;
     position: fixed;
     top : 50%;
