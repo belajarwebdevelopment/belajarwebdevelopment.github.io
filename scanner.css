@@ -134,14 +134,14 @@ p.ungu {
 .loader {
     display : none;
     background-color: #52B2BF;
-    width : 90%;
+    width : 80%;
     height : auto;
     position: fixed;
     top : 50%;
     left : 50%;
     padding: 5px;
     text-align: center;
-    border-radius: 4%;
+    border-radius: 7%;
     transform: translate(-50%,50%);
 }
 
