@@ -59,10 +59,12 @@
 			}
 
 			function editData() {
+				/*
 				if (camStatus() == false) {
 					alert('Tidak bisa edit data, kamera sedang aktif');
 					return false;
-				}				
+				}		
+				*/		
 			}
 
 			function afterUpdateProccess(serverResp) {
@@ -80,7 +82,7 @@
 					return false;
 				}
 				*/
-				dataObjTera = {'kode_qr' : 'mjsongo001'};
+				dataObjTera = {'kode_qr' : QRCodeToTera};
 				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
 
 				bukaDialog();
@@ -90,10 +92,10 @@
 				})
 				.then(respon => respon.json())
 				.then(resp => {
-					afterUpdateProccess(resp.pesan);
+					afterUpdateProccess(`Tandai Tera ${resp.pesan}`);
 				})
 				.catch(err => {
-					afterUpdateProccess(err);
+					afterUpdateProccess(`Tandai Tera Gagal : ${err}`);
 				});
 			}
 
@@ -117,7 +119,7 @@
 					loaderDialog.style = "display : none";
 					covering.style = "display : none";
 				});
-				loaderDialog.style = "display : block";
+				loaderDialog.style = "display : inline-block";
 				covering.style = "display : block";
 				
 			}
