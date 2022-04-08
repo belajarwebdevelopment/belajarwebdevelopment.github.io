@@ -251,8 +251,8 @@
 							await kirimDataDanTunggu.then(async () => {
 								enable_spinner.hidden = true;
 								await jeda(500);
-								//theCam.getTracks().forEach(track => track.stop());
-								//document.querySelector('#videoDiv').hidden = true;
+								theCam.getTracks().forEach(track => track.stop());
+								document.querySelector('#videoDiv').hidden = true;
 							});
 						})
 						.catch(e => {
