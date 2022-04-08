@@ -53,6 +53,7 @@
 
 		</footer>
 		<script language="javascript">
+			var Kamera = {};
 			/*
 			function camStatus() {
 				let cam = document.getElementById('video');
@@ -60,12 +61,10 @@
 			}
 			*/
 			function editData() {
-				/*
-				if (camStatus() == false) {
-					alert('Tidak bisa edit data, kamera sedang aktif');
+				if (Kamera.active == true) {
+					alert('Tidak bisa edit data, kamera masih aktif');
 					return false;
-				}		
-				*/		
+				}
 			}
 
 			function afterUpdateProccess(serverResp) {
@@ -76,13 +75,10 @@
 			
 			var QRCodeToTera = "";
 			function tandaiTera() {
-				//alert(camStatus());
-				/*
-				if (camStatus() == false) {
-					alert('Tidak bisa tandai tera, kamera sedang aktif');
+				if (Kamera.active == true) {
+					alert('Tidak bisa menandai tera, kamera masih aktif');
 					return false;
 				}
-				*/
 				dataObjTera = {'kode_qr' : 'mjsongo002'};
 				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
 
@@ -159,7 +155,7 @@
 									<tr><td>Pasar</td><td>${respon.pasar}</td></tr>
 									<tr><td>Los</td><td>${respon.los}</td></tr>
 									<tr><td>Tahun Tera</td><td>${respon.status_tera}</td></tr>
-									<tr><td>Tanggal Ditera Terakhir</td><td>.........</td></tr>
+									<tr><td>Tanggal Ditera Terakhir</td><td>...</td></tr>
 								</tbody>
 							</table>`
 						resolve('done');
@@ -194,8 +190,8 @@
 					audio : false   
 				}
 
-				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
-				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+				//return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
 			}
 
 			function tampilkanHasil(container_hasil,msg) {
@@ -237,6 +233,7 @@
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 					try {
 						const theCam = await prepareTheCam(video);
+						Kamera = theCam;
 						container_hasil.innerHTML = "Kamera siap...";
 						await jeda(700);
 						container_hasil.innerHTML = "Pemindai siap...";
