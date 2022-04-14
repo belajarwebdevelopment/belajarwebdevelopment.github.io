@@ -128,7 +128,7 @@
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exec";
 
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbxCLTblL6z848vsJnxybwosIfGCv9GtwLfSE5oT5CoRrYTMN5KGAhkFaZGTVjPIioorFQ/exec";
-				
+
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str');
 				const kontenDiv = document.querySelector('.konten');
 				return new Promise((resolve,reject) => {
@@ -152,7 +152,7 @@
 									<tr><td>Pasar</td><td>${respon.pasar}</td></tr>
 									<tr><td>Los</td><td>${respon.los}</td></tr>
 									<tr><td>Tahun Tera</td><td>${respon.status_tera}</td></tr>
-									<tr><td>Tanggal Ditera Terakhir</td><td>...</td></tr>
+									<tr><td>Tanggal Ditera Terakhir</td><td>${respon.tgl_tera_terakhir}</td></tr>
 								</tbody>
 							</table>`
 						resolve('done');
