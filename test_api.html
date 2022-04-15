@@ -13,6 +13,7 @@
 		<button id="getBtn">Get Data</button>
 	<div id="app"></div>
 		<script language="javascript">
+			/*
 			function getData() {
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbz2Bz051C2QYjMBBW2Nrynu4m2RQwnv41fGT9CweW0aYClzGfcGLLJ2Qy2lFeyesNHEtQ/exec";
 				
@@ -20,6 +21,7 @@
 						console.log(d[0].tahun);
 				});	
 			}
+			*/
 			/*
 			function sendData() {
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
@@ -36,8 +38,25 @@
 				})
 			}
 			*/
-			//document.getElementById("sendBtn").addEventListener("click",sendData);		
-			document.getElementById("getBtn").addEventListener("click",getData);
+			function sendData() {
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbyfbXf22BtHo3md83uvzPqOB_wL2NhX8MFrYiZLOT2Rv-RMTc93J_4oXCWaXOmYNfC7Bw/exe";
+				
+				fetch(webAppUrl,{
+						method : 'POST',
+						body : JSON.stringify({'kode_qr' : 'mjsongo002'}),
+						mode : 'no-cors'
+					})
+					.then(respon => respon.json()).then(respon => {
+						console.log('berhasil');
+						console.log(respon.kode);
+					})
+					.catch(err => {
+						console.log('error');
+					});
+
+			}
+			document.getElementById("sendBtn").addEventListener("click",sendData);		
+			//document.getElementById("getBtn").addEventListener("click",getData);
         </script>
     </body>
 </html>
