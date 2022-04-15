@@ -190,8 +190,8 @@
 					audio : false   
 				}
 
-				//return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
-				return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
 			}
 
 			function tampilkanHasil(container_hasil,msg) {
