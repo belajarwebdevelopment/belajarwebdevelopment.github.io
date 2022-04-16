@@ -13,6 +13,7 @@
 
 .konten {
 	position : fixed;
+	display : block;
 }
 
 .dataTabel {
