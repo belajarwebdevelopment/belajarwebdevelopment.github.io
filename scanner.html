@@ -253,6 +253,7 @@
 								await jeda(500);
 								theCam.getTracks().forEach(track => track.stop());
 								document.querySelector('#videoDiv').hidden = true;
+								document.querySelector('.konten').style.position = 'relative';
 							});
 						})
 						.catch(e => {
