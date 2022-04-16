@@ -75,8 +75,8 @@
 					return false;
 				}
 				dataObjTera = {'kode_qr' : QRCodeToTera};
-				const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
-
+				//const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
+				const webAppUrlTera = "https://script.google.com/macros/s/AKfycbw_ko7kGuPDTzPVAuX9d99j5C8y036t8hMl5SuStqd-LZXiQJethBEv3HE6FzTmAk7_/exec";
 				bukaDialog();
 				fetch(webAppUrlTera,{
 					method : 'POST',
@@ -85,9 +85,11 @@
 				.then(respon => respon.json())
 				.then(resp => {
 					afterUpdateProccess(`Tandai Tera ${resp.pesan}`);
+					sendData(dataObjTera);
 				})
 				.catch(err => {
 					afterUpdateProccess(`Tandai Tera Gagal : ${err}`);
+					sendData(dataObjTera);
 				});
 			}
 
@@ -255,6 +257,7 @@
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);
+							enable_spinner.hidden = true;
 							theCam.getTracks().forEach(track => track.stop());
 						});
 					}

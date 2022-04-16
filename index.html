@@ -198,8 +198,8 @@
 
         <script language="javascript">
             const ListOfTahunTera = () => {
-                let URLWebApp = "https://script.google.com/macros/s/AKfycbz2Bz051C2QYjMBBW2Nrynu4m2RQwnv41fGT9CweW0aYClzGfcGLLJ2Qy2lFeyesNHEtQ/exec";
-				
+                //let URLWebApp = "https://script.google.com/macros/s/AKfycbz2Bz051C2QYjMBBW2Nrynu4m2RQwnv41fGT9CweW0aYClzGfcGLLJ2Qy2lFeyesNHEtQ/exec";
+				let URLWebApp = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
 				fetch(URLWebApp).then(d => d.json()).then(d => {
                     let nowYear = d[0].tahun;
                     let selectId = document.getElementById('tahunTera1');
@@ -409,8 +409,9 @@
 
                 
 
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbwzbs4hThHTqQ6GZyscFqFWM_u02oBWoftsSEKVXojjcthPztuJ0p-noW4lOG7XRHayvg/exec";
+                //The_Latest_16_04_2022 const webAppUrl = "https://script.google.com/macros/s/AKfycbwzbs4hThHTqQ6GZyscFqFWM_u02oBWoftsSEKVXojjcthPztuJ0p-noW4lOG7XRHayvg/exec";
                 
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
                 
             
                 const btnKirim = document.getElementById('entry_the_data');
