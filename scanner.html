@@ -60,6 +60,7 @@
 					alert('Tidak bisa edit data, kamera masih aktif');
 					return false;
 				}
+				document.querySelector('.konten').style.position = 'relative';
 			}
 
 			function afterUpdateProccess(serverResp) {
@@ -74,6 +75,7 @@
 					alert('Tidak bisa menandai tera, kamera masih aktif');
 					return false;
 				}
+				document.querySelector('.konten').style.position = 'relative';
 				dataObjTera = {'kode_qr' : QRCodeToTera};
 				//const webAppUrlTera  = "https://script.google.com/macros/s/AKfycbyeTq6dnxhnmIQWFXkUzZslvs-8jzZTB_m88mASNA6lu-kOhn1riS7DmX15LcOLB164RA/exec";
 				const webAppUrlTera = "https://script.google.com/macros/s/AKfycbw_ko7kGuPDTzPVAuX9d99j5C8y036t8hMl5SuStqd-LZXiQJethBEv3HE6FzTmAk7_/exec";
