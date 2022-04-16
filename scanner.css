@@ -11,6 +11,10 @@
     color : #FFFFFF;
 }
 
+.konten {
+	position : fixed;
+}
+
 .dataTabel {
     border : 2px solid #000000;
     border-collapse : separate;
