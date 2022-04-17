@@ -45,21 +45,24 @@ td {
     width : 100%;
     height : auto;
     margin : auto auto;
-    padding : 4px;
+    padding-left : 0px;
+    padding-right: 0px;
     display : flex;
     /*background-color: #A9A9B0; */  
     padding-top: 10px;
     padding-bottom: 20px;
+
 }
 
 .editDiv {
     width : 100%;
     height : auto;
     margin : auto auto;
-    padding : 4px;
+    padding-right : 0px;
+    padding-left: 0px;
     display : flex;
     padding-top: 10px;
-    padding-bottom: 20px;    
+    padding-bottom: 20px;   
 }
 
 .editData {
@@ -107,11 +110,11 @@ p.ungu {
 .reScan{
 	border : 1px solid #A7C7E7;
     /*border-radius : 2%;*/
-    width : 50%;
+    width : 49.75%;
     height : 250px;
     display : inline-block;
     margin-right : auto;
-    margin-left : auto;
+    margin-left : 0px;
     position : static;
     background-color: #FFFFFF;
     /*border-bottom : 50px solid #A7C7E7;*/
@@ -123,10 +126,10 @@ p.ungu {
 .tandaiTera {
 	border : 1px solid #0492c2;
     /*border-radius : 2%;*/
-    width : 50%;
+    width : 49.75%;
     height : 250px;
     display : inline-block;
-    margin-right : auto;
+    margin-right : 0px;
     background-color: #FFFFFF;
     margin-left : auto;
     position : static;
