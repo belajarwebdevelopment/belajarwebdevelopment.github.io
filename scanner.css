@@ -66,7 +66,7 @@ td {
 }
 
 .editData {
-	border : 1px solid #757575;
+	border : 1px solid #616161;
     /*border-radius : 2%;*/
     width : 100%;
     height : 250px;
@@ -77,8 +77,8 @@ td {
     background-color: #FFFFFF;
     /*margin-left : auto;*/
     /*position : left;*/
-    box-shadow: 2px 4px 10px #7f3e98;
-    border-bottom : 20px solid #757575;    
+    box-shadow: 2px 4px 10px #616161;
+    border-bottom : 20px solid #616161;    
 }
 
 #scanImg {
@@ -120,7 +120,7 @@ p.ungu {
     /*border-bottom : 50px solid #A7C7E7;*/
     border-bottom : 20px solid #4863A0;
     align-content: center;
-    box-shadow: 2px 4px 10px #7f3e98;
+    box-shadow: 2px 4px 10px #4863A0;
 }
 
 .tandaiTera {
@@ -133,7 +133,7 @@ p.ungu {
     background-color: #FFFFFF;
     margin-left : auto;
     position : static;
-    box-shadow: 2px 4px 10px #7f3e98;
+    box-shadow: 2px 4px 10px #4863A0;
     /*border-bottom : 50px solid #0492c2;*/
     border-bottom : 20px solid #4863A0;
 }
