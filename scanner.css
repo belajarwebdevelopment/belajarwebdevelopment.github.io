@@ -1,4 +1,4 @@
-#qrcode_str {
+#qrcode_str, #qrcode_str2 {
     padding: 5px;
 }
 
@@ -9,7 +9,7 @@
     color : #FFFFFF;
 }
 
-.konten {
+.konten, .konten2 {
 	position : fixed;
 }
 
@@ -64,8 +64,8 @@ td {
 
 .editData {
 	border : 1px solid #ffc0cb;
-    border-radius : 2%;
-    width : 96%;
+    /*border-radius : 2%;*/
+    width : 100%;
     height : 250px;
     display : inline-block;
     text-align: left;
@@ -106,7 +106,7 @@ p.ungu {
 
 .reScan{
 	border : 1px solid #A7C7E7;
-    border-radius : 2%;
+    /*border-radius : 2%;*/
     width : 49%;
     height : 250px;
     display : inline-block;
@@ -122,7 +122,7 @@ p.ungu {
 
 .tandaiTera {
 	border : 1px solid #0492c2;
-    border-radius : 2%;
+    /*border-radius : 2%;*/
     width : 49%;
     height : 250px;
     display : inline-block;

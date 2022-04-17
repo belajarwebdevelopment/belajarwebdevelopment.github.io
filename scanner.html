@@ -12,7 +12,7 @@
 			<div><h2 class="banner">Scan QRCode Yang Baru</h2></div>
 			<div class="d-flex align-items-center konten2" style="background-color : #52B2BF;color : #FFFFFF;">
 				<strong id="qrcode_str2"></strong>
-				<div class="spinner-border ml-auto spinner2" role="status" aria-hidden="true"></div>		
+				<div class="spinner-border ml-auto spinner2" role="status" aria-hidden="true" hidden></div>		
 			</div>		
 			<div id="videoDiv2">
 				<video id="video2" autoplay width="100%" height="70%"></video>
@@ -67,14 +67,19 @@
 			var Kamera = {};
 
 			async function editData() {
-				if (Kamera.active == true) {
+				/*if (Kamera.active == true) {
 					alert('Tidak bisa edit data, kamera masih aktif');
 					return false;
 				}
+				*/
 				document.querySelector('.konten').style.position = 'static';
 				document.querySelector('.ubahQRCodeDiv').style = "display : block";
 				const theCam2 = await prepareTheCam(video2);
-				
+				document.querySelector('#qrcode_str2').innerHTML = "Kamera siap...";
+				await jeda(700);
+				document.querySelector('#qrcode_str2').innerHTML = "Pemindai siap...";
+				await jeda(700);
+				document.querySelector('#qrcode_str2').innerHTML = "Silahkan memindai QRCode..";				
 			}
 
 			function afterUpdateProccess(serverResp) {
