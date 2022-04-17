@@ -8,6 +8,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     </head>
     <body>
+		<div class="ubahQRCodeDiv">
+			<div><h2 class="banner">Scan QRCode Yang Baru</h2></div>
+			<div class="d-flex align-items-center konten2" style="background-color : #52B2BF;color : #FFFFFF;">
+				<strong id="qrcode_str2"></strong>
+				<div class="spinner-border ml-auto spinner2" role="status" aria-hidden="true"></div>		
+			</div>		
+			<div id="videoDiv2">
+				<video id="video2" autoplay width="100%" height="70%"></video>
+			</div>
+		</div>
+
 		<div class="covering" data-role="none">
 			
 		</div>
@@ -20,7 +31,7 @@
 		
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
 			<div><h2 class="banner">WTU & UTTP Scanner</h2></div>
-			<div class="d-flex align-items-center konten" style="background-color : #52B2BF;color : #FFFFFF;">
+			<div class="d-flex align-items-center konten" style="background-color : #52B2BF; color : #FFFFFF;">
 				<strong id="qrcode_str"></strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
@@ -55,12 +66,15 @@
 		<script language="javascript">
 			var Kamera = {};
 
-			function editData() {
+			async function editData() {
 				if (Kamera.active == true) {
 					alert('Tidak bisa edit data, kamera masih aktif');
 					return false;
 				}
-				document.querySelector('.konten').style.position = 'relative';
+				document.querySelector('.konten').style.position = 'static';
+				document.querySelector('.ubahQRCodeDiv').style = "display : block";
+				const theCam2 = await prepareTheCam(video2);
+				
 			}
 
 			function afterUpdateProccess(serverResp) {
@@ -196,8 +210,8 @@
 					audio : false   
 				}
 
-				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
-				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+				//return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
 			}
 
 			function tampilkanHasil(container_hasil,msg) {
