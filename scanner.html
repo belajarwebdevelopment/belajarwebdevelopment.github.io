@@ -75,11 +75,23 @@
 				document.querySelector('.konten').style.position = 'static';
 				document.querySelector('.ubahQRCodeDiv').style = "display : block";
 				const theCam2 = await prepareTheCam(video2);
-				document.querySelector('#qrcode_str2').innerHTML = "Kamera siap...";
+				let notif = document.querySelector('#qrcode_str2');
+				let loader2 = document.querySelector('.spinner2');
+				notif.innerHTML = "Kamera siap...";
 				await jeda(700);
-				document.querySelector('#qrcode_str2').innerHTML = "Pemindai siap...";
+				notif.innerHTML = "Pemindai siap...";
 				await jeda(700);
-				document.querySelector('#qrcode_str2').innerHTML = "Silahkan memindai QRCode..";				
+				notif.innerHTML = "Silahkan memindai QRCode Yg Baru..";	
+				const hasil_pindai = pindai(video2,notif,loader2);
+				await hasil_pindai
+				.then(result => {
+					notif.innerHTML = result;
+					loader2.hidden = true;
+				})
+				.catch(e => {
+					notif.innerHTML = e;
+					loader2.hidden = true;
+				});
 			}
 
 			function afterUpdateProccess(serverResp) {
