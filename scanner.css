@@ -1,5 +1,8 @@
 #qrcode_str, #qrcode_str2 {
-    padding: 9px;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     margin-bottom: 6px;
 }
 
@@ -17,7 +20,7 @@
 .dataTabel {
     border : 2px solid #000000;
     border-collapse : separate;
-    width : 118%;
+    width : 119%;
 }
 
 .tHead {
