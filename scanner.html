@@ -67,11 +67,11 @@
 			var Kamera = {};
 
 			async function editData() {
-				/*if (Kamera.active == true) {
+				if (Kamera.active == true) {
 					alert('Tidak bisa edit data, kamera masih aktif');
 					return false;
 				}
-				*/
+				
 				document.querySelector('.konten').style.position = 'static';
 				document.querySelector('.ubahQRCodeDiv').style = "display : block";
 				const theCam2 = await prepareTheCam(video2);
@@ -227,8 +227,8 @@
 					audio : false   
 				}
 
-				//return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
-				return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
 			}
 
 			function tampilkanHasil(container_hasil,msg) {
