@@ -179,6 +179,7 @@
 					.then(respon => respon.json()).then(respon => {
 						QRCodeToTera = respon.kode;
 						kontenDiv.style = "background-color : #FFFFFF";
+						container_hasil_from_webapp.style = "padding : 0px";
 						container_hasil_from_webapp.innerHTML = "";
 						container_hasil_from_webapp.innerHTML = 
 							`<table class='dataTabel'>
