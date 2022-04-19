@@ -1,5 +1,7 @@
 #videoDiv {
     border : 1px solid black;
+    margin-bottom: 9px;
+    width : 100%;
 }
 
 #qrcode_str, #qrcode_str2 {
@@ -11,7 +13,7 @@
 }
 
 .banner {
-    background-color: #52B2BF;
+    background-color: orangered;
     padding : 3px;
     display : block;
     color : #FFFFFF;
