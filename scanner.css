@@ -4,11 +4,11 @@
     width : 100%;
 }
 
-/*#video {
-    width : 100%;
-    height : 70%;
+#video {
+    width : auto;
+    height : auto;
 }
-*/
+
 #qrcode_str, #qrcode_str2 {
     padding-left: 9px;
     padding-right: 9px;
@@ -18,7 +18,7 @@
 }
 
 .banner {
-    background-color: darkgoldenrod;
+    background-color: grey;
     padding : 3px;
     display : block;
     color : #FFFFFF;
