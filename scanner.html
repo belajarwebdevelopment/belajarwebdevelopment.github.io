@@ -66,12 +66,33 @@
 		<script language="javascript">
 			var Kamera = {};
 
+			function sendDataEditQRCode(theDataObj) {
+				const TheURL = "";
+				return new Promise((resolve, reject) => {
+					fetch(TheURL, {
+						method : 'POST',
+						body : JSON.stringify(theDataObj)
+					})
+					.then(RespStr => RespStr.json())
+					.then(RespJson => {
+						alert(RespJson.kodeBaru);
+						resolve(RespJson.kodeBaru);
+					})
+					.catch(ErrMsg => {
+						alert(ErrMsg);
+						reject(ErrMsg);
+					});
+				});
+			}
+
 			async function editData() {
 				if (Kamera.active == true) {
 					alert('Tidak bisa edit data, kamera masih aktif');
 					return false;
 				}
-				
+				let tabel = document.querySelector('.tBody');
+				alert(tabel.rows[0].cells[1].innerHTML.trim());
+				/*
 				document.querySelector('.konten').style.position = 'static';
 				document.querySelector('.ubahQRCodeDiv').style = "display : block";
 				const theCam2 = await prepareTheCam(video2);
@@ -84,14 +105,25 @@
 				notif.innerHTML = "Silahkan memindai QRCode Yg Baru..";	
 				const hasil_pindai = pindai(video2,notif,loader2);
 				await hasil_pindai
-				.then(result => {
-					notif.innerHTML = result;
-					loader2.hidden = true;
+				.then(async result => {
+					const DataYgDikirim = sendDataEditQRCode({'kodeQrLama' : ,'kodeQrBaru' : result});
+					
+					await DataYgDikirim
+					.then(ApiResp => ApiResp.json())
+					.then(ApiResp => {
+						notif.innerHTML = ApiResp;
+						loader2.hidden = true;
+					})
+					.catch(e => {
+						notif.innerHTML = `Ubah ke QRCode yang Baru Gagal. Ada pesan error dari Web API<br>${e}`;
+						loader2.hidden = true;
+					});
 				})
 				.catch(e => {
-					notif.innerHTML = e;
+					notif.innerHTML = `Pemindaian Gagal, KodeQR tidak terbaca<br> ${e}`;
 					loader2.hidden = true;
 				});
+				*/
 			}
 
 			function afterUpdateProccess(serverResp) {
@@ -152,6 +184,7 @@
 				
 			}
 
+
 			function sendData(dataObj) {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycby7Z_DkeiHpN83U7eQKY4bLFrfHJk4mDIONmWhF8e8nYmwInOwqylXG7i2zi7OJYnqBBg/exec";
 
@@ -201,7 +234,7 @@
 					})
 					.catch(err => {
 						container_hasil_from_webapp.innerHTML = "";
-						container_hasil_from_webapp.innerHTML = "Data Untuk Kode ini Tidak Diketemukan";
+						container_hasil_from_webapp.innerHTML = `Data Untuk Kode ini Tidak Diketemukan ${err}`;
 						reject('Not done');
 					});
 

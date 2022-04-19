@@ -40,13 +40,13 @@
 			*/
 			function sendData() {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycbznTP423iwL-5eRomjbuvspjfMzSkH_sb4np3sTx_scyukLxy0H6h2TyqY9qpP7XymN/exec";
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
+				//const webAppUrl = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbyWftlQ23gagoHG6Rvn8F64xtynf8HnshkhR-GE39XI07sy8yrnt0bWO7b1xfwzS0NG/exec";
+				//fetch(webAppUrl).then(respon => respon.json()).then(respon => console.log(respon)).catch(err => console.log(err));
 				
-				fetch(webAppUrl).then(respon => respon.json()).then(respon => console.log(respon)).catch(err => console.log(err));
-				/*
 				fetch(webAppUrl,{
 						method : 'POST',
-						body : JSON.stringify({'kode_qr' : 'trsari001'})
+						body : JSON.stringify({'kodeQrLama' : 'trsari001', 'kodeQrBaru' : 'trsari011'})
 					})
 					.then(respon => respon.json()).then(respon => {
 						//console.log('berhasil');
@@ -55,7 +55,7 @@
 					.catch(err => {
 						console.log('error');
 					});
-				*/
+				
 			}
 			document.getElementById("sendBtn").addEventListener("click",sendData);		
 			//document.getElementById("getBtn").addEventListener("click",getData);
