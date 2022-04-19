@@ -1,3 +1,7 @@
+.videoDiv {
+    border : 1px solid black;
+}
+
 #qrcode_str, #qrcode_str2 {
     padding-left: 9px;
     padding-right: 9px;
