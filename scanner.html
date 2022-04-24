@@ -39,9 +39,6 @@
 			<div id="videoDiv">
 				<video id="video" autoplay></video>
 			</div>
-			<div id="tabelDiv">
-
-			</div>
 			<div id="editDiv">
 				<div class="editData">
 					<a href=# onclick="editData()" style="color : #7f3e98;"><img src="edit_icon.png" id="editImg"></a>
@@ -205,8 +202,8 @@
 				const webAppUrl = "https://script.google.com/macros/s/AKfycbznTP423iwL-5eRomjbuvspjfMzSkH_sb4np3sTx_scyukLxy0H6h2TyqY9qpP7XymN/exec";
 
                 const container_hasil_from_webapp = document.querySelector('#qrcode_str');
-				const tabelDivContainer = document.querySelector('#tabelDiv');
-				//const kontenDiv = document.querySelector('.konten');
+				//const tabelDivContainer = document.querySelector('#tabelDiv');
+				const kontenDiv = document.querySelector('.konten');
 				return new Promise((resolve,reject) => {
 					fetch(webAppUrl,{
 						method : 'POST',
@@ -214,13 +211,11 @@
 					})
 					.then(respon => respon.json()).then(respon => {
 						QRCodeToTera = respon.kode;
-						//kontenDiv.style = "background-color : #FFFFFF";
-						//kontenDiv.style = "width : 100%";
-						//container_hasil_from_webapp.style = "padding : 0px";
-						//container_hasil_from_webapp.innerHTML = "";
-						//container_hasil_from_webapp.innerHTML = 
-						tabelDivContainer = "";
-						tabelDivContainer =
+						kontenDiv.style = "background-color : #FFFFFF";
+						kontenDiv.style = "width : 100%";
+						container_hasil_from_webapp.style = "padding : 0px";
+						container_hasil_from_webapp.innerHTML = "";
+						container_hasil_from_webapp.innerHTML = 
 							`<table class='dataTabel'>
 								<thead>
 									<tr class='tHead'><th colspan='2'>Data UTTP</th></tr>

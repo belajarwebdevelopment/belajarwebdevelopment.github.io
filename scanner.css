@@ -1,11 +1,7 @@
-#videoDiv, #tabelDiv {
+#videoDiv {
     /*border : 1px solid black;
     margin-bottom: 9px;*/
     width : 100%;
-}
-
-#tabelDiv {
-    background-color: #FFFFFF;
 }
 
 #video {
