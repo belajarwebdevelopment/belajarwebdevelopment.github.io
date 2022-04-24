@@ -91,7 +91,7 @@
 					return false;
 				}
 				let tabel = document.querySelector('.tBody');
-				alert(tabel.rows[0].cells[1].innerHTML.trim());
+				//alert(tabel.rows[0].cells[1].innerHTML.trim());
 				
 				document.querySelector('.konten').style.position = 'static';
 				document.querySelector('.ubahQRCodeDiv').style = "display : block";
@@ -106,7 +106,7 @@
 				const hasil_pindai = pindai(video2,notif,loader2);
 				await hasil_pindai
 				.then(async result => {
-					const DataYgDikirim = sendDataEditQRCode({'kodeQrLama' : ,'kodeQrBaru' : result});
+					const DataYgDikirim = sendDataEditQRCode({'kodeQrLama' : tabel.rows[0].cells[1].innerHTML.trim(),'kodeQrBaru' : result});
 					
 					await DataYgDikirim
 					.then(ApiResp => ApiResp.json())
