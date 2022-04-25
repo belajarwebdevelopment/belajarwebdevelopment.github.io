@@ -18,7 +18,7 @@
 }
 
 .banner {
-    background-color: #52B2BF;
+    background-color: purple;
     padding : 3px;
     display : block;
     color : #FFFFFF;
@@ -32,7 +32,8 @@
 .dataTabel {
     border : 2px solid #000000;
     border-collapse : separate;
-    width : 105%;
+    table-layout: fixed;
+    width : 100%;
 }
 
 .tHead {
