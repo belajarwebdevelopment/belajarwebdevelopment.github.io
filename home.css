@@ -1,0 +1,52 @@
+.kontainerBrown {
+    background-color: #DBA797;
+    width: 80%;
+    height: 500px;
+    display: block;
+    position: static;
+    border-radius: 4px;
+    margin: auto auto;    
+    margin-top: 30px;
+    padding-top: 20px;
+}
+
+span {
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Smooch', cursive;
+    padding-left: 10px;
+    font-size: 30px;
+    font-weight: 600;
+    color : #490206;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color : #490206;
+    padding-left: 10px;
+
+}
+
+.menuPendataan, .menuScanning {
+    display: block;
+    width: 90%;
+    height : 180px;
+    margin: auto auto;
+    margin-bottom: 7px;
+    border-radius: 4px;
+}
+
+.menuPendataan {
+    /*background-color: #490206;*/
+    background: radial-gradient(#551D0A, #2B0100);
+}
+
+.menuScanning {
+    /*background-color: #900D09;*/
+    background: radial-gradient(#832A22, #611811);
+}
+
+img {
+    margin: auto auto;
+}
