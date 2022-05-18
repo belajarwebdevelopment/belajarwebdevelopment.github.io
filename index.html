@@ -6,6 +6,13 @@
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+        <link rel="stylesheet" href="index.css">
+        <!-- Roboto Font -->    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">   
+        <!-- END OF ROBOTO -->     
     </head>
     <body>
         <form id="pendataanForm">
@@ -443,8 +450,9 @@
 					let pesan = respon.msg;
 					$.mobile.changePage("#page5", {role:"dialog"});
                     //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
-                    $(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><div class="alert alert-danger add_data" id="add_uttp" role="alert" style="background-color : #1d4e89; color : #FFFFFF;">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert" style="background-color : #FFB703; color : #000000;">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert" style="background-color : #00B2CA; color : #000000;">Ganti Pasar</div></p>');
-					
+                    //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><div class="alert alert-danger add_data" id="add_uttp" role="alert" style="background-color : #1d4e89; color : #FFFFFF;">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert" style="background-color : #FFB703; color : #000000;">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert" style="background-color : #00B2CA; color : #000000;">Ganti Pasar</div></p>');
+
+					$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
 				});
 			}
 
