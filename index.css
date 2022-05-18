@@ -1,8 +1,12 @@
 #add_uttp, #ganti_pedagang, #ganti_pasar {
     font-family: 'Roboto', sans-serif;;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     color : #FFFFFF;
     background-color: #332421;
-    border-top: 2px solid #FF7F00;
+    border-top: 4px solid #FF7F00;
+}
+
+.msg_container_page5 {
+    background-color: #E7E1D2;
 }
