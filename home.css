@@ -8,6 +8,7 @@
     margin: auto auto;    
     margin-top: 30px;
     padding-top: 20px;
+    text-align: center;
 }
 
 span {
@@ -48,5 +49,14 @@ p {
 }
 
 img {
-    margin: auto auto;
+    width : 70%;
+    height: 70%;
+    border-radius: 4px;
+    padding-top: 8px;
+}
+
+.menuText {
+    color: #FFFFFF;
+    font-weight: 100;
+    font-size: 18px;
 }
