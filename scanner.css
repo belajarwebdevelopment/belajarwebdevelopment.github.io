@@ -221,3 +221,29 @@ p.ungu {
     padding: 5px;
     text-align: center;
   }
+
+.topMenu {
+    background-color: #083378;
+    top : 0;
+    overflow: hidden;
+    position: fixed;
+    width : 100%;
+    height : 50px;
+    display: block;
+    float :right;
+}
+
+.topMenu a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topMenu a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
