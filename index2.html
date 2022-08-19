@@ -16,7 +16,10 @@
     </head>
     <body>
         <div class="topMenu">
-            <a class="active menuUtama" href=#>Menu Utama</a> |
+            <nav id="navigasi">
+                <a class="active menuUtama" href=#>Menu Utama</a> |
+                <a class="active cariByKatakunci" href=#>Cari dgn Katakunci</a> |    
+            </nav>
         </div>
         <!--<div class="main">-->
         <form id="pendataanForm">
@@ -562,7 +565,11 @@
             }
 
             let menuUtamaLnk = document.querySelector('.menuUtama');
+            let cariByKatakunciLnk = document.querySelector('.cariByKatakunci');
+
             menuUtamaLnk.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/index.html");
+
+            cariByKatakunciLnk.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/cariKataKunci.html");
         </script>        
     </body>
 </html>

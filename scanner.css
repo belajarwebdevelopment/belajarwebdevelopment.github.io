@@ -231,13 +231,16 @@ p.ungu {
     height : 50px;
     display: block;
     float :right;
+    color : #f2f2f2;
+    padding-top: 7px;
+    font-size: 20px;
 }
 
+
 .topMenu a {
-    float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 10px 10px;
+    padding : 7px 4px 7px 4px;
     text-decoration: none;
     font-size: 17px;
 }
@@ -247,3 +250,26 @@ p.ungu {
     color: white;
 }
 
+#navigasi {
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.kontainer {
+    border: 2px solid #52B2BF;
+    color : #52B2BF;
+    padding-bottom: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+}
+
+#keterangan {
+    background-color: #52B2BF;
+    color : #f5e9de;
+}
+
+#katakunci {
+    border: 2px solid #52B2BF;
+    width : 90%;
+}

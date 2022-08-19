@@ -9,7 +9,16 @@
     </head>
     <body>
 		<div class="topMenu">
-            <a class="active" href="https://belajarwebdevelopment.github.io/index.html">Menu Utama</a> |
+			<!--<nav>
+				<a href="/html/">HTML</a> |
+				<a href="/css/">CSS</a> |
+				<a href="/js/">JavaScript</a> |
+				<a href="/python/">Python</a>
+			</nav>-->
+			<nav id="navigasi">
+				<a class="active" href="https://belajarwebdevelopment.github.io/index.html">Menu Utama</a> | 
+				<a class="active" href="https://belajarwebdevelopment.github.io/cariKataKunci.html">Cari dgn Katakunci</a> |
+			</nav>
         </div>
 		<div class="ubahQRCodeDiv">
 			<div><h2 class="banner">Scan QRCode Yang Baru</h2></div>
@@ -286,10 +295,10 @@
 						qrcodeDetector.detect(video).then(async (codes) => {
 							if (codes.length === 0) return;
 							container_hasil.innerHTML = "QRCode terdeteksi";
-							await jeda(800);
+							await jeda(400);
 							container_hasil.innerHTML = "Sedang Memindai...";
 							enable_spinner.hidden = false;
-							await jeda(2000);
+							await jeda(900);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
@@ -315,9 +324,9 @@
 						const theCam = await prepareTheCam(video);
 						Kamera = theCam;
 						container_hasil.innerHTML = "Kamera siap...";
-						await jeda(700);
+						await jeda(500);
 						container_hasil.innerHTML = "Pemindai siap...";
-						await jeda(700);
+						await jeda(500);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
 						
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	

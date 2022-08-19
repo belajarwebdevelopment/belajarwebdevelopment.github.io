@@ -11,6 +11,7 @@
     background-color: #E7E1D2;
 }
 
+
 .topMenu {
     background-color: #083378;
     top : 0;
@@ -20,13 +21,16 @@
     height : 50px;
     display: block;
     float :right;
+    color : #f2f2f2;
+    padding-top: 7px;
+    font-size: 20px;
 }
 
+
 .topMenu a {
-    float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 10px 10px;
+    padding : 7px 4px 7px 4px;
     text-decoration: none;
     font-size: 17px;
 }
@@ -36,10 +40,8 @@
     color: white;
 }
 
-/*
-.main {
-    border: 2px solid black;
-    background-color: red;
-    width : 100%;
+#navigasi {
+    margin-top: 2px;
+    margin-bottom: 10px;
 }
-*/
+
