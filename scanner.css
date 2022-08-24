@@ -297,7 +297,7 @@ p.ungu {
 .cari {
     float: left;
     width: 20%;
-    padding: 1.56px;
+    padding: 1.562px;
     background: #2196F3;
     color: white;
     font-size: 17px;
@@ -350,4 +350,18 @@ p.ungu {
     to {
         transform: rotate(1turn);
     }
+}
+
+.even {
+    background-color: #52B2C0;
+}
+
+.divItem {
+    margin-bottom: 10px;
+    border : 2px solid #52B2BF;
+}
+
+.theTable th, .theTable td {
+    font-size: 13px;
+    border: none;
 }
