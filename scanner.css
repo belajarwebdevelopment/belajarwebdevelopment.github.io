@@ -359,9 +359,39 @@ p.ungu {
 .divItem {
     margin-bottom: 10px;
     border : 2px solid #52B2BF;
+    display : block;
+    overflow: auto;
 }
 
 .theTable th, .theTable td {
     font-size: 13px;
     border: none;
+}
+
+.itemUpdateBtn{
+    border : 3px solid rgb(219, 219, 11);
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #36454F;
+    margin: 0 0 3px 3px;
+    border-radius: 4px;
+}
+
+.itemUbahBtn{
+    border : 2px solid #083378;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #083378;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
 }

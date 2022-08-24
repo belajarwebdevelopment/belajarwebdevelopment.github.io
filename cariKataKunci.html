@@ -79,19 +79,28 @@
                 let i = 1;
                 for (let k in datas['data']) {
                     i % 2 == 0 ? className = 'even' : className = 'odd';
-                    i++;
+                    
+                    let item = datas['data'][k];
+                    let nama_komoditi = `${item[3]} - ${item[16]}`;
+                    let uttp_merk_model = `${item[8]} ${item[9]}/${item[10]} - ${item[11]} - ${item[12]}`;
+
                     str += `
                         <div id=${k} class='divItem ${className}''>
                             <table class='theTable'>
-                                <tr><td>Nama - Komoditi</td><td>:</td><td>${datas['data'][k][3]} - ${datas['data'][k][16]}</td></tr>
-                                <tr><td>Phone</td><td>:</td><td>${datas['data'][k][5]}</td></tr>
-                                <tr><td>QRCode</td><td>:</td><td>${datas['data'][k][1]}</td></tr>
-                                <tr><td>UTTP-Merk-Model</td><td>:</td><td>${datas['data'][k][8]} ${datas['data'][k][9]}/${datas['data'][k][10]} - ${datas['data'][k][11]} - ${datas['data'][k][12]}</td></tr>
-                                <tr><td>Tahun Tera</td><td>:</td><td>${datas['data'][k][13]}</td></tr>
+                                <tr><td>Nama - Komoditi</td><td>:</td><td>${nama_komoditi}</td></tr>
+                                <tr><td>Phone</td><td>:</td><td>${item[5]}</td></tr>
+                                <tr><td>QRCode</td><td>:</td><td>${item[1]}</td></tr>
+                                <tr><td>UTTP-Merk-Model</td><td>:</td><td>${uttp_merk_model}</td></tr>
+                                <tr><td>Tahun Tera</td><td>:</td><td>${item[13]}</td></tr>
+                                <tr><td></td><td></td><td></td></tr>
                             </table>
+                            <button type='submit' class='itemUbahBtn' id=${k}>Ubah QRCode</button>
+                            <button type='submit' class='itemUpdateBtn' id=${k}>Tandai Tera</button>
                         </div>
                     `;
-                    console.log(datas['data'][k]);
+
+                    i++;
+                    //console.log(datas['data'][k]);
                 }
                 kontenDiv.innerHTML = str;
             }
