@@ -242,6 +242,9 @@
                         $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a href="#page1"><< Kembali</a>`);
                         return false;
                     }
+
+                    localStorage.setItem('pasar', Psr);
+
                     $.mobile.changePage("#page2", {role : "dialog"});
                     $(".jumbo_page2").html(`
                         <h1 class="display-5">Halo, Apa Kabar!</h1>

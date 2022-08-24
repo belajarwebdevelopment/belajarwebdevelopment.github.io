@@ -45,7 +45,9 @@
 		</footer>
 		<script language="javascript">
             function sendGetData(keyword) {
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbwYXluDK-xlleFe5BCwTtQN1bzOwp78GIz_qlFwi4UVtkjS3n_015RoQICQ12v5JgEHXw/exec";
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbwYXluDK-xlleFe5BCwTtQN1bzOwp78GIz_qlFwi4UVtkjS3n_015RoQICQ12v5JgEHXw/exec";
+
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbwRWMj3Q0pqEGP05vzPB-YA6OstDCl1AdwwGSYCUFxLgeC08_s4PwjjVouI7X35dxeHjw/exec";
 
                 return new Promise((resolve, reject) => {
                     fetch(webAppUrl, {
@@ -58,17 +60,17 @@
                 });
             }
 
-            const tombolKirim = document.querySelector('.cari');
+            const tombolCari = document.querySelector('.cari');
             const tombolLoading = document.querySelector('.button');
 
             function preLoading() {
-                tombolKirim.hidden = true;
+                tombolCari.hidden = true;
                 tombolLoading.classList.add('button--loading');
                 tombolLoading.hidden = false;
             }
 
             function afterLoading() {
-                tombolKirim.hidden = false;
+                tombolCari.hidden = false;
                 tombolLoading.hidden = true;
                 tombolLoading.classList.remove('button--loading');
             }
@@ -78,39 +80,45 @@
                 let str = '';
                 let i = 1;
                 for (let k in datas['data']) {
-                    i % 2 == 0 ? className = 'even' : className = 'odd';
+                    if (datas['data'][k][2] === localStorage.getItem('pasar')) {
+                        i % 2 == 0 ? className = 'even' : className = 'odd';
                     
-                    let item = datas['data'][k];
-                    let nama_komoditi = `${item[3]} - ${item[16]}`;
-                    let uttp_merk_model = `${item[8]} ${item[9]}/${item[10]} - ${item[11]} - ${item[12]}`;
+                        let item = datas['data'][k];
+                        let nama_komoditi = `${item[3]} - ${item[16]}`;
+                        let uttp_merk_model = `${item[8]} ${item[9]}/${item[10]} - ${item[11]} - ${item[12]}`;
 
-                    str += `
-                        <div id=${k} class='divItem ${className}''>
-                            <table class='theTable'>
-                                <tr><td>Nama - Komoditi</td><td>:</td><td>${nama_komoditi}</td></tr>
-                                <tr><td>Phone</td><td>:</td><td>${item[5]}</td></tr>
-                                <tr><td>QRCode</td><td>:</td><td>${item[1]}</td></tr>
-                                <tr><td>UTTP-Merk-Model</td><td>:</td><td>${uttp_merk_model}</td></tr>
-                                <tr><td>Tahun Tera</td><td>:</td><td>${item[13]}</td></tr>
-                                <tr><td></td><td></td><td></td></tr>
-                            </table>
-                            <button type='submit' class='itemUbahBtn' id=${k}>Ubah QRCode</button>
-                            <button type='submit' class='itemUpdateBtn' id=${k}>Tandai Tera</button>
-                        </div>
-                    `;
-
-                    i++;
-                    //console.log(datas['data'][k]);
+                        str += `
+                            <div id=${k} class='divItem ${className}''>
+                                <table class='theTable'>
+                                    <tr><td>Nama - Komoditi</td><td>:</td><td>${nama_komoditi}</td></tr>
+                                    <tr><td>Pasar</td><td>:</td><td>${item[2]}</td></tr>
+                                    <tr><td>Phone</td><td>:</td><td>${item[5]}</td></tr>
+                                    <tr><td>QRCode</td><td>:</td><td>${item[1]}</td></tr>
+                                    <tr><td>UTTP-Merk-Model</td><td>:</td><td>${uttp_merk_model}</td></tr>
+                                    <tr><td>Tahun Tera</td><td>:</td><td>${item[13]}</td></tr>
+                                    <tr><td></td><td></td><td></td></tr>
+                                </table>
+                                <button type='submit' class='itemUbahBtn' id='ubah-${k}'>Ubah QRCode</button>
+                                <button type='submit' class='itemUpdateBtn' id=${k}>Tandai Tera</button>
+                            </div>
+                        `;
+                        i++;                       
+                    }
                 }
                 kontenDiv.innerHTML = str;
             }
 
-            tombolKirim.addEventListener('click',async () => {
+            tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
                 preLoading();
                 let datas = await sendGetData(keyword);
                 afterLoading();
                 tampilkanHasil(datas);
+            });
+
+            document.querySelector('.resultView').addEventListener('click', e => {
+                e.target.classList.contains('itemUpdateBtn') ? console.log(e.target.id) : e.target.classList.contains('itemUbahBtn') ? console.log(e.target.id) : '';
+
             });
 
         </script>    
