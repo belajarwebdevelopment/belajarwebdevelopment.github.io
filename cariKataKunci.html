@@ -19,7 +19,7 @@
 			</nav>
         </div>
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
-			<div><h2 class="banner">Cari Dgn Kata Kunci</h2></div>
+			<div><h2 class="banner">Cari Dgn Kata Kunci</h2><h5 class="banner">Lokasi :  <span id="namaLokasi"></span></h5></div>
             <div class="kontainer">
                 <article id="keterangan">
                     Kata kunci bisa berupa :
@@ -79,8 +79,12 @@
                 let kontenDiv = document.querySelector('.resultView');
                 let str = '';
                 let i = 1;
+
                 for (let k in datas['data']) {
-                    if (datas['data'][k][2] === localStorage.getItem('pasar')) {
+                    //if (datas['data'][k][2] === localStorage.getItem('pasar')) {
+                    
+                    if (datas['data'][k][2].toLocaleLowerCase().includes(localStorage.getItem('pasar').toLocaleLowerCase())) 
+                    {
                         i % 2 == 0 ? className = 'even' : className = 'odd';
                     
                         let item = datas['data'][k];
@@ -121,6 +125,12 @@
 
             });
 
+            if (!localStorage.getItem('pasar')) {
+                let namaPasar = prompt('Masukkan nama pasar : ');
+                localStorage.setItem('pasar', namaPasar);
+            } 
+            document.getElementById('namaLokasi').innerHTML = localStorage.getItem('pasar');
+                    
         </script>    
     </body>
 </html>

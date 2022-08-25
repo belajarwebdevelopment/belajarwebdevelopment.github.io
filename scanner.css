@@ -25,6 +25,7 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
+
 .konten, .konten2 {
 	position : fixed;
 }
@@ -394,4 +395,8 @@ p.ungu {
     background-color: #083378;
     margin: 0 0 3px 3px;
     border-radius: 2px;
+}
+
+#namaLokasi {
+    color: #000000;
 }
