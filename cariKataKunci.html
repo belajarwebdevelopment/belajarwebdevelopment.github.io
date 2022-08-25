@@ -81,7 +81,6 @@
                 let i = 1;
 
                 for (let k in datas['data']) {
-                    //if (datas['data'][k][2] === localStorage.getItem('pasar')) {
                     
                     if (datas['data'][k][2].toLocaleLowerCase().includes(localStorage.getItem('pasar').toLocaleLowerCase())) 
                     {
@@ -126,8 +125,9 @@
             });
 
             if (!localStorage.getItem('pasar')) {
-                let namaPasar = prompt('Masukkan nama pasar : ');
-                localStorage.setItem('pasar', namaPasar);
+                let strParam = `?sendMeBack=yes`;
+
+                window.open('file:///E:/xampp/htdocs/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
             } 
             document.getElementById('namaLokasi').innerHTML = localStorage.getItem('pasar');
                     

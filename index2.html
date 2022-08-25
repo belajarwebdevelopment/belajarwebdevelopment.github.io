@@ -245,6 +245,9 @@
 
                     localStorage.setItem('pasar', Psr);
 
+                    const urlParam = new URLSearchParams(window.location.search);
+                    urlParam.has('sendMeBack') ? window.open('file:///E:/xampp/htdocs/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+
                     $.mobile.changePage("#page2", {role : "dialog"});
                     $(".jumbo_page2").html(`
                         <h1 class="display-5">Halo, Apa Kabar!</h1>
