@@ -330,8 +330,8 @@ p.ungu {
 .button--loading::after {
     content: "";
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     top: 0;
     left: 0;
     right: 0;
@@ -339,6 +339,24 @@ p.ungu {
     margin: auto;
     border: 4px solid transparent;
     border-top-color: #ffffff;
+    border-bottom-color: red;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+.button--loading--table::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #083378;
+    border-bottom-color: #083378;
     border-radius: 50%;
     animation: button-loading-spinner 1s ease infinite;
 }

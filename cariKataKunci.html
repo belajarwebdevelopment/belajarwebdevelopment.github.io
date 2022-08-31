@@ -40,21 +40,20 @@
                 <p id="keterangan2"><b>Hasil Pencarian</b></p>
                 <div class="resultView"></div>
             </div>
+            <div class="scanner">
+                <h2 class="header">Silahkan scan</h2>
+                <div class="camContainer" style="border : 2px solid black;">
+                    <video id="video" autoplay></video>
+                </div>
+            </div>
         </div>
 		<footer>
 
 		</footer>
 		<script language="javascript">
             function sendGetData(keyword) {
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbwYXluDK-xlleFe5BCwTtQN1bzOwp78GIz_qlFwi4UVtkjS3n_015RoQICQ12v5JgEHXw/exec";
-
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbwRWMj3Q0pqEGP05vzPB-YA6OstDCl1AdwwGSYCUFxLgeC08_s4PwjjVouI7X35dxeHjw/exec";
-
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbylnXnucfCWZBGdW4R4YHK8o1dMwt2-zEFCjkU77CsAyelRgJTkQ31tPFhVu4l0Z4aszA/exec";
-
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbw6_98oL5DsBzMJRtXnjkIoijfjYSVFCYzjyRG61ZTR0hxHEb18z-TLMMWPwD9sGAhlYQ/exec";
-
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbxvIEpbdy2-9L77EUPHJKzk16Z3fEWbfo1UXp9JdEaOy4vp5CAZaD7112_Xnd5lrVsWNw/exec";
+                               
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbwjZfnxH3YT9KSxuSd_culu_iIYPdbVQrpWlyVAfn-9PFrKJERJuF01z8SlLrYj2Vku/exec";
 
                 return new Promise((resolve, reject) => {
                     fetch(webAppUrl, {
@@ -87,11 +86,13 @@
                 let str = '';
                 let i = 1;
 
-                for (let k in datas['data']) {
+                //for (let k in datas['data']) {
+                    for (let k in datas) {
                 
                     i % 2 == 0 ? className = 'even' : className = 'odd';
                 
-                    let item = datas['data'][k];
+                    //let item = datas['data'][k];
+                    let item = datas[k];
                     let nama_komoditi = `${item[3]} - ${item[16]}`;
                     let uttp_merk_model = `${item[8]} ${item[9]}/${item[10]} - ${item[11]} - ${item[12]}`;
 
@@ -120,47 +121,76 @@
                 kontenDiv.innerHTML = `<h3 style='color : red; background-color : black;'>${datas.error_msg}</h3>`;
             }
 
-            function clearKonten() {
-                let kontenDiv = document.querySelector('.resultView');
+            function clearKonten(className) {
+                let kontenDiv = document.querySelector(`.${className}`);
                 kontenDiv.innerHTML = "";
             }
 
             function sendUpdateTera(nomorBaris) {
-                const webAppUrl = "";
+                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbwH8p27fMICiKfnJD0myvvIg1-hir6PHHcNZ-JSyQbZJOywjydWNarWyM8_VnFaS8Rx/exec";
 
                 return new Promise((resolve, reject) => {
-                    fetch(webAppUrl, {
+                    fetch(webAppUrl2, {
                         method : 'POST',
                         body : JSON.stringify({'nomorBaris' : nomorBaris})
                     })
-                    .then(respon => respon.json())
-                    .then(respon => resolve(respon))
+                    .then(resp => resp.json())
+                    .then(resp => resolve(resp))
                     .catch(e => reject(e));
-
                 });
             }
+            
+            function prepareTheCam(video) {
+                const constrain = {
+                    video : {
+                        facingMode : {
+                            exact: 'environment'
+                        }
+                    },
+                    audio : false   
+                }
 
+                return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);	
+            }
+            
             //#################################### - Main Program - ##########################################//
-
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
-                clearKonten();
+                clearKonten('resultView');
                 preLoading();
                 let datas = await sendGetData(keyword);
+                //console.log(datas);
                 afterLoading();
-                datas.result === 'error' ? tampilkanError(datas) : tampilkanHasil(datas);
+                datas.result === 'error' ? tampilkanError(datas) : tampilkanHasil(datas['data']);
                 
             });
 
-            document.querySelector('.resultView').addEventListener('click', e => {
-                e.target.classList.contains('itemUpdateBtn') ? console.log(e.target.id) : e.target.classList.contains('itemUbahBtn') ? console.log(e.target.id) : '';
+            document.querySelector('.resultView').addEventListener('click', async e => {
+                let barisKe = e.target.id;
+                if (e.target.classList.contains('itemUpdateBtn')) {
+                    document.querySelector('.theTable').classList.add('button--loading--table');
+                    document.querySelector('.itemUpdateBtn').classList.add('button--loading');
+                    document.querySelector('.itemUpdateBtn').innerHTML = "Updating...";
+                    let doUpdateTera = await sendUpdateTera(barisKe);
+                    doUpdateTera.result === 'error' ? tampilkanError(doUpdateTera) : tampilkanHasil(doUpdateTera['dataAfter']);
+                }
 
+            });
+
+            document.querySelector('.resultView').addEventListener('click', async e => {
+                if (e.target.classList.contains('itemUbahBtn')) {
+                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        console.log('Media ada');
+                        let myVideo = document.getElementById('video');
+                        prepareTheCam(myVideo);
+                    }
+                }
             });
 
             if (!localStorage.getItem('pasar')) {
                 let strParam = `?sendMeBack=yes`;
-
-                window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                window.open('http://locahost/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                //window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
             } 
             document.getElementById('namaLokasi').innerHTML = localStorage.getItem('pasar');
                     

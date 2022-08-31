@@ -247,7 +247,9 @@
                     localStorage.setItem('pasar', Psr);
 
                     const urlParam = new URLSearchParams(window.location.search);
-                    urlParam.has('sendMeBack') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+                    //urlParam.has('sendMeBack') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+
+                    urlParam.has('sendMeBack') ? window.open('http://localhost/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
 
                     $.mobile.changePage("#page2", {role : "dialog"});
                     $(".jumbo_page2").html(`
