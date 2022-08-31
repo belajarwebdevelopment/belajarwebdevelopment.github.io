@@ -418,3 +418,12 @@ p.ungu {
 #namaLokasi {
     color: #083378;
 }
+
+.header {
+    background-color: #52B2C0;
+    color : #f5e9de;
+}
+
+.camContainer {
+    border : 2px solid #52B2C0;
+}

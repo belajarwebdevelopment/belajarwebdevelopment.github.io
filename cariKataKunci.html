@@ -40,9 +40,10 @@
                 <p id="keterangan2"><b>Hasil Pencarian</b></p>
                 <div class="resultView"></div>
             </div>
+            <br>
             <div class="scanner">
                 <h2 class="header">Silahkan scan</h2>
-                <div class="camContainer" style="border : 2px solid black;">
+                <div class="camContainer">
                     <video id="video" autoplay></video>
                 </div>
             </div>
@@ -189,8 +190,8 @@
 
             if (!localStorage.getItem('pasar')) {
                 let strParam = `?sendMeBack=yes`;
-                window.open('http://locahost/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
-                //window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                //window.open('http://locahost/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
             } 
             document.getElementById('namaLokasi').innerHTML = localStorage.getItem('pasar');
                     
