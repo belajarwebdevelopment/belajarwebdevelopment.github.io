@@ -42,7 +42,7 @@
             </div>
             <br>
             <div class="scanner">
-                <h2 class="header">Silahkan scan</h2>
+                <h2 class="header">Menyiapkan kamera ..</h2>
                 <div class="camContainer">
                     <video id="video" autoplay></video>
                 </div>
@@ -150,8 +150,16 @@
                     },
                     audio : false   
                 }
-
-                return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);	
+                return new Promise((resolve, reject) => {
+                    navigator.mediaDevices.getUserMedia(constrain)
+                    .then(stream => {
+                        video.srcObject = stream;
+                        setTimeout(() => resolve({'result' : true, 'msg' : 'Kamera Siap'}),300);
+                    })
+                    .catch(e => {
+                        setTimeout(() => resolve({'result' : false, 'error' : e}),300);     
+                    });
+                });
             }
             
             //#################################### - Main Program - ##########################################//
@@ -160,7 +168,6 @@
                 clearKonten('resultView');
                 preLoading();
                 let datas = await sendGetData(keyword);
-                //console.log(datas);
                 afterLoading();
                 datas.result === 'error' ? tampilkanError(datas) : tampilkanHasil(datas['data']);
                 
@@ -181,9 +188,11 @@
             document.querySelector('.resultView').addEventListener('click', async e => {
                 if (e.target.classList.contains('itemUbahBtn')) {
                     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                        console.log('Media ada');
                         let myVideo = document.getElementById('video');
-                        prepareTheCam(myVideo);
+                        let cam = await prepareTheCam(myVideo);
+                        //console.log(cam.result);
+                        cam.result ? document.querySelector('.header').innerHTML = cam.msg : document.querySelector('.header').innerHTML = cam.error; 
+                        
                     }
                 }
             });
