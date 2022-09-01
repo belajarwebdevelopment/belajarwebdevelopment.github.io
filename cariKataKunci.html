@@ -20,7 +20,7 @@
 			</nav>
         </div>
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
-			<div><h2 class="banner">Cari Dgn Kata Kunci</h2><h5 class="banner">Lokasi :  <span id="namaLokasi"></span></h5></div>
+			<div class="title"><h2 class="banner">Cari Dgn Kata Kunci</h2><h5 class="banner">Lokasi :  <span id="namaLokasi"></span></h5></div>
             <div class="kontainer">
                 <article id="keterangan">
                     Kata kunci bisa berupa :
@@ -36,13 +36,13 @@
                     <span class="button__text">Loading</span>
                 </button>
             </div><br>
-            <div class="kontainer">
+            <div class="kontainer penampilHasil">
                 <p id="keterangan2"><b>Hasil Pencarian</b></p>
                 <div class="resultView"></div>
             </div>
             <br>
-            <div class="scanner">
-                <h2 class="header">Menyiapkan kamera ..</h2>
+            <div class="scanner" hidden>
+                <h3 class="header"></h3>
                 <div class="camContainer">
                     <video id="video" autoplay></video>
                 </div>
@@ -87,8 +87,7 @@
                 let str = '';
                 let i = 1;
 
-                //for (let k in datas['data']) {
-                    for (let k in datas) {
+                for (let k in datas) {
                 
                     i % 2 == 0 ? className = 'even' : className = 'odd';
                 
@@ -157,11 +156,18 @@
                         setTimeout(() => resolve({'result' : true, 'msg' : 'Kamera Siap'}),300);
                     })
                     .catch(e => {
-                        setTimeout(() => resolve({'result' : false, 'error' : e}),300);     
+                        setTimeout(() => resolve({'result' : false, 'error' : e, 'msg' : 'Kamera tidak bisa diakses..'}),300);     
                     });
                 });
             }
             
+            function hideExceptScanner(logic = true) {
+                document.querySelector('.penampilHasil').hidden = logic;
+                document.querySelector('.title').hidden = logic;
+                document.querySelector('.kontainer').hidden = logic;
+                document.querySelector('.scanner').hidden = !logic;
+            }
+
             //#################################### - Main Program - ##########################################//
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
@@ -190,9 +196,9 @@
                     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                         let myVideo = document.getElementById('video');
                         let cam = await prepareTheCam(myVideo);
-                        //console.log(cam.result);
-                        cam.result ? document.querySelector('.header').innerHTML = cam.msg : document.querySelector('.header').innerHTML = cam.error; 
-                        
+                        hideExceptScanner();
+                        cam.result ? document.querySelector('.header').innerHTML = cam.msg : document.querySelector('.header').innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}`; 
+                        setTimeout(() => hideExceptScanner(false),3000);
                     }
                 }
             });

@@ -279,9 +279,11 @@ p.ungu {
 
 #keterangan2 {
     background-color: #52B2BF;
-    color : #f5e9de;
+    /*color : #f5e9de;*/
+    color : #FFFFFF;
     font-family: 'Ubuntu', sans-serif;
 }
+
 #katakunci {
     border: 1px solid #52B2BF;
     width : 70%;
@@ -379,7 +381,7 @@ p.ungu {
     margin-bottom: 10px;
     border : 2px solid #52B2BF;
     display : block;
-    overflow: auto;
+    overflow : auto;
 }
 
 .theTable th, .theTable td {
@@ -421,9 +423,16 @@ p.ungu {
 
 .header {
     background-color: #52B2C0;
-    color : #f5e9de;
+    color : #FFFFFF;
 }
 
 .camContainer {
     border : 2px solid #52B2C0;
 }
+
+.scanner {
+    position: relative;
+    left : auto;
+    right : auto;
+}
+
