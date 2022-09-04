@@ -179,10 +179,10 @@
                 document.querySelector('.itemUpdateBtn'+rowNum).innerHTML = "Updating...";
             }
 
-            function pindai(video) {
+            async function pindai(video) {
                 const qrDetector = new BarcodeDetector({'format' : ['qr_code']});
 
-                qrDetector.detect(video).then(codes => {
+                await qrDetector.detect(video).then(codes => {
                     if (codes.length === 0) throw "QRCode tidak terbaca";
 
                     for (let c of codes) {
