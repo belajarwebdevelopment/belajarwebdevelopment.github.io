@@ -183,7 +183,7 @@
                 const qrDetector = new BarcodeDetector({'format' : ['qr_code']});
 
                 await qrDetector.detect(video).then(codes => {
-                    if (codes.length === 0) throw "QRCode tidak terbaca";
+                    //if (codes.length === 0) throw "QRCode tidak terbaca";
 
                     for (let c of codes) {
                         return c.rawValue;
@@ -226,7 +226,7 @@
                         if (cam.result) {
                             camHead.innerHTML = "Sedang Memindai";
                             const detectedCode = await pindai(myVideo);
-                            camHead.innerHTML = `Pemindaian selesai, QRCode : ${detectedCode}`;
+                            camHead.innerHTML = `Scanning finished, QRCode : ${detectedCode}`;
                         } else {
                             camHead.innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}<br><font color='#000000'>Jendela kamera akan tertutup otomatis setelah 3 detik..</font>`;
                             setTimeout(() => hideExceptScanner(false),3000);
