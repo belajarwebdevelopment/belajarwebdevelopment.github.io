@@ -341,14 +341,16 @@ p.ungu {
     margin: auto;
     border: 4px solid transparent;
     border-top-color: #ffffff;
-    border-bottom-color: red;
+    border-bottom-color: #FFFFFF;
+    border-left-color: red;
+    border-right-color: red;
     border-radius: 50%;
     animation: button-loading-spinner 1s ease infinite;
 }
 
 .button--loading--table::after {
     content: "";
-    position: absolute;
+    position : absolute;
     width: 20px;
     height: 20px;
     top: 0;
@@ -359,6 +361,8 @@ p.ungu {
     border: 4px solid transparent;
     border-top-color: #083378;
     border-bottom-color: #083378;
+    border-left-color: #FFFFFF;
+    border-right-color: #FFFFFF;
     border-radius: 50%;
     animation: button-loading-spinner 1s ease infinite;
 }
@@ -382,6 +386,7 @@ p.ungu {
     border : 2px solid #52B2BF;
     display : block;
     overflow : auto;
+    position: relative;
 }
 
 .theTable th, .theTable td {
@@ -424,6 +429,7 @@ p.ungu {
 .header {
     background-color: #52B2C0;
     color : #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .camContainer {
@@ -435,4 +441,9 @@ p.ungu {
     left : auto;
     right : auto;
 }
+
+/*
+.resultView {
+    position: relative;
+}*/
 

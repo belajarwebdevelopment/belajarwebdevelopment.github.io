@@ -42,7 +42,7 @@
             </div>
             <br>
             <div class="scanner" hidden>
-                <h3 class="header"></h3>
+                <h6 class="header"></h6>
                 <div class="camContainer">
                     <video id="video" autoplay></video>
                 </div>
@@ -56,9 +56,14 @@
                                
                 const webAppUrl = "https://script.google.com/macros/s/AKfycbwjZfnxH3YT9KSxuSd_culu_iIYPdbVQrpWlyVAfn-9PFrKJERJuF01z8SlLrYj2Vku/exec";
 
+                let h = new Headers();
+                h.set('Content-Type','text/plain;charset=UTF-8');
+                //h.set('Content-Type','application/json; charset=utf-8');
+                h.set('Accept','application/json; charset=utf-8');
                 return new Promise((resolve, reject) => {
                     fetch(webAppUrl, {
                         method : 'POST',
+                        headers : h,
                         body : JSON.stringify({'keyword' : keyword, 'pasar' : localStorage.getItem('pasar')})
                     })
                     .then(respon => respon.json())
@@ -97,7 +102,7 @@
                     let uttp_merk_model = `${item[8]} ${item[9]}/${item[10]} - ${item[11]} - ${item[12]}`;
 
                     str += `
-                        <div id=${k} class='divItem ${className}''>
+                        <div id=${k} class='divItem ${className} c${k}'>
                             <table class='theTable'>
                                 <tr><td>Nama - Komoditi</td><td>:</td><td>${nama_komoditi}</td></tr>
                                 <tr><td>Pasar</td><td>:</td><td>${item[2]}</td></tr>
@@ -107,8 +112,8 @@
                                 <tr><td>Tahun Tera</td><td>:</td><td>${item[13]}</td></tr>
                                 <tr><td></td><td></td><td></td></tr>
                             </table>
-                            <button type='submit' class='itemUbahBtn' id='ubah-${k}'>Ubah QRCode</button>
-                            <button type='submit' class='itemUpdateBtn' id=${k}>Tandai Tera</button>
+                            <button type='submit' class='itemUbahBtn itemUbahBtn${k}' id='ubah-${k}'>Ubah QRCode</button>
+                            <button type='submit' class='itemUpdateBtn itemUpdateBtn${k}' id=${k}>Tandai Tera</button>
                         </div>
                     `;
                     i++;                       
@@ -168,6 +173,26 @@
                 document.querySelector('.scanner').hidden = !logic;
             }
 
+            function btnLoading(rowNum) {
+                document.querySelector('.c'+rowNum).classList.add('button--loading--table');
+                document.querySelector('.itemUpdateBtn'+rowNum).classList.add('button--loading');
+                document.querySelector('.itemUpdateBtn'+rowNum).innerHTML = "Updating...";
+            }
+
+            function pindai(video) {
+                const qrDetector = new BarcodeDetector({'format' : ['qr_code']});
+
+                qrDetector.detect(video).then(codes => {
+                    if (codes.length === 0) throw "QRCode tidak terbaca";
+
+                    for (let c of codes) {
+                        return c.rawValue;
+                    }
+                })
+                .catch(e => {
+                    return e;
+                });
+            }
             //#################################### - Main Program - ##########################################//
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
@@ -182,9 +207,7 @@
             document.querySelector('.resultView').addEventListener('click', async e => {
                 let barisKe = e.target.id;
                 if (e.target.classList.contains('itemUpdateBtn')) {
-                    document.querySelector('.theTable').classList.add('button--loading--table');
-                    document.querySelector('.itemUpdateBtn').classList.add('button--loading');
-                    document.querySelector('.itemUpdateBtn').innerHTML = "Updating...";
+                    btnLoading(barisKe);
                     let doUpdateTera = await sendUpdateTera(barisKe);
                     doUpdateTera.result === 'error' ? tampilkanError(doUpdateTera) : tampilkanHasil(doUpdateTera['dataAfter']);
                 }
@@ -194,11 +217,20 @@
             document.querySelector('.resultView').addEventListener('click', async e => {
                 if (e.target.classList.contains('itemUbahBtn')) {
                     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        let camHead = document.querySelector('.header');
                         let myVideo = document.getElementById('video');
                         let cam = await prepareTheCam(myVideo);
                         hideExceptScanner();
-                        cam.result ? document.querySelector('.header').innerHTML = cam.msg : document.querySelector('.header').innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}`; 
-                        setTimeout(() => hideExceptScanner(false),3000);
+                        
+                        //Cek jika camera berhasil dibuka
+                        if (cam.result) {
+                            camHead.innerHTML = "Sedang Memindai";
+                            const detectedCode = await pindai(myVideo);
+                            camHead.innerHTML = `Pemindaian selesai, QRCode : ${detectedCode}`;
+                        } else {
+                            camHead.innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}<br><font color='#000000'>Jendela kamera akan tertutup otomatis setelah 3 detik..</font>`;
+                            setTimeout(() => hideExceptScanner(false),3000);
+                        }
                     }
                 }
             });
