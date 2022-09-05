@@ -144,7 +144,7 @@
                     .catch(e => reject(e));
                 });
             }
-            
+/*            
             function prepareTheCam(video) {
                 const constrain = {
                     video : {
@@ -165,7 +165,7 @@
                     });
                 });
             }
-            
+*/            
             function hideExceptScanner(logic = true) {
                 document.querySelector('.penampilHasil').hidden = logic;
                 document.querySelector('.title').hidden = logic;
@@ -187,6 +187,99 @@
 				});
 			}
 
+			function prepareTheCam(video) {
+				const constrain = {
+					video : {
+						facingMode : {
+							exact: 'environment'
+						}
+					},
+					audio : false   
+				}
+
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+			}
+
+			function pindai(video,container_hasil) {
+				const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
+				return new Promise((resolve, reject) => {
+					const intervalID = setInterval(() => {
+						qrcodeDetector.detect(video).then(async (codes) => {
+							if (codes.length === 0) return;
+							container_hasil.innerHTML = "QRCode terdeteksi";
+							await jeda(400);
+							container_hasil.innerHTML = "Sedang Memindai...";
+							//enable_spinner.hidden = false;
+							await jeda(900);
+							
+							for (const qrcode of codes) {
+								var code = qrcode.rawValue;
+							} 
+							clearInterval(intervalID);
+							resolve(code);
+						})
+						.catch(e => {
+							clearInterval(intervalID);
+							reject(e);
+						});
+					},2900);
+				});
+
+			}
+
+			async function mainScanProcess() {
+				let data = '';
+				//const container_hasil = document.querySelector('#qrcode_str');
+				//const enable_spinner = document.querySelector('.spinner');
+				const container_hasil = document.querySelector('.header');
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+					try {
+						const theCam = await prepareTheCam(video);
+						//Kamera = theCam;
+						container_hasil.innerHTML = "Kamera siap...";
+						await jeda(500);
+						container_hasil.innerHTML = "Pemindai siap...";
+						await jeda(500);
+						container_hasil.innerHTML = "Silahkan memindai QRCode..";
+						
+						const pindai_ = pindai(video,container_hasil);	
+
+						await pindai_.then(async msg => {
+							data = {'kode_qr' : msg};
+                            container_hasil.innerHTML = data.kode_qr;
+                            await jeda(500);
+                            theCam.getTracks().forEach(track => track.stop());
+							/*
+							const kirimDataDanTunggu = sendData(data);
+							await kirimDataDanTunggu.then(async () => {
+								enable_spinner.hidden = true;
+								await jeda(500);
+								theCam.getTracks().forEach(track => track.stop());
+								document.querySelector('#videoDiv').hidden = true;
+								document.querySelector('.konten').style.position = 'relative';
+							});
+                            */
+						})
+						.catch(e => {
+							tampilkanHasil2(container_hasil,e);
+							//enable_spinner.hidden = true;
+							theCam.getTracks().forEach(track => track.stop());
+						});
+					}
+					catch(err) {
+						alert(err);
+					}
+				}
+			}
+
+			function tampilkanHasil2(container_hasil,msg) {
+				container_hasil.innerHTML = "";
+				container_hasil.innerHTML = msg;
+			}
+
+
+/*
             function pindai(video, infoBanner) {
                 const qrDetector = new BarcodeDetector({formats : ['qr_code']});
                 return new Promise((resolve, reject) => {
@@ -211,6 +304,7 @@
                     },2900);
                 });
             }
+*/
             //#################################### - Main Program - ##########################################//
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
@@ -232,10 +326,13 @@
 
             });
 
-            document.querySelector('.resultView').addEventListener('click', async e => {
+            let tombolUbahQrcode = document.querySelector('.resultView'); 
+            tombolUbahQrcode.addEventListener('click', async e => {
                 if (e.target.classList.contains('itemUbahBtn')) {
+                    mainScanProcess();
+                    /*
                     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                        /*let camHead = document.querySelector('.header');
+                        let camHead = document.querySelector('.header');
                         let myVideo = document.getElementById('video');
                         let cam = await prepareTheCam(myVideo);
                         hideExceptScanner();
@@ -251,23 +348,8 @@
                             //camHead.innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}<br><font //color='#000000'>Jendela kamera akan tertutup otomatis setelah 3 detik..</font>`;
                             //setTimeout(() => hideExceptScanner(false),3000);
                         //}
-                        */
-                        try {
-                            let camHead = document.querySelector('.header');
-                            //let myVideo = document.getElementById('video');
-                            let cam = await prepareTheCam(video);
-                            hideExceptScanner();
-                            
-                            camHead.innerHTML = cam.msg;
-                            const detectedCode = pindai(video, camHead);
-                            await detectedCode.then(theCode => camHead.innerHTML = `QRCode nya: ${theCode}`)
-                            .catch(e => camHead.innerHTML = `QRCode nya: ${e}`);
-
-                        }   
-                        catch(err) {
-                            alert(err);
-                        }     
                     }
+                    */
                 }
             });
 
