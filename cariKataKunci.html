@@ -241,14 +241,16 @@
                         hideExceptScanner();
                         
                         //Cek jika camera berhasil dibuka
-                        if (cam.result) {
+                        //if (cam.result) {
                             camHead.innerHTML = cam.msg;
-                            const detectedCode = await pindai(myVideo, camHead);
-                            camHead.innerHTML = `QRCode : ${detectedCode}`;
-                        } else {
+                            const detectedCode = pindai(myVideo, camHead);
+                            await detectedCode.then(theCode => camHead.innerHTML = `QRCode : ${theCode}`)
+                            .catch(e => camHead.innerHTML = `QRCode : ${e}`);
+                            //camHead.innerHTML = `QRCode : ${detectedCode}`;
+                        /*} else {
                             camHead.innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}<br><font color='#000000'>Jendela kamera akan tertutup otomatis setelah 3 detik..</font>`;
                             setTimeout(() => hideExceptScanner(false),3000);
-                        }
+                        }*/
                     }
                 }
             });
