@@ -194,11 +194,11 @@
                         qrDetector.detect(video).then(async codes => {
                             //if (codes.length === 0) throw "QRCode tidak terbaca";
                             infoBanner.innerHTML = "QRCode Terdeteksi..";
-                            await jeda(250);
+                            await jeda(500);
                             infoBanner.innerHTML = "Sedang memindai..";
-                            await jeda(300);
+                            await jeda(500);
                             for (let c of codes) {
-                                code = c.rawValue;
+                                let code = c.rawValue;
                             }
 
                             clearInterval(intervalID);
@@ -208,7 +208,7 @@
                             clearInterval(intervalID);
                             reject(e);
                         });
-                    },2000);
+                    },2900);
                 });
             }
             //#################################### - Main Program - ##########################################//
