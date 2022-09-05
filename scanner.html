@@ -334,14 +334,15 @@
 
 						await pindai_.then(async msg => {
 							data = {'kode_qr' : msg};
-							const kirimDataDanTunggu = sendData(data);
+							alert(msg);
+							/*const kirimDataDanTunggu = sendData(data);
 							await kirimDataDanTunggu.then(async () => {
 								enable_spinner.hidden = true;
 								await jeda(500);
 								theCam.getTracks().forEach(track => track.stop());
 								document.querySelector('#videoDiv').hidden = true;
 								document.querySelector('.konten').style.position = 'relative';
-							});
+							});*/
 						})
 						.catch(e => {
 							tampilkanHasil(container_hasil,e);

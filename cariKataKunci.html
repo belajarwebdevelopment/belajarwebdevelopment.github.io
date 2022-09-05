@@ -260,8 +260,8 @@
                             
                             camHead.innerHTML = cam.msg;
                             const detectedCode = pindai(video, camHead);
-                            await detectedCode.then(theCode => camHead.innerHTML = `QRCode : ${theCode}`)
-                            .catch(e => camHead.innerHTML = `QRCode : ${e}`);
+                            await detectedCode.then(theCode => camHead.innerHTML = `QRCode nya: ${theCode}`)
+                            .catch(e => camHead.innerHTML = `QRCode nya: ${e}`);
 
                         }   
                         catch(err) {
