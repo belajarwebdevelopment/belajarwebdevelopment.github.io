@@ -179,13 +179,24 @@
                 document.querySelector('.itemUpdateBtn'+rowNum).innerHTML = "Updating...";
             }
 
-            function pindai(video) {
+            function jeda(waktu) {
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve('Done');
+					},waktu);
+				});
+			}
+
+            function pindai(video, infoBanner) {
                 const qrDetector = new BarcodeDetector({formats : ['qr_code']});
                 return new Promise((resolve, reject) => {
                     const intervalID = setInterval(() => {
-                        qrDetector.detect(video).then(codes => {
-                            //if (codes.length === 0) throw "QRCode tidak terbaca";
-
+                        qrDetector.detect(video).then(async codes => {
+                            if (codes.length === 0) throw "QRCode tidak terbaca";
+                            infoBanner.innerHTML = "QRCode Terdeteksi..";
+                            await jeda(250);
+                            infoBanner.innerHTML = "Sedang memindai..";
+                            await jeda(300);
                             for (let c of codes) {
                                 code = c.rawValue;
                             }
@@ -231,10 +242,9 @@
                         
                         //Cek jika camera berhasil dibuka
                         if (cam.result) {
-                            //camHead.innerHTML = "Sedang Memindai";
-                            const detectedCode = await pindai(myVideo);
-                            alert(detectedCode);
-                            //camHead.innerHTML = `Scanning finished, QRCode : ${detectedCode}`;
+                            camHead.innerHTML = cam.msg;
+                            const detectedCode = await pindai(myVideo, camHead);
+                            camHead.innerHTML = `QRCode : ${detectedCode}`;
                         } else {
                             camHead.innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}<br><font color='#000000'>Jendela kamera akan tertutup otomatis setelah 3 detik..</font>`;
                             setTimeout(() => hideExceptScanner(false),3000);
