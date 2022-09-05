@@ -430,6 +430,13 @@ p.ungu {
     background-color: #52B2C0;
     color : #FFFFFF;
     font-family: 'Ubuntu', sans-serif;
+    padding : 5px 5px 5px 5px;
+}
+
+.judul {
+    background-color: #52B2C0;
+    color : #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .camContainer {
