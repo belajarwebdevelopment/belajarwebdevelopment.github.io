@@ -180,7 +180,7 @@
             }
 
             function pindai(video) {
-                const qrDetector = new BarcodeDetector({'format' : ['qr_code']});
+                const qrDetector = new BarcodeDetector({formats : ['qr_code']});
                 return new Promise((resolve, reject) => {
                     const intervalID = setInterval(() => {
                         qrDetector.detect(video).then(codes => {
