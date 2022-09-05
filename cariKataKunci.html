@@ -236,6 +236,7 @@
                 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 					try {
 						const theCam = await prepareTheCam(video);
+                        hideExceptScanner();
 						//Kamera = theCam;
 						container_hasil.innerHTML = "Kamera siap...";
 						await jeda(500);
