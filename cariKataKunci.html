@@ -182,7 +182,7 @@
             async function pindai(video) {
                 const qrDetector = new BarcodeDetector({'format' : ['qr_code']});
 
-                await qrDetector.detect(video).then(codes => {
+                return qrDetector.detect(video).then(codes => {
                     //if (codes.length === 0) throw "QRCode tidak terbaca";
 
                     for (let c of codes) {
@@ -224,9 +224,10 @@
                         
                         //Cek jika camera berhasil dibuka
                         if (cam.result) {
-                            camHead.innerHTML = "Sedang Memindai";
+                            //camHead.innerHTML = "Sedang Memindai";
                             const detectedCode = await pindai(myVideo);
-                            camHead.innerHTML = `Scanning finished, QRCode : ${detectedCode}`;
+                            alert(detectedCode);
+                            //camHead.innerHTML = `Scanning finished, QRCode : ${detectedCode}`;
                         } else {
                             camHead.innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}<br><font color='#000000'>Jendela kamera akan tertutup otomatis setelah 3 detik..</font>`;
                             setTimeout(() => hideExceptScanner(false),3000);
