@@ -215,8 +215,7 @@
         
         <script language="javascript">
             const ListOfTahunTera = () => {
-                //let URLWebApp = "https://script.google.com/macros/s/AKfycbz2Bz051C2QYjMBBW2Nrynu4m2RQwnv41fGT9CweW0aYClzGfcGLLJ2Qy2lFeyesNHEtQ/exec";
-				//let URLWebApp = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
+
                 let URLWebApp = "https://script.google.com/macros/s/AKfycbxsBsrVC-cH4II9aFfMqu3b_FogrohtzBcJiBo2EacfSrKKat9krzLzP-_r7DE3N9zf/exec";
 
 				fetch(URLWebApp).then(d => d.json()).then(d => {
@@ -233,12 +232,6 @@
                         optionElemen.innerHTML = year;
                         selectId.appendChild(optionElemen);
                     }
-                    /*for (let year = nowYear; year >= 2016; year--) {
-                        let optionElemen = document.createElement('option');
-                        optionElemen.value = year;
-                        optionElemen.innerHTML = year;
-                        selectId.appendChild(optionElemen);
-                    }*/
 				});	
             }
 

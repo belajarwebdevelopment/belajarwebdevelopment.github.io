@@ -1,7 +1,7 @@
 .kontainerBrown {
     background-color: #DBA797;
-    width: 80%;
-    height: 500px;
+    width: 99%;
+    height: 700px;
     display: block;
     position: static;
     border-radius: 4px;
@@ -32,7 +32,7 @@ p {
 .menuPendataan, .menuScanning {
     display: block;
     width: 90%;
-    height : 180px;
+    height : 280px;
     margin: auto auto;
     margin-bottom: 7px;
     border-radius: 4px;
@@ -50,7 +50,7 @@ p {
 
 img {
     width : 70%;
-    height: 70%;
+    height: 80%;
     border-radius: 4px;
     padding-top: 8px;
 }
