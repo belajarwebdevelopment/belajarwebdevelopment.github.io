@@ -145,6 +145,21 @@
                     .catch(e => reject(e));
                 });
             }
+
+            function sendNewQRCode(nomorBaris, newQRCode) {
+                const webAppUrl3 = "https://script.google.com/macros/s/AKfycby_uNKxXq0DS5wqa8KoUWPnrF6jTgHEXFG5F58t3qvKasfd_ot5epBNX3l4b5xV2C0v/exec";
+
+                return new Promise((resolve, reject) => {
+                    fetch(webAppUrl3, {
+                        method : 'POST',
+                        body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
+                    })
+                    .then(resp => resp.json())
+                    .then(resp => resolve(resp))
+                    .catch(e => reject(e));
+                });
+            }
+
 /*            
             function prepareTheCam(video) {
                 const constrain = {
@@ -198,8 +213,7 @@
 					audio : false   
 				}
 
-				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
-				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);							
 			}
 
 			function pindai(video,container_hasil) {
@@ -211,7 +225,6 @@
 							container_hasil.innerHTML = "QRCode terdeteksi";
 							await jeda(400);
 							container_hasil.innerHTML = "Sedang Memindai...";
-							//enable_spinner.hidden = false;
 							await jeda(900);
 							
 							for (const qrcode of codes) {
@@ -231,14 +244,11 @@
 
 			async function mainScanProcess() {
 				let data = '';
-				//const container_hasil = document.querySelector('#qrcode_str');
-				//const enable_spinner = document.querySelector('.spinner');
 				const container_hasil = document.querySelector('.header');
                 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 					try {
 						const theCam = await prepareTheCam(video);
                         hideExceptScanner();
-						//Kamera = theCam;
 						container_hasil.innerHTML = "Kamera siap...";
 						await jeda(500);
 						container_hasil.innerHTML = "Pemindai siap...";
@@ -249,23 +259,19 @@
 
 						await pindai_.then(async msg => {
 							data = {'kode_qr' : msg};
-                            container_hasil.innerHTML = data.kode_qr;
+                            //container_hasil.innerHTML = data.kode_qr;
                             await jeda(500);
                             theCam.getTracks().forEach(track => track.stop());
-							/*
-							const kirimDataDanTunggu = sendData(data);
+
+							
+							const kirimDataDanTunggu = sendNewQRCode(data.kode_qr);
 							await kirimDataDanTunggu.then(async () => {
-								enable_spinner.hidden = true;
-								await jeda(500);
-								theCam.getTracks().forEach(track => track.stop());
-								document.querySelector('#videoDiv').hidden = true;
-								document.querySelector('.konten').style.position = 'relative';
-							});
-                            */
+                                
+                            });
+                            
 						})
 						.catch(e => {
 							tampilkanHasil2(container_hasil,e);
-							//enable_spinner.hidden = true;
 							theCam.getTracks().forEach(track => track.stop());
 						});
 					}
@@ -307,7 +313,8 @@
                 });
             }
 */
-            //#################################### - Main Program - ##########################################//
+
+//############################################# - Main Program - ###############################################//
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
                 clearKonten('resultView');
