@@ -264,10 +264,11 @@
                             theCam.getTracks().forEach(track => track.stop());
 
 							
-							const kirimDataDanTunggu = sendNewQRCode(data.kode_qr);
-							await kirimDataDanTunggu.then(async () => {
-                                
+							const ubahQRCode = sendNewQRCode(data.kode_qr);
+							ubahQRCode.then(async hasil => {
+                                alert(hasil);
                             });
+                            alert('Finished');
                             
 						})
 						.catch(e => {
