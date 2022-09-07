@@ -265,8 +265,8 @@
 
 							
 							const ubahQRCode = sendNewQRCode(data.kode_qr);
-							await ubahQRCode.then(async hasil => {
-                                alert(hasil.dataAfter);
+							await ubahQRCode.then(hasil => {
+                                alert(hasil['result']);
                             });
                             alert('Finished');
                             
