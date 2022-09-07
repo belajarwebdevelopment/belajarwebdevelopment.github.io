@@ -264,11 +264,8 @@
                             theCam.getTracks().forEach(track => track.stop());
 
 							
-							const ubahQRCode = sendNewQRCode(data.kode_qr);
-							await ubahQRCode.then(hasil => {
-                                alert(hasil['result']);
-                            });
-                            alert('Finished');
+							const ubahQRCode = await sendNewQRCode(data.kode_qr);
+                            alert(ubahQRCode.dataAfter);
                             
 						})
 						.catch(e => {
