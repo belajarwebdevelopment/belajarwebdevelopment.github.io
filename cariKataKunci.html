@@ -259,7 +259,7 @@
 
 						await pindai_.then(async kodeQr => {
                             const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
-                            tampilkanHasil2('Kode QR Baru : '+container_hasil,ubahQRCode['data']['dataAfter'][`${barisKe}`]);
+                            tampilkanHasil2('Kode QR Baru : '+container_hasil,ubahQRCode['data']['dataAfter'][`${barisKe}`][2]);
                             theCam.getTracks().forEach(track => track.stop());
                             //alert(msg);
 							//data = {'kode_qr' : msg};
