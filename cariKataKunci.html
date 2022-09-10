@@ -258,12 +258,14 @@
 						const pindai_ = pindai(video,container_hasil);	
 
 						await pindai_.then(async msg => {
+                            alert(msg);
 							//data = {'kode_qr' : msg};
                             //container_hasil.innerHTML = data.kode_qr;
-                            await jeda(500);
+                            /*await jeda(200);
 							const ubahQRCode = await sendNewQRCode(msg);
                             alert(ubahQRCode.dataAfter);
                             theCam.getTracks().forEach(track => track.stop());
+                            */
                             
 						})
 						.catch(e => {
