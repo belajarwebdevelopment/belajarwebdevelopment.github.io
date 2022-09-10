@@ -258,9 +258,19 @@
 						const pindai_ = pindai(video,container_hasil);	
 
 						await pindai_.then(async kodeQr => {
-                            const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
-                            alert(ubahQRCode).dataAfter;
+                            /*const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
+                            alert(ubahQRCode.dataAfter);
                             theCam.getTracks().forEach(track => track.stop());
+                            */
+                            sendNewQRCode(barisKe,kodeQr)
+                            .then(resp => {
+                                alert(ubahQRCode.dataAfter);
+                                theCam.getTracks().forEach(track => track.stop());
+                            })
+                            .catch(e => {
+                                tampilkanHasil2(container_hasil, "QRCode gagal diperbarui. Silahkan coba kembali");
+                                theCam.getTracks().forEach(track => track.stop());
+                            });
                             //alert(msg);
 							//data = {'kode_qr' : msg};
                             //container_hasil.innerHTML = data.kode_qr;
