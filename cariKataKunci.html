@@ -242,7 +242,7 @@
 
 			}
 
-			async function mainScanProcess() {
+			async function mainScanProcess(barisKe) {
 				let data = '';
 				const container_hasil = document.querySelector('.header');
                 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -257,8 +257,11 @@
 						
 						const pindai_ = pindai(video,container_hasil);	
 
-						await pindai_.then(async msg => {
-                            alert(msg);
+						await pindai_.then(async kodeQr => {
+                            const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
+                            alert(ubahQRCode).dataAfter;
+                            theCam.getTracks().forEach(track => track.stop());
+                            //alert(msg);
 							//data = {'kode_qr' : msg};
                             //container_hasil.innerHTML = data.kode_qr;
                             /*await jeda(200);
@@ -335,8 +338,10 @@
 
             let tombolUbahQrcode = document.querySelector('.resultView'); 
             tombolUbahQrcode.addEventListener('click', async e => {
+                let barisKe = e.target.id.split("-")[1].trim();
+                //console.log(barisKe.split("-")[1].trim());
                 if (e.target.classList.contains('itemUbahBtn')) {
-                    mainScanProcess();
+                    mainScanProcess(barisKe);
                     /*
                     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                         let camHead = document.querySelector('.header');
