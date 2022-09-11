@@ -377,13 +377,16 @@ p.ungu {
     }
 }
 
-.even {
-    background-color: #52B2C0;
+.divItem.even {
+    /*background-color: #52B2C0;*/
+    background-color: #eee6ee
+    ;
 }
 
 .divItem {
     margin-bottom: 10px;
-    border : 2px solid #52B2BF;
+    border : 2px solid #dabfcd
+    ;
     display : block;
     overflow : auto;
     position: relative;
@@ -395,7 +398,7 @@ p.ungu {
 }
 
 .itemUpdateBtn{
-    border : 3px solid rgb(219, 219, 11);
+    border : 2px solid #284D79;
     float : left;
     position: relative;
     padding: 5px 5px 5px 5px;
@@ -403,13 +406,13 @@ p.ungu {
     font-size: 13px;
     color : #FFFFFF;
     font-weight: 500;
-    background-color: #36454F;
+    background-color: #284D79;
     margin: 0 0 3px 3px;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 .itemUbahBtn{
-    border : 2px solid #083378;
+    border : 2px solid #ff3e33;
     float : left;
     position: relative;
     padding: 5px 5px 5px 5px;
@@ -417,7 +420,7 @@ p.ungu {
     font-size: 13px;
     color : #FFFFFF;
     font-weight: 500;
-    background-color: #083378;
+    background-color: #ff3e33;
     margin: 0 0 3px 3px;
     border-radius: 2px;
 }
