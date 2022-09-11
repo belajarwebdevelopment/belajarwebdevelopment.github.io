@@ -59,8 +59,29 @@
 
                 let h = new Headers();
                 h.set('Content-Type','text/plain;charset=UTF-8');
-                //h.set('Content-Type','application/json; charset=utf-8');
                 h.set('Accept','application/json; charset=utf-8');
+                return fetch(webAppUrl, {
+                    method : 'POST',
+                    headers : h,
+                    body : JSON.stringify({'keyword' : keyword, 'pasar' : localStorage.getItem('pasar')})
+                })
+                .then(respon => respon.json())
+                .then(respon => {
+                    if (respon.error_msg === "Data tidak ditemukan.....") {
+                        throw respon.error_msg;
+                    } 
+                    if(respon.result === "error") {
+                        throw "Server error : error 500";
+                    }
+                    
+                    return respon;
+                })
+                .catch(e => {
+                    return {'error_msg' : e};
+                }
+                );
+
+                /*
                 return new Promise((resolve, reject) => {
                     fetch(webAppUrl, {
                         method : 'POST',
@@ -71,6 +92,7 @@
                     .then(respon => resolve(respon))
                     .catch(e => reject(e));
                 });
+                */
             }
 
             const tombolCari = document.querySelector('.cari');
@@ -315,8 +337,7 @@
                 preLoading();
                 let datas = await sendGetData(keyword);
                 afterLoading();
-                datas.result === 'error' ? tampilkanError(datas) : tampilkanHasil(datas['data']);
-                
+                datas.result === "success" ? tampilkanHasil(datas.data) : tampilkanError(datas);
             });
 
             document.querySelector('.resultView').addEventListener('click', async e => {
@@ -332,7 +353,6 @@
             let tombolUbahQrcode = document.querySelector('.resultView'); 
             tombolUbahQrcode.addEventListener('click', async e => {
                 let barisKe = e.target.id.split("-")[1].trim();
-                //console.log(barisKe.split("-")[1].trim());
                 if (e.target.classList.contains('itemUbahBtn')) {
                     mainScanProcess(barisKe);
                     /*
