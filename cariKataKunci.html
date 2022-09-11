@@ -148,7 +148,21 @@
 
             function sendNewQRCode(nomorBaris, newQRCode) {
                 const webAppUrl3 = "https://script.google.com/macros/s/AKfycby_uNKxXq0DS5wqa8KoUWPnrF6jTgHEXFG5F58t3qvKasfd_ot5epBNX3l4b5xV2C0v/exec";
+                
+                fetch(webAppUrl3, {
+                    method : 'POST',
+                    body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
+                })
+                .then(resp => resp.json())
+                .then(resp => {
+                    if (resp.result === "error") {
+                        throw "error";
+                    }
+                    return resp;
+                })
+                .catch(e => 'Error on server or client : gagal mengganti dgn QRCode baru..');
 
+                /*
                 return new Promise((resolve, reject) => {
                     fetch(webAppUrl3, {
                         method : 'POST',
@@ -158,30 +172,9 @@
                     .then(resp => resolve({'result' : true, 'data' : resp}))
                     .catch(e => reject({'result' : false}));
                 });
+                */
             }
 
-/*            
-            function prepareTheCam(video) {
-                const constrain = {
-                    video : {
-                        facingMode : {
-                            exact: 'environment'
-                        }
-                    },
-                    audio : false   
-                }
-                return new Promise((resolve, reject) => {
-                    navigator.mediaDevices.getUserMedia(constrain)
-                    .then(stream => {
-                        video.srcObject = stream;
-                        setTimeout(() => resolve({'result' : true, 'msg' : 'Kamera Siap'}),300);
-                    })
-                    .catch(e => {
-                        setTimeout(() => resolve({'result' : false, 'error' : e, 'msg' : 'Kamera tidak bisa diakses..'}),300);     
-                    });
-                });
-            }
-*/            
             function hideExceptScanner(logic = true) {
                 document.querySelector('.penampilHasil').hidden = logic;
                 document.querySelector('.title').hidden = logic;
@@ -259,7 +252,7 @@
 
 						await pindai_.then(async kodeQr => {
                             const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
-                            tampilkanHasil2(container_hasil,ubahQRCode.data.dataAfter[barisKe][1]);
+                            tampilkanHasil2(container_hasil,ubahQRCode.dataAfter[barisKe][1]);
                             theCam.getTracks().forEach(track => track.stop());
                             //alert(msg);
 							//data = {'kode_qr' : msg};
