@@ -274,7 +274,7 @@
 
 						await pindai_.then(async kodeQr => {
                             const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
-                            tampilkanHasil2(container_hasil,ubahQRCode.dataAfter[barisKe][1]);
+                            tampilkanHasil2(container_hasil,ubahQRCode['dataAfter'][barisKe][1]);
                             theCam.getTracks().forEach(track => track.stop());
                             //alert(msg);
 							//data = {'kode_qr' : msg};
@@ -302,34 +302,6 @@
 				container_hasil.innerHTML = msg;
 			}
 
-
-/*
-            function pindai(video, infoBanner) {
-                const qrDetector = new BarcodeDetector({formats : ['qr_code']});
-                return new Promise((resolve, reject) => {
-                    const intervalID = setInterval(() => {
-                        qrDetector.detect(video).then(async codes => {
-                            //if (codes.length === 0) throw "QRCode tidak terbaca";
-                            infoBanner.innerHTML = "QRCode Terdeteksi..";
-                            await jeda(500);
-                            infoBanner.innerHTML = "Sedang memindai..";
-                            await jeda(500);
-                            for (let c of codes) {
-                                let code = c.rawValue;
-                            }
-
-                            clearInterval(intervalID);
-                            resolve(code);
-                        })
-                        .catch(e => {
-                            clearInterval(intervalID);
-                            reject(e);
-                        });
-                    },2900);
-                });
-            }
-*/
-
 //############################################# - Main Program - ###############################################//
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
@@ -355,26 +327,6 @@
                 let barisKe = e.target.id.split("-")[1].trim();
                 if (e.target.classList.contains('itemUbahBtn')) {
                     mainScanProcess(barisKe);
-                    /*
-                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                        let camHead = document.querySelector('.header');
-                        let myVideo = document.getElementById('video');
-                        let cam = await prepareTheCam(myVideo);
-                        hideExceptScanner();
-                        
-                        //Cek jika camera berhasil dibuka
-                        //if (cam.result) {
-                            camHead.innerHTML = cam.msg;
-                            const detectedCode = pindai(myVideo, camHead);
-                            await detectedCode.then(theCode => camHead.innerHTML = `QRCode : ${theCode}`)
-                            .catch(e => camHead.innerHTML = `QRCode : ${e}`);
-                            //camHead.innerHTML = `QRCode : ${detectedCode}`;
-                        //} else {
-                            //camHead.innerHTML = `<font color='#FF3030'>${cam.msg}</font><br>${cam.error}<br><font //color='#000000'>Jendela kamera akan tertutup otomatis setelah 3 detik..</font>`;
-                            //setTimeout(() => hideExceptScanner(false),3000);
-                        //}
-                    }
-                    */
                 }
             });
 
