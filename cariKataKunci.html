@@ -243,27 +243,6 @@
 
 			function pindai(video,container_hasil) {
 				const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
-                const intervalID = setInterval(() => {
-                    return qrcodeDetector.detect(video).then(async (codes) => {
-                        if (codes.length === 0) return;
-                        container_hasil.innerHTML = "QRCode terdeteksi";
-                        await jeda(400);
-                        container_hasil.innerHTML = "Sedang Memindai...";
-                        await jeda(900);
-                        
-                        for (const qrcode of codes) {
-                            var code = qrcode.rawValue;
-                        } 
-                        clearInterval(intervalID);
-                        resolve(code);
-                    })
-                    .catch(e => {
-                        clearInterval(intervalID);
-                        reject(e);
-                    });
-				},2900);
-
-                /*
                 return new Promise((resolve, reject) => {
 					const intervalID = setInterval(() => {
 						qrcodeDetector.detect(video).then(async (codes) => {
@@ -285,7 +264,6 @@
 						});
 					},2900);
 				});
-                */
 			}
 
 			async function mainScanProcess(barisKe) {
