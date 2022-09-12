@@ -171,7 +171,7 @@
             function sendNewQRCode(nomorBaris, newQRCode) {
                 const webAppUrl3 = "https://script.google.com/macros/s/AKfycby_uNKxXq0DS5wqa8KoUWPnrF6jTgHEXFG5F58t3qvKasfd_ot5epBNX3l4b5xV2C0v/exec";
                 
-                fetch(webAppUrl3, {
+                return fetch(webAppUrl3, {
                     method : 'POST',
                     body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
                 })
@@ -274,7 +274,7 @@
 
 						await pindai_.then(async kodeQr => {
                             const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
-                            tampilkanHasil2(container_hasil,JSON.stringify(ubahQRCode));
+                            tampilkanHasil2(container_hasil,ubahQRCode.dataAfter[barisKe][1]);
                             theCam.getTracks().forEach(track => track.stop());
                             //alert(msg);
 							//data = {'kode_qr' : msg};
