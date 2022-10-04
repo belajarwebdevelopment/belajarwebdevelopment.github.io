@@ -214,6 +214,13 @@
                 document.querySelector('.scanner').hidden = !logic;
             }
 
+            function showExceptScanner(logic = true) {
+                document.querySelector('.penampilHasil').hidden = !logic;
+                document.querySelector('.title').hidden = !logic;
+                document.querySelector('.kontainer').hidden = !logic;
+                document.querySelector('.scanner').hidden = logic;
+            }
+
             function btnLoading(rowNum) {
                 document.querySelector('.c'+rowNum).classList.add('button--loading--table');
                 document.querySelector('.itemUpdateBtn'+rowNum).classList.add('button--loading');
@@ -298,6 +305,7 @@
                                 <tr>    
                                     <td>QRCode Baru</td><td>: ${ubahQRCode.dataAfter[122][1]}</td>
                                 </tr>
+                                <tr><td colspan='2'><button id='prev'>Back To Searching Page</button></td></tr>
                                 </table>
                                 `;
                                 
@@ -362,6 +370,8 @@
                     mainScanProcess(barisKe);
                 }
             });
+
+            document.getElementById('prev').addEventListener('click',() => showExceptScanner());
 
             if (!localStorage.getItem('pasar')) {
                 let strParam = `?sendMeBack=yes`;
