@@ -287,13 +287,13 @@
                             
                             if (ubahQRCode.result === "success") {
                                 
-                                resultStr = `Old Code : ${ubahQRCode.dataBefore[122][1]}<br>New Code : ${ubahQRCode.dataAfter[122][1]}<br>Status : ${ubahQRCode.result}`;
+                                resultStr = `${ubahQRCode.result} !!!<br>ID : ${ubahQRCode.dataAfter[122][3]} - ${ubahQRCode.dataAfter[122][2]} - ${ubahQRCode.dataAfter[122][16]}<br>QRCode Lama : ${ubahQRCode.dataBefore[122][1]}<br>QRCode : ${ubahQRCode.dataAfter[122][1]}`;
                                 
                             } else {
                                 resultStr = ubahQRCode;
                             }
 
-                            tampilkanHasil2(container_hasil,`Hasilnya : ${resultStr}`);
+                            tampilkanHasil2(container_hasil,resultStr);
 
                             theCam.getTracks().forEach(track => track.stop());
                             //alert(msg);
