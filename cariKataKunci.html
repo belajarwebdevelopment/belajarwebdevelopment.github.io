@@ -287,16 +287,18 @@
                             
                             if (ubahQRCode.result === "success") {
                                 
-                                resultStr = `Ganti QRCode ${ubahQRCode.result} !!!<br>
+                                resultStr = `Ganti QRCode ${ubahQRCode.result} !<br>
+                                <table>
                                 <tr>
                                     <td>ID </td><td>: ${ubahQRCode.dataAfter[122][3]} - ${ubahQRCode.dataAfter[122][2]} - ${ubahQRCode.dataAfter[122][16]}</td>
                                 <tr>
                                 <tr>
-                                    <td>QRCode Lama</td> <td>: ${ubahQRCode.dataBefore[122][1]}</td>
+                                    <td>QRCode Lama</td><td>: ${ubahQRCode.dataBefore[122][1]}</td>
                                 </tr>
                                 <tr>    
-                                    <td>QRCode </td><td>: ${ubahQRCode.dataAfter[122][1]}</td>
+                                    <td>QRCode Baru</td><td>: ${ubahQRCode.dataAfter[122][1]}</td>
                                 </tr>
+                                </table>
                                 `;
                                 
                             } else {
