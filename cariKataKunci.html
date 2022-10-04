@@ -293,7 +293,7 @@
                                 let resultStr = ubahQRCode;
                             }
 
-                            tampilkanHasil2(container_hasil,resultStr);
+                            tampilkanHasil2(container_hasil,'This is new QRCode');
 
                             theCam.getTracks().forEach(track => track.stop());
                             //alert(msg);
@@ -344,6 +344,7 @@
 
             let tombolUbahQrcode = document.querySelector('.resultView'); 
             tombolUbahQrcode.addEventListener('click', async e => {
+                //alert('Ubah QRCode');
                 let barisKe = e.target.id.split("-")[1].trim();
                 if (e.target.classList.contains('itemUbahBtn')) {
                     mainScanProcess(barisKe);
@@ -352,8 +353,8 @@
 
             if (!localStorage.getItem('pasar')) {
                 let strParam = `?sendMeBack=yes`;
-                //window.open('http://locahost/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
-                window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                window.open('http://locahost/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                //window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
             } 
             document.getElementById('namaLokasi').innerHTML = localStorage.getItem('pasar');
                     
