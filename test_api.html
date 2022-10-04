@@ -7,11 +7,14 @@
     </head>
 	
     <body>
+		<!--
 		<input type="text" name="jeneng" id="jeneng">
 		<input type="text" name="alat" id="alat">
 		<button id="sendBtn">Send Data</button>
 		<button id="getBtn">Get Data</button>
-	<div id="app"></div>
+		<div id="app"></div>
+
+		-->
 		<script language="javascript">
 			/*
 			function getData() {
@@ -38,6 +41,7 @@
 				})
 			}
 			*/
+			/*
 			function sendData() {
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycbznTP423iwL-5eRomjbuvspjfMzSkH_sb4np3sTx_scyukLxy0H6h2TyqY9qpP7XymN/exec";
 				//const webAppUrl = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
@@ -59,6 +63,56 @@
 			}
 			document.getElementById("sendBtn").addEventListener("click",sendData);		
 			//document.getElementById("getBtn").addEventListener("click",getData);
+			*/
+
+			function sendNewQRCode(nomorBaris, newQRCode) {
+                const webAppUrl3 = "https://script.google.com/macros/s/AKfycby_uNKxXq0DS5wqa8KoUWPnrF6jTgHEXFG5F58t3qvKasfd_ot5epBNX3l4b5xV2C0v/exec";
+
+                return fetch(webAppUrl3, {
+                    method : 'POST',
+                    body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
+                })
+                .then(resp => resp.json())
+                .then(resp => {
+                    if (resp.result === "error") {
+                        throw "error";
+                    }
+                    return resp;
+                })
+                .catch(e => 'Error on server or client : gagal mengganti dgn QRCode baru..');
+
+                /*
+                return new Promise((resolve, reject) => {
+                    fetch(webAppUrl3, {
+                        method : 'POST',
+                        body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
+                    })
+                    .then(resp => resp.json())
+                    .then(resp => resolve({'result' : true, 'data' : resp}))
+                    .catch(e => reject({'result' : false}));
+                });
+                */
+			   
+            }
+		
+			async function utama() {
+				//console.log('Mulai');
+				const c = await sendNewQRCode(122,'PRLEGI2000');
+				//console.log(c);
+				//console.log('Selesai');
+				if (c.result === "success") {
+		
+					let resultStr = `Old Code : ${c.dataBefore[122][1]}<br>New Code : ${c.dataAfter[122][1]}<br>Status : ${c.result}`;
+					console.log(resultStr);
+					
+				} else {
+					let resultStr = ubahQRCode;
+					console.log('error');
+				}
+
+			}
+
+			utama();
         </script>
     </body>
 </html>
