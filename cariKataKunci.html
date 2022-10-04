@@ -284,7 +284,7 @@
 						await pindai_.then(async kodeQr => {
                             const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
                             let resultStr = '';
-
+                            /*
                             if (ubahQRCode.result === "success") {
                                 
                                 let resultStr = `Old Code : ${ubahQRCode.dataBefore[barisKe][1]}<br>New Code : ${ubahQRCode.dataAfter[barisKe][1]}<br>Status : ${ubahQRCode.result}`;
@@ -292,8 +292,8 @@
                             } else {
                                 let resultStr = ubahQRCode;
                             }
-
-                            tampilkanHasil2(container_hasil,`Ini kode yg baru ${resultStr}`);
+                            */
+                            tampilkanHasil2(container_hasil,`Ini kode yg baru ${ubahQRCode.data}`);
 
                             theCam.getTracks().forEach(track => track.stop());
                             //alert(msg);
