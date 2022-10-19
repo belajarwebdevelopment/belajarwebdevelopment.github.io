@@ -293,7 +293,7 @@
 						await pindai_.then(async kodeQr => {
                             const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
                             let resultStr = '';
-                            alert(ubahQRCode.dataAfter);
+                            alert(`Data : ${ubahQRCode.dataAfter[barisKe]}`);
                             if (ubahQRCode.result === "success") {
                                 
                                 resultStr = `Ganti QRCode ${ubahQRCode.result} !<br>
