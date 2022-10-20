@@ -209,6 +209,10 @@
                 */
             }
 
+            function hideScanner() {
+                document.querySelector('.scanner').hidden = true;
+            }
+
             function hideExceptScanner(logic = true) {
                 document.querySelector('.penampilHasil').hidden = logic;
                 document.querySelector('.title').hidden = logic;
@@ -307,7 +311,7 @@
                                 <tr>    
                                     <td>QRCode Baru</td><td>: ${ubahQRCode.dataAfter[barisKe][1]}</td>
                                 </tr>
-                                <tr><td colspan='2'><button id='prev'>Back To Searching Page</button></td></tr>
+                                <tr><td colspan='2' align='center'><button id='backToPrev'>Back To Searching Page</button></td></tr>
                                 </table>
                                 `;
                                 
@@ -318,6 +322,7 @@
                             tampilkanHasil2(container_hasil,resultStr);
 
                             theCam.getTracks().forEach(track => track.stop());
+                            hideScanner();
                             //alert(msg);
 							//data = {'kode_qr' : msg};
                             //container_hasil.innerHTML = data.kode_qr;

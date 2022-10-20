@@ -462,3 +462,11 @@ p.ungu {
     margin-top: 3px;
 }
 
+#backToPrev {
+    border : 2px solid #FFFFFF;
+    padding: 5px 5px 5px 5px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #ff3e33;
+}
+
