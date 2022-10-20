@@ -470,3 +470,12 @@ p.ungu {
     background-color: #ff3e33;
 }
 
+#backToPrev:active {
+    border : 2px solid #ff3e33;
+    padding: 5px 5px 5px 5px;
+    color : #ff3e33;
+    font-weight: 500;
+    background-color: #FFFFFF;
+}
+
+
