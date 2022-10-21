@@ -380,6 +380,9 @@
             });
 
             //document.getElementById('prev').addEventListener('click',() => showExceptScanner());
+            document.querySelector('.header').addEventListener('clisk', e => {
+                e.target.id === "backToPrev" ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+            })
             
             if (!localStorage.getItem('pasar')) {
                 let strParam = `?sendMeBack=yes`;
