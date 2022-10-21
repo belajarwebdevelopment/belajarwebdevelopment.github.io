@@ -433,7 +433,7 @@ p.ungu {
     background-color: #6F848C;
     color : #FFFFFF;
     font-family: 'Ubuntu', sans-serif;
-    padding : 5px 5px 5px 5px;
+    padding : 5px 12px 5px 5px;
 }
 
 .judul {
@@ -459,7 +459,7 @@ p.ungu {
 
 #gantiQR {
     border: 1px solid #812aa3;
-    margin-top: 7px;
+    margin-top: 12px;
 }
 
 #backToPrev {

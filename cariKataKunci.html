@@ -306,12 +306,12 @@
                                     <td>ID </td><td>: ${ubahQRCode.dataAfter[barisKe][3]} - ${ubahQRCode.dataAfter[barisKe][2]} - ${ubahQRCode.dataAfter[barisKe][16]}</td>
                                 <tr>
                                 <tr>
-                                    <td>QRCode Lama</td><td>: ${ubahQRCode.dataBefore[barisKe][1]}</td>
+                                    <td>Old QRCode</td><td>: ${ubahQRCode.dataBefore[barisKe][1]}</td>
                                 </tr>
                                 <tr>    
-                                    <td>QRCode Baru</td><td>: ${ubahQRCode.dataAfter[barisKe][1]}</td>
+                                    <td>New QRCode</td><td>: ${ubahQRCode.dataAfter[barisKe][1]}</td>
                                 </tr>
-                                <tr><td colspan='2' align='center'><button id='backToPrev'>Kembali ke Halaman Pencarian</button></td></tr>
+                                <tr><td colspan='2' align='center'><button class='backToPrev'>Kembali ke Halaman Pencarian</button></td></tr>
                                 </table>
                                 `;
                                 
@@ -381,7 +381,7 @@
 
             //document.getElementById('prev').addEventListener('click',() => showExceptScanner());
             document.querySelector('.header').addEventListener('clisk', e => {
-                e.target.id === "backToPrev" ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+                e.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
             })
             
             if (!localStorage.getItem('pasar')) {
