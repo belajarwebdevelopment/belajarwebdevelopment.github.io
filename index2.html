@@ -442,7 +442,7 @@
                 //const webAppUrl = "https://script.google.com/macros/s/AKfycbybIvx7T5ccM9ZIU2X70KZ_m642OLbuo0VEw_NvDRuFm7_R6_4/exec";
 
                 const webAppUrl = "https://script.google.com/macros/s/AKfycbw6ntPnirWsttfbYrO8CuyJyXhv1_HBxW_ddzKYAvRpBJTK_2sJgb9sFQiNhRB6-tuE/exec";
-                
+
                 //The_Latest_16_04_2022 
                 //const webAppUrl = "https://script.google.com/macros/s/AKfycbwzbs4hThHTqQ6GZyscFqFWM_u02oBWoftsSEKVXojjcthPztuJ0p-noW4lOG7XRHayvg/exec";
                 
@@ -479,8 +479,12 @@
 					$.mobile.changePage("#page5", {role:"dialog"});
                     //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
                     //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><div class="alert alert-danger add_data" id="add_uttp" role="alert" style="background-color : #1d4e89; color : #FFFFFF;">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert" style="background-color : #FFB703; color : #000000;">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert" style="background-color : #00B2CA; color : #000000;">Ganti Pasar</div></p>');
+                    if (respon.result === 'error') {
+                        $(".msg_container_page5").html('<p><span style="background-color : black; color : red;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                    } else {
+                        $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                    }
 
-					$(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
 				});
 			}
 
