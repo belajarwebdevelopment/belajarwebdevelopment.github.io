@@ -296,8 +296,8 @@
 
                     const pattern1 = /[^a-z0-9\s'-_]/i;
                     const pattern2 = /[a-z0-9]/i;
-                    let result1 = pattern1.test($("Nama").val());
-                    let result2 = pattern2.test($("Nama").val());
+                    let result1 = pattern1.test($("#Nama").val());
+                    let result2 = pattern2.test($("#Nama").val());
 
                     if (!result1 && result2) {
                         $.mobile.changePage('#page4', {role : "dialog"});
