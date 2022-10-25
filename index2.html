@@ -294,12 +294,12 @@
                         return;
                     }
 
-                    const pattern1 = /[^a-z0-9\s'-_]/i;
+                    const pattern1 = /[^`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\\\<\,\>\.\?\/]/;
                     const pattern2 = /[a-z0-9]/i;
-                    let result1 = pattern1.test($("#Nama").val());
-                    let result2 = pattern2.test($("#Nama").val());
+                    let result1 = pattern1.test(document.getElementById('Nama').value);
+                    let result2 = pattern2.test(document.getElementById('Nama').value);
 
-                    if (!result1 && result2) {
+                    if (result1 && result2) {
                         $.mobile.changePage('#page4', {role : "dialog"});
                         $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama Pedagang/WTU wajib terdiri dari huruf dan/atau angka, spasi, ', -, _ serta tidak boleh hanya spasi saja.<br></p><p><a href="#page2"><< Kembali</a></p>`);
                         return;
