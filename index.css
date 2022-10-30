@@ -19,8 +19,8 @@
     position: fixed;
     width : 100%;
     height : 50px;
-    display: block;
-    float :right;
+    display : block;
+    /*float :right;*/
     color : #f2f2f2;
     padding-top: 7px;
     font-size: 20px;
@@ -43,5 +43,7 @@
 #navigasi {
     margin-top: 2px;
     margin-bottom: 10px;
+    margin-left: 15px;
+    position: relative;
 }
 

@@ -462,7 +462,7 @@ p.ungu {
     margin-top: 12px;
 }
 
-#backToPrev {
+.backToPrev {
     border : 2px solid #FFFFFF;
     padding: 5px 5px 5px 5px;
     color : #FFFFFF;
@@ -470,7 +470,7 @@ p.ungu {
     background-color: #ff3e33;
 }
 
-#backToPrev:active {
+.backToPrev:active {
     border : 2px solid #ff3e33;
     padding: 5px 5px 5px 5px;
     color : #ff3e33;
