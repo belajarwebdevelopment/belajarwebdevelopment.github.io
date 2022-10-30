@@ -204,7 +204,7 @@
             </div>
         </div>
         <div class="container py-5 my-5 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
-            <div class="alert alert-primary msg_container_page6" role="alert">
+            <div class="alert alert-primary msg_container_page6" role="alert" style="background-color : #028A0F;">
             </div>
             <div class="d-flex align-items-center text-success">
                 <strong>Memindai QRCode...</strong>
@@ -467,7 +467,7 @@
                     $.mobile.changePage("#page6", {allowSamePageTransition : true, role : "dialog"});
                     history.pushState({pageUrl : 'page6'}, null, '#');
                     init = 'page6';
-                    $(".msg_container_page6").html(`<a id='backToPage3' style='color : green;'><< Kembali</a>`);
+                    $(".msg_container_page6").html(`<a id='backToPage3' style='color : #FFFFFF;'><< Kembali</a>`);
                     siapkanKamera();
 
                 });
