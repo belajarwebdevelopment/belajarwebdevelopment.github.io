@@ -549,6 +549,17 @@
 				const SerializePair = {};
 				
 				for (const [name, value] of data) {
+                    if ((name === "Nama" && value === "") || (name === "komoditi" && value === "") || (name === "hp" && value === "") || (name === "uttp1" && value === "") || (name === "tahunTera1" && value === "") || (name === "qr_code" && value === "")) {
+                        $.mobile.changePage("#page5", {allowSamePageTransition : true, role:"dialog"});
+                        history.pushState({pageUrl : 'page5'}, null, '#');
+                        init = 'page5';
+                        
+                        let pesan_err = "Maaf, data GAGAL DIMASUKKAN karena ada isian wajib diisi yang masih kosong. Silahkan periksa kembali pada masing-masing form di bawah ini.";
+
+                        $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan_err+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memeriksa data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Periksa data uttp</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Periksa data WTU/Pedagang</div>');
+
+                        return false;
+                    }
 					SerializePair[name] = value;
 				}
 
