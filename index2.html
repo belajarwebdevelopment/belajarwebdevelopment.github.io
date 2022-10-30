@@ -204,6 +204,8 @@
             </div>
         </div>
         <div class="container py-5 my-5 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
+            <div class="alert alert-primary msg_container_page6" role="alert">
+            </div>
             <div class="d-flex align-items-center text-success">
                 <strong>Memindai QRCode...</strong>
                 <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
@@ -217,37 +219,12 @@
             function preventBackPress(popstateRespon) {
                 console.log(`preveBackPress : ${popstateRespon}`);
                 $.mobile.changePage(`#${popstateRespon}`, {allowSamePageTransition : true, role : "dialog"});
-                //$.mobile.changePage(`#${popstateRespon}`, {role : "dialog"});
                 history.pushState({pageUrl : popstateRespon}, null, '#');
                 init = popstateRespon;
                 return false;
             }
 
             window.addEventListener('popstate', e => {
-                //console.log(e);
-                //console.log(e.state.pageUrl+' - '+e.currentTarget.history.state.id);
-                //console.log(e.state.pageUrl+' - '+e.state.id);
-                //console.log(history);
-                /*if (e.state.pageUrl === e.currentTarget.history.state.id) {
-                    respon = e.state.pageUrl;
-                } 
-                else {
-                    if (e.currentTarget.history.state.id === "#undefined") {
-                        respon = e.state.pageUrl;
-                    } else {
-                        respon = e.currentTarget.history.state.id;
-                    }
-                }
-                */
-                //console.log(`init = ${init} - ${e.state.pageUrl}`);
-                //preventBackPress('page4');
-                /*
-                if (e.state.direction == 'back') {
-                    console.log('back');
-                    preventBackPress(init);
-                    return false;
-                }
-                */
                 if (init === e.state.pageUrl) {
                     preventBackPress(e.state.pageUrl);
                 } else {
@@ -354,7 +331,13 @@
                     history.pushState({pageUrl : 'page2'}, null, '#');
                     init = 'page2';
                 });
-                
+
+                $(".msg_container_page6").on("click", '#backToPage3', function() {
+                    $.mobile.changePage('#page3', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page3'}, null, '#');
+                    init = 'page3';
+                });
+
                 $(".next_uttp").on("click", function() {
                     if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
                         $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
@@ -472,37 +455,27 @@
 
                 $("#pair_the_data").on('click', function() {
                     if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
-						alert("Proses memasukkan data gagal. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
+						alert("Proses pindai QRCode Tidak Bisa. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
 						return false;
 					}
 				
                     if ($("#tahunTera1 :selected").text() == "" || $("#tahunTera1 :selected").text() == "Pilih Tahun Tera") {
-						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
+						alert("Proses pindai QRCode Tidak Bisa. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
 						return false;
 					}
                     document.querySelector("#video").style.border = "none";
-                    $.mobile.changePage("#page6", {role : "dialog"});
+                    $.mobile.changePage("#page6", {allowSamePageTransition : true, role : "dialog"});
+                    history.pushState({pageUrl : 'page6'}, null, '#');
+                    init = 'page6';
+                    $(".msg_container_page6").html(`<a id='backToPage3' style='color : green;'><< Kembali</a>`);
                     siapkanKamera();
 
                 });
 
                 $("#entry_the_data").on('click', function() {
-                    /*
-                    if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
-						alert("Proses memasukkan data gagal. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
-						return false;
-					}
-				
-                    if ($("#tahunTera1 :selected").text() == "" || $("#tahunTera1 :selected").text() == "Pilih Tahun Tera") {
-						alert("Proses memasukkan data gagal. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
-						return false;
-					}
-                    */
-					siapkanData();
-                    /*
-					$.mobile.changePage("#page5", {role:"dialog"});
-                    $(".msg_container_page5").html('<p>Data telah berhasil dimasukkan...<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
-                    */
+
+                    siapkanData();
+
                 });
 
             });
@@ -551,15 +524,7 @@
                 */
 				fetch(webAppUrl,{
 					method : 'POST',
-					//mode : 'no-cors',
-					//cache : 'no-cache',
-					//credentials : 'omit',
-					//headers : {
-						//'Content-type' : 'application/json'
-					//},
-					//redirect : 'follow',
 					body : JSON.stringify(dataObj)
-					//body : JSON.stringify({nama : document.getElementById('jeneng').value, uttp : document.getElementById('alat').value})
 				}).then(respon => respon.json()).then(respon => {
 					btnKirim.classList.toggle('d-none');
 					btnLoading.classList.toggle('d-none');
@@ -568,8 +533,7 @@
 					$.mobile.changePage("#page5", {allowSamePageTransition : true, role:"dialog"});
                     history.pushState({pageUrl : 'page5'}, null, '#');
                     init = 'page5';
-                    //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
-                    //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><div class="alert alert-danger add_data" id="add_uttp" role="alert" style="background-color : #1d4e89; color : #FFFFFF;">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert" style="background-color : #FFB703; color : #000000;">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert" style="background-color : #00B2CA; color : #000000;">Ganti Pasar</div></p>');
+
                     if (respon.result === 'error') {
                         $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
                     } else {
@@ -587,8 +551,8 @@
 				for (const [name, value] of data) {
 					SerializePair[name] = value;
 				}
-                //alert(SerializePair);
-				sendData(SerializePair);
+
+                sendData(SerializePair);
 			}
 			
 			//document.getElementById("entry_the_data").addEventListener("click",siapkanData);		
