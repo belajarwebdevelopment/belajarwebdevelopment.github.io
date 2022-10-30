@@ -13,7 +13,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">   
         <!-- END OF ROBOTO -->   
-  
     </head>
     <body>
         <div class="topMenu">
@@ -213,7 +212,51 @@
         </div>
         </form>
         <!--</div>-->    
+        <script>
+            var init = '';
+            function preventBackPress(popstateRespon) {
+                console.log(`preveBackPress : ${popstateRespon}`);
+                $.mobile.changePage(`#${popstateRespon}`, {allowSamePageTransition : true, role : "dialog"});
+                //$.mobile.changePage(`#${popstateRespon}`, {role : "dialog"});
+                history.pushState({pageUrl : popstateRespon}, null, '#');
+                init = popstateRespon;
+                return false;
+            }
 
+            window.addEventListener('popstate', e => {
+                //console.log(e);
+                //console.log(e.state.pageUrl+' - '+e.currentTarget.history.state.id);
+                //console.log(e.state.pageUrl+' - '+e.state.id);
+                //console.log(history);
+                /*if (e.state.pageUrl === e.currentTarget.history.state.id) {
+                    respon = e.state.pageUrl;
+                } 
+                else {
+                    if (e.currentTarget.history.state.id === "#undefined") {
+                        respon = e.state.pageUrl;
+                    } else {
+                        respon = e.currentTarget.history.state.id;
+                    }
+                }
+                */
+                //console.log(`init = ${init} - ${e.state.pageUrl}`);
+                //preventBackPress('page4');
+                /*
+                if (e.state.direction == 'back') {
+                    console.log('back');
+                    preventBackPress(init);
+                    return false;
+                }
+                */
+                if (init === e.state.pageUrl) {
+                    preventBackPress(e.state.pageUrl);
+                } else {
+                    preventBackPress(init);
+                }
+                
+            });
+        </script>
+        
         <script language="javascript">
             const ListOfTahunTera = () => {
 
@@ -246,8 +289,10 @@
                 $(".pilihPsr").on('click', function() {
                     Psr = $("#pilih_psr").children("option:selected").text();
                     if (Psr == "Daftar Pasar") {
-                        $.mobile.changePage("#page4", {role : "dialog"});
-                        $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a href="#page1"><< Kembali</a>`);
+                        $.mobile.changePage("#page4", {allowSamePageTransition : true, role : "dialog"});
+                        $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a id='kembali'> << Kembali</a>`);
+                        history.pushState({pageUrl : 'page4'}, null, '#');
+                        init = 'page4';
                         return false;
                     }
 
@@ -259,14 +304,15 @@
                     //urlParam.has('sendMeBack') ? window.open('http://localhost/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
                     
                     //urlParam.has('sendMeBack') ? window.open('E:/xampp/htdocs/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
-                    
-                    $.mobile.changePage("#page2", {role : "dialog"});
+                    $.mobile.changePage("#page2", {allowSamePageTransition : true, role : "dialog"});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
                     $(".jumbo_page2").html(`
                         <h1 class="display-5">Halo, Apa Kabar!</h1>
                         <p>Anda sedang berada di <b>`+Psr+`</b>.<p id="posisi"></p>  
                         <hr class="my-4">
                         <p>Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
-                        <p align="right"><a href="#page1" id="gantiPsr">ganti pasar</a></p>
+                        <p align="right"><a id="gantiPsr">ganti pasar</a></p>
                     `);
 
                     const watcId = navigator.geolocation.watchPosition(position => {
@@ -287,11 +333,28 @@
                     });
                 });
 				
-				
+				$(".msg_container").on("click", '#kembali', function() {
+                    $.mobile.changePage('#page1', {role : 'dialog'});
+                });
+
+                $(".msg_container").on("click", '#kembali2', function() {
+                    $.mobile.changePage('#page2', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
+                });
+
+                $(".msg_container").on("click", '#kembali3', function() {
+                    $.mobile.changePage('#page2', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
+                });
+
                 $(".next_uttp").on("click", function() {
                     if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
-                        $.mobile.changePage('#page4', {role : "dialog"});
-                        $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama pedagang/wtu, los pasar, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a href="#page2"><< Kembali</a></p>`);
+                        $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
+                        history.pushState({pageUrl : 'page4'}, null, '#');
+                        init = 'page4';
+                        $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama pedagang/wtu, los pasar, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a id='kembali2'><< Kembali</a></p>`);
                         return;
                     }
 
@@ -302,8 +365,10 @@
                     console.log(result1);
                     console.log(result2);
                     if (result1 === true || result2 === false) {
-                        $.mobile.changePage('#page4', {role : "dialog"});
-                        $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama Pedagang/WTU wajib terdiri dari huruf dan/atau angka, spasi, ', -, _ serta tidak boleh hanya spasi saja.<br></p><p><a href="#page2"><< Kembali</a></p>`);
+                        $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
+                        history.pushState({pageUrl : 'page4'}, null, '#');
+                        init = 'page4';
+                        $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama Pedagang/WTU wajib terdiri dari huruf dan/atau angka, spasi, ', -, _ serta tidak boleh hanya spasi saja.<br></p><p><a id='kembali3'><< Kembali</a></p>`);
                         return;
                     }
 
@@ -321,6 +386,7 @@
 
                 $(".jumbo_page2").on("click","#gantiPsr", function() {
                     $("#pendataanForm").trigger('reset');
+                    $.mobile.changePage("#page1", {role : 'dialog'});
                 });
             });
         </script>

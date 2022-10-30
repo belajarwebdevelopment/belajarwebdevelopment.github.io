@@ -24,5 +24,12 @@
                 <span class="menuText">Scan & Tandai Tera</span>
             </div>
     </div>
+    <script>
+        window.addEventListener('popstate', e => {
+            window.history.forward();
+            console.log(e);
+            return false;
+        });
+    </script>
 </body>
 </html>
