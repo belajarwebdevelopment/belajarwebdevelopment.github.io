@@ -460,6 +460,9 @@ p.ungu {
 #gantiQR {
     border: 1px solid #812aa3;
     margin-top: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    color : #FFFFF5;
 }
 
 .backToPrev {
