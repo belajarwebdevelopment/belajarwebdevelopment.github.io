@@ -349,6 +349,12 @@
                     init = 'page2';
                 });
 
+                $(".jumbo_page3").on("click", '#backToWtu', function() {
+                    $.mobile.changePage('#page2', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
+                });
+                
                 $(".next_uttp").on("click", function() {
                     if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
                         $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
@@ -358,7 +364,7 @@
                         return;
                     }
 
-                    const pattern1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\\\<\,\>\.\?\/]/;
+                    const pattern1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\/]/;
                     const pattern2 = /[a-z0-9]/i;
                     let result1 = pattern1.test(document.getElementById('Nama').value);
                     let result2 = pattern2.test(document.getElementById('Nama').value);
@@ -373,13 +379,16 @@
                     }
 
                     setPage3Button();
-                    $.mobile.changePage("#page3", {role : "dialog"});
+                    $.mobile.changePage("#page3", {allowSamePageTransition : true, role : "dialog"});
+                    history.pushState({pageUrl : 'page3'}, null, '#');
+                    init = 'page3';
 					$("#lat").val(Koordinat.latitude.toString().replace(".",","));
 					$("#long").val(Koordinat.longitude.toString().replace(".",","));
                     $(".jumbo_page3").html(`
                         <p>Lokasi : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
                         <hr class="my-4">
                         <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
+                        <p align="right"><a id="backToWtu" style='color : green; font-size : bold'><<< Kembali ke form wtu</a></p>
                     `);
 					$(".to_hide").attr('hidden', true);
                 });
@@ -556,7 +565,9 @@
 					btnLoading.classList.toggle('d-none');
 					console.log(respon.result);
 					let pesan = respon.msg;
-					$.mobile.changePage("#page5", {role:"dialog"});
+					$.mobile.changePage("#page5", {allowSamePageTransition : true, role:"dialog"});
+                    history.pushState({pageUrl : 'page5'}, null, '#');
+                    init = 'page5';
                     //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><li><a href=# class="add_data" id="add_uttp">Input UTTP Pedagang Yg Sama</a></li><li><a href=# class="add_data" id="ganti_pedagang">Ganti Pedagang</a></li><li><a href=# class="add_data" id="ganti_pasar">Ganti Pasar</a></li></p>');
                     //$(".msg_container_page5").html('<p>'+pesan+'<br><br>Klik menu di bawah ini utk memasukkan data lagi : <br><div class="alert alert-danger add_data" id="add_uttp" role="alert" style="background-color : #1d4e89; color : #FFFFFF;">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert" style="background-color : #FFB703; color : #000000;">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert" style="background-color : #00B2CA; color : #000000;">Ganti Pasar</div></p>');
                     if (respon.result === 'error') {
