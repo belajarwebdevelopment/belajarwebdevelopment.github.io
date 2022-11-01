@@ -458,10 +458,13 @@ p.ungu {
 }*/
 
 #gantiQR {
-    border: 1px solid #812aa3;
+    border: 1px solid #FFFFFF;
+    background-color: #204652;
     margin-top: 12px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 4px;
+    padding-right: 4px;
     color : #FFFFF5;
 }
 
