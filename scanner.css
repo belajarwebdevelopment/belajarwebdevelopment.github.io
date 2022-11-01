@@ -457,7 +457,7 @@ p.ungu {
     position: relative;
 }*/
 
-#gantiQR {
+.gantiQR {
     border: 1px solid #FFFFFF;
     background-color: #204652;
     margin-top: 12px;
@@ -468,7 +468,7 @@ p.ungu {
     color : #FFFFF5;
 }
 
-#gantiQR td {
+.gantiQR td {
     border-left : 1px solid #FFFFFF; 
     border-right : 1px solid #FFFFFF;
     border-bottom : 1px solid #FFFFFF;

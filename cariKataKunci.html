@@ -304,7 +304,7 @@
                             if (ubahQRCode.result === "success") {
                                 
                                 resultStr = `Ganti QRCode nya ${ubahQRCode.result} !<br>
-                                <table id='gantiQR'>
+                                <table class='gantiQR'>
                                 <tr>
                                     <td>ID </td><td>: ${ubahQRCode.dataAfter[barisKe][3]}</td>
                                 <tr>
@@ -325,7 +325,7 @@
                                 `;
                                 
                             } else {
-                                resultStr = `<table><tr><td style='background-color : #b3e7dc;'>${ubahQRCode}</td></tr><tr><td><button class='re_Scan'>Scan QRCode Lain</button></td></tr></table>`;
+                                resultStr = `<table class='gantiQR'><tr><td style='background-color : #b3e7dc;'>${ubahQRCode}</td></tr><tr><td><button class='re_Scan'>Scan QRCode Lain</button></td></tr></table>`;
                             }
 
                             tampilkanHasil2(container_hasil,resultStr);
