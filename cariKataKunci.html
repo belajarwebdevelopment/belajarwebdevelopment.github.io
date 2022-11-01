@@ -193,11 +193,11 @@
                 .then(resp => resp.json())
                 .then(resp => {
                     if (resp.result === "error") {
-                        throw "error";
+                        throw `Error 400 : ${resp.msg}`;
                     }
                     return resp;
                 })
-                .catch(e => 'Error on server or client : gagal mengganti dgn QRCode baru..');
+                .catch(e => `Error : Update QRCode Baru Gagal -> ${e}`);
 
                 /*
                 return new Promise((resolve, reject) => {

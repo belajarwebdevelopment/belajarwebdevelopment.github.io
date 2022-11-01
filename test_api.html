@@ -117,7 +117,7 @@
 			const webAppUrl13 = "https://script.google.com/macros/s/AKfycbzT2VX0ZR48CRKDe3-iP2Xk9z_otUFgxHkmMlqK4OCNleflZiVmBx_D983vmR8J9-WO/exec";
 
 			let nomorBaris = 12;
-			let newQRCode = 'cecek';
+			let newQRCode = 'cecekww2';
 			
 			fetch(webAppUrl13, {
 				method : 'POST',
@@ -125,15 +125,15 @@
             })
             .then(resp => resp.json())
             .then(resp => {
-				console.log(resp);
-				/*
+				
 				if (resp.result === "error") {
-					throw "error";
+					throw resp.msg;
 				}
-				return resp;
-				*/
+				console.log(resp);
+
+				
             })
-            .catch(e => 'Error on server or client : gagal mengganti dgn QRCode baru..');
+            .catch(e => console.log(`Error on server or client : gagal mengganti dgn QRCode baru.. : ${e}`));
 
         </script>
     </body>
