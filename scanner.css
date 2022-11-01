@@ -492,4 +492,20 @@ p.ungu {
     background-color: #FFFFFF;
 }
 
+.reScan {
+    border : 2px solid #FFFFFF;
+    padding: 5px 5px 5px 5px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #009B77;;
+}
+
+
+.reScan:active {
+    border : 2px solid #009B77;;
+    padding: 5px 5px 5px 5px;
+    color : #009B77;;
+    font-weight: 500;
+    background-color: #FFFFFF;
+}
 
