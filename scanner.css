@@ -468,6 +468,13 @@ p.ungu {
     color : #FFFFF5;
 }
 
+#gantiQR td {
+    border-left : 1px solid #FFFFFF; 
+    border-right : 1px solid #FFFFFF;
+    border-bottom : 1px solid #FFFFFF;
+    border-top : 1px solid #FFFFFF;    
+}
+
 .backToPrev {
     border : 2px solid #FFFFFF;
     padding: 5px 5px 5px 5px;
@@ -475,6 +482,7 @@ p.ungu {
     font-weight: 500;
     background-color: #ff3e33;
 }
+
 
 .backToPrev:active {
     border : 2px solid #ff3e33;
