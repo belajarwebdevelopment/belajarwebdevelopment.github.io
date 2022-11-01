@@ -386,16 +386,18 @@
                 if (e.target.classList.contains('itemUbahBtn')) {
                     mainScanProcess(barisKe);
                 }
-
-                if (e.target.classList.contains('reScan')) {
-                    alert('re Scan guys');
-                }    
             });
 
             //document.getElementById('prev').addEventListener('click',() => showExceptScanner());
             document.querySelector('.header').addEventListener('click', e => {
                 //alert(e.classList.contains('backToPrev'));
                 e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+
+
+                if (e.target.classList.contains('reScan')) {
+                    alert('re Scan guys');
+                }    
+
             })
             
             if (!localStorage.getItem('pasar')) {
