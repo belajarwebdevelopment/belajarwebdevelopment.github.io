@@ -325,7 +325,7 @@
                                 `;
                                 
                             } else {
-                                resultStr = `${ubahQRCode} <br><button class='reScan'>Scan QRCode Lain</button>`;
+                                resultStr = `${ubahQRCode} <table><tr><td><button class='reScan'>Scan QRCode Lain</button></td></tr></table>`;
                             }
 
                             tampilkanHasil2(container_hasil,resultStr);
@@ -387,7 +387,7 @@
                     mainScanProcess(barisKe);
                 }
 
-                if (e.target.classList.contains('itemUbahBtn')) {
+                if (e.target.classList.contains('reScan')) {
                     alert('re Scan guys');
                 }    
             });
