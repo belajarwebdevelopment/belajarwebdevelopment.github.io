@@ -492,7 +492,7 @@ p.ungu {
     background-color: #FFFFFF;
 }
 
-.reScan {
+.re_Scan {
     border : 2px solid #FFFFFF;
     padding: 5px 5px 5px 5px;
     color : #FFFFFF;
@@ -501,7 +501,7 @@ p.ungu {
 }
 
 
-.reScan:active {
+.re_Scan:active {
     border : 2px solid #009B77;;
     padding: 5px 5px 5px 5px;
     color : #009B77;;

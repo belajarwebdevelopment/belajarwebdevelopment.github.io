@@ -325,7 +325,7 @@
                                 `;
                                 
                             } else {
-                                resultStr = `${ubahQRCode} <table><tr><td><button class='reScan'>Scan QRCode Lain</button></td></tr></table>`;
+                                resultStr = `<table><tr><td style='background-color : #b3e7dc;'>${ubahQRCode}</td></tr><tr><td><button class='re_Scan'>Scan QRCode Lain</button></td></tr></table>`;
                             }
 
                             tampilkanHasil2(container_hasil,resultStr);
@@ -394,7 +394,7 @@
                 e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
 
 
-                if (e.target.classList.contains('reScan')) {
+                if (e.target.classList.contains('re_Scan')) {
                     alert('re Scan guys');
                 }    
 
