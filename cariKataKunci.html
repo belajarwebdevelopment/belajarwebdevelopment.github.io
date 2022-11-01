@@ -390,7 +390,7 @@
 
             //document.getElementById('prev').addEventListener('click',() => showExceptScanner());
             document.querySelector('.header').addEventListener('click', e => {
-                alert('Di klik!');
+                alert(e.classList.contains('backToPrev'));
                 //e.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
             })
             
