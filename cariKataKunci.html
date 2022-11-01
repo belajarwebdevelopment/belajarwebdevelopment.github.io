@@ -216,6 +216,11 @@
                 document.querySelector('.camContainer').hidden = true;
             }
 
+            function showScanner() {
+                document.querySelector('.camContainer').hidden === true ? document.querySelector('.camContainer').hidden = false : '';
+
+            }
+
             function hideExceptScanner(logic = true) {
                 document.querySelector('.penampilHasil').hidden = logic;
                 document.querySelector('.title').hidden = logic;
@@ -283,6 +288,7 @@
 			}
 
 			async function mainScanProcess(barisKe) {
+                showScanner();
 				let data = '';
 				const container_hasil = document.querySelector('.header');
                 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
