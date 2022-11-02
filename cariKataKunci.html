@@ -364,6 +364,10 @@
 				container_hasil.innerHTML = msg;
 			}
 
+            function addHighlight(id) {
+                document.getElementById(id).classList.add("highlighted");
+            }
+
 //############################################# - Main Program - ###############################################//
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
@@ -399,6 +403,7 @@
                 //e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
 
                 if (e.target.classList.contains('backToPrev')) {
+                    addHighlight(e.target.id);
                     showExceptScanner();                    
                 }
 
