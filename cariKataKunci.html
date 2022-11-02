@@ -369,6 +369,9 @@
                 document.getElementById(id).classList.add("highlighted");
             }
 
+            function ubahDisplayQrcodeLama(idElement, QRCodeBaru) {
+                document.getElementById(idElement).innerHTML = QRCodeBaru;
+            }
 //############################################# - Main Program - ###############################################//
             tombolCari.addEventListener('click',async () => {
                 let keyword = document.getElementById('katakunci').value;
@@ -409,6 +412,7 @@
                     let IDs = e.target.id.split("-");
                     alert(IDs[1]);
                     addHighlight(`div-${IDs[1]}`);
+                    ubahDisplayQrcodeLama(`qrcode-${IDs[1]}`,document.getElementById('newQRCode').value);
                     showExceptScanner();                    
                 }
 
