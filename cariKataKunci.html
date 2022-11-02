@@ -132,7 +132,7 @@
                                 <tr><td>Nama - Komoditi</td><td>:</td><td>${nama_komoditi}</td></tr>
                                 <tr><td>Pasar</td><td>:</td><td>${item[2]}</td></tr>
                                 <tr><td>Phone</td><td>:</td><td>${item[5]}</td></tr>
-                                <tr><td>QRCode</td><td>:</td><td>${item[1]}</td></tr>
+                                <tr><td>QRCode</td><td>:</td><td id='qrcode-${k}'>${item[1]}</td></tr>
                                 <tr><td>UTTP-Merk-Model</td><td>:</td><td>${uttp_merk_model}</td></tr>
                                 <tr><td>Tahun Tera</td><td>:</td><td>${item[13]}</td></tr>
                                 <tr><td></td><td></td><td></td></tr>
@@ -325,6 +325,7 @@
                                 </tr>
                                 <tr>    
                                     <td>New QRCode</td><td>: ${ubahQRCode.dataAfter[barisKe][1]}</td>
+                                    <input type='text' name='newQRCode' id='newQRCode' value='${ubahQRCode.dataAfter[barisKe][1]}' hidden readonly>
                                 </tr>
                                 <tr><td colspan='2' align='center'><button class='backToPrev' id='back-${barisKe}'>Kembali ke Halaman Pencarian</button></td></tr>
                                 </table>
@@ -403,6 +404,7 @@
                 //e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
 
                 if (e.target.classList.contains('backToPrev')) {
+                    alert(document.getElementById('newQRCode').value);
                     alert(e.target.id);
                     let IDs = e.target.id.split("-");
                     alert(IDs[1]);

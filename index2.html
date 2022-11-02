@@ -349,7 +349,7 @@
                     }
 
                     const pattern1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\/]/;
-                    const pattern2 = /[a-z0-9]/i;
+                    const pattern2 = /[a-z0-9/]/i;
                     let result1 = pattern1.test(document.getElementById('Nama').value);
                     let result2 = pattern2.test(document.getElementById('Nama').value);
                     console.log(result1);
