@@ -369,6 +369,10 @@
                 document.getElementById(id).classList.add("highlighted");
             }
 
+            function removeHighlight(className) {
+                document.getElementsByClassName(className)[0].classList.remove('highlighted');
+            }
+
             function ubahDisplayQrcodeLama(idElement, QRCodeBaru) {
                 document.getElementById(idElement).innerHTML = QRCodeBaru;
             }
@@ -407,10 +411,11 @@
                 //e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
 
                 if (e.target.classList.contains('backToPrev')) {
-                    alert(document.getElementById('newQRCode').value);
-                    alert(e.target.id);
+                    //alert(document.getElementById('newQRCode').value);
+                    //alert(e.target.id);
                     let IDs = e.target.id.split("-");
-                    alert(IDs[1]);
+                    //alert(IDs[1]);
+                    removeHighlight('highlighted');
                     addHighlight(`div-${IDs[1]}`);
                     ubahDisplayQrcodeLama(`qrcode-${IDs[1]}`,document.getElementById('newQRCode').value);
                     showExceptScanner();                    
