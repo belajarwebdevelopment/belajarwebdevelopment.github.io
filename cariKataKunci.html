@@ -415,7 +415,7 @@
                     //alert(e.target.id);
                     let IDs = e.target.id.split("-");
                     //alert(IDs[1]);
-                    removeHighlight('highlighted');
+                    removeHighlight("highlighted");
                     addHighlight(`div-${IDs[1]}`);
                     ubahDisplayQrcodeLama(`qrcode-${IDs[1]}`,document.getElementById('newQRCode').value);
                     showExceptScanner();                    
