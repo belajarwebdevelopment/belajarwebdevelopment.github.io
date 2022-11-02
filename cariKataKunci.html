@@ -387,7 +387,7 @@
             
             let tombolUbahQrcode = document.querySelector('.resultView'); 
             tombolUbahQrcode.addEventListener('click', async e => {
-                //alert('Ubah QRCode');
+                history.pushState({pageUrl : 'scanPage'}, null, '#');
                 let barisKe = e.target.id.split("-")[1].trim();
                 if (e.target.classList.contains('itemUbahBtn')) {
                     mainScanProcess(barisKe);
