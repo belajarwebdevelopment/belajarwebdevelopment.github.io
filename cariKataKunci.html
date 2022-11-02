@@ -387,7 +387,6 @@
             
             let tombolUbahQrcode = document.querySelector('.resultView'); 
             tombolUbahQrcode.addEventListener('click', async e => {
-                history.pushState({pageUrl : 'scanPage'}, null, '#');
                 let barisKe = e.target.id.split("-")[1].trim();
                 if (e.target.classList.contains('itemUbahBtn')) {
                     mainScanProcess(barisKe);
@@ -397,8 +396,11 @@
             //document.getElementById('prev').addEventListener('click',() => showExceptScanner());
             document.querySelector('.header').addEventListener('click', e => {
                 //alert(e.classList.contains('backToPrev'));
-                e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+                //e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
 
+                if (e.target.classList.contains('backToPrev')) {
+                    showExceptScanner();                    
+                }
 
                 if (e.target.classList.contains('re_Scan')) {
                     //alert(e.target.id);
