@@ -326,7 +326,7 @@
                                 <tr>    
                                     <td>New QRCode</td><td>: ${ubahQRCode.dataAfter[barisKe][1]}</td>
                                 </tr>
-                                <tr><td colspan='2' align='center'><button class='backToPrev' id='${barisKe}'>Kembali ke Halaman Pencarian</button></td></tr>
+                                <tr><td colspan='2' align='center'><button class='backToPrev' id='back-${barisKe}'>Kembali ke Halaman Pencarian</button></td></tr>
                                 </table>
                                 `;
                                 
@@ -404,6 +404,8 @@
 
                 if (e.target.classList.contains('backToPrev')) {
                     alert(e.target.id);
+                    let IDs = e.target.id.split("-");
+                    alert(IDs[1]);
                     //addHighlight(e.target.id);
                     //showExceptScanner();                    
                 }
