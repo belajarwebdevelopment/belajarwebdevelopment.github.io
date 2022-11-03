@@ -374,7 +374,9 @@
             function removeHighlight(className) {
                 console.log(className);
                 console.log(document.getElementsByClassName(className));
-                document.getElementsByClassName(className)[0].classList.remove('highlighted');
+                if (document.getElementsByClassName(className)[0] != undefined) {
+                    document.getElementsByClassName(className)[0].classList.remove('highlighted');
+                }
             }
 
             function ubahDisplayQrcodeLama(idElement, QRCodeBaru) {
