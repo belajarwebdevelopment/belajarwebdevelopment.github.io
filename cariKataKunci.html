@@ -50,10 +50,44 @@
                     <video id="video" autoplay></video>
                 </div>
             </div>
+            <div class="editDiv" hidden>
+                <h4>Edit data WTU/Pedagang</h4>
+                <div class="editDiv-container">Edit disini ya</div>
+            </div>
         </div>
 		<footer>
 
 		</footer>
+        <script>
+            class Formulir {
+                constructor(name = 'myForm', kelas = 'thisForm', inputType = [], values = [], label = []) {
+                    this.name = name;
+                    this.kelas = kelas;
+                    this.inputType = inputType;
+                    this.values = values;
+                    this.label = label;
+                    this.jenisInput = {
+                        t : 'text',
+                        s : 'select',
+                        p : 'password'
+                    }
+                }
+
+
+                buildFormulir() {
+                    let Str = `<form id='${this.name}' class='${this.kelas}'>`;
+
+                    for (let k in this.inputType) {
+                        Str += `<div style='display : block;'><label for='${this.label[k]}' class='${this.kelas}-label'>${this.label[k]}</label>`;
+                        Str += `<input style='display : block;' type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
+                    }
+                    Str += `</form>`;
+                    return Str;
+                }
+            }
+
+        </script>
+
 		<script language="javascript">
             function sendGetData(keyword) {
                                
@@ -227,6 +261,15 @@
                 document.querySelector('.title').hidden = logic;
                 document.querySelector('.kontainer').hidden = logic;
                 document.querySelector('.scanner').hidden = !logic;
+                document.querySelector('.editDiv').hidden = logic;
+            }
+
+            function hideExceptEditor(logic = true) {
+                document.querySelector('.penampilHasil').hidden = logic;
+                document.querySelector('.title').hidden = logic;
+                document.querySelector('.kontainer').hidden = logic;
+                document.querySelector('.scanner').hidden = logic;
+                document.querySelector('.editDiv').hidden = !logic;
             }
 
             function showExceptScanner(logic = true) {
@@ -234,6 +277,15 @@
                 document.querySelector('.title').hidden = !logic;
                 document.querySelector('.kontainer').hidden = !logic;
                 document.querySelector('.scanner').hidden = logic;
+                document.querySelector('.editDiv').hidden = !logic;
+            }
+
+            function showExceptEditor(logic = true) {
+                document.querySelector('.penampilHasil').hidden = !logic;
+                document.querySelector('.title').hidden = !logic;
+                document.querySelector('.kontainer').hidden = !logic;
+                document.querySelector('.scanner').hidden = !logic;
+                document.querySelector('.editDiv').hidden = logic;
             }
 
             function btnLoading(rowNum) {
@@ -415,6 +467,7 @@
             tombolUbahQrcode.addEventListener('click', async e => {
                 if (e.target.classList.contains('itemEditBtn')) {
                     alert(`Edit the data : ${e.target.id}`);
+                    showExceptEditor();
                 }
             });
 

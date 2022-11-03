@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>TEST CLASS</title>
+        <!--<script></script>-->
+    </head>
+	
+    <body id="tubuh">
+        <script>
+            class Formulir {
+                constructor(name = 'myForm', kelas = 'thisForm', inputType = [], values = [], label = []) {
+                    this.name = name;
+                    this.kelas = kelas;
+                    this.inputType = inputType;
+                    this.values = values;
+                    this.label = label;
+                    this.jenisInput = {
+                        t : 'text',
+                        s : 'select',
+                        p : 'password'
+                    }
+                }
+
+
+                buildFormulir() {
+                    let Str = `<form id='${this.name}' class='${this.kelas}'>`;
+
+                    for (let k in this.inputType) {
+                        Str += `<div style='display : block;'><label for='${this.label[k]}' class='${this.kelas}-label'>${this.label[k]}</label>`;
+                        Str += `<input style='display : block;' type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
+                    }
+                    Str += `</form>`;
+                    return Str;
+                }
+            }
+
+            const form1 = new Formulir('formEdit', 'edit', ['t','t','t','t'], ['Praditya',40,'29 Sept 1982','Penera Ahli Pertama'], ['Nama', 'Usia', 'TTL', 'Pekerjaan']);
+            console.log(form1.buildFormulir());
+            document.getElementById('tubuh').innerHTML = form1.buildFormulir();
+        </script>
+    </body>
+</html>
