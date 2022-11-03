@@ -453,7 +453,7 @@ p.ungu {
     border-radius: 2px;
 }
 
-.itemUbahBtn{
+.itemUbahBtn:active{
     border : 2px solid #FFFFFF;
     float : left;
     position: relative;
@@ -467,7 +467,7 @@ p.ungu {
     border-radius: 2px;
 }
 
-.itemEditBtn {
+.itemEditBtn:active {
     border : 2px solid #FFFFFF;
     float : left;
     position: relative;
