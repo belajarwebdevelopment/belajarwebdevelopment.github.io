@@ -367,6 +367,8 @@
 
             function addHighlight(id) {
                 document.getElementById(id).classList.add("highlighted");
+                location.href = `#${id}`;
+
             }
 
             function removeHighlight(className) {
