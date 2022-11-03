@@ -425,6 +425,62 @@ p.ungu {
     border-radius: 2px;
 }
 
+.itemEditBtn {
+    border : 2px solid #0F5D5E;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #0F5D5E;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemUpdateBtn:active {
+    border : 2px solid #FFFFFF;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #284D79;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemUbahBtn{
+    border : 2px solid #FFFFFF;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #ff3e33;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemEditBtn {
+    border : 2px solid #FFFFFF;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #0F5D5E;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
 #namaLokasi {
     color: #083378;
 }

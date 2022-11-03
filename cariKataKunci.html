@@ -138,6 +138,7 @@
                                 <tr><td></td><td></td><td></td></tr>
                             </table>
                             <button type='submit' class='itemUbahBtn itemUbahBtn${k}' id='ubah-${k}'>Ubah QRCode</button>
+                            <button type='submit' class='itemEditBtn itemEditBtn${k}' id='edit-${k}'>Edit Data WTU</button>
                             <button type='submit' class='itemUpdateBtn itemUpdateBtn${k}' id=${k}>Tandai Tera</button>
                         </div>
                     `;
@@ -411,16 +412,17 @@
                 }
             });
 
+            tombolUbahQrcode.addEventListener('click', async e => {
+                if (e.target.classList.contains('itemEditBtn')) {
+                    alert('Edit the data');
+                }
+            });
+
             //document.getElementById('prev').addEventListener('click',() => showExceptScanner());
             document.querySelector('.header').addEventListener('click', e => {
-                //alert(e.classList.contains('backToPrev'));
-                //e.target.classList.contains('backToPrev') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
 
                 if (e.target.classList.contains('backToPrev')) {
-                    //alert(document.getElementById('newQRCode').value);
-                    //alert(e.target.id);
                     let IDs = e.target.id.split("-");
-                    //alert(IDs[1]);
                     removeHighlight("highlighted");
                     addHighlight(`div-${IDs[1]}`);
                     ubahDisplayQrcodeLama(`qrcode-${IDs[1]}`,document.getElementById('newQRCode').value);
@@ -428,7 +430,6 @@
                 }
 
                 if (e.target.classList.contains('re_Scan')) {
-                    //alert(e.target.id);
                     let barisKe = e.target.id;
                     mainScanProcess(barisKe);
                 }    
