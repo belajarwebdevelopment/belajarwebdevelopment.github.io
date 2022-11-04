@@ -499,10 +499,11 @@ p.ungu {
 }
 
 .judul-edit {
-    background-color: #FFFFFF;
-    color : #1A7270;
+    background-color: #387999;
+    color : #FFFFFF;
     font-family: 'Ubuntu', sans-serif;
-    border : 4px solid #387999;
+    /*border : 4px solid #387999;*/
+    display : block;
 }
 
 .camContainer {
