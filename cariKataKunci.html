@@ -60,9 +60,9 @@
 		</footer>
         <script>
             class Formulir {
-                constructor(name = 'myForm', kelas = 'thisForm', inputType = [], values = [], label = []) {
+                constructor(name = 'myForm',/* kelas = 'thisForm',*/ inputType = [], values = [], label = []) {
                     this.name = name;
-                    this.kelas = kelas;
+                    //this.kelas = kelas;
                     this.inputType = inputType;
                     this.values = values;
                     this.label = label;
@@ -74,8 +74,8 @@
                 }
 
 
-                buildFormulir() {
-                    let Str = `<form id='${this.name}' class='${this.kelas}'>`;
+                buatFormulir() {
+                    let Str = `<form id='${this.name}' class='${this.name}-Class'>`;
 
                     for (let k in this.inputType) {
                         Str += `<div style='display : block;'><label for='${this.label[k]}' class='${this.kelas}-label'>${this.label[k]}</label>`;
@@ -466,8 +466,16 @@
 
             tombolUbahQrcode.addEventListener('click', async e => {
                 if (e.target.classList.contains('itemEditBtn')) {
-                    alert(`Edit the data : ${e.target.id}`);
+                    //alert(`Edit the data : ${e.target.id}`);
                     hideExceptEditor();
+                    let tipeInput = ['t','t','t'];
+                    let tabel = document.getElementById(`div-${e.target.id.split("-")[1]}`).children;
+                    let wtuVal = tabel[0].children[0].children[0].children[2].innerText.split(" - ")[0];
+                    let komoditiVal = tabel[0].children[0].children[0].children[2].innerText.split(" - ")[1];
+                    let hpVal = tabel[0].children[0].children[2].children[2].innerText;
+                    let nilai = [wtuVal, komoditiVal, hpVal];
+                    let label = ['WTU', 'Komoditi', 'HP'];
+                    const newForm = new Formulir('editWtuForm',tipeInput,nilai,label);
                 }
             });
 
