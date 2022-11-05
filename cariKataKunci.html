@@ -52,7 +52,9 @@
             </div>
             <div class="editDiv" hidden>
                 <h4 class="judul-edit">Edit data WTU/Pedagang</h4>
-                <div class="editDiv-container">Edit disini ya</div>
+                <div class="editDiv-container"> 
+                    
+                </div>
             </div>
         </div>
 		<footer>
@@ -60,12 +62,13 @@
 		</footer>
         <script>
             class Formulir {
-                constructor(name = 'myForm',/* kelas = 'thisForm',*/ inputType = [], values = [], label = []) {
+                constructor(name = 'myForm',/* kelas = 'thisForm',*/ inputType = [], values = [], label = [], buttonLabel = 'Submit') {
                     this.name = name;
                     //this.kelas = kelas;
                     this.inputType = inputType;
                     this.values = values;
                     this.label = label;
+                    this.buttonLabel = buttonLabel;
                     this.jenisInput = {
                         t : 'text',
                         s : 'select',
@@ -78,11 +81,18 @@
                     let Str = `<form id='${this.name}' class='${this.name}-Class'>`;
 
                     for (let k in this.inputType) {
-                        Str += `<div style='display : block;'><label for='${this.label[k]}' class='${this.kelas}-label'>${this.label[k]}</label>`;
-                        Str += `<input style='display : block;' type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
+                        Str += `<div><label style='text-align : left;width : 100%; padding-top : 7px;margin-bottom : 0px;' for='${this.label[k]}' class='${this.kelas}-label'>${this.label[k]}</label>`;
+                        Str += `<input style='display : block; width : 95%; color : #1E80C1; margin-bottom : 5px;' type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
                     }
+                    Str += this.#buatTombol();
                     Str += `</form>`;
                     return Str;
+                }
+
+                #buatTombol() {
+                    let Str = '';
+                    Str = `<button type='submit' class='${this.name}-Sbbutton'>${this.buttonLabel}</button>`;
+                    return Str
                 }
             }
 
@@ -475,7 +485,8 @@
                     let hpVal = tabel[0].children[0].children[2].children[2].innerText;
                     let nilai = [wtuVal, komoditiVal, hpVal];
                     let label = ['WTU', 'Komoditi', 'HP'];
-                    const newForm = new Formulir('editWtuForm',tipeInput,nilai,label);
+                    const editWtuForm = new Formulir('editWtuForm',tipeInput,nilai,label,'Update');
+                    document.querySelector('.editDiv-container').innerHTML = editWtuForm.buatFormulir();
                 }
             });
 
@@ -500,7 +511,7 @@
             if (!localStorage.getItem('pasar')) {
                 let strParam = `?sendMeBack=yes`;
                 //window.open('http://locahost/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
-                window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                //window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
                 //window.open('E:/xampp/htdocs/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
             } 
             document.getElementById('namaLokasi').innerHTML = localStorage.getItem('pasar');

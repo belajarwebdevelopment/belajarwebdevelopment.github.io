@@ -78,9 +78,9 @@ td {
     margin : auto auto;
     padding-right : 0px;
     padding-left: 0px;
-    display : flex;
     padding-top: 10px;
     padding-bottom: 20px;   
+    position: relative;
 }
 
 .editData {
@@ -580,6 +580,26 @@ p.ungu {
 .editDiv-container {
     border : 2px solid #52B2C0;
     display: block;
+    padding: 10px;
 }
 
+#editWtuForm {
+    font-family: 'Ubuntu', sans-serif;
+    color : #1E80C1;
+
+}
+
+.editWtuForm-sbButton {
+    background-color:#387999;
+    border : 2px solid #F98125;
+    color : #FFFFFF;
+    margin-top: 10px;
+}
+
+.editWtuForm-sbButton:active {
+    background-color:#FFFFFF;
+    border : 2px solid #387999;
+    color : #387999;
+    margin-top: 10px;
+}
 
