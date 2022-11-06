@@ -150,7 +150,7 @@
                                 
                                 if (this.#checkPattern(regexStrs,elem.value, operand)) {
                                     alert(`Warning!!!. Isian [${elem.value}] yang Anda ketik mengandung karakter yang tidak umum untuk sebuah nama. Isian ini hanya bisa menerima inputan alfabet a sd z, angka 0 sd 9 atau tanda '/'. Silahkan cek kembali inputan Anda ya...`);
-                                    elem.value = "";
+                                    elem.value = elem.value.slice(0, elem.value.length-1);
                                 } else {
                                     return;
                                 }
