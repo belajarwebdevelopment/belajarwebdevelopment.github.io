@@ -593,13 +593,29 @@ p.ungu {
     background-color:#387999;
     border : 2px solid #F98125;
     color : #FFFFFF;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .editWtuForm-sbButton:active {
     background-color:#FFFFFF;
     border : 2px solid #387999;
     color : #387999;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
+form.editWtuForm-Class input {
+    font-style: italic;
+    display : block; 
+    width : 95%; 
+    color : #1E80C1; 
+    margin-bottom : 5px; 
+    outline : none;
+    border : 2px solid #15202B; 
+}
+
+form.editWtuForm-Class input:focus {
+    background-color: #15202B;
+    border : 2px solid #B2BEB5;
+    color : #FFFFFF;
+    outline : none;
+}

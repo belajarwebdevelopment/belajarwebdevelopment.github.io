@@ -82,7 +82,7 @@
 
                     for (let k in this.inputType) {
                         Str += `<div><label style='text-align : left;width : 100%; padding-top : 7px;margin-bottom : 0px;' for='${this.label[k]}' class='${this.kelas}-label'>${this.label[k]}</label>`;
-                        Str += `<input style='display : block; width : 95%; color : #1E80C1; margin-bottom : 5px;' type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
+                        Str += `<input type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
                     }
                     Str += this.#buatTombol();
                     Str += `</form>`;
@@ -94,6 +94,11 @@
                     Str = `<button type='submit' class='${this.name}-Sbbutton'>${this.buttonLabel}</button>`;
                     return Str
                 }
+/*
+                filterInput() {
+
+                }
+*/                
             }
 
         </script>
