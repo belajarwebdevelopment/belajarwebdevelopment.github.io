@@ -9,6 +9,28 @@
 	
     <body id="tubuh">
         <script>
+            let testStr = prompt('Masukkan string yg diuji : ');
+            pola1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/;
+            pola2 = /[a-z0-9/]/i;
+            regexStrs = {
+                regexStr1 : {
+                    pattern : pola1,
+                    condition : true
+                },
+                regexStr2 : {
+                    pattern : pola2,
+                    condition : false
+                }
+            };
+            let logic1 = [];
+            let result = false;
+            Object.keys(regexStrs).forEach(key => {
+                logic1.push(regexStrs[key]['pattern'].test(testStr) === regexStrs[key]['condition']);
+                result = regexStrs[key]['pattern'].test(testStr) === regexStrs[key]['condition'] || result;
+            });
+
+        </script>
+        <!--<script>
             class Formulir {
                 constructor(name = 'myForm', kelas = 'thisForm', inputType = [], values = [], label = []) {
                     this.name = name;
@@ -40,5 +62,6 @@
             console.log(form1.buildFormulir());
             document.getElementById('tubuh').innerHTML = form1.buildFormulir();
         </script>
+    -->
     </body>
 </html>

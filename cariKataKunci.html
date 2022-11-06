@@ -72,7 +72,8 @@
                     this.jenisInput = {
                         t : 'text',
                         s : 'select',
-                        p : 'password'
+                        p : 'password',
+                        n : 'number'
                     }
                 }
 
@@ -81,7 +82,7 @@
                     let Str = `<form id='${this.name}' class='${this.name}-Class'>`;
 
                     for (let k in this.inputType) {
-                        Str += `<div><label style='text-align : left;width : 100%; padding-top : 7px;margin-bottom : 0px;' for='${this.label[k]}' class='${this.kelas}-label'>${this.label[k]}</label>`;
+                        Str += `<div><label for='${this.label[k]}' class='${this.name}-label'>${this.label[k]}</label>`;
                         Str += `<input type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
                     }
                     Str += this.#buatTombol();
@@ -94,11 +95,71 @@
                     Str = `<button type='submit' class='${this.name}-Sbbutton'>${this.buttonLabel}</button>`;
                     return Str
                 }
-/*
-                filterInput() {
 
+                inputFilter(elem, triggerEvent, regexStr, condition) {
+
+                    switch(triggerEvent) {
+                        case 'keyup':
+                            elem.addEventListener('keyup', () => {
+                                let karakter = elem.value.charAt(elem.value.length-1);
+                                if (regexStr.test(karakter) === condition) {
+                                    return;
+                                } else {
+                                    alert(`Karakter [${elem.value.charAt(elem.value.length-1)}] yang Anda ketik bukan angka. Isian ini hanya bisa menerima inputan angka 0 sd 9 atau tanda '-' jika ingin dikosongkan`);
+                                    elem.value = elem.value.slice(0, elem.value.length-1);
+                                }
+                            });
+                        break;
+
+                        case 'click':
+                            return true;
+                        break;
+                    }    
+
+                }    
+
+                
+                #checkPattern(regexStrings, testStr, operand) {
+                    let logic1 = [];
+                    let result = false;
+                    Object.keys(regexStrings).forEach(key => {
+                        logic1.push(regexStrings[key]['pattern'].test(testStr) === regexStrings[key]['condition']);
+                        switch(operand) {
+                            case 'or' :
+                                result = (regexStrings[key]['pattern'].test(testStr) === regexStrings[key]['condition']) || result;                            
+                            break;
+
+                            case 'and' :
+                                result = (regexStrings[key]['pattern'].test(testStr) === regexStrings[key]['condition']) && result;                                                        
+                            break;
+                        }
+
+                    });
+                    
+                    return result;
                 }
-*/                
+
+                inputFilters(elem, triggerEvent, regexStrs = {}, operand) {
+    
+                    switch(triggerEvent) {
+                        case 'keyup':
+                            //alert('test');
+                            
+                            elem.addEventListener('keyup', () => {
+                                //alert(this.#checkPattern(regexStrs,elem.value, operand));
+                                
+                                if (this.#checkPattern(regexStrs,elem.value, operand)) {
+                                    alert(`Warning!!!. Isian [${elem.value}] yang Anda ketik mengandung karakter yang tidak umum untuk sebuah nama. Isian ini hanya bisa menerima inputan alfabet a sd z, angka 0 sd 9 atau tanda '/'. Silahkan cek kembali inputan Anda ya...`);
+                                    elem.value = "";
+                                } else {
+                                    return;
+                                }
+                                
+                            })
+                            
+                        break;
+                    }
+                }
             }
 
         </script>
@@ -492,6 +553,19 @@
                     let label = ['WTU', 'Komoditi', 'HP'];
                     const editWtuForm = new Formulir('editWtuForm',tipeInput,nilai,label,'Update');
                     document.querySelector('.editDiv-container').innerHTML = editWtuForm.buatFormulir();
+                    const pola = /[0-9]|-|\s/g;
+                    editWtuForm.inputFilter(document.getElementById('HP'),'keyup',pola,true);
+                    const polaObj = {
+                        pola1 : {
+                            pattern : /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/,
+                            condition : true
+                        },
+                        pola2 : {
+                            pattern : /[a-z0-9/]/i,
+                            condition : false
+                        }
+                    }
+                    editWtuForm.inputFilters(document.getElementById('WTU'), 'keyup', polaObj, 'or')
                 }
             });
 

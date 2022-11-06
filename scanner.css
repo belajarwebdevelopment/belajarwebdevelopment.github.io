@@ -619,3 +619,10 @@ form.editWtuForm-Class input:focus {
     color : #FFFFFF;
     outline : none;
 }
+
+form.editWtuForm-Class label{
+    text-align : left;
+    width : 100%; 
+    padding-top : 7px;
+    margin-bottom : 0px;
+}
