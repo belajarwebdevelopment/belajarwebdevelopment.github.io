@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-
+       
     </head>
     <body>
 		<div class="topMenu">
@@ -32,8 +32,8 @@
                     </ul>
                 </article>
                 Masukkan kata kunci : <br>
-                <input type="text" name="katakunci" id="katakunci" width="90%">
-                <button type="submit" class="cari">Cari</button>
+                <input type="text" name="katakunci" id="katakunci" width="90%" data-role="none">
+                <button type="submit" class="cari" data-role="none">Cari</button>
                 <button type="button" class="button" hidden>
                     <span class="button__text">Loading</span>
                 </button>
@@ -57,9 +57,54 @@
                 </div>
             </div>
         </div>
+
+        <dialog id="favDialog">
+            <h4>Update WTU?</h4>
+            <form method="dialog">
+                <p>Apakah anda yakin mengupdate data WTU?<br>
+                <span id="birugelap">Sekali Anda menekan tombol 'Confirm', maka data WTU akan otomatis terupdate.</span><br>
+                <span id="gold">Anda tidak yakin, silahkan tekan tombol 'Cancel'.</span> </p>
+                <button id="confirmBtn" value="default">Confirm</button>
+                <button id="cancelBtn" value="cancel">Cancel</button>
+            </form>
+        </dialog>
+
+
 		<footer>
 
 		</footer>
+        <script>
+            //const updateButton = document.querySelector('.editWtuForm-Sbbutton');
+            const favDialog = document.getElementById('favDialog');
+            const confirmBtn = favDialog.querySelector('#confirmBtn');
+
+            // If a browser doesn't support the dialog, then hide the
+            // dialog contents by default.
+            if (typeof favDialog.showModal !== 'function') {
+                favDialog.hidden = true;
+                /* a fallback script to allow this dialog/form to function
+                    for legacy browsers that do not support <dialog>
+                    could be provided here.
+                */
+            }
+            // "Update details" button opens the <dialog> modally
+            document.querySelector('.editDiv-container').addEventListener('click', (e) => {
+                if (e.target.classList.contains('editWtuForm-Sbbutton')) {
+                    //alert('test');
+                    if (typeof favDialog.showModal === "function") {
+                        favDialog.showModal();
+                    } else {
+                        outputBox.value = "Sorry, the <dialog> API is not supported by this browser.";
+                    }
+
+                }
+            });
+            
+            // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+            favDialog.addEventListener('close', () => {
+                alert(`${favDialog.returnValue} button clicked - ${(new Date()).toString()}`);
+            });
+        </script>
         <script>
             class Formulir {
                 constructor(name = 'myForm',/* kelas = 'thisForm',*/ inputType = [], values = [], label = [], buttonLabel = 'Submit') {
@@ -85,8 +130,9 @@
                         Str += `<div><label for='${this.label[k]}' class='${this.name}-label'>${this.label[k]}</label>`;
                         Str += `<input type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
                     }
-                    Str += this.#buatTombol();
+                    //Str += this.#buatTombol();
                     Str += `</form>`;
+                    Str += this.#buatTombol();
                     return Str;
                 }
 

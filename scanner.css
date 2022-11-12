@@ -626,3 +626,48 @@ form.editWtuForm-Class label{
     padding-top : 7px;
     margin-bottom : 0px;
 }
+
+#favDialog {
+    font-family: 'Ubuntu', sans-serif;
+    color :#FFFFFF;
+    outline : 4px dashed #032A49;
+    background-color: #387999;
+}
+
+#favDialog button {
+    background-color: #032A49;
+    color : #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    border-left: none;
+    border-top: none;
+
+}
+
+#favDialog button:active {
+    border-left: 2px solid #FFFFFF;
+    border-top: 2px solid #FFFFFF;
+    border-right: none;
+    border-bottom: none;
+}
+
+#favDialog #cancelBtn {
+    background-color: #CB9821;
+    color : #FFFFFF;
+}
+
+#favDialog #gold {
+    background-color: #CB9821;
+
+}
+
+#favDialog #birugelap {
+    background-color: #032A49;
+
+}
+
+#favDialog h4 {
+    border-bottom: 4px solid #FFFFFF;
+    padding-bottom: 7px;
+    margin-bottom: 14px;
+}
