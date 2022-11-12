@@ -63,8 +63,8 @@
             <form method="dialog">
                 <p>Apakah anda yakin mengupdate data WTU?<br>
                 <span id="birugelap">Sekali Anda menekan tombol 'Confirm', maka data WTU akan otomatis terupdate.</span><br>
-                <span id="gold">Anda tidak yakin, silahkan tekan tombol 'Cancel'.</span> </p>
-                <button id="confirmBtn" value="default">Confirm</button>
+                <span id="gold">Jika Anda tidak yakin, silahkan tekan tombol 'Cancel'.</span> </p>
+                <button id="confirmBtn" value="confirm">Confirm</button>
                 <button id="cancelBtn" value="cancel">Cancel</button>
             </form>
         </dialog>
@@ -82,15 +82,10 @@
             // dialog contents by default.
             if (typeof favDialog.showModal !== 'function') {
                 favDialog.hidden = true;
-                /* a fallback script to allow this dialog/form to function
-                    for legacy browsers that do not support <dialog>
-                    could be provided here.
-                */
             }
             // "Update details" button opens the <dialog> modally
             document.querySelector('.editDiv-container').addEventListener('click', (e) => {
                 if (e.target.classList.contains('editWtuForm-Sbbutton')) {
-                    //alert('test');
                     if (typeof favDialog.showModal === "function") {
                         favDialog.showModal();
                     } else {
@@ -102,8 +97,15 @@
             
             // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
             favDialog.addEventListener('close', () => {
-                alert(`${favDialog.returnValue} button clicked - ${(new Date()).toString()}`);
+                favDialog.returnValue === 'confirm' ? konfirm() : '';
+                //alert(`${favDialog.returnValue} button clicked - ${(new Date()).toString()}`);
             });
+
+            // fungsi utk handle confirm
+            function konfirm() {
+                showExceptEditor();
+                document.querySelector('.editDiv-container').innerHTML = "";
+            }
         </script>
         <script>
             class Formulir {
@@ -392,6 +394,14 @@
                 document.querySelector('.kontainer').hidden = logic;
                 document.querySelector('.scanner').hidden = logic;
                 document.querySelector('.editDiv').hidden = !logic;
+            }
+
+            function showExceptEditor(logic = true) {
+                document.querySelector('.penampilHasil').hidden = !logic;
+                document.querySelector('.title').hidden = !logic;
+                document.querySelector('.kontainer').hidden = !logic;
+                document.querySelector('.scanner').hidden = !logic;
+                document.querySelector('.editDiv').hidden = logic;
             }
 
             function showExceptScanner(logic = true) {
