@@ -620,6 +620,13 @@ form.editWtuForm-Class input:focus {
     outline : none;
 }
 
+form.editWtuForm-Class input:disabled {
+    background-color: grey;
+    border : 2px solid darkgrey;
+    color : #FFFFFF;
+    outline : none;
+}
+
 form.editWtuForm-Class label{
     text-align : left;
     width : 100%; 

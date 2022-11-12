@@ -103,6 +103,8 @@
 
             // fungsi utk handle confirm
             function konfirm() {
+                let urlWebApp = '';
+
                 showExceptEditor();
                 document.querySelector('.editDiv-container').innerHTML = "";
             }
@@ -215,7 +217,9 @@
 		<script language="javascript">
             function sendGetData(keyword) {
                                
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbwjZfnxH3YT9KSxuSd_culu_iIYPdbVQrpWlyVAfn-9PFrKJERJuF01z8SlLrYj2Vku/exec";
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbwjZfnxH3YT9KSxuSd_culu_iIYPdbVQrpWlyVAfn-9PFrKJERJuF01z8SlLrYj2Vku/exec";
+
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbxlEzVu6UiFyLHtOkl9j8033or0U1eVF1PpT9SFMgf2oAJdpp-sARZes05SgEZza_oD/exec";
 
                 let h = new Headers();
                 h.set('Content-Type','text/plain;charset=UTF-8');
@@ -275,6 +279,10 @@
                 let str = '';
                 let i = 1;
 
+                function spanning(konten) {
+                    return `<span style='background-color :#387999; padding-bottom : 4px; padding-top : 3px;color : #FFFFFF;'>${konten} - due to privacy</span>`;
+                }
+
                 for (let k in datas) {
                 
                     i % 2 == 0 ? className = 'even' : className = 'odd';
@@ -289,7 +297,7 @@
                             <table class='theTable'>
                                 <tr><td>Nama - Komoditi</td><td>:</td><td>${nama_komoditi}</td></tr>
                                 <tr><td>Pasar</td><td>:</td><td>${item[2]}</td></tr>
-                                <tr><td>Phone</td><td>:</td><td>${item[5]}</td></tr>
+                                <tr><td>Phone</td><td>:</td><td>${item[5] === 'number_is_hidden' ? spanning(item[5]) : item[5]}</td></tr>
                                 <tr><td>QRCode</td><td>:</td><td id='qrcode-${k}'>${item[1]}</td></tr>
                                 <tr><td>UTTP-Merk-Model</td><td>:</td><td>${uttp_merk_model}</td></tr>
                                 <tr><td>Tahun Tera</td><td>:</td><td>${item[13]}</td></tr>
@@ -396,14 +404,6 @@
                 document.querySelector('.editDiv').hidden = !logic;
             }
 
-            function showExceptEditor(logic = true) {
-                document.querySelector('.penampilHasil').hidden = !logic;
-                document.querySelector('.title').hidden = !logic;
-                document.querySelector('.kontainer').hidden = !logic;
-                document.querySelector('.scanner').hidden = !logic;
-                document.querySelector('.editDiv').hidden = logic;
-            }
-
             function showExceptScanner(logic = true) {
                 document.querySelector('.penampilHasil').hidden = !logic;
                 document.querySelector('.title').hidden = !logic;
@@ -416,7 +416,7 @@
                 document.querySelector('.penampilHasil').hidden = !logic;
                 document.querySelector('.title').hidden = !logic;
                 document.querySelector('.kontainer').hidden = !logic;
-                document.querySelector('.scanner').hidden = !logic;
+                document.querySelector('.scanner').hidden = logic;
                 document.querySelector('.editDiv').hidden = logic;
             }
 
@@ -621,7 +621,8 @@
                             condition : false
                         }
                     }
-                    editWtuForm.inputFilters(document.getElementById('WTU'), 'keyup', polaObj, 'or')
+                    editWtuForm.inputFilters(document.getElementById('WTU'), 'keyup', polaObj, 'or');
+                    document.getElementById('HP').value === "number_is_hidden - due to privacy" ? document.getElementById('HP').disabled = true : ''; 
                 }
             });
 
