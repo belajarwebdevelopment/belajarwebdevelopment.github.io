@@ -12,6 +12,10 @@
        
     </head>
     <body>
+        <div class="topOftop" id="loaderContainer" hidden>
+            <div class="cloader"></div>
+        </div>
+
 		<div class="topMenu">
 			<nav id="navigasi">
 				<a class="active" href="https://belajarwebdevelopment.github.io/index.html">Menu Utama</a> | 
@@ -64,7 +68,7 @@
                 <p>Apakah anda yakin mengupdate data WTU?<br>
                 <span id="birugelap">Sekali Anda menekan tombol 'Confirm', maka data WTU akan otomatis terupdate.</span><br>
                 <span id="gold">Jika Anda tidak yakin, silahkan tekan tombol 'Cancel'.</span> </p>
-                <button id="confirmBtn" value="confirm">Confirm</button>
+                <button class="confirmBtn" value="confirm">Confirm</button>
                 <button id="cancelBtn" value="cancel">Cancel</button>
             </form>
         </dialog>
@@ -76,7 +80,7 @@
         <script>
             //const updateButton = document.querySelector('.editWtuForm-Sbbutton');
             const favDialog = document.getElementById('favDialog');
-            const confirmBtn = favDialog.querySelector('#confirmBtn');
+            const confirmBtn = favDialog.querySelector('.confirmBtn');
 
             // If a browser doesn't support the dialog, then hide the
             // dialog contents by default.
@@ -87,6 +91,7 @@
             document.querySelector('.editDiv-container').addEventListener('click', (e) => {
                 if (e.target.classList.contains('editWtuForm-Sbbutton')) {
                     if (typeof favDialog.showModal === "function") {
+                        confirmBtn.id = `cfm-${e.target.id.split("-")[1]}`;
                         favDialog.showModal();
                     } else {
                         outputBox.value = "Sorry, the <dialog> API is not supported by this browser.";
@@ -96,17 +101,36 @@
             });
             
             // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
-            favDialog.addEventListener('close', () => {
-                favDialog.returnValue === 'confirm' ? konfirm() : '';
-                //alert(`${favDialog.returnValue} button clicked - ${(new Date()).toString()}`);
+            favDialog.addEventListener('close', async () => {
+                if (favDialog.returnValue === 'confirm') {
+                    document.getElementById('loaderContainer').hidden = false;
+                    let response = await konfirm();
+                    console.log(response);
+                    document.getElementById('loaderContainer').hidden = true;
+                }
             });
 
             // fungsi utk handle confirm
-            function konfirm() {
-                let urlWebApp = '';
+            async function konfirm() {
+                let urlWebApp = 'https://script.google.com/macros/s/AKfycbwBVGbv_ekbHkO1zzHluQMC8o6HygYOUuY42oHwvdqZSEUiWewY4bbrPxaX941VqxHK/exec';
 
-                showExceptEditor();
-                document.querySelector('.editDiv-container').innerHTML = "";
+                const formdata = document.querySelectorAll('#editWtuForm input');
+                const barisKe = document.querySelector('.confirmBtn').id.split("-")[1];
+                let theData = Array.from(formdata).reduce((acc, input) => ({...acc,[input.id]: input.value}),{});
+                theData.barisKe = barisKe;
+                console.log(theData);
+                
+                return fetch(urlWebApp, {
+                    method : 'POST',
+                    body : JSON.stringify(theData)
+                })
+                .then(respon => respon.json())
+                .then(respon => respon)
+                .catch(e => e);
+
+                //return x;
+                //showExceptEditor();
+                //document.querySelector('.editDiv-container').innerHTML = "";
             }
         </script>
         <script>
@@ -623,6 +647,7 @@
                     }
                     editWtuForm.inputFilters(document.getElementById('WTU'), 'keyup', polaObj, 'or');
                     document.getElementById('HP').value === "number_is_hidden - due to privacy" ? document.getElementById('HP').disabled = true : ''; 
+                    document.querySelector(`.${editWtuForm.name}-Sbbutton`).id = `sb-${e.target.id.split("-")[1]}`;
                 }
             });
 
