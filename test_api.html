@@ -114,6 +114,7 @@
 
 			utama();
 			*/
+			/*
 			const webAppUrl13 = "https://script.google.com/macros/s/AKfycbzT2VX0ZR48CRKDe3-iP2Xk9z_otUFgxHkmMlqK4OCNleflZiVmBx_D983vmR8J9-WO/exec";
 
 			let nomorBaris = 12;
@@ -134,7 +135,23 @@
 				
             })
             .catch(e => console.log(`Error on server or client : gagal mengganti dgn QRCode baru.. : ${e}`));
-
+*/
+				const webAppUrl3 = "https://script.google.com/macros/s/AKfycby4OIreO26AF-nXCsIem66a-jsyBwoo9p6YSvXQn-5jHpoVX7OAy49x_CPKEugQyxwe/exec";                
+                
+                fetch(webAppUrl3, {
+                    method : 'POST',
+                    body : JSON.stringify({'nomorBaris' : '1414', 'newQRCode' : 'suoiss91x'})
+                })
+                .then(resp => resp.json())
+                .then(resp => {
+                    if (resp.result === "error") {
+                        throw `Error 400 : ${resp.msg}`;
+                    }
+                    //return resp;
+					console.log(resp);
+                })
+				.catch(e => console.log(e));
+                //.catch(e => `<span style='color : red;'>Error : Update QRCode Baru Gagal -> </span><br><span style='color : red;'>${e}</span>`);
         </script>
     </body>
 </html>

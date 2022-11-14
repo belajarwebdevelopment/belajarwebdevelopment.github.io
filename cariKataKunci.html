@@ -350,8 +350,10 @@
             }
 
             function sendUpdateTera(nomorBaris) {
-                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbwH8p27fMICiKfnJD0myvvIg1-hir6PHHcNZ-JSyQbZJOywjydWNarWyM8_VnFaS8Rx/exec";
-
+                //const webAppUrl2 = "https://script.google.com/macros/s/AKfycbwH8p27fMICiKfnJD0myvvIg1-hir6PHHcNZ-JSyQbZJOywjydWNarWyM8_VnFaS8Rx/exec";
+                
+                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbxvq57-PEMidvtCX22AulZ6kTg1eiouaFuu1znkZg3PciaB6Dxfkchm9zhBaumj7G-N/exec";
+                
                 return fetch(webAppUrl2, {
                     method : 'POST',
                     body : JSON.stringify({'nomorBaris' : nomorBaris})
@@ -360,25 +362,16 @@
                 .then(resp => resp)
                 .catch(e => e);
 
-                /*
-                return new Promise((resolve, reject) => {
-                    fetch(webAppUrl2, {
-                        method : 'POST',
-                        body : JSON.stringify({'nomorBaris' : nomorBaris})
-                    })
-                    .then(resp => resp.json())
-                    .then(resp => resolve(resp))
-                    .catch(e => reject(e));
-                });
-                */
             }
 
             function sendNewQRCode(nomorBaris, newQRCode) {
                 //Latest version 26 Okt 2022
                 //const webAppUrl3 = "https://script.google.com/macros/s/AKfycby_uNKxXq0DS5wqa8KoUWPnrF6jTgHEXFG5F58t3qvKasfd_ot5epBNX3l4b5xV2C0v/exec";
                 
-                const webAppUrl3 = "https://script.google.com/macros/s/AKfycbzT2VX0ZR48CRKDe3-iP2Xk9z_otUFgxHkmMlqK4OCNleflZiVmBx_D983vmR8J9-WO/exec";
+                //const webAppUrl3 = "https://script.google.com/macros/s/AKfycbzT2VX0ZR48CRKDe3-iP2Xk9z_otUFgxHkmMlqK4OCNleflZiVmBx_D983vmR8J9-WO/exec";
 
+                const webAppUrl3 = "https://script.google.com/macros/s/AKfycby4OIreO26AF-nXCsIem66a-jsyBwoo9p6YSvXQn-5jHpoVX7OAy49x_CPKEugQyxwe/exec";                
+                
                 return fetch(webAppUrl3, {
                     method : 'POST',
                     body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
@@ -588,6 +581,10 @@
                 if (document.getElementsByClassName(className)[0] != undefined) {
                     document.getElementsByClassName(className)[0].classList.remove('highlighted');
                 }
+            }
+
+            function ubahDisplayWTU(containerId) {
+
             }
 
             function ubahDisplayQrcodeLama(idElement, QRCodeBaru) {
