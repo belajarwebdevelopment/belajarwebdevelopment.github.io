@@ -107,6 +107,11 @@
                     let response = await konfirm();
                     console.log(response);
                     document.getElementById('loaderContainer').hidden = true;
+                    showExceptEditor();
+                    document.querySelector('.editDiv-container').innerHTML = "";
+                    removeHighlight("highlighted");
+                    addHighlight(`div-${document.querySelector('.confirmBtn').id.split("-")[1]}`);
+
                 }
             });
 
@@ -128,9 +133,6 @@
                 .then(respon => respon)
                 .catch(e => e);
 
-                //return x;
-                //showExceptEditor();
-                //document.querySelector('.editDiv-container').innerHTML = "";
             }
         </script>
         <script>
