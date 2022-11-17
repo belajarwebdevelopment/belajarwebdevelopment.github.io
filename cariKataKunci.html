@@ -185,7 +185,7 @@
                             elem.addEventListener('keyup', e => {
                                 const reg = /[0-9]|-|\s/g;
 
-                                if (this.#cekIfTrue(reg, e.key) || elem.value === '') {
+                                if (this.#cekIfTrue(reg, elem.value.charAt(elem.value.length-1)) || elem.value === '') {
                                     return;
                                 } else {
                                     alert(`Karakter [${elem.value.charAt(elem.value.length-1)}] yang Anda ketik bukan angka. Isian ini hanya bisa menerima inputan angka 0 sd 9 atau tanda '-' jika ingin dikosongkan`);
