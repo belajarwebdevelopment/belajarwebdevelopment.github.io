@@ -174,13 +174,18 @@
                     return Str
                 }
 
-                inputFilter(elem, triggerEvent, regexStr, condition) {
+                #cekIfTrue(regStr, str) {
+                    return regStr.test(str);
+                }
+
+                inputFilter(elem, triggerEvent) {
 
                     switch(triggerEvent) {
                         case 'keyup':
-                            elem.addEventListener('keyup', () => {
-                                let karakter = elem.value.charAt(elem.value.length-1);
-                                if (regexStr.test(karakter) === condition) {
+                            elem.addEventListener('keyup', e => {
+                                const reg = /[0-9]|-|\s/g;
+
+                                if (this.#cekIfTrue(reg, e.key) || elem.value === '') {
                                     return;
                                 } else {
                                     alert(`Karakter [${elem.value.charAt(elem.value.length-1)}] yang Anda ketik bukan angka. Isian ini hanya bisa menerima inputan angka 0 sd 9 atau tanda '-' jika ingin dikosongkan`);
@@ -635,7 +640,7 @@
                     const editWtuForm = new Formulir('editWtuForm',tipeInput,nilai,label,'Update');
                     document.querySelector('.editDiv-container').innerHTML = editWtuForm.buatFormulir();
                     const pola = /[0-9]|-|\s/g;
-                    editWtuForm.inputFilter(document.getElementById('HP'),'keyup',pola,true);
+                    editWtuForm.inputFilter(document.getElementById('HP'),'keyup');
                     const polaObj = {
                         pola1 : {
                             pattern : /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/,
