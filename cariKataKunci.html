@@ -105,13 +105,16 @@
                 if (favDialog.returnValue === 'confirm') {
                     document.getElementById('loaderContainer').hidden = false;
                     let response = await konfirm();
-                    console.log(response);
                     document.getElementById('loaderContainer').hidden = true;
                     showExceptEditor();
                     document.querySelector('.editDiv-container').innerHTML = "";
                     removeHighlight("highlighted");
-                    addHighlight(`div-${document.querySelector('.confirmBtn').id.split("-")[1]}`);
-
+                    let baris = document.querySelector('.confirmBtn').id.split("-")[1];
+                    addHighlight(`div-${baris}`);
+                    let choosenDiv = document.getElementsByClassName('highlighted')[0].children[0].children[0].children[0].children;
+                    let choosenDiv2 = document.getElementsByClassName('highlighted')[0].children[0].children[0].children[2].children;
+                    choosenDiv[2].innerText = response.dataAfter[baris][3]+' - '+response.dataAfter[baris][16];
+                    choosenDiv2[2].innerHTML = spanning(response.dataAfter[baris][5]);
                 }
             });
 
@@ -127,7 +130,7 @@
                 const barisKe = document.querySelector('.confirmBtn').id.split("-")[1];
                 let theData = Array.from(formdata).reduce((acc, input) => ({...acc,[input.id]: input.value}),{});
                 theData.barisKe = barisKe;
-                console.log(theData);
+                //console.log(theData);
                 
                 return fetch(urlWebApp, {
                     method : 'POST',
@@ -309,14 +312,15 @@
                 tombolLoading.classList.remove('button--loading');
             }
 
+            function spanning(konten) {
+                    return `<span style='background-color :#387999; padding-bottom : 4px; padding-top : 3px;color : #FFFFFF;'>${konten} - due to privacy</span>`;
+            }
+
             function tampilkanHasil(datas) {
                 let kontenDiv = document.querySelector('.resultView');
                 let str = '';
                 let i = 1;
 
-                function spanning(konten) {
-                    return `<span style='background-color :#387999; padding-bottom : 4px; padding-top : 3px;color : #FFFFFF;'>${konten} - due to privacy</span>`;
-                }
 
                 for (let k in datas) {
                 
@@ -585,8 +589,8 @@
             }
 
             function removeHighlight(className) {
-                console.log(className);
-                console.log(document.getElementsByClassName(className));
+                //console.log(className);
+                //console.log(document.getElementsByClassName(className));
                 if (document.getElementsByClassName(className)[0] != undefined) {
                     document.getElementsByClassName(className)[0].classList.remove('highlighted');
                 }
