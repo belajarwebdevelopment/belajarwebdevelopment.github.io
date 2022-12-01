@@ -1,0 +1,54 @@
+#add_uttp, #ganti_pedagang, #ganti_pasar {
+    font-family: 'Roboto', sans-serif;;
+    font-size: 14px;
+    font-weight: 500;
+    color : #FFFFFF;
+    background-color: #332421;
+    border-top: 4px solid #FF7F00;
+}
+
+.msg_container_page5 {
+    background-color: #E7E1D2;
+}
+
+
+.topMenu {
+    background-color: #083378;
+    top : 0;
+    overflow: hidden;
+    position: fixed;
+    width : 100%;
+    height : 50px;
+    display : block;
+    /*float :right;*/
+    color : #f2f2f2;
+    padding-top: 7px;
+    font-size: 20px;
+}
+
+
+.topMenu a {
+    color: #f2f2f2;
+    text-align: center;
+    padding : 7px 4px 7px 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.topMenu a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+#navigasi {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    position: relative;
+}
+
+button.pilihPsr {
+    background-color: #FF6700;
+    color : #FFFFFF;
+}
+

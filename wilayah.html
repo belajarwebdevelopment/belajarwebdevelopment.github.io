@@ -1,0 +1,694 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+        <link rel="stylesheet" href="wilayah.css">
+        <!-- Roboto Font -->    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">   
+        <!-- END OF ROBOTO -->   
+    </head>
+    <body>
+        <!--
+        <div class="topMenu">
+            <nav id="navigasi">
+                | 
+                <a class="active menuUtama" href=#>Menu Utama</a> |
+                <a class="active cariByKatakunci" href=#>Cari dgn Katakunci</a> |    
+                <a class="active scanTandaiTera" href=#>Scan & Tandai Tera</a> |
+            </nav>
+        </div>
+
+        -->
+        <!--<div class="main">-->
+        <form id="pendataanForm">
+            
+        <div class="container py-2 my-5 border" data-role="page" id="page1">
+            <div class="row mx-1 gx-5 mb-3 justify-content-center py-1 px-2" style="background-color: #2f96b2;">
+                <h4 style="color:#FFFFFF;">PILIH KELURAHAN</h4>
+            </div>
+            <div class="row mx-1 gx-5 mb-3">
+                <div class="col">
+                    <select class="form-control" id="pilih_psr" name="pilih_psr">
+                        <!--
+                        <option selected>Daftar Kelurahan</option>
+                        <option >Pasar Nusukan</option>
+                        <option >Pasar Legi</option>
+                        <option >Pasar Gede Hardjonagoro</option>
+                        <option >Pasar Harjodaksino</option>
+						<option >Pasar Turisari</option>
+						<option >Pasar Penumping</option>
+						<option >Pasar Joglo</option>
+						<option >Pasar Mojosongo</option>
+						<option >Pasar Singosaren</option>
+						<option >Pasar Klewer</option>
+						<option >Pasar Besi</option>
+						<option >Pasar Ayam</option>
+						<option >Pasar Jongke</option>
+						<option >Pasar Jurug</option>
+						<option >Pasar Purwosari</option>
+						<option >Pasar Sibela</option>
+						<option >Pasar Kliwon</option>
+						<option >Pasar Sangkrah</option>
+						<option >Pasar Besi Gilingan</option>
+						<option >Pasar Sidomulyo</option>
+						<option >Pasar Kadipolo</option>
+						<option >Pasar Tanggulsari</option>
+						<option >Pasar Depok</option>
+						<option >Pasar Gading</option>
+						<option >Pasar Tanggul</option>
+						<option >Pasar Ngemplak</option>
+						<option >Pasar Rejosari</option>
+						<option >Pasar Jebres</option>
+						<option >Pasar Ngumbuk</option>
+						<option >Pasar Bangunharjo</option>
+						<option >Pasar Sidodadi</option>
+						<option >Pasar Kembang</option>
+						<option >Pasar Pucangsawit</option>
+                        -->
+                      </select>                   
+                </div>
+            </div>
+            <div class="row mx-1">
+                <div class="col text-center">
+                    <button type="button" class="btn pilihPsr" data-role="none">PILIH</button>
+                </div>
+            </div>
+        </div>
+        <div class="container py-5 my-5 border" data-role="page" id="page2">
+            <div class="jumbotron jumbo_page2">
+            </div>
+            <div class="row my-4 mx-4 gx-5 mb-3 py-2 px-2" style="background-color: #4682BF;">
+                <h4 style="color:#FFFFFF;">DATA PEDAGANG/WTU</h4>
+            </div>
+            <div class="row mx-1 gx-5 mb-3">
+                <div class="col">
+                    <label for="Nama" class="form-label">WTU / Nama Usaha</label>
+                    <input type="text" class="form-control" id="Nama" name="Nama" placeholder="">            
+                </div>
+            </div>
+            <div class="row mx-1 gx-5 mb-3">
+                <div class="col">
+                    <label for="komoditi" class="form-label">Jenis Usaha</label>
+                    <!--<input type="text" class="form-control" id="komoditi" name="komoditi"--> placeholder="">            
+                </div>
+            </div>
+            <div class="row mx-1 gx-5 mb-3" hidden>
+                <div class="col">
+                    <label for="los" class="form-label">Alamat</label>
+                    <input type="text" class="form-control" name="los" id="los" placeholder="" value="-">            
+                </div>
+            </div>
+            <div class="row mx-1 gx-5 mb-3">
+                <div class="col">
+                    <label for="hp" class="form-label">Nomor Handphone Pedagang</label>
+                    <input type="text" class="form-control" name="hp" id="hp" placeholder="">            
+                </div>
+            </div>
+            <div class="row mx-1 gx-5 mb-3">
+                <div class="col text-center pb-2">
+                    <button type="button" class="btn btn-info next_uttp" data-role="none">Selanjutnya ...</button>
+                </div>
+            </div>
+        </div>        
+        <div class="container py-5 my-5 border" data-role="page" id="page3">
+            <div class="jumbotron jumbo_page3">
+            </div>
+            <div class="row mx-1 gx-5 mb-3">
+                <div class="col-md-6 py-2">
+                    <div class="mr-1 px-2 py-2 border">
+                        <div class="mb-3 px-2 py-2 bg-primary">
+                            <h4 style="color : #FFFFFF;">UTTP 1</h4>
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="uttp1" class="form-label">Jenis UTTP</label>
+                            <select class="form-control pilih_uttp" name="uttp1" id="uttp1">
+                                <option value="">Pilih jenis UTTP</option>
+                                <option value="TM - 25 kg - 20 g">TM - 25 kg</option>
+                                <option value="TM - 10 kg - 10 g">TM - 10 kg</option>
+                                <option value="TM - 5 kg - 5 g">TM - 5 kg</option>
+                                <option value="TM - 3 kg - 3 g">TM - 3 kg</option>
+                                <option value="TS - 500 kg - 100 g">TS - 500 kg</option>
+                                <option value="TS - 300 kg - 100 g">TS - 300 kg</option>
+                                <option value="TS - 150 kg - 100 g">TS - 150 kg</option>
+                                <option value="DL - 110 kg - 100 g">DL - 110 kg</option>
+                                <option value="DL - 50 kg - 100 g">DL - 50 kg</option>
+                                <option value="DL - 25 kg - 100 g">DL - 25 kg</option>
+                                <option value="N - 1000 g - 500 mg">N - 1000 g</option>
+                                <option value="N - 500 g - 250 mg">N - 500 g</option>
+                                <option value="N - 250 g - 125 mg">N - 250 g</option>
+                                <option value="N - 100 g - 50 mg">N - 100 g</option>
+                                <option value="N - 50 g - 25 mg">N - 50 g</option>
+                                <option value="TE - - ">TE</option>
+                                <option value="TP - - ">TP</option>
+                              </select>                        
+                        </div>
+                        <div class="mb-3 to_hide" hidden><label for="kap1" class="form-label">Kapasitas</label>
+                            <input type="text" class="form-control" name="kap1" id="kap1" placeholder="" readonly>     
+                        </div>        
+                        <div class="mb-3 to_hide" hidden>
+                            <label for="d1" class="form-label">Dayabaca</label>
+                            <input type="text" class="form-control" name="d1" id="d1" placeholder="" readonly> 
+                        </div>      
+                        <div class="mb-3 to_hide" hidden>
+                            <label for="merk1" class="form-label">Merek (Khusus TE dan TP)</label>
+                            <input type="text" class="form-control" name="merk1" id="merk1" placeholder="" readonly> 
+                        </div>      
+                        <div class="mb-3 to_hide" hidden>
+                            <label for="model1" class="form-label">Model (Khusus TE dan TP)</label>
+                            <input type="text" class="form-control" name="model1" id="model1" placeholder="" readonly> 
+                        </div>
+                        <div class="mb-3">
+                            <label for="sn" class="form-label">Serial Number (optional)</label>
+                            <input type="text" class="form-control" name="sn" id="sn" placeholder="">
+                        </div>                        
+                        <div class="mb-3">
+                            <label for="tahunTera1" class="form-label">Tahun Tera</label>
+                            <select class="form-control" name="tahunTera1" id="tahunTera1">
+                                <!--<option val="">Pilih Tahun Tera</option>
+                                <option val="2021">2021</option>
+                                <option val="2020">2020</option>
+                                <option val="2019">2019</option>
+                                <option val="2018">2018</option>
+                                <option val="2017">2017</option>
+                                <option val="2016">2016</option>-->
+                            </select> 
+                        </div>
+                        <div class="mb-3">
+                            <label for="qr_code" class="form-label">Kode QR</label>
+                            <input type="text" class="form-control" name="qr_code" id="qr_code" placeholder="" readonly>
+                        </div>
+                    </div>      
+                </div>
+            </div>
+            <div>
+                <div class="col text-center pb-2">
+					<input type="hidden" class="form-control" name="lat" id="lat">
+					<input type="hidden" class="form-control" name="long" id="long">
+                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none">Pair with QRCode</button>
+					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" hidden>Submit</button>
+					<button class="btn btn-info form-control d-none" id="loading_data" type="button" disabled data-role="none">
+						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+						Loading...
+					</button>
+                </div>
+            </div>                
+        </div>        
+        <div class="container py-5 my-5 border" data-role="page" id="page4">
+            <div class="alert alert-danger msg_container" role="alert">
+            </div>
+        </div>
+        <div class="container py-5 my-5 border" data-role="page" id="page5">
+            <div class="alert alert-primary msg_container_page5" role="alert">
+            </div>
+        </div>
+        <div class="container py-5 my-5 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
+            <div class="alert alert-primary msg_container_page6" role="alert" style="background-color : #028A0F;">
+            </div>
+            <div class="d-flex align-items-center text-success">
+                <strong>Memindai QRCode...</strong>
+                <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+            </div>
+            <video id="video" autoplay style="max-width : 100%; max-height : 100%;"></video>
+        </div>
+        </form>
+        <!--</div>-->    
+
+        <script>
+            const UrlKelurahan = "https://script.google.com/macros/s/AKfycbxxWf-43TUg5XvBOes_r89pANhi6fCOQgqhF_SwEmjJMWSIvv9BSDEsX2ZCpUGQDMRg/exec";
+
+            fetch(UrlKelurahan)
+                .then(datas => datas.json())
+                .then(datas => {
+                    let str = '';
+                    if (datas.result === 'success') {
+                        for (let k of datas.data) {
+                            
+                            str += `<option value='${k[0]} - ${k[1]}'>${k[0]}</option>`;
+                        }
+                        document.getElementById('pilih_psr').innerHTML = str;
+                    }
+                });
+        </script>
+
+        <script>
+            var init = '';
+            function preventBackPress(popstateRespon) {
+                console.log(`preveBackPress : ${popstateRespon}`);
+                $.mobile.changePage(`#${popstateRespon}`, {allowSamePageTransition : true, role : "dialog"});
+                history.pushState({pageUrl : popstateRespon}, null, '#');
+                init = popstateRespon;
+                return false;
+            }
+
+            window.addEventListener('popstate', e => {
+                if (init === e.state.pageUrl) {
+                    preventBackPress(e.state.pageUrl);
+                } else {
+                    preventBackPress(init);
+                }
+                
+            });
+        </script>
+        
+        <script language="javascript">
+            const ListOfTahunTera = () => {
+
+                let URLWebApp = "https://script.google.com/macros/s/AKfycbxsBsrVC-cH4II9aFfMqu3b_FogrohtzBcJiBo2EacfSrKKat9krzLzP-_r7DE3N9zf/exec";
+
+				fetch(URLWebApp).then(d => d.json()).then(d => {
+                    //let nowYear = d.data;
+                    let selectId = document.getElementById('tahunTera1');
+                    let optionElemen = document.createElement('option');
+                    optionElemen.value = '';
+                    optionElemen.innerHTML = '';
+                    selectId.appendChild(optionElemen);
+
+                    for (let year of d.data) {
+                        let optionElemen = document.createElement('option');
+                        optionElemen.value = year;
+                        optionElemen.innerHTML = year;
+                        selectId.appendChild(optionElemen);
+                    }
+				});	
+            }
+
+            ListOfTahunTera();
+        </script>
+
+        <script language="javascript">
+            $(function() {
+                var Psr = '';
+                var Koordinat = {};
+                $(".pilihPsr").on('click', function() {
+                    Psr = $("#pilih_psr").children("option:selected").text();
+                    if (Psr == "Daftar Pasar") {
+                        $.mobile.changePage("#page4", {allowSamePageTransition : true, role : "dialog"});
+                        $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a id='kembali'> << Kembali</a>`);
+                        history.pushState({pageUrl : 'page4'}, null, '#');
+                        init = 'page4';
+                        return false;
+                    }
+
+                    localStorage.setItem('pasar', Psr);
+
+                    const urlParam = new URLSearchParams(window.location.search);
+                    urlParam.has('sendMeBack') ? window.open('https://belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+
+                    //urlParam.has('sendMeBack') ? window.open('http://localhost/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+                    
+                    //urlParam.has('sendMeBack') ? window.open('E:/xampp/htdocs/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+                    $.mobile.changePage("#page2", {allowSamePageTransition : true, role : "dialog"});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
+                    $(".jumbo_page2").html(`
+                        <h1 class="display-5">Halo, Apa Kabar!</h1>
+                        <p>Anda sedang berada di <b>`+Psr+`</b>.<p id="posisi"></p>  
+                        <hr class="my-4">
+                        <p>Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
+                        <p align="right"><a id="gantiPsr">ganti pasar</a></p>
+                    `);
+
+                    const watcId = navigator.geolocation.watchPosition(position => {
+                        $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>');
+                        Koordinat = {latitude : position.coords.latitude, longitude : position.coords.longitude};
+                    });
+
+                    //Cek apakah inputan nomor HP adalah number
+                    $("#hp").on('keyup', function() {
+                        pola = /[0-9]|-|\s/g;
+                        karakter = $(this).val().charAt($(this).val().length-1);
+                        if (pola.test(karakter) || $(this).val() == '') {
+                            return;
+                        } else {
+                            alert("Maaf, hanya bisa memasukkan angka dan tanda '-'");
+                            $(this).val($(this).val().slice(0,$(this).val().length-1));
+                        }
+                    });
+                });
+				
+				$(".msg_container").on("click", '#kembali', function() {
+                    $.mobile.changePage('#page1', {role : 'dialog'});
+                });
+
+                $(".msg_container").on("click", '#kembali2', function() {
+                    $.mobile.changePage('#page2', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
+                });
+
+                $(".msg_container").on("click", '#kembali3', function() {
+                    $.mobile.changePage('#page2', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
+                });
+
+                $(".jumbo_page3").on("click", '#backToWtu', function() {
+                    $.mobile.changePage('#page2', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page2'}, null, '#');
+                    init = 'page2';
+                });
+
+                $(".msg_container_page6").on("click", '#backToPage3', function() {
+                    $.mobile.changePage('#page3', {allowSamePageTransition : true, role : 'dialog'});
+                    history.pushState({pageUrl : 'page3'}, null, '#');
+                    init = 'page3';
+                });
+
+                $(".next_uttp").on("click", function() {
+                    if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
+                        $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
+                        history.pushState({pageUrl : 'page4'}, null, '#');
+                        init = 'page4';
+                        $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama pedagang/wtu, los pasar, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a id='kembali2'><< Kembali</a></p>`);
+                        return;
+                    }
+
+                    const pattern1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/;
+                    const pattern2 = /[a-z0-9/]/i;
+                    let result1 = pattern1.test(document.getElementById('Nama').value);
+                    let result2 = pattern2.test(document.getElementById('Nama').value);
+                    console.log(result1);
+                    console.log(result2);
+                    if (result1 === true || result2 === false) {
+                        $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
+                        history.pushState({pageUrl : 'page4'}, null, '#');
+                        init = 'page4';
+                        $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama Pedagang/WTU wajib terdiri dari huruf dan/atau angka, spasi, ', -, _ serta tidak boleh hanya spasi saja.<br></p><p><a id='kembali3'><< Kembali</a></p>`);
+                        return;
+                    }
+
+                    setPage3Button();
+                    $.mobile.changePage("#page3", {allowSamePageTransition : true, role : "dialog"});
+                    history.pushState({pageUrl : 'page3'}, null, '#');
+                    init = 'page3';
+					$("#lat").val(Koordinat.latitude.toString().replace(".",","));
+					$("#long").val(Koordinat.longitude.toString().replace(".",","));
+                    $(".jumbo_page3").html(`
+                        <p>Lokasi : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
+                        <hr class="my-4">
+                        <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
+                        <p align="right"><a id="backToWtu" style='color : green; font-size : bold'><<< Kembali ke form wtu</a></p>
+                    `);
+					$(".to_hide").attr('hidden', true);
+                });
+
+                $(".jumbo_page2").on("click","#gantiPsr", function() {
+                    $("#pendataanForm").trigger('reset');
+                    $.mobile.changePage("#page1", {role : 'dialog'});
+                });
+            });
+        </script>
+
+        <script language="javascript">
+            var setPage3Button = function() {
+                document.querySelector("#entry_the_data").hidden = true;
+                document.querySelector("#pair_the_data").hidden = false;
+            }
+
+            var resetFormDataWTU = function() {
+                $("#hp").val('');
+                //$("#los").val('');
+				$("#los").val('-');
+                $("#Nama").val('');
+				$("#komoditi").val('');
+            }
+
+            var resetFormAll = function() {
+                $("#pendataanForm").trigger('reset');
+            }
+
+            var setInputForm = function(Index, kap, d, state) {
+                $("#kap"+Index).val(kap).attr('readonly', state);   
+                $("#d"+Index).val(d).attr('readonly', state);   
+                $("#merk"+Index).attr('readonly', state);
+                $("#model"+Index).attr('readonly', state);
+                if (state == true) {
+                    $("#tahunTera"+Index).focus();
+                } else {
+                    $("#kap"+Index).focus();
+                }
+            } 
+
+            var resetFormUTTP_v2 = function(ids) {
+                $("#uttp1").val('').trigger('change');
+                $("#tahunTera1").val('').trigger('change');
+                let arr = ["kap","d","merk","model"]
+                for (i=0;i<arr.length;i++) {
+                    $("#"+arr[i]+ids).val("").attr('readonly', true);
+                }
+                $("#qr_code").val("");
+                $("#sn").val("");
+            }
+
+            var resetFormUTTP = function(id) {
+                let arr = ["kap","d","merk","model"]
+                for (i=0;i<arr.length;i++) {
+                    $("#"+arr[i]+id).val("");
+                }
+                $("#qr_code").val("");
+                $("#sn").val("");
+                $("#tahunTera1").val('').trigger('change');
+            }
+			
+			var ShowhideSomeInput = function(state) {
+				$(".to_hide").attr('hidden', state);
+			}
+			
+            $(function() {
+                $(".pilih_uttp").on('change', function() {
+                    let this_Index = $(this)[0].id.charAt($(this)[0].id.length-1);
+                    setInputForm(this_Index,'','',false);
+                    resetFormUTTP(this_Index);
+					ShowhideSomeInput(false);
+                    let theString = $(this).children("option:selected").val().split("-");
+                    if (theString[0].trim() != 'TE' && theString[0].trim() != 'TP' && $(this).children("option:selected").val() != '') {
+                        let kap = theString[1].trim();
+                        let d = theString[2].trim();
+                        setInputForm(this_Index,kap,d,true);
+						ShowhideSomeInput(true);
+                    }
+                });
+
+                $("#pair_the_data").on('click', function() {
+                    if ($("#uttp1 :selected").text() == "" || $("#uttp1 :selected").text() == "Pilih jenis UTTP") {
+						alert("Proses pindai QRCode Tidak Bisa. UTTP belum dipilih. Silahkan pilih UTTP dahulu");
+						return false;
+					}
+				
+                    if ($("#tahunTera1 :selected").text() == "" || $("#tahunTera1 :selected").text() == "Pilih Tahun Tera") {
+						alert("Proses pindai QRCode Tidak Bisa. Tahun tera belum diisi. Silahkan isi terlebih dahulu");
+						return false;
+					}
+                    document.querySelector("#video").style.border = "none";
+                    $.mobile.changePage("#page6", {allowSamePageTransition : true, role : "dialog"});
+                    history.pushState({pageUrl : 'page6'}, null, '#');
+                    init = 'page6';
+                    $(".msg_container_page6").html(`<a id='backToPage3' style='color : #FFFFFF;'><< Kembali</a>`);
+                    siapkanKamera();
+
+                });
+
+                $("#entry_the_data").on('click', function() {
+
+                    siapkanData();
+
+                });
+
+            });
+        </script>
+		
+		<script language="javascript">
+			/*
+			function getData() {
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
+				
+				fetch(webAppUrl).then(d => d.json()).then(d => {
+						console.log(d[0].Nama);
+				});
+				
+				//fetch(webAppUrl).then(response => console.log('success...!',response));	
+			}
+			*/	
+
+			function sendData(dataObj) {
+				//const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
+				//const webAppUrl = "https://script.google.com/macros/s/AKfycbwAxx-LIDnXI-7ZiBOfXmH13DaZPKIsfcM3gPLeP8U_n_ch-jCeZr76C_jfAJfcJD3-Kw/exec";
+
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycby3NDiq_WlAgi4sn6HCBx65rsCs_MaE9iXZuOMH6pfYNYuW_TSo1UgbpcbqeDCowkEz/exec";
+                
+				//The_Latest_23_Okt_2022 
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbybIvx7T5ccM9ZIU2X70KZ_m642OLbuo0VEw_NvDRuFm7_R6_4/exec";
+
+                //The Latest 26 Nov 2022
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbw6ntPnirWsttfbYrO8CuyJyXhv1_HBxW_ddzKYAvRpBJTK_2sJgb9sFQiNhRB6-tuE/exec";
+
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5C_LQQUlPAiRtNKmeOrcKFWk2HRolOdLqeIItvYhAcsyu30wpSHiRcL-4dGb03eL/exec";
+
+                //The_Latest_16_04_2022 
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbwzbs4hThHTqQ6GZyscFqFWM_u02oBWoftsSEKVXojjcthPztuJ0p-noW4lOG7XRHayvg/exec";
+                
+				//const webAppUrl = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
+                
+            
+                const btnKirim = document.getElementById('entry_the_data');
+				const btnLoading = document.getElementById('loading_data');
+				btnKirim.classList.toggle('d-none');
+				btnLoading.classList.toggle('d-none');
+                /*
+                fetch(webAppUrl,{
+                    method : 'GET'
+                }).then(result => result.json()).then(result => {
+                    alert(result[0].tahun);
+                });
+                */
+				fetch(webAppUrl,{
+					method : 'POST',
+					body : JSON.stringify(dataObj)
+				}).then(respon => respon.json()).then(respon => {
+					btnKirim.classList.toggle('d-none');
+					btnLoading.classList.toggle('d-none');
+					console.log(respon.result);
+					let pesan = respon['msg'];
+					$.mobile.changePage("#page5", {allowSamePageTransition : true, role:"dialog"});
+                    history.pushState({pageUrl : 'page5'}, null, '#');
+                    init = 'page5';
+
+                    if (respon.result === 'error') {
+                        $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                    } else {
+                        $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                    }
+
+				});
+			}
+
+			function siapkanData() {
+				const form = document.querySelector('#pendataanForm');
+				const data = new FormData(form);
+				const SerializePair = {};
+				
+				for (const [name, value] of data) {
+                    if ((name === "Nama" && value === "") || (name === "komoditi" && value === "") || (name === "hp" && value === "") || (name === "uttp1" && value === "") || (name === "tahunTera1" && value === "") || (name === "qr_code" && value === "")) {
+                        $.mobile.changePage("#page5", {allowSamePageTransition : true, role:"dialog"});
+                        history.pushState({pageUrl : 'page5'}, null, '#');
+                        init = 'page5';
+                        
+                        let pesan_err = "Maaf, data GAGAL DIMASUKKAN karena ada isian wajib diisi yang masih kosong. Silahkan periksa kembali pada masing-masing form di bawah ini.";
+
+                        $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan_err+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memeriksa data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Periksa data uttp</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Periksa data WTU/Pedagang</div>');
+
+                        return false;
+                    }
+					SerializePair[name] = value;
+				}
+
+                sendData(SerializePair);
+			}
+			
+			//document.getElementById("entry_the_data").addEventListener("click",siapkanData);		
+			//document.getElementById("getBtn").addEventListener("click",getData);
+        </script>
+		
+
+        <script language="javascript">
+            $(function() {
+                $("#page5").on("click", ".add_data", function() {
+                    if ($(this)[0].id == "add_uttp") {
+                        setPage3Button();
+                        $.mobile.changePage("#page3", {role:"dialog"});
+                        resetFormUTTP_v2(1);
+						ShowhideSomeInput(true);
+                        return;
+                    }
+                    if ($(this)[0].id == "ganti_pedagang") {
+                        $.mobile.changePage("#page2", {role:"dialog"});
+                        resetFormDataWTU();
+                        resetFormUTTP_v2(1);
+                        return;
+                    }
+                    if ($(this)[0].id == "ganti_pasar") {
+                        $.mobile.changePage("#page1", {role:"dialog"});
+                        resetFormAll();
+                        return;
+                    }
+                });
+            });
+        </script>
+
+        <script language="javascript" async>
+            function siapkanKamera() {
+                const video = document.querySelector("#video");
+                //Check if device has camera
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    const constrain = {
+                        video : {
+                            facingMode : {
+                                exact: 'environment'
+                            }
+                        },
+                        audio : false   
+                    }
+                    //start video stream
+                    navigator.mediaDevices.getUserMedia(constrain).then(stream => {
+                        video.srcObject = stream;
+                    });
+
+                    //const container_hasil = document.querySelector('#qrcode_str');
+
+                    //Mendklarasi class barcode detector
+                    const qrcodeDetector = new BarcodeDetector({ formats : ['qr_code'] });
+
+                    const deteksiKode = () => {
+                        //Mulai mendeteksi qrcode
+						
+                        qrcodeDetector.detect(video).then(codes => {
+                            
+                            if (codes.length === 0) return;
+                            
+                            for (const qrcode of codes) {
+                                $.mobile.changePage("#page3", {role : "dialog"});
+                                document.querySelector("#video").style.border = "5px solid green";
+                                document.querySelector('#qr_code').value = "";
+                                document.querySelector('#qr_code').value = qrcode.rawValue;
+                                document.querySelector('#entry_the_data').hidden = false;
+                                document.querySelector('#pair_the_data').hidden = true;
+                            }
+
+                            clearInterval(setIntervalID);
+
+                        })
+                        .catch(err => {
+                            $.mobile.changePage("#page3", {role : "dialog"});
+                            document.querySelector("#video").style.border = "5px solid red";
+                            document.querySelector('#qr_code').value = "";
+                            document.querySelector('#qr_code').value = "Maaf, Pembacaan gagal. Ulangi proses scan";
+                            document.querySelector('#entry_the_data').hidden = true;
+                            document.querySelector('#pair_the_data').hidden = false;
+                            clearInterval(setIntervalID);
+                        });
+                    }
+                    
+                    var setIntervalID = setInterval(deteksiKode, 1000);
+                }
+            }
+
+            let menuUtamaLnk = document.querySelector('.menuUtama');
+            let cariByKatakunciLnk = document.querySelector('.cariByKatakunci');
+            let scanTandaiTera = document.querySelector('.scanTandaiTera');
+
+            //menuUtamaLnk.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/index.html");
+
+            //cariByKatakunciLnk.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/cariKataKunci.html");
+
+            //scanTandaiTera.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/scanner.html")
+        </script>        
+    </body>
+</html>
