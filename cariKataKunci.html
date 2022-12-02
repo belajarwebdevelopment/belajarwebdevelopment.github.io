@@ -255,13 +255,15 @@
 		<script language="javascript">
             function sendGetData(keyword) {
                                
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbwjZfnxH3YT9KSxuSd_culu_iIYPdbVQrpWlyVAfn-9PFrKJERJuF01z8SlLrYj2Vku/exec";
+                //The Last Changed 2 Dec 2022 
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbxlEzVu6UiFyLHtOkl9j8033or0U1eVF1PpT9SFMgf2oAJdpp-sARZes05SgEZza_oD/exec";
 
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbxlEzVu6UiFyLHtOkl9j8033or0U1eVF1PpT9SFMgf2oAJdpp-sARZes05SgEZza_oD/exec";
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbxoUOTGUhouq_e3SceKZFCmzOxitnMy77CQsQ0wRU-4ZuHgPNQP8XUIFnA9XQR65YVT/exec";
 
                 let h = new Headers();
                 h.set('Content-Type','text/plain;charset=UTF-8');
                 h.set('Accept','application/json; charset=utf-8');
+                
                 return fetch(webAppUrl, {
                     method : 'POST',
                     headers : h,
@@ -273,6 +275,7 @@
                         throw respon.error_msg;
                     } 
                     if(respon.result === "error") {
+                        console.log(respon);
                         throw "Server error : error 500";
                     }
                     
@@ -363,10 +366,10 @@
             }
 
             function sendUpdateTera(nomorBaris) {
-                //const webAppUrl2 = "https://script.google.com/macros/s/AKfycbwH8p27fMICiKfnJD0myvvIg1-hir6PHHcNZ-JSyQbZJOywjydWNarWyM8_VnFaS8Rx/exec";
+                //The last changed Url 2 Dec 2022
+                //const webAppUrl2 = "https://script.google.com/macros/s/AKfycbxvq57-PEMidvtCX22AulZ6kTg1eiouaFuu1znkZg3PciaB6Dxfkchm9zhBaumj7G-N/exec";
                 
-                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbxvq57-PEMidvtCX22AulZ6kTg1eiouaFuu1znkZg3PciaB6Dxfkchm9zhBaumj7G-N/exec";
-                
+                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbyws8yniigjmw-S3Fq22nSgUcqz0uAZC_LN8goiN5u0fm9Dg27m-Pe7yzXmIOGmyHqy/exec";
                 return fetch(webAppUrl2, {
                     method : 'POST',
                     body : JSON.stringify({'nomorBaris' : nomorBaris})
@@ -378,12 +381,10 @@
             }
 
             function sendNewQRCode(nomorBaris, newQRCode) {
-                //Latest version 26 Okt 2022
-                //const webAppUrl3 = "https://script.google.com/macros/s/AKfycby_uNKxXq0DS5wqa8KoUWPnrF6jTgHEXFG5F58t3qvKasfd_ot5epBNX3l4b5xV2C0v/exec";
+                //Last changed 2 Dec 2022
+                //const webAppUrl3 = "https://script.google.com/macros/s/AKfycby4OIreO26AF-nXCsIem66a-jsyBwoo9p6YSvXQn-5jHpoVX7OAy49x_CPKEugQyxwe/exec";                
                 
-                //const webAppUrl3 = "https://script.google.com/macros/s/AKfycbzT2VX0ZR48CRKDe3-iP2Xk9z_otUFgxHkmMlqK4OCNleflZiVmBx_D983vmR8J9-WO/exec";
-
-                const webAppUrl3 = "https://script.google.com/macros/s/AKfycby4OIreO26AF-nXCsIem66a-jsyBwoo9p6YSvXQn-5jHpoVX7OAy49x_CPKEugQyxwe/exec";                
+                const webAppUrl3 = "https://script.google.com/macros/s/AKfycbzWJFDDyYqgZhWqHoiws90gSJ4OlRKVxAXvZxqkmiPoK7OUhIEseEwOeu8HXxJPKS5O/exec";
                 
                 return fetch(webAppUrl3, {
                     method : 'POST',
@@ -556,14 +557,6 @@
 
                             theCam.getTracks().forEach(track => track.stop());
                             hideScanner();
-                            //alert(msg);
-							//data = {'kode_qr' : msg};
-                            //container_hasil.innerHTML = data.kode_qr;
-                            /*await jeda(200);
-							const ubahQRCode = await sendNewQRCode(msg);
-                            alert(ubahQRCode.dataAfter);
-                            theCam.getTracks().forEach(track => track.stop());
-                            */
                             
 						})
 						.catch(e => {
