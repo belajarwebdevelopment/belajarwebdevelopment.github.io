@@ -120,12 +120,11 @@
 
             // fungsi utk handle confirm
             async function konfirm() {
-                //let urlWebApp = 'https://script.google.com/macros/s/AKfycbwBVGbv_ekbHkO1zzHluQMC8o6HygYOUuY42oHwvdqZSEUiWewY4bbrPxaX941VqxHK/exec';
+                //Last changed 2 Dec 2022
+                //let urlWebApp = 'https://script.google.com/macros/s/AKfycbyrR8Szb_mhaeWycCkC5GIhAg1FZpS7uayhhxZ4VYiTpOTfMpP8l7YvdlNogASPUYbl/exec';
                 
-                //let urlWebApp = 'https://script.google.com/macros/s/AKfycby39ePqBK-jX4RkhO0UW6pjRxRklQ6n5BvuqzBF9lX5p9Id4iYDwsvaFgX58C4abKDQ/exec';
+                const urlWebApp = "https://script.google.com/macros/s/AKfycbxUP8b39sc4MHEUNxDykVp27MoPTAvaIJ7WewKcDwCg9mID4rIcyG_Y4AwEQouYKhFY/exec";
 
-                let urlWebApp = 'https://script.google.com/macros/s/AKfycbyrR8Szb_mhaeWycCkC5GIhAg1FZpS7uayhhxZ4VYiTpOTfMpP8l7YvdlNogASPUYbl/exec';
-                
                 const formdata = document.querySelectorAll('#editWtuForm input');
                 const barisKe = document.querySelector('.confirmBtn').id.split("-")[1];
                 let theData = Array.from(formdata).reduce((acc, input) => ({...acc,[input.id]: input.value}),{});
