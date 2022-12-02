@@ -31,48 +31,16 @@
             
         <div class="container py-2 my-5 border" data-role="page" id="page1">
             <div class="row mx-1 gx-5 mb-3 justify-content-center py-1 px-2" style="background-color: #2f96b2;">
+                <h4 style="color:#FFFFFF;">PENDATAAN UTTP DI WILAYAH</h4>
                 <h4 style="color:#FFFFFF;">PILIH KELURAHAN</h4>
             </div>
             <div class="row mx-1 gx-5 mb-3">
-                <div class="col">
+                <div class="col" id="A">
                     <select class="form-control" id="pilih_psr" name="pilih_psr">
-                        <!--
+                        
                         <option selected>Daftar Kelurahan</option>
-                        <option >Pasar Nusukan</option>
-                        <option >Pasar Legi</option>
-                        <option >Pasar Gede Hardjonagoro</option>
-                        <option >Pasar Harjodaksino</option>
-						<option >Pasar Turisari</option>
-						<option >Pasar Penumping</option>
-						<option >Pasar Joglo</option>
-						<option >Pasar Mojosongo</option>
-						<option >Pasar Singosaren</option>
-						<option >Pasar Klewer</option>
-						<option >Pasar Besi</option>
-						<option >Pasar Ayam</option>
-						<option >Pasar Jongke</option>
-						<option >Pasar Jurug</option>
-						<option >Pasar Purwosari</option>
-						<option >Pasar Sibela</option>
-						<option >Pasar Kliwon</option>
-						<option >Pasar Sangkrah</option>
-						<option >Pasar Besi Gilingan</option>
-						<option >Pasar Sidomulyo</option>
-						<option >Pasar Kadipolo</option>
-						<option >Pasar Tanggulsari</option>
-						<option >Pasar Depok</option>
-						<option >Pasar Gading</option>
-						<option >Pasar Tanggul</option>
-						<option >Pasar Ngemplak</option>
-						<option >Pasar Rejosari</option>
-						<option >Pasar Jebres</option>
-						<option >Pasar Ngumbuk</option>
-						<option >Pasar Bangunharjo</option>
-						<option >Pasar Sidodadi</option>
-						<option >Pasar Kembang</option>
-						<option >Pasar Pucangsawit</option>
-                        -->
-                      </select>                   
+                        
+                    </select>                   
                 </div>
             </div>
             <div class="row mx-1">
@@ -224,18 +192,24 @@
         <script>
             const UrlKelurahan = "https://script.google.com/macros/s/AKfycbxxWf-43TUg5XvBOes_r89pANhi6fCOQgqhF_SwEmjJMWSIvv9BSDEsX2ZCpUGQDMRg/exec";
 
+            let optionKel = document.getElementById('pilih_psr');
+            let divKel = document.getElementById('A');
+            divKel.hidden = true;
             fetch(UrlKelurahan)
                 .then(datas => datas.json())
                 .then(datas => {
                     let str = '';
                     if (datas.result === 'success') {
                         for (let k of datas.data) {
+                            k[0] === 'Kelurahan' ? str += `` : str += `<option value='${k[0]} - ${k[1]}'>${k[0]}</option>`;
                             
-                            str += `<option value='${k[0]} - ${k[1]}'>${k[0]}</option>`;
                         }
-                        document.getElementById('pilih_psr').innerHTML = str;
+                        optionKel.innerHTML = str;
+                        divKel.hidden = false;
                     }
                 });
+            
+            
         </script>
 
         <script>
@@ -289,7 +263,7 @@
                 var Koordinat = {};
                 $(".pilihPsr").on('click', function() {
                     Psr = $("#pilih_psr").children("option:selected").text();
-                    if (Psr == "Daftar Pasar") {
+                    if (Psr == "Daftar Kelurahan") {
                         $.mobile.changePage("#page4", {allowSamePageTransition : true, role : "dialog"});
                         $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a id='kembali'> << Kembali</a>`);
                         history.pushState({pageUrl : 'page4'}, null, '#');
