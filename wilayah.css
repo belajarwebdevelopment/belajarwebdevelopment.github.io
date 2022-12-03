@@ -48,7 +48,9 @@
 }
 
 button.pilihPsr {
-    background-color: #FF6700;
+    background-color: #20283E;
     color : #FFFFFF;
+    border : 2px solid #FFFFFF;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 

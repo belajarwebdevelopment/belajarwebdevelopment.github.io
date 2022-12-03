@@ -30,16 +30,15 @@
         <form id="pendataanForm">
             
         <div class="container py-2 my-5 border" data-role="page" id="page1">
-            <div class="row mx-1 gx-5 mb-3 justify-content-center py-1 px-2" style="background-color: #2f96b2;">
-                <h4 style="color:#FFFFFF;">PENDATAAN UTTP DI WILAYAH</h4>
-                <h4 style="color:#FFFFFF;">PILIH KELURAHAN</h4>
+            <div class="row mx-1 gx-5 mb-3 justify-content-center py-1 px-2" style="background-color: #1E4C80;">
+                <h4 style="color:#FFFFFF;padding-top: 5px;">PENDATAAN WILAYAH</h4>
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col" id="A">
                     <select class="form-control" id="pilih_psr" name="pilih_psr">
-                        
-                        <option selected>Daftar Kelurahan</option>
-                        
+                        <option selected>Pilih Kelurahan</option>
+                        <option value="Joglo">Joglo</option>
+                        <option value="Kadipiro">Kadipiro</option>
                     </select>                   
                 </div>
             </div>
@@ -140,13 +139,7 @@
                         <div class="mb-3">
                             <label for="tahunTera1" class="form-label">Tahun Tera</label>
                             <select class="form-control" name="tahunTera1" id="tahunTera1">
-                                <!--<option val="">Pilih Tahun Tera</option>
-                                <option val="2021">2021</option>
-                                <option val="2020">2020</option>
-                                <option val="2019">2019</option>
-                                <option val="2018">2018</option>
-                                <option val="2017">2017</option>
-                                <option val="2016">2016</option>-->
+
                             </select> 
                         </div>
                         <div class="mb-3">
@@ -190,25 +183,32 @@
         <!--</div>-->    
 
         <script>
+            /*
             const UrlKelurahan = "https://script.google.com/macros/s/AKfycbxxWf-43TUg5XvBOes_r89pANhi6fCOQgqhF_SwEmjJMWSIvv9BSDEsX2ZCpUGQDMRg/exec";
 
-            let optionKel = document.getElementById('pilih_psr');
-            let divKel = document.getElementById('A');
+            const selectKel = document.getElementById('pilih_psr');
+            const divKel = document.getElementById('A');
             divKel.hidden = true;
             fetch(UrlKelurahan)
                 .then(datas => datas.json())
                 .then(datas => {
-                    let str = '';
+                    const optionElemen = document.createElement('option');
+                    optionElemen.value = '';
+                    optionElemen.innerHTML = 'Pilih Kelurahan';    
+                    selectKel.appendChild(optionElemen);
                     if (datas.result === 'success') {
                         for (let k of datas.data) {
-                            k[0] === 'Kelurahan' ? str += `` : str += `<option value='${k[0]} - ${k[1]}'>${k[0]}</option>`;
-                            
+                            if (k[0] != 'Kelurahan') {
+                                let optionElemen = document.createElement('option');
+                                optionElemen.value = `${k[0]} - ${k[1]}`;
+                                optionElemen.innerHTML = k[0];
+                                selectKel.appendChild(optionElemen);
+                            }
                         }
-                        optionKel.innerHTML = str;
                         divKel.hidden = false;
                     }
                 });
-            
+            */
             
         </script>
 
@@ -259,13 +259,14 @@
 
         <script language="javascript">
             $(function() {
-                var Psr = '';
-                var Koordinat = {};
+                let Psr = '';
+                let Koordinat = {};
                 $(".pilihPsr").on('click', function() {
                     Psr = $("#pilih_psr").children("option:selected").text();
-                    if (Psr == "Daftar Kelurahan") {
+                    alert(Psr);
+                    if (Psr === "Pilih Kelurahan") {
                         $.mobile.changePage("#page4", {allowSamePageTransition : true, role : "dialog"});
-                        $(".msg_container").html(`Anda belum memilih pasar, Silahkan pilih dahulu ...<br><br><a id='kembali'> << Kembali</a>`);
+                        $(".msg_container").html(`Anda belum memilih Kelurahan, Silahkan pilih dahulu ...<br><br><a id='kembali'> << Kembali</a>`);
                         history.pushState({pageUrl : 'page4'}, null, '#');
                         init = 'page4';
                         return false;
@@ -493,37 +494,18 @@
 			*/	
 
 			function sendData(dataObj) {
-				//const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
-				//const webAppUrl = "https://script.google.com/macros/s/AKfycbwAxx-LIDnXI-7ZiBOfXmH13DaZPKIsfcM3gPLeP8U_n_ch-jCeZr76C_jfAJfcJD3-Kw/exec";
-
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycby3NDiq_WlAgi4sn6HCBx65rsCs_MaE9iXZuOMH6pfYNYuW_TSo1UgbpcbqeDCowkEz/exec";
-                
-				//The_Latest_23_Okt_2022 
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbybIvx7T5ccM9ZIU2X70KZ_m642OLbuo0VEw_NvDRuFm7_R6_4/exec";
 
                 //The Latest 26 Nov 2022
                 //const webAppUrl = "https://script.google.com/macros/s/AKfycbw6ntPnirWsttfbYrO8CuyJyXhv1_HBxW_ddzKYAvRpBJTK_2sJgb9sFQiNhRB6-tuE/exec";
 
                 const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5C_LQQUlPAiRtNKmeOrcKFWk2HRolOdLqeIItvYhAcsyu30wpSHiRcL-4dGb03eL/exec";
 
-                //The_Latest_16_04_2022 
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbwzbs4hThHTqQ6GZyscFqFWM_u02oBWoftsSEKVXojjcthPztuJ0p-noW4lOG7XRHayvg/exec";
-                
-				//const webAppUrl = "https://script.google.com/macros/s/AKfycbxyTVAzHq-FEwvLqphq5pB6Q1o6fSfpfIxghlU9oJMjZ7bx8ykwxV5-FZOJtLKNQHHV/exec";
-                
-            
                 const btnKirim = document.getElementById('entry_the_data');
 				const btnLoading = document.getElementById('loading_data');
 				btnKirim.classList.toggle('d-none');
 				btnLoading.classList.toggle('d-none');
-                /*
+
                 fetch(webAppUrl,{
-                    method : 'GET'
-                }).then(result => result.json()).then(result => {
-                    alert(result[0].tahun);
-                });
-                */
-				fetch(webAppUrl,{
 					method : 'POST',
 					body : JSON.stringify(dataObj)
 				}).then(respon => respon.json()).then(respon => {
