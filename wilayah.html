@@ -47,10 +47,10 @@
             </div>
         </div>
         <div class="container py-5 my-5 border" data-role="page" id="page2">
-            <div class="jumbotron jumbo_page2">
+            <div class="jumbotron jumbo_page2" style="background-color: #222930;color:#4EB1BA;text-shadow: 0px 0px #4EB1BA;">
             </div>
-            <div class="row my-4 mx-4 gx-5 mb-3 py-2 px-2" style="background-color: #4682BF;">
-                <h4 style="color:#FFFFFF;">DATA PEDAGANG/WTU</h4>
+            <div class="row my-4 mx-1 gx-5 mb-3 py-2 px-2 btn-info" style="background-color: #4EB1BA; width:100%;">
+                <h4 style="color:#222930;text-shadow: 0px 0px #4EB1BA;font-weight: bold;padding-top: 5px;">DATA WAJIB TERA ULANG</h4>
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
@@ -73,7 +73,7 @@
                 <div class="col">
                     <label for="alamat" class="form-label">Alamat</label>
                     <!--<input type="text" class="form-control" name="los" id="los" placeholder="" value="-">-->
-                    <textarea name="alamat" id="alamat" rows="4" cols="50"></textarea>            
+                    <textarea name="alamat" id="alamat" rows="6" cols="50"></textarea>            
                 </div>
             </div>
             <div class="row mx-1 gx-5 mb-3">
@@ -84,7 +84,7 @@
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col text-center pb-2">
-                    <button type="button" class="btn btn-info next_uttp" data-role="none">Selanjutnya ...</button>
+                    <button type="button" class="btn next_uttp" data-role="none" style="background-color: #4EB1BA;color: #222930;font-weight: bold;">Selanjutnya ...</button>
                 </div>
             </div>
         </div>        
@@ -193,6 +193,7 @@
             const selectKel = document.getElementById('pilih_psr');
             const divKel = document.getElementById('A');
             divKel.hidden = true;
+            document.querySelector('.pilihPsr').hidden = true;
             fetch(UrlKelurahan)
                 .then(datas => datas.json())
                 .then(datas => {
@@ -210,6 +211,7 @@
                             }
                         }
                         divKel.hidden = false;
+                        document.querySelector('.pilihPsr').hidden = false;
                     }
                 });
             
@@ -303,21 +305,23 @@
                     //urlParam.has('sendMeBack') ? window.open('http://localhost/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
                     
                     //urlParam.has('sendMeBack') ? window.open('E:/xampp/htdocs/belajarwebdevelopment.github.io/cariKataKunci.html', '_self') : '';
+
+                    let watcId = navigator.geolocation.watchPosition(position => {
+                        $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>');
+
+                        Koordinat = {latitude : position.coords.latitude, longitude : position.coords.longitude};
+                    });
+
                     $.mobile.changePage("#page2", {allowSamePageTransition : true, role : "dialog"});
                     history.pushState({pageUrl : 'page2'}, null, '#');
                     init = 'page2';
                     $(".jumbo_page2").html(`
                         <h1 class="display-5">Halo, Apa Kabar!</h1>
-                        <p>Anda sedang berada di <b>`+Psr+`</b>.<p id="posisi"></p>  
+                        <p>Anda sedang berada di Kelurahan <b>`+Psr+`</b>.<p id="posisi"></p>  
                         <hr class="my-4">
                         <p>Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
                         <p align="right"><a id="gantiPsr">ganti pasar</a></p>
                     `);
-
-                    const watcId = navigator.geolocation.watchPosition(position => {
-                        $("#posisi").html('Koordinat : <b>'+position.coords.latitude+','+position.coords.longitude+'</b>');
-                        Koordinat = {latitude : position.coords.latitude, longitude : position.coords.longitude};
-                    });
 
                     //Cek apakah inputan nomor HP adalah number
                     $("#hp").on('keyup', function() {
