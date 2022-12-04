@@ -54,20 +54,26 @@
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
-                    <label for="Nama" class="form-label">WTU / Nama Usaha</label>
+                    <label for="Nama" class="form-label">Nama WTU / Nama Usaha</label>
                     <input type="text" class="form-control" id="Nama" name="Nama" placeholder="">            
                 </div>
             </div>
+            
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
-                    <label for="komoditi" class="form-label">Jenis Usaha</label>
-                    <!--<input type="text" class="form-control" id="komoditi" name="komoditi"--> placeholder="">            
+                    <label for="komoditi" class="form-label">Pilih Jenis Usaha</label>
+                    <!--<input type="text" class="form-control" id="komoditi" name="komoditi" placeholder="">-->
+                    <select class="form-control" name="komoditi" id="komoditi">
+
+                    </select>
                 </div>
             </div>
-            <div class="row mx-1 gx-5 mb-3" hidden>
+            
+            <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
-                    <label for="los" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="los" id="los" placeholder="" value="-">            
+                    <label for="alamat" class="form-label">Alamat</label>
+                    <!--<input type="text" class="form-control" name="los" id="los" placeholder="" value="-">-->
+                    <textarea name="alamat" id="alamat" rows="4" cols="50"></textarea>            
                 </div>
             </div>
             <div class="row mx-1 gx-5 mb-3">
@@ -207,6 +213,26 @@
                     }
                 });
             
+            const UrlJenisUsaha = "https://script.google.com/macros/s/AKfycbw3LsfGk-leru2hykMXRd60MnG3OcMgCyKVAaHQWW0uv4UKECvcpWT6-rdQOJLsgvAz/exec";
+
+            const selectJenisUsaha = document.getElementById('komoditi');
+
+            fetch(UrlJenisUsaha)
+                .then(datas => datas.json())
+                .then(datas => {
+                    const optionElemen = document.createElement('option');
+                    optionElemen.value = '';
+                    optionElemen.innerHTML = 'Pilih Jenis Usaha';
+                    selectJenisUsaha.appendChild(optionElemen);
+                    if (datas.result === "success") {
+                        for (let k of datas.data) {
+                            let optionElemen = document.createElement('option');
+                            optionElemen.value = k[1];
+                            optionElemen.innerHTML = k[1];
+                            selectJenisUsaha.appendChild(optionElemen);
+                        }
+                    }
+                });
             
         </script>
 
@@ -261,7 +287,6 @@
                 let Koordinat = {};
                 $(".pilihPsr").on('click', function() {
                     Psr = $("#pilih_psr").children("option:selected").text();
-                    alert(Psr);
                     if (Psr === "Pilih Kelurahan") {
                         $.mobile.changePage("#page4", {allowSamePageTransition : true, role : "dialog"});
                         $(".msg_container").html(`Anda belum memilih Kelurahan, Silahkan pilih dahulu ...<br><br><a id='kembali'> << Kembali</a>`);
