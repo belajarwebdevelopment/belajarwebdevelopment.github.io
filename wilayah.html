@@ -84,18 +84,18 @@
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col text-center pb-2">
-                    <button type="button" class="btn next_uttp" data-role="none" style="background-color: #4EB1BA;color: #222930;font-weight: bold;">Selanjutnya ...</button>
+                    <button type="button" class="btn next_uttp" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;">Selanjutnya ...</button>
                 </div>
             </div>
         </div>        
         <div class="container py-5 my-5 border" data-role="page" id="page3">
-            <div class="jumbotron jumbo_page3">
+            <div class="jumbotron jumbo_page3" style="background-color: #222930;color:#4EB1BA;text-shadow: 0px 0px #4EB1BA;">
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col-md-6 py-2">
                     <div class="mr-1 px-2 py-2 border">
-                        <div class="mb-3 px-2 py-2 bg-primary">
-                            <h4 style="color : #FFFFFF;">UTTP 1</h4>
+                        <div class="mb-3 px-2 py-2"  style="background-color : #4EB1BA;">
+                            <h4 style="color : #222930;font-weight: bold;text-shadow: none;margin-top: 6px;">UTTP 1</h4>
                         </div>
         
                         <div class="mb-3">
@@ -157,10 +157,10 @@
                 <div class="col text-center pb-2">
 					<input type="hidden" class="form-control" name="lat" id="lat">
 					<input type="hidden" class="form-control" name="long" id="long">
-                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none">Pair with QRCode</button>
-					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" hidden>Submit</button>
+                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;">Pair with QRCode</button>
+					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" hidden style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;">Submit</button>
 					<button class="btn btn-info form-control d-none" id="loading_data" type="button" disabled data-role="none">
-						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700; border: 0;"></span>
 						Loading...
 					</button>
                 </div>
@@ -365,7 +365,7 @@
                 });
 
                 $(".next_uttp").on("click", function() {
-                    if ($("#Nama").val() == '' || $("#los").val() == '' || $("#hp").val() == '') {
+                    if ($("#Nama").val() == '' || $("#komoditi").val() == '' || $("#hp").val() == '' || $("#alamat").val == '') {
                         $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
                         history.pushState({pageUrl : 'page4'}, null, '#');
                         init = 'page4';
@@ -394,10 +394,10 @@
 					$("#lat").val(Koordinat.latitude.toString().replace(".",","));
 					$("#long").val(Koordinat.longitude.toString().replace(".",","));
                     $(".jumbo_page3").html(`
-                        <p>Lokasi : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>No Los : <b>`+$("#los").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
+                        <p>Kelurahan : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>Jenis Usaha : <b>`+$("#komoditi").val()+`</b><br>Alamat : <b>`+$("#alamat").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
                         <hr class="my-4">
                         <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
-                        <p align="right"><a id="backToWtu" style='color : green; font-size : bold'><<< Kembali ke form wtu</a></p>
+                        <p align="right"><a id="backToWtu" style='color : #FFFFFF; font-size : bold'><<< Kembali ke form wtu</a></p>
                     `);
 					$(".to_hide").attr('hidden', true);
                 });
