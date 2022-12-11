@@ -4,11 +4,120 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>TEST CLASS</title>
-        <!--<script></script>-->
+        <!--<script language="JavaScript" src="bin/hybrid_crypto.min.js"></script>-->
+        <script language="JavaScript" src="bin/barret.js"></script>
+        <script language="JavaScript" src="bin/multiple.js"></script>    
+        <script language="JavaScript" src="bin/rsa.js"></script>
     </head>
 	
     <body id="tubuh">
+        <!--<script language="JavaScript" src="bin/hehe.js"></script>-->
+        <!--<script>
+            var publicKey;
+            var privateKey;
+            var encrypted;
+            var decrypted;
+            generateKeys();
+            function generateKeys() {
+                var rsa = new RSA();
+                rsa.generateKeyPair(function(keyPair) {
+                    publicKey = keyPair.publicKey;
+                    privateKey = keyPair.privateKey;
+                });
+                setTimeout(function () {
+                console.log(publicKey);
+                console.log(privateKey);
+                }, 3000);
+            }
+
+            function Encryption() {
+                //var entropy = JSON.stringify({nama : 'Praditya', usia : 40, Pekerjaan : 'PNS & Programmer'});
+                var crypt = new Crypt({
+                    rsaStandard: 'RSA-OAEP',
+                    //entropy: entropy
+                });
+                /*
+                var rsa = new RSA({
+                    entropy: entropy
+                });
+                */
+                var message = JSON.stringify({nama : 'Praditya', usia : 40, Pekerjaan : 'PNS & Programmer'});;
+                encrypted = crypt.encrypt(publicKey, message);
+                console.log('encrypted', encrypted);
+            }
+
+            setTimeout(() => {
+                Encryption();
+            },3000);      
+            
+            function Decryption() {
+                //var entropy = 'Testing of RSA algorithm in javascript.';
+                var crypt = new Crypt({
+                    rsaStandard: 'RSA-OAEP',
+                    //entropy: entropy
+                });
+                /*
+                var rsa = new RSA({
+                    entropy: entropy
+                });
+                */
+                decrypted = crypt.decrypt(privateKey, encrypted);
+                console.log('decrypted', JSON.parse(decrypted.message));
+            }
+
+            setTimeout(() => {
+                Decryption();
+            }, 3000);            
+        </script>-->
         <script>
+            let key;
+            let Examplekey;
+            //function bodyLoad()
+            //{
+                setMaxDigits(262);
+                Examplekey = new RSAKeyPair(
+                    // Public exponent extracted from private_key.pem using
+                    // openssl rsa -inform PEM -text -noout < private_key.pem
+                    // Or extracted from public key PEM file using
+                    // openssl rsa -pubin -inform PEM -text -noout < public_key.pem
+                    "10001",                    
+                    // Dummy decryption exponent -- actual value only kept on server.
+                    "8e9912f6d3645894e8d38cb58c0db81ff516cf4c7e5a14c7f1eddb1459d2cded4d8d293fc97aee6aefb861859c8b6a3d1dfe710463e1f9ddc72048c09751971c4a580aa51eb523357a3cc48d31cfad1d4a165066ed92d4748fb6571211da5cb14bc11b6e2df7c1a559e6d5ac1cd5c94703a22891464fba23d0d965086277a161",
+                    // Modulus extracted from private key PEM file using
+                    // openssl rsa -inform PEM -modulus -noout < private_key.pem
+                    // Or extracted from public key PEM file using
+                    // openssl rsa -pubin -inform PEM -modulus -noout < public_key.pem
+                    "a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3",
+                    
+                    // Key size in bits.
+                    2048
+                );
+                //key = new RSAKeyPair("10001",                 "8e9912f6d3645894e8d38cb58c0db81ff516cf4c7e5a14c7f1eddb1459d2cded4d8d293fc97aee6aefb861859c8b6a3d1dfe710463e1f9ddc72048c09751971c4a580aa51eb523357a3cc48d31cfad1d4a165066ed92d4748fb6571211da5cb14bc11b6e2df7c1a559e6d5ac1cd5c94703a22891464fba23d0d965086277a161","a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3",1024);
+
+                key = new RSAKeyPair("10001","00b0e16ca7a6d304f9a8b24bda86ccc143aa09e3d42146b84506390f4d596d5b86b7d66585b5f78b9ed3cb62351c89796f8617c4a035df0b272ba01890c60bc61253859d8b9a104125055759f70befebcd4e9214c4d096b1657a44d9d92547e153d59814df40e5b0c9bd952bc26e9b3212be74e6d8f581570495c5a0b43d72fd52ec68aa764a7b5699ca2c5db3ffe2ee6683febdde8f1554ba0af6ce4f6294fdd53f3f698b71f7674c089782eeeae2cff473313de9edd6a060464bb707f34febd0daf7aab5c9a049652f50893e5a93f563224c1ec003ad4e9847f49ef792f146b4d139cbe137df9a10b24a03f4b3aab3943c6814358c7857ab67ab8262c5030eb1","C38F68C7E28191A8F36286690D11D2D636A7D776F6ABC2FBF49B8C947AF4E695B13913DCB8FBFA3D8E6B3DFD1105C6246C0435A3644C7AE716B7B1558D49F321748C775B675BE72A0FDE587BBF70839F49DA004C2BAB2C0108F8ABF1EAD11D4AE509B6FC2D4C761B04F98A6ACB68D4B69D4FCB32EA2DCA087A09F839CB295F4C7D09CDFC45B63321B1BD8A92BFB64DC44DF55FB173A6709F466A11A3AFD0DA35A391A7F31ED07B42A77E834E98C4BE7D261F536AFB3D1E642B222BB3A3511C6C4D78EC2D385C39FFA855742F4AC6503E2CA7DA4C9348C2669389FE45B83384DF11C87BE9CAD6C34275491AA4155AC6E1D8B8F07A06ACD82DEE74FA2048DD07DF",2048);
+            //}
+
+
+
+            //function cmdEncryptClick()
+            //{
+                //bodyLoad();
+                let str = JSON.stringify({nama : 'Praditya', usia : 40, pekerjaan : 'PNS'});
+                let ciphertext = encryptedString(key, str, 'OHDave', RSAAPP.NumericEncoding);
+                console.log(ciphertext);
+                let dechipertext = decryptedString(key, ciphertext);
+                console.log(JSON.parse(dechipertext));
+                // ciphertext is a string composed of the raw binary data. base-64 encode it.
+                //document.frmSender.ciphertext.value = window.btoa(ciphertext);
+                //document.frmSender.submit();
+            //}
+
+            //cmdEncryptClick();
+            // 
+        </script>
+    
+        <!--<script>
+            
             let testStr = prompt('Masukkan string yg diuji : ');
             pola1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/;
             pola2 = /[a-z0-9/]/i;
@@ -30,6 +139,7 @@
             });
 
         </script>
+        -->
         <!--<script>
             class Formulir {
                 constructor(name = 'myForm', kelas = 'thisForm', inputType = [], values = [], label = []) {
