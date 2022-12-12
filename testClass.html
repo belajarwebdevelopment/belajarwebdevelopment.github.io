@@ -74,7 +74,8 @@
             let Examplekey;
             //function bodyLoad()
             //{
-                setMaxDigits(262);
+                setMaxDigits(5000);
+                /*
                 Examplekey = new RSAKeyPair(
                     // Public exponent extracted from private_key.pem using
                     // openssl rsa -inform PEM -text -noout < private_key.pem
@@ -92,9 +93,10 @@
                     // Key size in bits.
                     2048
                 );
+                */
                 //key = new RSAKeyPair("10001",                 "8e9912f6d3645894e8d38cb58c0db81ff516cf4c7e5a14c7f1eddb1459d2cded4d8d293fc97aee6aefb861859c8b6a3d1dfe710463e1f9ddc72048c09751971c4a580aa51eb523357a3cc48d31cfad1d4a165066ed92d4748fb6571211da5cb14bc11b6e2df7c1a559e6d5ac1cd5c94703a22891464fba23d0d965086277a161","a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3",1024);
 
-                key = new RSAKeyPair("10001","00b0e16ca7a6d304f9a8b24bda86ccc143aa09e3d42146b84506390f4d596d5b86b7d66585b5f78b9ed3cb62351c89796f8617c4a035df0b272ba01890c60bc61253859d8b9a104125055759f70befebcd4e9214c4d096b1657a44d9d92547e153d59814df40e5b0c9bd952bc26e9b3212be74e6d8f581570495c5a0b43d72fd52ec68aa764a7b5699ca2c5db3ffe2ee6683febdde8f1554ba0af6ce4f6294fdd53f3f698b71f7674c089782eeeae2cff473313de9edd6a060464bb707f34febd0daf7aab5c9a049652f50893e5a93f563224c1ec003ad4e9847f49ef792f146b4d139cbe137df9a10b24a03f4b3aab3943c6814358c7857ab67ab8262c5030eb1","C38F68C7E28191A8F36286690D11D2D636A7D776F6ABC2FBF49B8C947AF4E695B13913DCB8FBFA3D8E6B3DFD1105C6246C0435A3644C7AE716B7B1558D49F321748C775B675BE72A0FDE587BBF70839F49DA004C2BAB2C0108F8ABF1EAD11D4AE509B6FC2D4C761B04F98A6ACB68D4B69D4FCB32EA2DCA087A09F839CB295F4C7D09CDFC45B63321B1BD8A92BFB64DC44DF55FB173A6709F466A11A3AFD0DA35A391A7F31ED07B42A77E834E98C4BE7D261F536AFB3D1E642B222BB3A3511C6C4D78EC2D385C39FFA855742F4AC6503E2CA7DA4C9348C2669389FE45B83384DF11C87BE9CAD6C34275491AA4155AC6E1D8B8F07A06ACD82DEE74FA2048DD07DF",2048);
+                key = new RSAKeyPair("10001","427dc67f58bcbf26812b8d4608bd0fdb8dfc56d190d405a2fec3714ea5762658ddab81f1b3f279e3ac4b787626358a46d0469e9f1e94258d92b49ebe3b790de9b7e63af249cd1cdec42803504c3855ea494c5cce4dc399abadaa35dc78e2ba9d38872132de00146b58c3669ba5d34a81e32abd45bd3b0dc7dd54c30d7d59d4fcf7b986cd3aa566319fdff83743bda9a25ef1a8ec4d13df1a1ddb878586ce155eb5cefc7982db5db623c00da99fdd0c6385753ceb5d1e24b43c46da5866425aed9b0d59592c09013dd997bdd3dee0e002d13b575a4ac0c668b6f75703662883a61aa323b42dcaad8e140b991028171474a1fbc2d36e60d3fc9a9544482d8ff7270dd435354042a34f34416ba7bc3f6a434dd37fc70936c2a235708ba3fe58b11ae6a89b948721cd630d695fce2a36ac0e4c53aeabe1d03505586c910f92e00619cd118e9e9306562ae0fb4ea7f3a8d2bb9ee699704c140da4af6f1a7b6b7851ecf5326be845e33e9405deebf7cad3dc89bd8e09a54b671c22c3c1d4b5ecf4f05b3f2f86db26e5034d141129e17e33e593171e6ccc51392f04cf0cf3e647e103747eeefbb3ab0658bea7769593bd31631f3c9fd5cd5dd5f1d8d6edc46228d8d3b9557ae1084a5c60d66e202ae517f79b025367c46ada2c4e702fe30e1d7f6c54d6c5ba392a7123646cffe53b233268af3fd159f4ee54678900e846735270e1cc01","8a40020e49c78940b7a28dc999a0098e6827489fe650c0407d954fef8d29f0872e099cf4be050cea38004c6c5deb1505ac6bfa96b7e79a64c7199c9cabfb65e718d1e4214e397de328dbef4dd5f770d1363e2a51f430a9516865a621207b17216c27319783a99a78f5b94d7128254c527fb673c9e57f2e0696742d80221b2daadb46f0b88a284a8498f69454b1ae3d98a14cbbe3d9895347f79962400d27793772fc8289bda2b378dd5a960a3ef31ac63005bcb0f1435418b2c52fd0b41129b6a09387333e64b0444fb44cc3ad42c8ee7789d0dfca29340e88727807c623af8cd9deb8328ff976f983fa20f8fdfac62344bf107f3ae6cf1e443d1121ee85e2d2fe5e3fd8ec94e3583169dc7245dc8d0884afc934727e84b6b313e5480e137403d34aab07ce53d51ad4c97f8800dc01ad07d5c76b2695b240ddb1c0a0a8c8ca82516d32a089ba4faabc6eb6035e17c37842600521fa2c41afcbde95686e952e8e8c701face1e2ad526f2d94c22e9362d8b34478e6fa407647bd7a845ae5ed14e6ba665ec9f5d68ba3a1416d09c45649e784cc86dd24d7608af1157c3e29ec7c9773babb7d883aaad6d22f998341894370450bf1a13a51ead900e48ef578cc6e2291136960a71d3762b26af3e8ecad64c503b9f5b816f43c1294f13886042223bd1e85f253cfa977ef0ef45fa47a0447b6ad6e3c4a9eb98cb2847d080449aaa2eb",4096);
             //}
 
 
@@ -102,7 +104,37 @@
             //function cmdEncryptClick()
             //{
                 //bodyLoad();
-                let str = JSON.stringify({nama : 'Praditya', usia : 40, pekerjaan : 'PNS'});
+                let str = JSON.stringify({id: "0001",type: "donut",name: "Cake",ppu: 0.55, butter : ['Filma', 'Blueband'], 
+                chef : {
+                    chef1 : "Praditya",
+                    chef2 : "Gunther"
+                },
+                chefFrenchFood : {
+                    chef1 : "Petit",
+                    chef2 : "Deschamp"
+                },
+                chefChineseFood2 : {
+                    chef1 : "Li Chung Wei",
+                    chef2 : "Andy Lau"
+                }, gD : "5000000",                
+                chefChineseFood3 : {
+                    chef1 : "Li Chung Wei",
+                    chef2 : "Andy Lau"
+                },
+                chefChineseFood4 : {
+                    chef1 : "Li Chung Wei",
+                    chef2 : "Andy Lau"
+                },
+                chefChineseFood5 : {
+                    chef1 : "Li Chung Wei",
+                    chef2 : "Andy Lau"
+                },
+                chefChineseFood6 : {
+                    chef1 : "Li Chung Wei",
+                    chef2 : "Andy Lau"
+                }});
+
+                console.log(str.length);
                 let ciphertext = encryptedString(key, str, 'OHDave', RSAAPP.NumericEncoding);
                 console.log(ciphertext);
                 let dechipertext = decryptedString(key, ciphertext);
