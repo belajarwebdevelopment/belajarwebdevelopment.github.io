@@ -29,10 +29,11 @@ p {
 
 }
 
-.menuPendataan, .menuScanning {
-    display: block;
-    width: 90%;
-    height : 280px;
+.menuPendataan, .menuScanning, .menuPendataan2, .menuScanning2  {
+    display: inline-block;
+    width: 48%;
+    /*height : 200px;*/
+    height : 200px;
     margin: auto auto;
     margin-bottom: 7px;
     border-radius: 4px;
@@ -48,9 +49,19 @@ p {
     background: radial-gradient(#832A22, #611811);
 }
 
+.menuPendataan2 {
+    /*background-color: #490206;*/
+    background: radial-gradient(#284847, #184831);
+}
+
+.menuScanning2 {
+    /*background-color: #900D09;*/
+    background: radial-gradient(#5A756E, #4A756E);
+}
+
 img {
     width : 70%;
-    height: 80%;
+    height: 70%;
     border-radius: 4px;
     padding-top: 8px;
 }
@@ -58,5 +69,5 @@ img {
 .menuText {
     color: #FFFFFF;
     font-weight: 100;
-    font-size: 22px;
+    font-size: 15px;
 }
