@@ -71,3 +71,27 @@ img {
     font-weight: 100;
     font-size: 15px;
 }
+
+.menuText2 {
+    color: #FFFFFF;
+    font-weight: 100;
+    font-size: 17px;
+}
+
+.menuPencarian1, .menuPencarian2 {
+    padding-top: 7px;
+    display: inline-block;
+    width: 96%;
+    height : 30px;
+    margin: auto auto;
+    margin-bottom: 3px;
+    border-radius: 4px;
+}
+
+.menuPencarian1 {
+    background-color: #4682B4;
+}
+
+.menuPencarian2 {
+    background-color: #152736;
+}
