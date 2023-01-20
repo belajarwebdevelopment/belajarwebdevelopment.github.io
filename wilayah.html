@@ -365,7 +365,7 @@
                 });
 
                 $(".next_uttp").on("click", function() {
-                    if ($("#Nama").val() == '' || $("#komoditi").val() == '' || $("#hp").val() == '' || $("#alamat").val == '') {
+                    if ($("#Nama").val() == '' || $("#komoditi").val() == '' || $("#hp").val() == '' || $("#alamat").val() == '') {
                         $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
                         history.pushState({pageUrl : 'page4'}, null, '#');
                         init = 'page4';
