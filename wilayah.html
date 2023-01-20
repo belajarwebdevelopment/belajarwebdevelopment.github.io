@@ -148,7 +148,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="qr_code" class="form-label">Kode QR</label>
-                            <input type="text" class="form-control" name="qr_code" id="qr_code" value="PRGH8098" placeholder="" readonly>
+                            <input type="text" class="form-control" name="qr_code" id="qr_code" value="" placeholder="" readonly>
                         </div>
                     </div>      
                 </div>
@@ -157,8 +157,8 @@
                 <div class="col text-center pb-2">
 					<input type="hidden" class="form-control" name="lat" id="lat">
 					<input type="hidden" class="form-control" name="long" id="long">
-                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;" hidden>Pair with QRCode</button>
-					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;">Submit</button>
+                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;">Pair with QRCode</button>
+					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;" hidden>Submit</button>
 					<button class="btn btn-info form-control d-none" id="loading_data" type="button" disabled data-role="none">
 						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700; border: 0;"></span>
 						Loading...
@@ -499,7 +499,7 @@
                 });
 
                 $("#entry_the_data").on('click', function() {
-
+                    //alert('Test');
                     siapkanData();
 
                 });
@@ -557,29 +557,16 @@
 				const form = document.querySelector('#pendataanForm');
 				const data = new FormData(form);
 				const SerializePair = {};
-				console.log(data);
+				//console.log(data);
                 
 				for (const [name, value] of data) {
-                    /*if ((name === "Nama" && value === "") || (name === "komoditi" && value === "") || (name === "hp" && value === "") || (name === "uttp1" && value === "") || (name === "tahunTera1" && value === "") || (name === "qr_code" && value === "")) {
-                        $.mobile.changePage("#page5", {allowSamePageTransition : true, role:"dialog"});
-                        history.pushState({pageUrl : 'page5'}, null, '#');
-                        init = 'page5';
-                        
-                        let pesan_err = "Maaf, data GAGAL DIMASUKKAN karena ada isian wajib diisi yang masih kosong. Silahkan periksa kembali pada masing-masing form di bawah ini.";
-
-                        $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan_err+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memeriksa data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Periksa data uttp</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Periksa data WTU/Pedagang</div>');
-
-                        return false;
-                    }*/
-					SerializePair[name] = value;
+					//console.log(`${name} : ${value}`);
+                    SerializePair[name] = value;
 				}
 
-                //sendData(SerializePair);
                 
 			}
 			
-			//document.getElementById("entry_the_data").addEventListener("click",siapkanData);		
-			//document.getElementById("getBtn").addEventListener("click",getData);
         </script>
 		
 
