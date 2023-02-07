@@ -43,7 +43,8 @@
         /*height : 400px;*/
         height : 675px;
         border-radius: 5px;
-        background-color:#0bacc5;
+        /*background-color:#0bacc5;*/
+        background-color:#2D5763;
         display : block;
         /*overflow :auto;*/
         }
@@ -199,7 +200,8 @@
     /*height : 400px;*/
     height : auto;
     border-radius: 5px;
-    background-color: #1CABE2;
+    /*background-color: #1CABE2;*/
+    background-color: #2D5763;
     display : flex;
     /*overflow :auto;*/
     }
@@ -276,7 +278,8 @@
 
     #hitung {
             border : 0.5px solid yellow;
-            background-color: #00416A;
+            /*background-color: #00416A;*/
+            background-color: #8E5125;
             color : #FFFFFF;
             padding: 7px 10px;
             /*display : inline-block;*/
