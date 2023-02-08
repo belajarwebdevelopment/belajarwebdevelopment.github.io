@@ -140,10 +140,12 @@
                 //let str = JSON.stringify({id: "0001",type: "donut",name: "Cake",ppu: 0.55, butter : ['Filma', 'Blueband']});
                 let str = 'jL. Popda No.1, Nusukan, Banjarsari, Kota Surakarta';
                 console.log(str.length);
-                let ciphertext = encryptedString(key, str, 'OHDave', RSAAPP.NumericEncoding);
+                //let ciphertext = encryptedString(key, str, 'OHDave', RSAAPP.NumericEncoding);
+                let ciphertext = "4c49ef61d0c6f14ce2f63d23dff14a684ababcf564a8afa851ad0553392000f36a9b1eaa3e6f0d86ee270d92b5444979abedcd6e3e940b33c5f4f893247b9149872c425413b68ce34c1b4316ec578cefbf480b7b1444759bb4371dd0d13fe41af4f6cf5e7dd10df1e059f5e49e427b945dc507d3b536b438b744e14e6a815f62";
                 console.log(ciphertext);
                 console.log('Finished Chipering');
-                //let dechipertext = decryptedString(key, ciphertext);
+                let dechipertext = decryptedString(key, ciphertext);
+                console.log(JSON.parse(dechipertext));
                 //console.log(JSON.parse(dechipertext));
                 //console.log('Finished De-Chipering');
 
