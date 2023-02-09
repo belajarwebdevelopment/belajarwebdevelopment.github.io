@@ -525,10 +525,15 @@
 			}
 			*/	
 
-			function sendData(dataObj) {
+            function jikaError() {
+                $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+            }
 
-                //The Latest 26 Nov 2022
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbw6ntPnirWsttfbYrO8CuyJyXhv1_HBxW_ddzKYAvRpBJTK_2sJgb9sFQiNhRB6-tuE/exec";
+            function jikaSukses() {
+                $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+            }
+
+			function sendData(dataObj) {
 
                 const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5C_LQQUlPAiRtNKmeOrcKFWk2HRolOdLqeIItvYhAcsyu30wpSHiRcL-4dGb03eL/exec";
 
@@ -550,9 +555,9 @@
                     init = 'page5';
 
                     if (respon.result === 'error') {
-                        $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                        jikaError();
                     } else {
-                        $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                        jikaSukses();
                     }
 
 				});
@@ -590,7 +595,7 @@
                     }
 				}
                 console.log(SerializePair);
-
+                sendData(SerializePair);
                 
 			}
 			
