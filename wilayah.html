@@ -535,7 +535,9 @@
 
 			function sendData(dataObj) {
 
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5C_LQQUlPAiRtNKmeOrcKFWk2HRolOdLqeIItvYhAcsyu30wpSHiRcL-4dGb03eL/exec";
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5C_LQQUlPAiRtNKmeOrcKFWk2HRolOdLqeIItvYhAcsyu30wpSHiRcL-4dGb03eL/exec";
+
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbxf4mDa4vbgU0wfchSH9Q1HNKipoLgY3-UnTXmL5_eVMRWkDd48HldzhflY2E8XbdIy/exec";
 
                 const btnKirim = document.getElementById('entry_the_data');
 				const btnLoading = document.getElementById('loading_data');
@@ -550,14 +552,15 @@
 					btnLoading.classList.toggle('d-none');
 					console.log(respon.result);
 					let pesan = respon['msg'];
+                    console.log(pesan);
 					$.mobile.changePage("#page5", {allowSamePageTransition : true, role:"dialog"});
                     history.pushState({pageUrl : 'page5'}, null, '#');
                     init = 'page5';
 
                     if (respon.result === 'error') {
-                        jikaError();
+                        $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
                     } else {
-                        jikaSukses();
+                        $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
                     }
 
 				});
