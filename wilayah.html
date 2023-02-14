@@ -537,7 +537,9 @@
 
                 //const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5C_LQQUlPAiRtNKmeOrcKFWk2HRolOdLqeIItvYhAcsyu30wpSHiRcL-4dGb03eL/exec";
 
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbxf4mDa4vbgU0wfchSH9Q1HNKipoLgY3-UnTXmL5_eVMRWkDd48HldzhflY2E8XbdIy/exec";
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbxf4mDa4vbgU0wfchSH9Q1HNKipoLgY3-UnTXmL5_eVMRWkDd48HldzhflY2E8XbdIy/exec";
+                
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbysJ5G0YS9MTw3X0hV6GEJDa_iTRYhx2A4wnnziGKMpiDkI7Gk7cvVqD8Bo-ZomLXiF/exec";
 
                 const btnKirim = document.getElementById('entry_the_data');
 				const btnLoading = document.getElementById('loading_data');
@@ -568,9 +570,7 @@
 
             function sandikan(rawTxt) {
                 setMaxDigits(5000);
-                let key = new RSAKeyPair("10001",                 /*
-                "8e9912f6d3645894e8d38cb58c0db81ff516cf4c7e5a14c7f1eddb1459d2cded4d8d293fc97aee6aefb861859c8b6a3d1dfe710463e1f9ddc72048c09751971c4a580aa51eb523357a3cc48d31cfad1d4a165066ed92d4748fb6571211da5cb14bc11b6e2df7c1a559e6d5ac1cd5c94703a22891464fba23d0d965086277a161",
-                */"",
+                let key = new RSAKeyPair("10001","",
                 "a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3",1024);
                 let ciphertext = encryptedString(key, rawTxt, 'OHDave', RSAAPP.NumericEncoding);
                 return ciphertext;
