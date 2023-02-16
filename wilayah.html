@@ -12,6 +12,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">   
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
         <!-- END OF ROBOTO -->   
 
         <script language="JavaScript" src="bin/barret.js"></script>
@@ -20,7 +23,7 @@
 
     </head>
     <body>
-        <!--
+        
         <div class="topMenu">
             <nav id="navigasi">
                 | 
@@ -30,13 +33,12 @@
             </nav>
         </div>
 
-        -->
         <!--<div class="main">-->
         <form id="pendataanForm">
             
         <div class="container py-2 my-5 border" data-role="page" id="page1">
-            <div class="row mx-1 gx-5 mb-3 justify-content-center py-1 px-2" style="background-color: #1E4C80;">
-                <h4 style="color:#FFFFFF;padding-top: 5px;">PENDATAAN WILAYAH</h4>
+            <div class="row mx-1 gx-5 mb-3 justify-content-center py-1 px-2" style="background-color: #1E4C80; border-radius : 7px;">
+                <h4 style="color:#FFFFFF;padding-top: 5px; font-family: 'Roboto', sans-serif;;">PENDATAAN WILAYAH</h4>
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col" id="A">
@@ -52,10 +54,10 @@
             </div>
         </div>
         <div class="container py-5 my-5 border" data-role="page" id="page2">
-            <div class="jumbotron jumbo_page2" style="background-color: #222930;color:#4EB1BA;text-shadow: 0px 0px #4EB1BA;">
+            <div class="jumbotron jumbo_page2">
             </div>
-            <div class="row my-4 mx-1 gx-5 mb-3 py-2 px-2 btn-info" style="background-color: #4EB1BA; width:100%;">
-                <h4 style="color:#222930;text-shadow: 0px 0px #4EB1BA;font-weight: bold;padding-top: 5px;">DATA WAJIB TERA ULANG</h4>
+            <div class="row my-4 mx-1 gx-5 mb-3 py-2 px-2 btn-info yy">
+                <h4 class="xx">DATA WAJIB TERA ULANG</h4>
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col">
@@ -89,7 +91,7 @@
             </div>
             <div class="row mx-1 gx-5 mb-3">
                 <div class="col text-center pb-2">
-                    <button type="button" class="btn next_uttp" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;">Selanjutnya ...</button>
+                    <button type="button" class="btn next_uttp" data-role="none">Selanjutnya ...</button>
                 </div>
             </div>
         </div>        
@@ -162,8 +164,8 @@
                 <div class="col text-center pb-2">
 					<input type="hidden" class="form-control" name="lat" id="lat">
 					<input type="hidden" class="form-control" name="long" id="long">
-                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;" hidden>Pair with QRCode</button>
-					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;">Submit</button>
+                    <button type="button" class="btn btn-info form-control" id="pair_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;">Pair with QRCode</button>
+					<button type="button" class="btn btn-info form-control" id="entry_the_data" data-role="none" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700;border: 0;" hidden>Submit</button>
 					<button class="btn btn-info form-control d-none" id="loading_data" type="button" disabled data-role="none">
 						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="background-color: #4D5C5D;color: #FFFFFF;font-weight:700; border: 0;"></span>
 						Loading...
@@ -321,10 +323,10 @@
                     history.pushState({pageUrl : 'page2'}, null, '#');
                     init = 'page2';
                     $(".jumbo_page2").html(`
-                        <h1 class="display-5">Halo, Apa Kabar!</h1>
-                        <p>Anda sedang berada di Kelurahan <b>`+Psr+`</b>.<p id="posisi"></p>  
+                        <h1 class="display-5 hijauGadung">Halo, Apa Kabar!</h1>
+                        <p class="hijauGadung">Anda sedang berada di Kelurahan <b>`+Psr+`</b>.<p id="posisi"></p>  
                         <hr class="my-4">
-                        <p>Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
+                        <p class="hijauGadung">Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
                         <p align="right"><a id="gantiPsr">ganti pasar</a></p>
                     `);
 
@@ -534,12 +536,8 @@
             }
 
 			function sendData(dataObj) {
-
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbyI5C_LQQUlPAiRtNKmeOrcKFWk2HRolOdLqeIItvYhAcsyu30wpSHiRcL-4dGb03eL/exec";
-
-                //const webAppUrl = "https://script.google.com/macros/s/AKfycbxf4mDa4vbgU0wfchSH9Q1HNKipoLgY3-UnTXmL5_eVMRWkDd48HldzhflY2E8XbdIy/exec";
                 
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbysJ5G0YS9MTw3X0hV6GEJDa_iTRYhx2A4wnnziGKMpiDkI7Gk7cvVqD8Bo-ZomLXiF/exec";
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbyilTkbt4Lz8sBZH797gInqwPZn0GdZLT0xghACvAft4ek7eADUO6EFHLeRpwoCUHaC/exec";
 
                 const btnKirim = document.getElementById('entry_the_data');
 				const btnLoading = document.getElementById('loading_data');
@@ -691,7 +689,7 @@
             let cariByKatakunciLnk = document.querySelector('.cariByKatakunci');
             let scanTandaiTera = document.querySelector('.scanTandaiTera');
 
-            //menuUtamaLnk.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/index.html");
+            menuUtamaLnk.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/index.html");
 
             //cariByKatakunciLnk.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/cariKataKunci.html");
 
