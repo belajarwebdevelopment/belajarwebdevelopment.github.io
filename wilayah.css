@@ -130,3 +130,9 @@ button.pilihPsr {
 .loadingSpinner {
     background-color: #5470ae;color: #FFFFFF;font-weight:700; border: 0;
 }
+
+.kontenTabel {
+    color: #5a8e99;
+    font-family: 'Poppins', sans-serif;
+}
+
