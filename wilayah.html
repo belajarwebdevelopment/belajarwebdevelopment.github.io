@@ -400,16 +400,11 @@
                     init = 'page3';
 					$("#lat").val(Koordinat.latitude.toString().replace(".",","));
 					$("#long").val(Koordinat.longitude.toString().replace(".",","));
-                    /*$(".jumbo_page3").html(`
-                        <p>Kelurahan : <b>`+Psr+`</b>.<br>Pedagang / WTU : <b>Bp/Ibu `+$("#Nama").val()+`</b><br>Jenis Usaha : <b>`+$("#komoditi").val()+`</b><br>Alamat : <b>`+$("#alamat").val()+`</b><br>Telepon/WA : <b>`+$("#hp").val()+`</b><br>Lat : <b>`+Koordinat.latitude+`</b><br>Long : <b>`+Koordinat.longitude+`</b>  
-                        <hr class="my-4">
-                        <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
-                        <p align="right"><a id="backToWtu" style='color : #00000;'><<< Kembali ke form wtu</a></p>
-                    `);*/
+
                     let kontenStr = `
                         <table class="kontenTabel">
-                            <tr><td>WTU</td><td> : </td><td><b>${$("#Nama").val()}</b></td></tr>
-                            <tr><td>Jenis Usaha</td><td> : </td><td><b>${$("#komoditi").val()}</b></td></tr>
+                            <tr><td>WTU</td><td>:</td><td><b>${$("#Nama").val()}</b></td></tr>
+                            <tr><td>Jenis Usaha</td><td>:</td><td><b>${$("#komoditi").val()}</b></td></tr>
                             <tr><td>Alamat</td><td> : </td><td><b>${$("#alamat").val()}</b></td></tr>
                             <tr><td>Phone/WA</td><td> : </td><td><b>${$("#hp").val()}</b></td></tr>
                             <tr><td>WTU</td><td> : </td><td><b>${$("#Nama").val()}</b></td></tr>
@@ -420,6 +415,7 @@
                         <p>Silahkan mengisi data UTTP nya pada form dibawah ini, setelah itu tekan tombol 'Submit'.</p>
                         <p align="right"><a id="backToWtu" style='color : #00000;'><<< Kembali ke form wtu</a></p>
                     `; 
+
                     $(".jumbo_page3").html(kontenStr);
 					$(".to_hide").attr('hidden', true);
                 });
@@ -541,7 +537,7 @@
 				//fetch(webAppUrl).then(response => console.log('success...!',response));	
 			}
 			*/	
-
+            /*
             function jikaError() {
                 $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
             }
@@ -549,6 +545,7 @@
             function jikaSukses() {
                 $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
             }
+            */
 
 			function sendData(dataObj) {
                 
@@ -575,7 +572,7 @@
                     if (respon.result === 'error') {
                         $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
                     } else {
-                        $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                        $(".msg_container_page5").html('<p><span class="spanClass">'+pesan+'</span><br><br><span  class="spanClass">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
                     }
 
 				});

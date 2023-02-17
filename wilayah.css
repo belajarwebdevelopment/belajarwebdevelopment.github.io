@@ -1,10 +1,11 @@
 #add_uttp, #ganti_pedagang, #ganti_pasar {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
+    /*font-family: 'Roboto', sans-serif;*/
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
     font-weight: 500;
     color : #FFFFFF;
-    background-color: #332421;
-    border-top: 4px solid #FF7F00;
+    background-color: #d6482f;
+    border-top: 4px solid #1e81b0;
 }
 
 .msg_container_page5 {
@@ -133,6 +134,16 @@ button.pilihPsr {
 
 .kontenTabel {
     color: #5a8e99;
+    font-family: 'Poppins', sans-serif;
+}
+
+.kontenTabel td {
+    padding-right: 5px;
+
+}
+
+.spanClass {
+    color : #432616;
     font-family: 'Poppins', sans-serif;
 }
 
