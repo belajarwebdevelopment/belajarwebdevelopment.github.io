@@ -122,6 +122,8 @@ p.keterangan {
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
     font-weight: 700;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 p.keterangan a {
