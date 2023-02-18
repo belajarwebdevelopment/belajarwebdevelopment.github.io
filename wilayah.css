@@ -4,8 +4,14 @@
     font-size: 13px;
     font-weight: 500;
     color : #FFFFFF;
-    background-color: #d6482f;
-    border-top: 4px solid #1e81b0;
+    background-color: #1e81b0;
+    border-top: 4px solid #d6482f;
+}
+
+.errSpan {
+    background-color: #E3242B;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
 }
 
 .msg_container_page5 {
