@@ -36,29 +36,32 @@
 }
 
 .dataTabel {
-    border : 2px solid #000000;
+    border : 4px solid #F85F41;
     border-collapse : separate;
     table-layout: fixed;
     width : 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFFFF5;
 }
 
 .tHead {
-    background-color: #7f3e98;
+    background-color: #26a7de;
     color : #FFFFFF;
-    font-family : Tahoma;
 }
 
 .tBody {
-    background-color: #FFFFF5;
-    font-family : Tahoma;
-    color : #7f3e98;
+    background-color: /*#FFFFF5*/#0A0D13;
+    color : /*#F85F41*/#FFFFFF;
+    font-size: 14px;
+    font-weight:600;
 }
 
 td {
-	border-left : 1px solid #7f3e98; 
-    border-right : 1px solid #7f3e98;
-    border-bottom : 1px solid #7f3e98;
+	/*border-left : 1px solid #F85F41; 
+    border-right : 1px solid #F85F41; 
+    border-bottom : 1px solid #F85F41; */
     padding : 4px 4px 4px 4px;
+    border-collapse: collapse;
 }
 
 .tombolDiv {
