@@ -526,26 +526,6 @@
         </script>
 		
 		<script language="javascript">
-			/*
-			function getData() {
-				const webAppUrl = "https://script.google.com/macros/s/AKfycbwiJLg0tV08M2U2xymkL9aIYwj7G8VigJzsYlJfe0CSEa3eDKF0/exec";
-				
-				fetch(webAppUrl).then(d => d.json()).then(d => {
-						console.log(d[0].Nama);
-				});
-				
-				//fetch(webAppUrl).then(response => console.log('success...!',response));	
-			}
-			*/	
-            /*
-            function jikaError() {
-                $(".msg_container_page5").html('<p><span style="background-color : red; color : #FFFFFF;">Warning !!!</span><br><span style="background-color : red; color : #FFFFFF;">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
-            }
-
-            function jikaSukses() {
-                $(".msg_container_page5").html('<p><span style="color : #432616;">'+pesan+'</span><br><br><span style="color : #432616;">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
-            }
-            */
 
 			function sendData(dataObj) {
                 
@@ -570,7 +550,6 @@
                     init = 'page5';
 
                     if (respon.result === 'error') {
-                        //$(".msg_container_page5").html('<p><span class="errSpan">Warning !!!</span><br><span class="errSpan">'+pesan+'</span><br><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
                         $(".msg_container_page5").html('<p><div class="errSpan">Warning !!!<br>'+pesan+'</div><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
                     } else {
                         $(".msg_container_page5").html('<p><span class="spanClass">'+pesan+'</span><br><br><span  class="spanClass">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP WTU Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti WTU</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Kelurahan</div></p>');
