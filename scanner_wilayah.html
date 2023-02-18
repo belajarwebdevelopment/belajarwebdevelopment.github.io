@@ -1,0 +1,338 @@
+<html>
+    <head>
+	    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="QRCode scanner, pendataan UTTP, metrologi surakarta">
+		<meta name="description" content="Aplikasi Pendataan UTTP di Kota Surakarta">
+		<link rel="stylesheet" href="scanner_wilayah.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
+    </head>
+    <body>
+		<div class="topMenu">
+			<nav id="navigasi">
+				<a class="active" href="https://belajarwebdevelopment.github.io/index.html">Menu Utama</a> | 
+				<a class="active" href=#>Cari dgn Katakunci</a> |
+				<a class="active" href="https://belajarwebdevelopment.github.io/wilayah.html">Pendataan</a>
+			</nav>
+        </div>
+		<div class="ubahQRCodeDiv">
+			<div><h2 class="banner">Scan QRCode Yang Baru</h2></div>
+			<div class="d-flex align-items-center konten2">
+				<strong id="qrcode_str2"></strong>
+				<div class="spinner-border ml-auto spinner2" role="status" aria-hidden="true" hidden></div>		
+			</div>		
+			<div id="videoDiv2">
+				<video id="video2" autoplay width="100%" height="70%"></video>
+			</div>
+		</div>
+
+		<div class="covering" data-role="none">
+			
+		</div>
+		
+		<div class="loader" data-role="none">			
+			<img class="closeIcon" src ="icon.jpg">
+			<h4 class="JudulLoader">Loading....</h4>
+			<div class="spinner2"></div>
+		</div>	
+		
+	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
+			<div><h2 class="banner">WTU & UTTP Scanner</h2></div>
+			<div class="d-flex align-items-center konten">
+				<strong id="qrcode_str"></strong>
+				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
+			</div>
+			
+			<div id="videoDiv">
+				<video id="video" autoplay></video>
+			</div>
+
+            <div class="tombolDiv">
+				<div class="reScan">
+					<a href="scanner.html"><img src="scanQr.png" id="scanImg"></a>
+					<p class="peach"><a href="scanner.html">Scan QRCode</a></p>
+					<p class="keterangan"><a href="scanner.html">Klik menu ini jika akan men-scan QRCode lagi</a></p>
+				</div>	
+				<div class="tandaiTera">
+					<a href=# onclick="tandaiTera()" ><img src="tanda-sah.png" id="scanImg"></a>
+					<p class="peach"><a href=# onclick="tandaiTera()">Tandai Tera</a></p>
+					<p class="keterangan"><a href=# onclick="tandaiTera();">Klik menu ini jika ingin update data di atas menjadi status sudah ditera</a></p>
+				</div>
+			</div>			
+        </div>
+		<footer>
+
+		</footer>
+		<script language="javascript">
+			var Kamera = {};
+
+			function sendDataEditQRCode(theDataObj) {
+				const TheURL = "";
+				return new Promise((resolve, reject) => {
+					fetch(TheURL, {
+						method : 'POST',
+						body : JSON.stringify(theDataObj)
+					})
+					.then(RespStr => RespStr.json())
+					.then(RespJson => {
+						alert(RespJson.kodeBaru);
+						resolve(RespJson.kodeBaru);
+					})
+					.catch(ErrMsg => {
+						alert(ErrMsg);
+						reject(ErrMsg);
+					});
+				});
+			}
+
+			async function editData() {
+				if (Kamera.active == true) {
+					alert('Tidak bisa edit data, kamera masih aktif');
+					return false;
+				}
+				let tabel = document.querySelector('.tBody');
+				//alert(tabel.rows[0].cells[1].innerHTML.trim());
+				
+				document.querySelector('.konten').style.position = 'static';
+				document.querySelector('.ubahQRCodeDiv').style = "display : block";
+				const theCam2 = await prepareTheCam(video2);
+				let notif = document.querySelector('#qrcode_str2');
+				let loader2 = document.querySelector('.spinner2');
+				notif.innerHTML = "Kamera siap...";
+				await jeda(700);
+				notif.innerHTML = "Pemindai siap...";
+				await jeda(700);
+				notif.innerHTML = "Silahkan memindai QRCode Yg Baru..";	
+				const hasil_pindai = pindai(video2,notif,loader2);
+				await hasil_pindai
+				.then(async result => {
+					const DataYgDikirim = sendDataEditQRCode({'kodeQrLama' : tabel.rows[0].cells[1].innerHTML.trim(),'kodeQrBaru' : result});
+					
+					await DataYgDikirim
+					.then(ApiResp => ApiResp.json())
+					.then(ApiResp => {
+						notif.innerHTML = ApiResp;
+						loader2.hidden = true;
+					})
+					.catch(e => {
+						notif.innerHTML = `Ubah ke QRCode yang Baru Gagal. Ada pesan error dari Web API<br>${e}`;
+						loader2.hidden = true;
+					});
+				})
+				.catch(e => {
+					notif.innerHTML = `Pemindaian Gagal, KodeQR tidak terbaca<br> ${e}`;
+					loader2.hidden = true;
+				});
+				
+			}
+
+			function afterUpdateProccess(serverResp) {
+				document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">${serverResp}</h4>`;
+				document.querySelector(".spinner2").style = "display : none";
+				document.querySelector(".closeIcon").style = "display : inline-block";
+			}
+			
+			var QRCodeToTera = "";
+			function tandaiTera() {
+				if (Kamera.active == true) {
+					alert('Tidak bisa menandai tera, kamera masih aktif');
+					return false;
+				}
+				dataObjTera = {'kode_qr' : QRCodeToTera};
+
+				const webAppUrlTera = "https://script.google.com/macros/s/AKfycbwtmMATLblAtQIpu7OnQ5Yf-x21HLaVGELInkV7nphIyk6Hnrc6bOODppIhIemIjGf6/exec";
+				
+				bukaDialog();
+				fetch(webAppUrlTera,{
+					method : 'POST',
+					body : JSON.stringify(dataObjTera)
+				})
+				.then(respon => respon.json())
+				.then(async resp => {
+					afterUpdateProccess(`Tandai Tera ${resp.pesan}`);
+					await sendData(dataObjTera);
+					document.querySelector('.konten').style.position = 'relative';
+				})
+				.catch(async err => {
+					afterUpdateProccess(`Tandai Tera Gagal : ${err}`);
+					await sendData(dataObjTera);
+					document.querySelector('.konten').style.position = 'relative';
+				});
+			}
+
+			function setAwal() {
+					document.querySelector(".judulLoader").innerHTML = `Loading....`;
+					document.querySelector(".spinner2").style = "display : inline-block";
+					document.querySelector(".closeIcon").style = "display : none";
+			}
+
+			
+			function bukaDialog() {
+				let loaderDialog = document.querySelector(".loader");
+				let covering = document.querySelector(".covering");
+
+				setAwal();
+				loaderDialog.getElementsByClassName('closeIcon')[0].removeEventListener('click', function() {
+					loaderDialog.style = "display : none";
+					covering.style = "display : none";
+				});
+				loaderDialog.getElementsByClassName('closeIcon')[0].addEventListener('click', function() {
+					loaderDialog.style = "display : none";
+					covering.style = "display : none";
+				});
+				loaderDialog.style = "display : inline-block";
+				covering.style = "display : block";
+				
+			}
+
+
+			function sendData(dataObj) {
+				
+				const webAppUrl = "https://script.google.com/macros/s/AKfycbzlf48rtGU4uykhtdlUboXjoE0jbGtqXh-4oF0yIepOsSGMM3C7ICqhpv33fBAG8NbQ/exec";
+
+                const container_hasil_from_webapp = document.querySelector('#qrcode_str');
+				//const tabelDivContainer = document.querySelector('#tabelDiv');
+				const kontenDiv = document.querySelector('.konten');
+				return new Promise((resolve,reject) => {
+					fetch(webAppUrl,{
+						method : 'POST',
+						body : JSON.stringify(dataObj)
+					})
+					.then(respon => respon.json()).then(respon => {
+						QRCodeToTera = respon.kode;
+						kontenDiv.style = "background-color : #FFFFFF";
+						kontenDiv.style = "width : 100%";
+						container_hasil_from_webapp.style = "padding : 0px";
+						container_hasil_from_webapp.innerHTML = "";
+						container_hasil_from_webapp.innerHTML = 
+							`<table class='dataTabel'>
+								<thead>
+									<tr class='tHead'><th colspan='2'>Data UTTP</th></tr>
+								</thead>
+								<tbody class='tBody'>
+									<tr><td>QRCode</td><td>${respon.kode}</td></tr>
+									<tr><td>UTTP</td><td>${respon.uttp} ${respon.kap}/${respon.d}<br>Merek : ${respon.merek}<br>Tipe : ${respon.tipe}</td></tr>
+									<tr><td>Pemilik/WTU</td><td>${respon.wtu}</td></tr>
+									<tr><td>Pasar</td><td>${respon.pasar}</td></tr>
+									<tr><td>Los</td><td>${respon.los}</td></tr>
+									<tr><td>Tahun Tera</td><td>${respon.status_tera}</td></tr>
+									<tr><td>Tanggal Ditera Terakhir</td><td>${respon.tgl_tera_terakhir}</td></tr>
+								</tbody>
+							</table>`
+						resolve('done');
+					})
+					.catch(err => {
+						container_hasil_from_webapp.innerHTML = "";
+						container_hasil_from_webapp.innerHTML = `Data Untuk Kode ini Tidak Diketemukan ${err}`;
+						reject('Code not found / Kode tdk ditemukan');
+					});
+
+				});
+
+			}    
+        </script>
+
+		<script>	
+			function jeda(waktu) {
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve('Done');
+					},waktu);
+				});
+			}
+			
+			function prepareTheCam(video) {
+				const constrain = {
+					video : {
+						facingMode : {
+							exact: 'environment'
+						}
+					},
+					audio : false   
+				}
+
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);			
+				//return navigator.mediaDevices.getUserMedia({video : true}).then(stream => video.srcObject = stream);				
+			}
+
+			function tampilkanHasil(container_hasil,msg) {
+				container_hasil.innerHTML = "";
+				container_hasil.innerHTML = msg;
+			}
+
+			function pindai(video,container_hasil,enable_spinner) {
+				const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
+				return new Promise((resolve, reject) => {
+					const intervalID = setInterval(() => {
+						qrcodeDetector.detect(video).then(async (codes) => {
+							if (codes.length === 0) return;
+							container_hasil.innerHTML = "QRCode terdeteksi";
+							await jeda(400);
+							container_hasil.innerHTML = "Sedang Memindai...";
+							enable_spinner.hidden = false;
+							await jeda(900);
+							
+							for (const qrcode of codes) {
+								var code = qrcode.rawValue;
+							} 
+							clearInterval(intervalID);
+							resolve(code);
+						})
+						.catch(e => {
+							clearInterval(intervalID);
+							reject(e);
+						});
+					},2900);
+				});
+
+			}
+
+			async function mainScanProcess() {
+				let data = '';
+				const container_hasil = document.querySelector('#qrcode_str');
+				const enable_spinner = document.querySelector('.spinner');
+				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+					try {
+						const theCam = await prepareTheCam(video);
+						Kamera = theCam;
+						container_hasil.innerHTML = "Kamera siap...";
+						await jeda(500);
+						container_hasil.innerHTML = "Pemindai siap...";
+						await jeda(500);
+						container_hasil.innerHTML = "Silahkan memindai QRCode..";
+						
+						const pindai_ = pindai(video,container_hasil,enable_spinner);	
+
+						await pindai_.then(async msg => {
+							data = {'kode_qr' : msg};
+							//alert(msg);
+							const kirimDataDanTunggu = sendData(data);
+							await kirimDataDanTunggu.then(async () => {
+								enable_spinner.hidden = true;
+								await jeda(500);
+								theCam.getTracks().forEach(track => track.stop());
+								document.querySelector('#videoDiv').hidden = true;
+								document.querySelector('.konten').style.position = 'relative';
+							});
+						})
+						.catch(e => {
+							tampilkanHasil(container_hasil,e);
+							enable_spinner.hidden = true;
+							theCam.getTracks().forEach(track => track.stop());
+						});
+					}
+					catch(err) {
+						alert(err);
+					}
+				}
+			}
+			
+			mainScanProcess();
+
+		</script>
+
+    </body>
+</html>

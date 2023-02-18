@@ -1,0 +1,737 @@
+#videoDiv {
+    /*border : 1px solid black;
+    margin-bottom: 9px;*/
+    width : 100%;
+}
+
+#video {
+    width : 100%;
+    height : 70%;
+}
+
+#qrcode_str, #qrcode_str2 {
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 6px;
+}
+
+.banner {
+    background-color: #5E99C5;
+    padding : 3px;
+    display : block;
+    color : #FFFFFF;
+/*    font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+}
+
+
+.konten, .konten2 {
+	position : fixed;
+    background-color : #26a7de; 
+    color : #FFFFFF;
+    border-radius: 3px;
+}
+
+.dataTabel {
+    border : 2px solid #000000;
+    border-collapse : separate;
+    table-layout: fixed;
+    width : 100%;
+}
+
+.tHead {
+    background-color: #7f3e98;
+    color : #FFFFFF;
+    font-family : Tahoma;
+}
+
+.tBody {
+    background-color: #FFFFF5;
+    font-family : Tahoma;
+    color : #7f3e98;
+}
+
+td {
+	border-left : 1px solid #7f3e98; 
+    border-right : 1px solid #7f3e98;
+    border-bottom : 1px solid #7f3e98;
+    padding : 4px 4px 4px 4px;
+}
+
+.tombolDiv {
+	/*border-width: 4px;
+    border-color: #7f3e98;
+    border-style: double;*/    
+    width : 100%;
+    height : auto;
+    margin : auto auto;
+    padding-left : 0px;
+    padding-right: 0px;
+    display : flex;
+    /*background-color: #A9A9B0; */  
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+}
+
+.editDiv {
+    width : 100%;
+    height : auto;
+    margin : auto auto;
+    padding-right : 0px;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 20px;   
+    position: relative;
+}
+
+.editData {
+	border : 1px solid #616161;
+    /*border-radius : 2%;*/
+    width : 100%;
+    height : 250px;
+    display : inline-block;
+    text-align: left;
+    padding: 2px;
+    /*margin-right : auto;*/
+    background-color: #FFFFFF;
+    /*margin-left : auto;*/
+    /*position : left;*/
+    box-shadow: 2px 4px 10px #616161;
+    border-bottom : 20px solid #616161;    
+}
+
+#scanImg {
+    width : 50%;
+    height : 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#editImg {
+    width : 50%;
+    height : 100%;
+    float : left;
+}
+
+p.keterangan {
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+p.keterangan a {
+    color : #12908E;
+}
+
+p.ungu {
+    color : #812aa3; 
+    font-weight: bold;
+}
+
+.editData .ungu {
+    padding : 20px;
+}
+
+.reScan{
+	border : 1px solid #4863A0;
+    /*border-radius : 2%;*/
+    width : 49.5%;
+    height : 250px;
+    display : inline-block;
+    margin-right : auto;
+    margin-left : 0px;
+    position : static;
+    background-color: #FFFFFF;
+    /*border-bottom : 50px solid #A7C7E7;*/
+    border-bottom : 20px solid #4863A0;
+    align-content: center;
+    box-shadow: 2px 4px 10px #4863A0;
+}
+
+.tandaiTera {
+	border : 1px solid #4863A0;
+    /*border-radius : 2%;*/
+    width : 49.5%;
+    height : 250px;
+    display : inline-block;
+    margin-right : 0px;
+    background-color: #FFFFFF;
+    margin-left : auto;
+    position : static;
+    box-shadow: 2px 4px 10px #4863A0;
+    /*border-bottom : 50px solid #0492c2;*/
+    border-bottom : 20px solid #4863A0;
+}
+
+.loader {
+    display : none;
+    background-color: #52B2BF;
+    width : 95%;
+    height : auto;
+    position: fixed;
+    top : 50%;
+    left : 50%;
+    padding: 5px;
+    text-align: center;
+    border-radius: 2%;
+    transform: translate(-50%,50%);
+}
+
+.spinner2 {
+    border: 3px solid #f3f3f3; /* Light grey */
+    border-top: 3px solid #000000; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .JudulLoader {
+      width : 70%;
+      display : inline-block;
+      /*height : 30px;*/
+      height : auto;
+      color : #ffffff;
+      vertical-align: middle;
+  }
+
+  .covering {
+      display: none;
+      width : 100%;
+      height : 100%;
+      position: fixed;
+      opacity: 0.7;
+      background-color: #000000;
+  }
+
+  .closeIcon {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right : 0;
+      top : 0;
+      display : none;
+  }
+
+  .ubahQRCodeDiv {
+    display : none;
+    background-color: #000000;
+    width : 100%;
+    height : 100%;
+    position: fixed;
+    padding: 5px;
+    /*text-align: center;*/
+  }
+
+.topMenu {
+    background-color: #e5e8e5;
+    top : 0;
+    overflow: hidden;
+    position: fixed;
+    width : 100%;
+    height : 50px;
+    display: block;
+    left : 0;
+    right : 0;
+    text-align: center;
+    color : #FFFFFF;
+    padding-top: 7px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.topMenu a {
+    background-color: #5a8e99;
+    color: #FFFFFF;
+    text-align: center;
+    padding : 7px 4px 7px 4px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.topMenu a:hover, .topMenu a:active  {
+    background-color: #5a8e99;
+    color: white;
+    border-radius: 3px;
+}
+
+#navigasi {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    color : #5a8e99;
+    display: inline-block;
+
+}
+
+.kontainer {
+    border: 2px solid #52B2BF;
+    color : #2196F3;
+    padding-bottom: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    overflow: hidden;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#keterangan {
+    background-color: #52B2BF;
+    color : #f5e9de;
+    text-align: left;
+    font-size :small;
+    padding-left: 40px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#keterangan2 {
+    background-color: #52B2BF;
+    /*color : #f5e9de;*/
+    color : #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#katakunci {
+    border: 1px solid #52B2BF;
+    width : 70%;
+    padding: 3px;
+    font-size: 17px;
+    float:left;
+    background: #f1f1f1;
+    margin-left: 20px;
+    color : #2196F3;
+    font-size : 15px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.cari {
+    float: left;
+    width: 20%;
+    padding: 1.562px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid #52B2BF;
+    border-left: none;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.button {
+    float : left;
+    position: relative;
+    padding: 5px 2px 6px 2px;
+    background: #009579;
+    border: none;
+    cursor: pointer;
+}
+
+.button:active {
+    background: #007a63;
+}
+
+.button__text {
+    font: bold 17px 'Ubuntu', sans-serif;
+    color: #ffffff;
+    transition: all 0.2s;
+}
+
+.button--loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-bottom-color: #FFFFFF;
+    border-left-color: red;
+    border-right-color: red;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+.button--loading--table::after {
+    content: "";
+    position : absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #083378;
+    border-bottom-color: #083378;
+    border-left-color: #FFFFFF;
+    border-right-color: #FFFFFF;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.divItem.even {
+    /*background-color: #52B2C0;*/
+    background-color: #eee6ee
+    ;
+}
+
+.divItem {
+    margin-bottom: 10px;
+    border : 2px solid #dabfcd
+    ;
+    display : block;
+    overflow : auto;
+    position: relative;
+}
+
+.theTable th, .theTable td {
+    font-size: 13px;
+    border: none;
+}
+
+.itemUpdateBtn{
+    border : 2px solid #284D79;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #284D79;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemUbahBtn{
+    border : 2px solid #ff3e33;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #ff3e33;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemEditBtn {
+    border : 2px solid #0F5D5E;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #0F5D5E;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemUpdateBtn:active {
+    border : 2px solid #FFFFFF;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #284D79;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemUbahBtn:active{
+    border : 2px solid #FFFFFF;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #ff3e33;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+.itemEditBtn:active {
+    border : 2px solid #FFFFFF;
+    float : left;
+    position: relative;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color : #0F5D5E;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    margin: 0 0 3px 3px;
+    border-radius: 2px;
+}
+
+#namaLokasi {
+    color: #083378;
+}
+
+.header {
+    background-color: #6F848C;
+    color : #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    padding : 5px 12px 5px 5px;
+}
+
+.judul {
+    background-color: #204652;
+    color : #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.judul-edit {
+    background-color: #387999;
+    color : #FFFFFF;
+    font-family: 'Ubuntu', sans-serif;
+    display : block;
+    padding: 7px 5px 7px 5px;
+}
+
+.camContainer {
+    border : 2px solid #52B2C0;
+}
+
+.scanner {
+    position: relative;
+    left : auto;
+    right : auto;
+}
+
+/*
+.resultView {
+    position: relative;
+}*/
+
+.gantiQR {
+    border: 1px solid #FFFFFF;
+    background-color: #204652;
+    margin-top: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 7px;
+    padding-right: 7px;
+    color : #FFFFF5;
+}
+
+.gantiQR td {
+    border-left : 1px solid #FFFFFF; 
+    border-right : 1px solid #FFFFFF;
+    border-bottom : 1px solid #FFFFFF;
+    border-top : 1px solid #FFFFFF;    
+}
+
+.backToPrev {
+    border : 2px solid #FFFFFF;
+    padding: 5px 5px 5px 5px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #ff3e33;
+}
+
+
+.backToPrev:active {
+    border : 2px solid #ff3e33;
+    padding: 5px 5px 5px 5px;
+    color : #ff3e33;
+    font-weight: 500;
+    background-color: #FFFFFF;
+}
+
+.re_Scan {
+    border : 2px solid #FFFFFF;
+    padding: 5px 5px 5px 5px;
+    color : #FFFFFF;
+    font-weight: 500;
+    background-color: #009B77;;
+}
+
+
+.re_Scan:active {
+    border : 2px solid #009B77;;
+    padding: 5px 5px 5px 5px;
+    color : #009B77;;
+    font-weight: 500;
+    background-color: #FFFFFF;
+}
+
+.highlighted {
+    border : 6px solid #1E80C1;
+}
+
+.editDiv-container {
+    border : 2px solid #52B2C0;
+    display: block;
+    padding: 10px;
+}
+
+#editWtuForm {
+    font-family: 'Ubuntu', sans-serif;
+    color : #1E80C1;
+
+}
+
+.editWtuForm-sbButton {
+    background-color:#387999;
+    border : 2px solid #F98125;
+    color : #FFFFFF;
+    margin-top: 20px;
+}
+
+.editWtuForm-sbButton:active {
+    background-color:#FFFFFF;
+    border : 2px solid #387999;
+    color : #387999;
+    margin-top: 20px;
+}
+
+form.editWtuForm-Class input {
+    font-style: italic;
+    display : block; 
+    width : 95%; 
+    color : #1E80C1; 
+    margin-bottom : 5px; 
+    outline : none;
+    border : 2px solid #15202B; 
+}
+
+form.editWtuForm-Class input:focus {
+    background-color: #15202B;
+    border : 2px solid #B2BEB5;
+    color : #FFFFFF;
+    outline : none;
+}
+
+form.editWtuForm-Class input:disabled {
+    background-color: grey;
+    border : 2px solid darkgrey;
+    color : #FFFFFF;
+    outline : none;
+}
+
+form.editWtuForm-Class label{
+    text-align : left;
+    width : 100%; 
+    padding-top : 7px;
+    margin-bottom : 0px;
+}
+
+#favDialog {
+    font-family: 'Ubuntu', sans-serif;
+    color :#FFFFFF;
+    outline : 4px dashed #032A49;
+    background-color: #387999;
+}
+
+#favDialog button {
+    background-color: #032A49;
+    color : #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    border-left: none;
+    border-top: none;
+
+}
+
+#favDialog button:active {
+    border-left: 2px solid #FFFFFF;
+    border-top: 2px solid #FFFFFF;
+    border-right: none;
+    border-bottom: none;
+}
+
+#favDialog #cancelBtn {
+    background-color: #CB9821;
+    color : #FFFFFF;
+}
+
+#favDialog #gold {
+    background-color: #CB9821;
+
+}
+
+#favDialog #birugelap {
+    background-color: #032A49;
+
+}
+
+#favDialog h4 {
+    border-bottom: 4px solid #FFFFFF;
+    padding-bottom: 7px;
+    margin-bottom: 14px;
+}
+
+#favDialog p {
+    border-bottom: 4px solid #FFFFFF;
+    padding-bottom: 14px;
+}
+
+.topOftop {
+    position: absolute;
+    z-index: 10000;
+    width : 100%;
+    height : 70%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.cloader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin2 2s linear infinite;
+}
+  
+@keyframes spin2 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.peach a{
+    color: #F85F41;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
