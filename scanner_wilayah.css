@@ -65,6 +65,7 @@ td {
     border-bottom : 1px solid #F85F41; */
     padding : 4px 4px 4px 4px;
     border-collapse: collapse;
+    word-wrap: break-word;
 }
 
 .tombolDiv {

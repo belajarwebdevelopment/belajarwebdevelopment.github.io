@@ -153,3 +153,7 @@ button.pilihPsr {
     font-family: 'Poppins', sans-serif;
 }
 
+#bottomFooter {
+    background-color: red;
+    color : #5a8e99    
+}
