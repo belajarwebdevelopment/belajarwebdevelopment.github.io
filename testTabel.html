@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,4 +27,57 @@
         </tbody>
     </table>`
 </body>
-</html>
+</html>-->
+
+<script>
+function sendData(dataObj) {
+				
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbzlf48rtGU4uykhtdlUboXjoE0jbGtqXh-4oF0yIepOsSGMM3C7ICqhpv33fBAG8NbQ/exec";
+            
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbzIRa1anTIDTrQeC42VyeKe8ehzo_VZIRJAXZIZgGzgVbfzSs60UgReeMvWo9a9V_ta/exec";
+            
+                const container_hasil_from_webapp = document.querySelector('#qrcode_str');
+                //const tabelDivContainer = document.querySelector('#tabelDiv');
+                const kontenDiv = document.querySelector('.konten');
+                return new Promise((resolve,reject) => {
+                    fetch(webAppUrl,{
+                        method : 'POST',
+                        body : JSON.stringify(dataObj)
+                    })
+                    .then(respon => respon.json()).then(respon => {
+                        QRCodeToTera = respon.kode;
+                        console.log(QRCodeToTera);
+                        /*kontenDiv.style = "background-color : #FFFFFF";
+                        kontenDiv.style = "width : 100%";
+                        container_hasil_from_webapp.style = "padding : 0px";
+                        container_hasil_from_webapp.innerHTML = "";
+                        container_hasil_from_webapp.innerHTML = 
+                            `<table class='dataTabel'>
+                                <thead>
+                                    <tr class='tHead'><th colspan='2'>Data UTTP</th></tr>
+                                </thead>
+                                <tbody class='tBody'>
+                                    <tr><td>QRCode</td><td>${respon.kode}</td></tr>
+                                    <tr><td>UTTP</td><td>${respon.uttp} ${respon.kap}/${respon.d}<br>Merek : ${respon.merek}<br>Tipe : ${respon.tipe}</td></tr>
+                                    <tr><td>Pemilik/WTU</td><td>${respon.wtu}</td></tr>
+                                    <tr><td>Pasar</td><td>${respon.pasar}</td></tr>
+                                    <tr><td>Los</td><td>${respon.los}</td></tr>
+                                    <tr><td>Tahun Tera</td><td>${respon.status_tera}</td></tr>
+                                    <tr><td>Tanggal Ditera Terakhir</td><td>${respon.tgl_tera_terakhir}</td></tr>
+                                </tbody>
+                            </table>`
+                        */    
+                        resolve('done');
+                    })
+                    .catch(err => {
+                        container_hasil_from_webapp.innerHTML = "";
+                        container_hasil_from_webapp.innerHTML = `Data Untuk Kode ini Tidak Diketemukan ${err}`;
+                        reject('Code not found / Kode tdk ditemukan');
+                    });
+            
+                });
+            
+            }    
+            
+            sendData("qrcode000078");
+</script>
