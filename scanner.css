@@ -102,6 +102,7 @@ td {
 #scanImg {
     width : 50%;
     height : 50%;
+    margin-top: 7px;
 }
 
 #editImg {
@@ -113,12 +114,19 @@ td {
 p.keterangan {
     line-height: 1;
     font-size: 14px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+p.keterangan a {
+    color: #fe4236;
+    font-weight: 800;
+
 }
 
 p.ungu {
     color : #812aa3; 
     font-weight: bold;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .editData .ungu {
