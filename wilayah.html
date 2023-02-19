@@ -327,7 +327,7 @@
                         <p class="hijauGadung">Anda sedang berada di Kelurahan <b>`+Psr+`</b>.<p id="posisi"></p>  
                         <hr class="my-4">
                         <p class="hijauGadung">Silahkan mengisi data pedagang pasar lalu tekan tombol 'Selanjutnya ...' untuk mengisi UTTP-nya</p>
-                        <p align="right"><a id="gantiPsr">ganti pasar</a></p>
+                        <p align="right"><a id="gantiPsr">ganti kelurahan</a></p>
                     `);
 
                     //Cek apakah inputan nomor HP adalah number
@@ -550,7 +550,7 @@
                     init = 'page5';
 
                     if (respon.result === 'error') {
-                        $(".msg_container_page5").html('<p><div class="errSpan">Warning !!!<br>'+pesan+'</div><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Pasar</div></p>');
+                        $(".msg_container_page5").html('<p><div class="errSpan">Warning !!!<br>'+pesan+'</div><br><span style="color : #432616;">Data gagal dimasukkan, Silahkan ulangi pemasukan data : </span><br><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP Pedagang Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti Pedagang</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Kelurahan</div></p>');
                     } else {
                         $(".msg_container_page5").html('<p><span class="spanClass">'+pesan+'</span><br><br><span  class="spanClass">Klik menu di bawah ini utk memasukkan data lagi : </span><br><div class="alert alert-danger add_data" id="add_uttp" role="alert">Input UTTP WTU Yg Sama</div><div class="alert alert-warning add_data" id="ganti_pedagang" role="alert">Ganti WTU</div><div class="alert alert-info add_data" id="ganti_pasar" role="alert">Ganti Kelurahan</div></p>');
                     }
@@ -694,7 +694,4 @@
             scanTandaiTera.addEventListener('click', () => window.location = "https://belajarwebdevelopment.github.io/scanner_wilayah.html")
         </script>        
     </body>
-    <footer id="bottomFooter">
-        Test
-    </footer>
 </html>
