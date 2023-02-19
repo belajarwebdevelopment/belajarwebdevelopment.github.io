@@ -18,6 +18,7 @@
 				<a class="active" href="https://belajarwebdevelopment.github.io/wilayah.html">Pendataan</a>
 			</nav>
         </div>
+		<!--
 		<div class="ubahQRCodeDiv">
 			<div><h2 class="banner">Scan QRCode Yang Baru</h2></div>
 			<div class="d-flex align-items-center konten2">
@@ -28,7 +29,8 @@
 				<video id="video2" autoplay width="100%" height="70%"></video>
 			</div>
 		</div>
-
+		-->
+		
 		<div class="covering" data-role="none">
 			
 		</div>
@@ -42,7 +44,24 @@
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
 			<div><h2 class="banner">WTU & UTTP Scanner</h2></div>
 			<div class="d-flex align-items-center konten">
-				<strong id="qrcode_str"></strong>
+				<strong id="qrcode_str">
+					
+					<table class='dataTabel'>
+						<thead>
+							<tr class='tHead'><th colspan='2'>Data UTTP</th></tr>
+						</thead>
+						<tbody class='tBody'>
+							<tr><td>QRCode</td><td>Test</td></tr>
+							<tr><td>UTTP</td><td>Test<br>Merek : Test<br>Tipe : Test</td></tr>
+							<tr><td>Pemilik/WTU</td><td>Test</td></tr>
+							<tr><td>Pasar</td><td>Test</td></tr>
+							<tr><td>Los</td><td>Test</td></tr>
+							<tr><td>Tahun Tera</td><td>Test</td></tr>
+							<tr><td>Tanggal Ditera Terakhir</td><td>Test</td></tr>
+						</tbody>
+					</table>
+
+				</strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
 			
@@ -169,6 +188,7 @@
 					document.querySelector(".judulLoader").innerHTML = `Loading....`;
 					document.querySelector(".spinner2").style = "display : inline-block";
 					document.querySelector(".closeIcon").style = "display : none";
+					document.querySelector(".konten").style = "position : static";
 			}
 
 			

@@ -33,7 +33,7 @@
 
 .konten, .konten2 {
 	/*position : fixed;*/
-    position: fixed;
+    position : fixed;
     background-color : #26a7de; 
     color : #FFFFFF;
     border-radius: 3px;
@@ -183,6 +183,7 @@ p.ungu {
 
 .loader {
     display : none;
+    /*display : inline-block;*/
     background-color: #52B2BF;
     width : 95%;
     height : auto;
@@ -202,7 +203,8 @@ p.ungu {
     width: 30px;
     height: 30px;
     animation: spin 1s linear infinite;
-    display: inline-block;
+    /*display: inline-block;*/
+    display: none;
     vertical-align: middle;
     margin-left: 5px;
   }
