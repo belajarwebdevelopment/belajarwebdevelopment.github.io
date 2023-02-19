@@ -33,7 +33,7 @@
 
 .konten, .konten2 {
 	/*position : fixed;*/
-    position: static;
+    position: fixed;
     background-color : #26a7de; 
     color : #FFFFFF;
     border-radius: 3px;
@@ -46,7 +46,7 @@
     width : 100%;
     font-family: 'Poppins', sans-serif;
     background-color: #FFFFF5;
-    position: static;
+    /*position: static;*/
 }
 
 .tHead {
