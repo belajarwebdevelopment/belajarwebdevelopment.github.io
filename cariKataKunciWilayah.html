@@ -1,0 +1,678 @@
+<html>
+    <head>
+	    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="QRCode scanner, pendataan UTTP, metrologi surakarta">
+		<meta name="description" content="Aplikasi Pendataan UTTP di Kota Surakarta">
+		<link rel="stylesheet" href="cariKataKunciWilayah.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
+    </head>
+    <body>
+        <div class="topOftop" id="loaderContainer" hidden>
+            <div class="cloader"></div>
+        </div>
+
+		<div class="topMenu">
+			<nav id="navigasi">
+				<a class="active" href="https://belajarwebdevelopment.github.io/index.html">Menu Utama</a> | 
+				<a class="active" href="https://belajarwebdevelopment.github.io/scanner_wilayah.html">Scan & Tandai Tera</a> |
+                <a class="active" href="https://belajarwebdevelopment.github.io/index2.html?sendMeBack=yes">Ganti Kelurahan</a>
+
+            </nav>
+        </div>
+	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
+			<div class="title"><h2 class="banner">Cari Dgn Kata Kunci</h2><h5 class="banner">Lokasi :  <span id="namaLokasi"></span></h5></div>
+            <div class="kontainer">
+                <article id="keterangan">
+                    Kata kunci bisa berupa :
+                    <ul>
+                        <li>Nomor Qrcode; atau</li>
+                        <li>Nama WTU;</li>
+                        <li>Jenis Usaha;</li>    
+                    </ul>
+                </article>
+                Masukkan kata kunci : <br>
+                <input type="text" name="katakunci" id="katakunci" width="90%" data-role="none">
+                <button type="submit" class="cari" data-role="none">Cari</button>
+                <button type="button" class="button" hidden>
+                    <span class="button__text">Loading</span>
+                </button>
+            </div><br>
+            <div class="kontainer penampilHasil">
+                <p id="keterangan2"><b>Hasil Pencarian</b></p>
+                <div class="resultView"></div>
+            </div>
+            <br>
+            <div class="scanner" hidden>
+                <h3 class="judul">Pindai QRCode Yg Baru</h3>
+                <h6 class="header"></h6>
+                <div class="camContainer">
+                    <video id="video" autoplay></video>
+                </div>
+            </div>
+            <div class="editDiv" hidden>
+                <h4 class="judul-edit">Edit data WTU/Pedagang</h4>
+                <div class="editDiv-container"> 
+                    
+                </div>
+            </div>
+        </div>
+
+        <dialog id="favDialog">
+            <h4>Update WTU?</h4>
+            <form method="dialog">
+                <p>Apakah anda yakin mengupdate data WTU?<br>
+                <span id="birugelap">Sekali Anda menekan tombol 'Confirm', maka data WTU akan otomatis terupdate.</span><br>
+                <span id="gold">Jika Anda tidak yakin, silahkan tekan tombol 'Cancel'.</span> </p>
+                <button class="confirmBtn" value="confirm">Confirm</button>
+                <button id="cancelBtn" value="cancel">Cancel</button>
+            </form>
+        </dialog>
+
+
+		<footer>
+
+		</footer>
+        <script>
+            //const updateButton = document.querySelector('.editWtuForm-Sbbutton');
+            const favDialog = document.getElementById('favDialog');
+            const confirmBtn = favDialog.querySelector('.confirmBtn');
+
+            // If a browser doesn't support the dialog, then hide the
+            // dialog contents by default.
+            if (typeof favDialog.showModal !== 'function') {
+                favDialog.hidden = true;
+            }
+            // "Update details" button opens the <dialog> modally
+            document.querySelector('.editDiv-container').addEventListener('click', (e) => {
+                if (e.target.classList.contains('editWtuForm-Sbbutton')) {
+                    if (typeof favDialog.showModal === "function") {
+                        confirmBtn.id = `cfm-${e.target.id.split("-")[1]}`;
+                        favDialog.showModal();
+                    } else {
+                        outputBox.value = "Sorry, the <dialog> API is not supported by this browser.";
+                    }
+
+                }
+            });
+            
+            // "Confirm" button of form triggers "close" on dialog because of [method="dialog"]
+            favDialog.addEventListener('close', async () => {
+                if (favDialog.returnValue === 'confirm') {
+                    document.getElementById('loaderContainer').hidden = false;
+                    let response = await konfirm();
+                    document.getElementById('loaderContainer').hidden = true;
+                    showExceptEditor();
+                    document.querySelector('.editDiv-container').innerHTML = "";
+                    removeHighlight("highlighted");
+                    let baris = document.querySelector('.confirmBtn').id.split("-")[1];
+                    addHighlight(`div-${baris}`);
+                    let choosenDiv = document.getElementsByClassName('highlighted')[0].children[0].children[0].children[0].children;
+                    let choosenDiv2 = document.getElementsByClassName('highlighted')[0].children[0].children[0].children[2].children;
+                    choosenDiv[2].innerText = response.dataAfter[baris][3]+' - '+response.dataAfter[baris][16];
+                    choosenDiv2[2].innerHTML = spanning(response.dataAfter[baris][5]);
+                }
+            });
+
+            // fungsi utk handle confirm
+            async function konfirm() {
+                //Last changed 2 Dec 2022
+                //let urlWebApp = 'https://script.google.com/macros/s/AKfycbyrR8Szb_mhaeWycCkC5GIhAg1FZpS7uayhhxZ4VYiTpOTfMpP8l7YvdlNogASPUYbl/exec';
+                
+                const urlWebApp = "https://script.google.com/macros/s/AKfycbxUP8b39sc4MHEUNxDykVp27MoPTAvaIJ7WewKcDwCg9mID4rIcyG_Y4AwEQouYKhFY/exec";
+
+                const formdata = document.querySelectorAll('#editWtuForm input');
+                const barisKe = document.querySelector('.confirmBtn').id.split("-")[1];
+                let theData = Array.from(formdata).reduce((acc, input) => ({...acc,[input.id]: input.value}),{});
+                theData.barisKe = barisKe;
+                //console.log(theData);
+                
+                return fetch(urlWebApp, {
+                    method : 'POST',
+                    body : JSON.stringify(theData)
+                })
+                .then(respon => respon.json())
+                .then(respon => respon)
+                .catch(e => e);
+
+            }
+        </script>
+        <script>
+            class Formulir {
+                constructor(name = 'myForm',/* kelas = 'thisForm',*/ inputType = [], values = [], label = [], buttonLabel = 'Submit') {
+                    this.name = name;
+                    //this.kelas = kelas;
+                    this.inputType = inputType;
+                    this.values = values;
+                    this.label = label;
+                    this.buttonLabel = buttonLabel;
+                    this.jenisInput = {
+                        t : 'text',
+                        s : 'select',
+                        p : 'password',
+                        n : 'number'
+                    }
+                }
+
+
+                buatFormulir() {
+                    let Str = `<form id='${this.name}' class='${this.name}-Class'>`;
+
+                    for (let k in this.inputType) {
+                        Str += `<div><label for='${this.label[k]}' class='${this.name}-label'>${this.label[k]}</label>`;
+                        Str += `<input type='${this.jenisInput[this.inputType[k]]}' id='${this.label[k]}' value='${this.values[k]}'></div>`;
+                    }
+                    //Str += this.#buatTombol();
+                    Str += `</form>`;
+                    Str += this.#buatTombol();
+                    return Str;
+                }
+
+                #buatTombol() {
+                    let Str = '';
+                    Str = `<button type='submit' class='${this.name}-Sbbutton'>${this.buttonLabel}</button>`;
+                    return Str
+                }
+
+                #cekIfTrue(regStr, str) {
+                    return regStr.test(str);
+                }
+
+                inputFilter(elem, triggerEvent) {
+
+                    switch(triggerEvent) {
+                        case 'keyup':
+                            elem.addEventListener('keyup', e => {
+                                const reg = /[0-9]|-|\s/g;
+
+                                if (this.#cekIfTrue(reg, elem.value.charAt(elem.value.length-1)) || elem.value === '') {
+                                    return;
+                                } else {
+                                    alert(`Karakter [${elem.value.charAt(elem.value.length-1)}] yang Anda ketik bukan angka. Isian ini hanya bisa menerima inputan angka 0 sd 9 atau tanda '-' jika ingin dikosongkan`);
+                                    elem.value = elem.value.slice(0, elem.value.length-1);
+                                }
+                            });
+                        break;
+
+                        case 'click':
+                            return true;
+                        break;
+                    }    
+
+                }    
+
+                
+                #checkPattern(regexStrings, testStr, operand) {
+                    let logic1 = [];
+                    let result = false;
+                    Object.keys(regexStrings).forEach(key => {
+                        logic1.push(regexStrings[key]['pattern'].test(testStr) === regexStrings[key]['condition']);
+                        switch(operand) {
+                            case 'or' :
+                                result = (regexStrings[key]['pattern'].test(testStr) === regexStrings[key]['condition']) || result;                            
+                            break;
+
+                            case 'and' :
+                                result = (regexStrings[key]['pattern'].test(testStr) === regexStrings[key]['condition']) && result;                                                        
+                            break;
+                        }
+
+                    });
+                    
+                    return result;
+                }
+
+                inputFilters(elem, triggerEvent, regexStrs = {}, operand) {
+    
+                    switch(triggerEvent) {
+                        case 'keyup':
+                            //alert('test');
+                            
+                            elem.addEventListener('keyup', () => {
+                                //alert(this.#checkPattern(regexStrs,elem.value, operand));
+                                
+                                if (this.#checkPattern(regexStrs,elem.value, operand)) {
+                                    alert(`Warning!!!. Isian [${elem.value}] yang Anda ketik mengandung karakter yang tidak umum untuk sebuah nama. Isian ini hanya bisa menerima inputan alfabet a sd z, angka 0 sd 9 atau tanda '/'. Silahkan cek kembali inputan Anda ya...`);
+                                    elem.value = elem.value.slice(0, elem.value.length-1);
+                                } else {
+                                    return;
+                                }
+                                
+                            })
+                            
+                        break;
+                    }
+                }
+            }
+
+        </script>
+
+		<script language="javascript">
+            function sendGetData(keyword) {
+                               
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbxoUOTGUhouq_e3SceKZFCmzOxitnMy77CQsQ0wRU-4ZuHgPNQP8XUIFnA9XQR65YVT/exec";
+                
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbx8Tjfxfw-zv_t10578-g20NTv-lZ9rYEWnjJn3j-eyX7mczKU6bdPTEZikxT424ibi/exec";
+                let h = new Headers();
+                h.set('Content-Type','text/plain;charset=UTF-8');
+                h.set('Accept','application/json; charset=utf-8');
+                
+                return fetch(webAppUrl, {
+                    method : 'POST',
+                    headers : h,
+                    body : JSON.stringify({'keyword' : keyword, 'pasar' : localStorage.getItem('pasar')})
+                })
+                .then(respon => respon.json())
+                .then(respon => {
+                    if (respon.error_msg === "Data tidak ditemukan.....") {
+                        throw respon.error_msg;
+                    } 
+                    if(respon.result === "error") {
+                        console.log(respon);
+                        throw "Server error : error 500";
+                    }
+                    
+                    return respon;
+                })
+                .catch(e => {
+                    return {'error_msg' : e};
+                }
+                );
+
+            }
+
+            const tombolCari = document.querySelector('.cari');
+            const tombolLoading = document.querySelector('.button');
+
+            function preLoading() {
+                tombolCari.hidden = true;
+                tombolLoading.classList.add('button--loading');
+                tombolLoading.hidden = false;
+            }
+
+            function afterLoading() {
+                tombolCari.hidden = false;
+                tombolLoading.hidden = true;
+                tombolLoading.classList.remove('button--loading');
+            }
+
+            function spanning(konten) {
+                    return `<span style='background-color :#387999; padding-bottom : 4px; padding-top : 3px;color : #FFFFFF;'>${konten} - due to privacy</span>`;
+            }
+
+            function tampilkanHasil(datas) {
+                let kontenDiv = document.querySelector('.resultView');
+                let str = '';
+                let i = 1;
+
+
+                for (let k in datas) {
+                
+                    i % 2 == 0 ? className = 'even' : className = 'odd';
+                
+                    //let item = datas['data'][k];
+                    let item = datas[k];
+                    let nama_komoditi = `${item[3]} - ${item[16]}`;
+                    let uttp_merk_model = `${item[8]} ${item[9]}/${item[10]} - ${item[11]} - ${item[12]}`;
+
+                    str += `
+                        <div id='div-${k}' class='divItem ${className} c${k}'>
+                            <table class='theTable'>
+                                <tr><td>Nama - Komoditi</td><td>:</td><td>${nama_komoditi}</td></tr>
+                                <tr><td>Pasar</td><td>:</td><td>${item[2]}</td></tr>
+                                <tr><td>Phone</td><td>:</td><td>${item[5] === 'number_is_hidden' ? spanning(item[5]) : item[5]}</td></tr>
+                                <tr><td>QRCode</td><td>:</td><td id='qrcode-${k}'>${item[1]}</td></tr>
+                                <tr><td>UTTP-Merk-Model</td><td>:</td><td>${uttp_merk_model}</td></tr>
+                                <tr><td>Tahun Tera</td><td>:</td><td>${item[13]}</td></tr>
+                                <tr><td></td><td></td><td></td></tr>
+                            </table>
+                            <button type='submit' class='itemUbahBtn itemUbahBtn${k}' id='ubah-${k}'>Ubah QRCode</button>
+                            <button type='submit' class='itemEditBtn itemEditBtn${k}' id='edit-${k}'>Edit Data WTU</button>
+                            <button type='submit' class='itemUpdateBtn itemUpdateBtn${k}' id=${k}>Tandai Tera</button>
+                        </div>
+                    `;
+                    i++;                       
+                }
+                kontenDiv.innerHTML = str;
+            }
+
+            function tampilkanError(datas) {
+                let kontenDiv = document.querySelector('.resultView');
+                kontenDiv.innerHTML = `<h3 style='color : red; background-color : black;'>${datas.error_msg}</h3>`;
+            }
+
+            function clearKonten(className) {
+                let kontenDiv = document.querySelector(`.${className}`);
+                kontenDiv.innerHTML = "";
+            }
+
+            function sendUpdateTera(nomorBaris) {
+                //The last changed Url 2 Dec 2022
+                //const webAppUrl2 = "https://script.google.com/macros/s/AKfycbxvq57-PEMidvtCX22AulZ6kTg1eiouaFuu1znkZg3PciaB6Dxfkchm9zhBaumj7G-N/exec";
+                
+                //const webAppUrl2 = "https://script.google.com/macros/s/AKfycbyws8yniigjmw-S3Fq22nSgUcqz0uAZC_LN8goiN5u0fm9Dg27m-Pe7yzXmIOGmyHqy/exec";
+                
+                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbzjkROO0A-7ysP_6ngApWJpOP-VqpISbn9-QgZ7IQW73Vup4lPb1GVnh4dL8g4HU9VH/exec";
+                return fetch(webAppUrl2, {
+                    method : 'POST',
+                    body : JSON.stringify({'nomorBaris' : nomorBaris})
+                })
+                .then(resp => resp.json())
+                .then(resp => resp)
+                .catch(e => e);
+
+            }
+
+            function sendNewQRCode(nomorBaris, newQRCode) {
+                //Last changed 2 Dec 2022
+                //const webAppUrl3 = "https://script.google.com/macros/s/AKfycby4OIreO26AF-nXCsIem66a-jsyBwoo9p6YSvXQn-5jHpoVX7OAy49x_CPKEugQyxwe/exec";                
+                
+                //const webAppUrl3 = "https://script.google.com/macros/s/AKfycbzWJFDDyYqgZhWqHoiws90gSJ4OlRKVxAXvZxqkmiPoK7OUhIEseEwOeu8HXxJPKS5O/exec";
+
+                const webAppUrl3 = "https://script.google.com/macros/s/AKfycbyJ5VUffewaAXBlYP4wU64aUay2nzEfysKh1gKVmCjzz3bGqJo510siubCTLchYzhY1/exec";
+
+                return fetch(webAppUrl3, {
+                    method : 'POST',
+                    body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
+                })
+                .then(resp => resp.json())
+                .then(resp => {
+                    if (resp.result === "error") {
+                        throw `Error 400 : ${resp.msg}`;
+                    }
+                    return resp;
+                })
+                .catch(e => `<span style='color : red;'>Error : Update QRCode Baru Gagal -> </span><br><span style='color : red;'>${e}</span>`);
+
+                /*
+                return new Promise((resolve, reject) => {
+                    fetch(webAppUrl3, {
+                        method : 'POST',
+                        body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
+                    })
+                    .then(resp => resp.json())
+                    .then(resp => resolve({'result' : true, 'data' : resp}))
+                    .catch(e => reject({'result' : false}));
+                });
+                */
+            }
+
+            function hideScanner() {
+                document.querySelector('.camContainer').hidden = true;
+            }
+
+            function showScanner() {
+                document.querySelector('.camContainer').hidden === true ? document.querySelector('.camContainer').hidden = false : '';
+
+            }
+
+            function hideExceptScanner(logic = true) {
+                document.querySelector('.penampilHasil').hidden = logic;
+                document.querySelector('.title').hidden = logic;
+                document.querySelector('.kontainer').hidden = logic;
+                document.querySelector('.scanner').hidden = !logic;
+                document.querySelector('.editDiv').hidden = logic;
+            }
+
+            function hideExceptEditor(logic = true) {
+                document.querySelector('.penampilHasil').hidden = logic;
+                document.querySelector('.title').hidden = logic;
+                document.querySelector('.kontainer').hidden = logic;
+                document.querySelector('.scanner').hidden = logic;
+                document.querySelector('.editDiv').hidden = !logic;
+            }
+
+            function showExceptScanner(logic = true) {
+                document.querySelector('.penampilHasil').hidden = !logic;
+                document.querySelector('.title').hidden = !logic;
+                document.querySelector('.kontainer').hidden = !logic;
+                document.querySelector('.scanner').hidden = logic;
+                document.querySelector('.editDiv').hidden = !logic;
+            }
+
+            function showExceptEditor(logic = true) {
+                document.querySelector('.penampilHasil').hidden = !logic;
+                document.querySelector('.title').hidden = !logic;
+                document.querySelector('.kontainer').hidden = !logic;
+                document.querySelector('.scanner').hidden = logic;
+                document.querySelector('.editDiv').hidden = logic;
+            }
+
+            function btnLoading(rowNum) {
+                document.querySelector('.c'+rowNum).classList.add('button--loading--table');
+                document.querySelector('.itemUpdateBtn'+rowNum).classList.add('button--loading');
+                document.querySelector('.itemUpdateBtn'+rowNum).innerHTML = "Updating...";
+            }
+
+            function jeda(waktu) {
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						resolve('Done');
+					},waktu);
+				});
+			}
+
+			function prepareTheCam(video) {
+				const constrain = {
+					video : {
+						facingMode : {
+							exact: 'environment'
+						}
+					},
+					audio : false   
+				}
+
+				return navigator.mediaDevices.getUserMedia(constrain).then(stream => video.srcObject = stream);							
+			}
+
+			function pindai(video,container_hasil) {
+				const qrcodeDetector = new BarcodeDetector({formats : ['qr_code']});
+                return new Promise((resolve, reject) => {
+					const intervalID = setInterval(() => {
+						qrcodeDetector.detect(video).then(async (codes) => {
+							if (codes.length === 0) return;
+							container_hasil.innerHTML = "QRCode terdeteksi";
+							await jeda(100);
+							container_hasil.innerHTML = "Sedang Memindai...";
+							await jeda(200);
+							
+							for (const qrcode of codes) {
+								var code = qrcode.rawValue;
+							} 
+							clearInterval(intervalID);
+							resolve(code);
+						})
+						.catch(e => {
+							clearInterval(intervalID);
+							reject(e);
+						});
+					},2900);
+				});
+			}
+
+			async function mainScanProcess(barisKe) {
+                showScanner();
+				let data = '';
+				const container_hasil = document.querySelector('.header');
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+					try {
+						const theCam = await prepareTheCam(video);
+                        hideExceptScanner();
+						container_hasil.innerHTML = "Kamera siap...";
+						await jeda(100);
+						container_hasil.innerHTML = "Pemindai siap...";
+						await jeda(100);
+						container_hasil.innerHTML = "Silahkan memindai QRCode..";
+						
+						const pindai_ = pindai(video,container_hasil);	
+
+						await pindai_.then(async kodeQr => {
+                            const ubahQRCode = await sendNewQRCode(barisKe,kodeQr);
+                            let resultStr = '';
+                            //alert(`Data : ${ubahQRCode.dataAfter[barisKe]}`);
+                            if (ubahQRCode.result === "success") {
+                                
+                                resultStr = `Ganti QRCode nya ${ubahQRCode.result} !<br>
+                                <table class='gantiQR'>
+                                <tr>
+                                    <td>ID </td><td>: ${ubahQRCode.dataAfter[barisKe][3]}</td>
+                                <tr>
+                                <tr>
+                                    <td>Pasar</td><td>: ${ubahQRCode.dataAfter[barisKe][2]}</td>
+                                </tr>
+                                <tr>
+                                    <td>Komoditi</td><td>: ${ubahQRCode.dataAfter[barisKe][16]}</td>
+                                </tr>
+                                <tr>
+                                    <td>Old QRCode</td><td>: ${ubahQRCode.dataBefore[barisKe][1]}</td>
+                                </tr>
+                                <tr>    
+                                    <td>New QRCode</td><td>: ${ubahQRCode.dataAfter[barisKe][1]}</td>
+                                    <input type='text' name='newQRCode' id='newQRCode' value='${ubahQRCode.dataAfter[barisKe][1]}' hidden readonly>
+                                </tr>
+                                <tr><td colspan='2' align='center'><button class='backToPrev' id='back-${barisKe}'>Kembali ke Halaman Pencarian</button></td></tr>
+                                </table>
+                                `;
+                                
+                            } else {
+                                resultStr = `<table class='gantiQR'><tr><td style='background-color : #b3e7dc;'>${ubahQRCode}</td></tr><tr><td align='center'><button class='re_Scan' id='${barisKe}'>Re-Scan QRCode Lain</button></td></tr></table>`;
+                            }
+
+                            tampilkanHasil2(container_hasil,resultStr);
+
+                            theCam.getTracks().forEach(track => track.stop());
+                            hideScanner();
+                            
+						})
+						.catch(e => {
+							tampilkanHasil2(container_hasil,e);
+							theCam.getTracks().forEach(track => track.stop());
+						});
+					}
+					catch(err) {
+						alert(err);
+					}
+				}
+			}
+
+			function tampilkanHasil2(container_hasil,msg) {
+				container_hasil.innerHTML = "";
+				container_hasil.innerHTML = msg;
+			}
+
+            function addHighlight(id) {
+                document.getElementById(id).classList.add("highlighted");
+                location.href = `#${id}`;
+
+            }
+
+            function removeHighlight(className) {
+                //console.log(className);
+                //console.log(document.getElementsByClassName(className));
+                if (document.getElementsByClassName(className)[0] != undefined) {
+                    document.getElementsByClassName(className)[0].classList.remove('highlighted');
+                }
+            }
+
+            function ubahDisplayWTU(containerId) {
+
+            }
+
+            function ubahDisplayQrcodeLama(idElement, QRCodeBaru) {
+                document.getElementById(idElement).innerHTML = QRCodeBaru;
+            }
+//############################################# - Main Program - ###############################################//
+            tombolCari.addEventListener('click',async () => {
+                let keyword = document.getElementById('katakunci').value;
+                clearKonten('resultView');
+                preLoading();
+                let datas = await sendGetData(keyword);
+                afterLoading();
+                datas.result === "success" ? tampilkanHasil(datas.data) : tampilkanError(datas);
+            });
+
+            document.querySelector('.resultView').addEventListener('click', async e => {
+                let barisKe = e.target.id;
+                if (e.target.classList.contains('itemUpdateBtn')) {
+                    btnLoading(barisKe);
+                    let doUpdateTera = await sendUpdateTera(barisKe);
+                    doUpdateTera.result === 'error' ? tampilkanError(doUpdateTera) : tampilkanHasil(doUpdateTera['dataAfter']);
+                }
+
+            });
+
+            
+            let tombolUbahQrcode = document.querySelector('.resultView'); 
+            tombolUbahQrcode.addEventListener('click', async e => {
+                let barisKe = e.target.id.split("-")[1].trim();
+                if (e.target.classList.contains('itemUbahBtn')) {
+                    mainScanProcess(barisKe);
+                }
+            });
+
+            tombolUbahQrcode.addEventListener('click', async e => {
+                if (e.target.classList.contains('itemEditBtn')) {
+                    //alert(`Edit the data : ${e.target.id}`);
+                    hideExceptEditor();
+                    let tipeInput = ['t','t','t'];
+                    let tabel = document.getElementById(`div-${e.target.id.split("-")[1]}`).children;
+                    let wtuVal = tabel[0].children[0].children[0].children[2].innerText.split(" - ")[0];
+                    let komoditiVal = tabel[0].children[0].children[0].children[2].innerText.split(" - ")[1];
+                    let hpVal = tabel[0].children[0].children[2].children[2].innerText;
+                    let nilai = [wtuVal, komoditiVal, hpVal];
+                    let label = ['WTU', 'Komoditi', 'HP'];
+                    const editWtuForm = new Formulir('editWtuForm',tipeInput,nilai,label,'Update');
+                    document.querySelector('.editDiv-container').innerHTML = editWtuForm.buatFormulir();
+                    const pola = /[0-9]|-|\s/g;
+                    editWtuForm.inputFilter(document.getElementById('HP'),'keyup');
+                    const polaObj = {
+                        pola1 : {
+                            pattern : /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/,
+                            condition : true
+                        },
+                        pola2 : {
+                            pattern : /[a-z0-9/]/i,
+                            condition : false
+                        }
+                    }
+                    editWtuForm.inputFilters(document.getElementById('WTU'), 'keyup', polaObj, 'or');
+                    document.getElementById('HP').value === "number_is_hidden - due to privacy" ? document.getElementById('HP').disabled = true : ''; 
+                    document.querySelector(`.${editWtuForm.name}-Sbbutton`).id = `sb-${e.target.id.split("-")[1]}`;
+                }
+            });
+
+            //document.getElementById('prev').addEventListener('click',() => showExceptScanner());
+            document.querySelector('.header').addEventListener('click', e => {
+
+                if (e.target.classList.contains('backToPrev')) {
+                    let IDs = e.target.id.split("-");
+                    removeHighlight("highlighted");
+                    addHighlight(`div-${IDs[1]}`);
+                    ubahDisplayQrcodeLama(`qrcode-${IDs[1]}`,document.getElementById('newQRCode').value);
+                    showExceptScanner();                    
+                }
+
+                if (e.target.classList.contains('re_Scan')) {
+                    let barisKe = e.target.id;
+                    mainScanProcess(barisKe);
+                }    
+
+            })
+            
+            if (!localStorage.getItem('pasar')) {
+                let strParam = `?sendMeBack=yes`;
+                //window.open('http://locahost/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                //window.open('https://belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+                //window.open('E:/xampp/htdocs/belajarwebdevelopment.github.io/index2.html'+strParam, '_self');
+            } 
+            document.getElementById('namaLokasi').innerHTML = localStorage.getItem('pasar');
+                    
+        </script>    
+    </body>
+</html>
