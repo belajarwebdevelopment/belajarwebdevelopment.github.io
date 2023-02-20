@@ -78,6 +78,10 @@ img {
     font-size: 19px;
 }
 
+.menuText2 a {
+    color : #FFFFFF;
+}
+
 .menuPencarian1, .menuPencarian2 {
     padding-top: 7px;
     display: inline-block;
