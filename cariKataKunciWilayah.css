@@ -528,12 +528,14 @@ p.ungu {
     color : #FFFFFF;
     font-family: 'Poppins', sans-serif;
     padding : 5px 12px 5px 5px;
+    border-radius: 4px;
 }
 
 .judul {
     background-color: #204652;
     color : #FFFFFF;
     font-family: 'Poppins', sans-serif;
+    border-radius: 4px;
 }
 
 .judul-edit {
@@ -546,6 +548,7 @@ p.ungu {
 
 .camContainer {
     border : 2px solid #52B2C0;
+    border-radius: 4px;
 }
 
 .scanner {
