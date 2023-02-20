@@ -136,7 +136,7 @@
 				document.querySelector(".judulLoader").innerHTML = `<h4 class="JudulLoader">${serverResp}</h4>`;
 				document.querySelector(".spinner2").style = "display : none";
 				document.querySelector(".closeIcon").style = "display : inline-block";
-				document.querySelector(".konten").style = "position : fixed";
+				/*document.querySelector(".konten").style = "position : fixed";*/
 			}
 			
 			var QRCodeToTera = "";
@@ -189,6 +189,7 @@
 				loaderDialog.getElementsByClassName('closeIcon')[0].addEventListener('click', function() {
 					loaderDialog.style = "display : none";
 					covering.style = "display : none";
+					document.querySelector(".konten").style = "position : fixed";
 				});
 				loaderDialog.style = "display : inline-block";
 				covering.style = "display : block";
