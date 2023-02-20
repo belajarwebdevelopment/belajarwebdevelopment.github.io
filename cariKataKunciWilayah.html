@@ -50,6 +50,7 @@
             </div>
             <br>
             <div class="scanner" hidden>
+                <a href=# onclick="backToSearch();" class="backToSearch"><<< Kembali ke halaman pencarian</a><br>
                 <h3 class="judul">Pindai QRCode Yg Baru</h3>
                 <h6 class="header"></h6>
                 <div class="camContainer">
@@ -57,7 +58,7 @@
                 </div>
             </div>
             <div class="editDiv" hidden>
-                <a href=# onclick="backToSearch();" class="backToSearch"><<< Kembali ke form pencarian</a><br><br>
+                <a href=# onclick="backToSearch();" class="backToSearch"><<< Kembali ke halaman pencarian</a><br><br>
                 <h4 class="judul-edit">Edit data WTU/Pedagang</h4>
                 <div class="editDiv-container"> 
                     
@@ -443,7 +444,7 @@
                 document.querySelector('.title').hidden = !logic;
                 document.querySelector('.kontainer').hidden = !logic;
                 document.querySelector('.scanner').hidden = logic;
-                document.querySelector('.editDiv').hidden = !logic;
+                document.querySelector('.editDiv').hidden = logic;
             }
 
             function showExceptEditor(logic = true) {
@@ -515,9 +516,9 @@
 						const theCam = await prepareTheCam(video);
                         hideExceptScanner();
 						container_hasil.innerHTML = "Kamera siap...";
-						await jeda(100);
+						await jeda(200);
 						container_hasil.innerHTML = "Pemindai siap...";
-						await jeda(100);
+						await jeda(200);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
 						
 						const pindai_ = pindai(video,container_hasil);	
