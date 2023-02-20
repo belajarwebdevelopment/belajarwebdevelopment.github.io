@@ -753,3 +753,10 @@ form.editWtuForm-Class label{
     font-family: 'Poppins', sans-serif;
 }
 
+.backToSearch {
+    color: #F85F41;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    left : auto;
+    right : 0;
+}

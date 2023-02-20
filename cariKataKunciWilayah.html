@@ -57,6 +57,7 @@
                 </div>
             </div>
             <div class="editDiv" hidden>
+                <a href=# onclick="backToSearch();" class="backToSearch"><<< Kembali ke form pencarian</a><br><br>
                 <h4 class="judul-edit">Edit data WTU/Pedagang</h4>
                 <div class="editDiv-container"> 
                     
@@ -80,6 +81,15 @@
 
 		</footer>
         <script>
+            function backToSearch() {
+                document.querySelector('.penampilHasil').hidden = false;
+                document.querySelector('.title').hidden = false;
+                document.querySelector('.kontainer').hidden = false;
+                document.querySelector('.scanner').hidden = true;
+                document.querySelector('.editDiv').hidden = true;
+                document.querySelector('.editDiv-container').innerHTML = "";
+            }
+
             //const updateButton = document.querySelector('.editWtuForm-Sbbutton');
             const favDialog = document.getElementById('favDialog');
             const confirmBtn = favDialog.querySelector('.confirmBtn');
