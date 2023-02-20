@@ -301,7 +301,7 @@ p.ungu {
     padding-top: 3px;
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 #keterangan {
@@ -311,7 +311,7 @@ p.ungu {
     font-size :small;
     padding-left: 40px;
     font-family: 'Poppins', sans-serif;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 #keterangan2 {
@@ -320,6 +320,7 @@ p.ungu {
     color : #FFFFFF;
     font-family: 'Poppins', sans-serif;
     font-weight: 100;
+    border-radius: 4px;
 }
 
 #katakunci {
@@ -417,17 +418,16 @@ p.ungu {
 
 .divItem.even {
     /*background-color: #52B2C0;*/
-    background-color: #eee6ee
-    ;
+    background-color: #eee6ee;
 }
 
 .divItem {
     margin-bottom: 10px;
-    border : 2px solid #dabfcd
-    ;
+    border : 2px solid #dabfcd;
     display : block;
     overflow : auto;
     position: relative;
+    border-radius: 5px;
 }
 
 .theTable th, .theTable td {
@@ -759,4 +759,11 @@ form.editWtuForm-Class label{
     font-family: 'Poppins', sans-serif;
     left : auto;
     right : 0;
+}
+
+#namaLokasi {
+    background-color: #F85F41;
+    color : #FFFFFF;
+    padding-left: 5px;
+    padding-right: 5px;
 }
