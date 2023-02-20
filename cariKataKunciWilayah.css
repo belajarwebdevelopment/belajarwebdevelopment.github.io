@@ -615,7 +615,9 @@ p.ungu {
 }
 
 .highlighted {
-    border : 6px solid #1E80C1;
+    border : 3px solid #1E80C1;
+    background-color: #000A2F;
+    opacity : 0.7;
 }
 
 .editDiv-container {
