@@ -443,7 +443,8 @@
             var resetFormUTTP_v2 = function(ids) {
                 $("#uttp1").val('').trigger('change');
                 $("#tahunTera1").val('').trigger('change');
-                let arr = ["kap","d","merk","model"]
+                //let arr = ["kap","d","merk","model"]
+                let arr = ["kap","d","model"]
                 for (i=0;i<arr.length;i++) {
                     $("#"+arr[i]+ids).val("").attr('readonly', true);
                 }
