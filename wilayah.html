@@ -108,6 +108,7 @@
                         <div class="mb-3">
                             <label for="uttp1" class="form-label">Jenis UTTP</label>
                             <select class="form-control pilih_uttp" name="uttp1" id="uttp1">
+                                <!--
                                 <option value="">Pilih jenis UTTP</option>
                                 <option value="TM - 25 kg - 20 g">TM - 25 kg</option>
                                 <option value="TM - 10 kg - 10 g">TM - 10 kg</option>
@@ -126,6 +127,7 @@
                                 <option value="N - 50 g - 25 mg">N - 50 g</option>
                                 <option value="TE - - ">TE</option>
                                 <option value="TP - - ">TP</option>
+                                -->
                               </select>                        
                         </div>
                         <div class="mb-3 to_hide" hidden><label for="kap1" class="form-label">Kapasitas</label>
@@ -192,6 +194,32 @@
         </div>
         </form>
         <!--</div>-->    
+
+        <script>
+            
+            urlDataUttp = "https://script.google.com/macros/s/AKfycbz_Je2ZXuIRFmxWdYpQTbgWbEa4iqU9ucJj1FrPK8hoql-UtKnFbBj-upEFOvWU7ZYH/exec";
+
+            const selectUttp = document.getElementById('uttp1');
+            fetch(urlDataUttp)
+            .then(datas => datas.json())
+            .then(datas => {
+                const optionElemen = document.createElement('option');
+                optionElemen.value = '';
+                optionElemen.innerHTML = 'Pilih jenis UTTP';    
+                selectUttp.appendChild(optionElemen);
+                if (datas.result === 'success') {
+                    for (let k of datas.data) {
+                        if (k[0] != 'nama') {
+                            let optionElemen = document.createElement('option');
+                            optionElemen.value = `${k[0]} - ${k[1]} - ${k[2]}`;
+                            k[1] === '-'? optionElemen.innerHTML = k[0] : optionElemen.innerHTML = `${k[0]} - ${k[1]}`;
+                            selectUttp.appendChild(optionElemen);
+                        }
+                    }
+                }
+            });
+            
+        </script>
 
         <script>
             
