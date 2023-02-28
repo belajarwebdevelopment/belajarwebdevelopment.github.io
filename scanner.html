@@ -296,10 +296,10 @@
 						qrcodeDetector.detect(video).then(async (codes) => {
 							if (codes.length === 0) return;
 							container_hasil.innerHTML = "QRCode terdeteksi";
-							await jeda(400);
+							await jeda(150);
 							container_hasil.innerHTML = "Sedang Memindai...";
 							enable_spinner.hidden = false;
-							await jeda(900);
+							await jeda(200);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
@@ -325,9 +325,9 @@
 						const theCam = await prepareTheCam(video);
 						Kamera = theCam;
 						container_hasil.innerHTML = "Kamera siap...";
-						await jeda(500);
+						await jeda(200);
 						container_hasil.innerHTML = "Pemindai siap...";
-						await jeda(500);
+						await jeda(200);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
 						
 						const pindai_ = pindai(video,container_hasil,enable_spinner);	
@@ -338,7 +338,7 @@
 							const kirimDataDanTunggu = sendData(data);
 							await kirimDataDanTunggu.then(async () => {
 								enable_spinner.hidden = true;
-								await jeda(500);
+								await jeda(200);
 								theCam.getTracks().forEach(track => track.stop());
 								document.querySelector('#videoDiv').hidden = true;
 								document.querySelector('.konten').style.position = 'relative';

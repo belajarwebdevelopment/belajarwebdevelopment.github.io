@@ -489,9 +489,9 @@
 						qrcodeDetector.detect(video).then(async (codes) => {
 							if (codes.length === 0) return;
 							container_hasil.innerHTML = "QRCode terdeteksi";
-							await jeda(400);
+							await jeda(150);
 							container_hasil.innerHTML = "Sedang Memindai...";
-							await jeda(900);
+							await jeda(200);
 							
 							for (const qrcode of codes) {
 								var code = qrcode.rawValue;
@@ -516,9 +516,9 @@
 						const theCam = await prepareTheCam(video);
                         hideExceptScanner();
 						container_hasil.innerHTML = "Kamera siap...";
-						await jeda(500);
+						await jeda(200);
 						container_hasil.innerHTML = "Pemindai siap...";
-						await jeda(500);
+						await jeda(200);
 						container_hasil.innerHTML = "Silahkan memindai QRCode..";
 						
 						const pindai_ = pindai(video,container_hasil);	
