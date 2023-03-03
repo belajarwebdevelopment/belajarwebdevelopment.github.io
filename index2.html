@@ -34,7 +34,7 @@
                 <div class="col">
                     <select class="form-control" id="pilih_psr" name="pilih_psr">
                         <option selected>Daftar Pasar</option>
-                        <option >Pasar Ayu Balapan</option>
+                        <!--<option >Pasar Ayu Balapan</option>
                         <option >Pasar Nusukan</option>
                         <option >Pasar Legi</option>
                         <option >Pasar Gede Hardjonagoro</option>
@@ -67,7 +67,7 @@
 						<option >Pasar Bangunharjo</option>
 						<option >Pasar Sidodadi</option>
 						<option >Pasar Kembang</option>
-						<option >Pasar Pucangsawit</option>
+						<option >Pasar Pucangsawit</option>-->
                       </select>                   
                 </div>
             </div>
@@ -215,7 +215,33 @@
             <video id="video" autoplay style="max-width : 100%; max-height : 100%;"></video>
         </div>
         </form>
-        <!--</div>-->    
+        <!--</div>-->   
+        <script>
+            const urlDataPasar = "https://script.google.com/macros/s/AKfycbwzVP84YKO62g10ShP-DKAqmOieh8VMJv_8L1FG6ZldOUNPnNFTTZgEKid6d8B6Dx6n/exec";
+
+            const selectPasar = document.getElementById('pilih_psr');
+            fetch(urlDataPasar)
+            .then(datas => datas.json())
+            .then(datas => {
+                const optionElemen = document.createElement('option');
+                //optionElemen.value = '';
+                //optionElemen.innerHTML = 'Pilih jenis UTTP';
+                selectKel.appendChild(optionElemen);
+                if (datas.result === 'success') {
+                    for (let k of datas.data) {
+                        if (k[0] != 'Daftar Pasar') {
+                            let optionElemen = document.createElement('option');
+                            //optionElemen.value = `${k[0]} - ${k[1]} - ${k[2]}`;
+                            //k[1] === '-'? optionElemen.innerHTML = k[0] : optionElemen.innerHTML = `${k[0]} - ${k[1]}`;
+                            optionElemen.innerHTML = k[0];
+                            selectPasar.appendChild(optionElemen);
+                        }
+                    }
+                }
+            });
+
+
+        </script> 
         <script>
             
             urlDataUttp = "https://script.google.com/macros/s/AKfycbz_Je2ZXuIRFmxWdYpQTbgWbEa4iqU9ucJj1FrPK8hoql-UtKnFbBj-upEFOvWU7ZYH/exec";
