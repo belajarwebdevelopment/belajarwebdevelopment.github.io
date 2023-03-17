@@ -69,7 +69,7 @@ td {
     /*background-color: #A9A9B0; */  
     padding-top: 10px;
     padding-bottom: 20px;
-
+    position :fixed;
 }
 
 .editDiv {
