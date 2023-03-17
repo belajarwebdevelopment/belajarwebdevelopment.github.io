@@ -40,7 +40,7 @@
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
 			<div><h2 class="banner">WTU & UTTP Scanner</h2></div>
 			
-			<div class="d-flex align-items-center konten" style="background-color : #52B2BF; color : #FFFFFF;">
+			<div class="d-flex align-items-center konten" style="background-color : #52B2BF; color : #FFFFFF;" hidden>
 				<strong id="qrcode_str"></strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
@@ -334,6 +334,8 @@
 								await jeda(200);
 								theCam.getTracks().forEach(track => track.stop());
 								document.querySelector('#videoDiv').hidden = true;
+								document.querySelector('.konten0').hidden = true;
+								document.querySelector('.konten').hidden = false;
 								document.querySelector('.konten').style.position = 'static';
 							});
 						})
