@@ -159,12 +159,12 @@
 				.then(async resp => {
 					afterUpdateProccess(`Tandai Tera ${resp.pesan}`);
 					await sendData(dataObjTera);
-					document.querySelector('.konten').style.position = 'relative';
+					//document.querySelector('.konten').style.position = 'relative';
 				})
 				.catch(async err => {
 					afterUpdateProccess(`Tandai Tera Gagal : ${err}`);
 					await sendData(dataObjTera);
-					document.querySelector('.konten').style.position = 'relative';
+					//document.querySelector('.konten').style.position = 'relative';
 				});
 			}
 
