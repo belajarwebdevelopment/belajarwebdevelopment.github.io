@@ -42,11 +42,10 @@
 			
 			<div class="d-none align-items-center konten" style="background-color : #52B2BF; color : #FFFFFF;">
 				<strong id="qrcode_str"></strong>
-				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
 
 			
-			<div class="d-flex align-items-center konten0" style="background-color : grey; color : #FFFFFF;">
+			<div class="d-flex align-items-center konten0" style="background-color : #52B2BF; color : #FFFFFF;">
 				<strong id="qrcode_str_0">Strong</strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
@@ -311,7 +310,7 @@
 
 			async function mainScanProcess() {
 				let data = '';
-				const container_hasil = document.querySelector('#qrcode_str');
+				const container_hasil = document.querySelector('#qrcode_str_0');
 				const enable_spinner = document.querySelector('.spinner');
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 					try {
