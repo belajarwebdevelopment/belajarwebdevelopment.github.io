@@ -160,12 +160,12 @@
 				.then(async resp => {
 					afterUpdateProccess(`Tandai Tera ${resp.pesan}`);
 					await sendData(dataObjTera);
-					document.querySelector('.konten').style.position = 'static';
+					//document.querySelector('.konten').style.position = 'static';
 				})
 				.catch(async err => {
 					afterUpdateProccess(`Tandai Tera Gagal : ${err}`);
 					await sendData(dataObjTera);
-					document.querySelector('.konten').style.position = 'static';
+					//document.querySelector('.konten').style.position = 'static';
 				});
 			}
 
@@ -173,7 +173,7 @@
 					document.querySelector(".judulLoader").innerHTML = `Loading....`;
 					document.querySelector(".spinner2").style = "display : inline-block";
 					document.querySelector(".closeIcon").style = "display : none";
-					document.querySelector(".konten").style = "position : static";
+					//document.querySelector(".konten").style = "position : static";
 			}
 
 			
@@ -189,7 +189,7 @@
 				loaderDialog.getElementsByClassName('closeIcon')[0].addEventListener('click', function() {
 					loaderDialog.style = "display : none";
 					covering.style = "display : none";
-					document.querySelector(".konten").style = "position : fixed";
+					//document.querySelector(".konten").style = "position : static";
 				});
 				loaderDialog.style = "display : inline-block";
 				covering.style = "display : block";
