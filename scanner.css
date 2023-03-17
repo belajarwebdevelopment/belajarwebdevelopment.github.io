@@ -26,12 +26,13 @@
 }
 
 
-.konten2 {
+.kontenOnScanning .konten2 {
 	position : fixed;
 }
 
 .konten {
     position: static;
+    display: none;
 }
 
 .dataTabel {
