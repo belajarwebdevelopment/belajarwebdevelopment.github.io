@@ -9,7 +9,7 @@
     height : 70%;
 }
 
-#qrcode_str, #qrcode_str2, #qrcode_str_onScanning {
+#qrcode_str, #qrcode_str2 {
     padding-left: 9px;
     padding-right: 9px;
     padding-top: 3px;
@@ -26,7 +26,7 @@
 }
 
 
-.kontenOnScanning .konten2 {
+.konten2 {
 	position : relative;
 }
 

@@ -39,17 +39,19 @@
 		
 	    <div class="container py-5 my-2 border" data-role="page" id="page6" width="640" height="480" style="text-align: center;">
 			<div><h2 class="banner">WTU & UTTP Scanner</h2></div>
-			<!--
+			
 			<div class="d-flex align-items-center konten" style="background-color : #52B2BF; color : #FFFFFF;">
 				<strong id="qrcode_str"></strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
-			-->
+
+			<!--
 			<div class="d-flex align-items-center kontenOnScanning" style="background-color : #52B2BF; color : #FFFFFF;">
 				<strong id="qrcode_str_onScanning"></strong>
 				<div class="spinner-border ml-auto spinner" role="status" aria-hidden="true" hidden></div>
 			</div>
-			
+		    -->
+
 			<div id="videoDiv">
 				<video id="video" autoplay></video>
 			</div>
@@ -309,7 +311,7 @@
 
 			async function mainScanProcess() {
 				let data = '';
-				const container_hasil = document.querySelector('#qrcode_str_onScanning');
+				const container_hasil = document.querySelector('#qrcode_str');
 				const enable_spinner = document.querySelector('.spinner');
 				if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 					try {
@@ -332,8 +334,8 @@
 								await jeda(200);
 								theCam.getTracks().forEach(track => track.stop());
 								document.querySelector('#videoDiv').hidden = true;
-								document.querySelector('.konten').style.display = 'block';
-								//document.querySelector('.konten').style.position = 'relative';
+								//document.querySelector('.konten').style.display = 'block';
+								document.querySelector('.konten').style.position = 'relative';
 							});
 						})
 						.catch(e => {
