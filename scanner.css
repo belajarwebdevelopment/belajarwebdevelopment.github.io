@@ -27,11 +27,11 @@
 
 
 .konten2 {
-	position : relative;
+	position : fixed;
 }
 
 .konten {
-    position: fixed;
+    position: static;
 }
 
 .dataTabel {
