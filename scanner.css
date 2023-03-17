@@ -26,8 +26,12 @@
 }
 
 
-.konten, .konten2 {
+.konten2 {
 	position : fixed;
+}
+
+.konten {
+    position: static;
 }
 
 .dataTabel {
