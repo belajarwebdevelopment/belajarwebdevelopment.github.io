@@ -185,7 +185,8 @@ p.ungu {
     width: 30px;
     height: 30px;
     animation: spin 1s linear infinite;
-    display: inline-block;
+    /*display: inline-block;*/
+    display: none;
     vertical-align: middle;
     margin-left: 5px;
   }
