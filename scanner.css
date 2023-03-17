@@ -31,8 +31,7 @@
 }
 
 .konten {
-    position: static;
-    display: none;
+    position: fixed;
 }
 
 .dataTabel {
