@@ -334,7 +334,7 @@
 								await jeda(200);
 								theCam.getTracks().forEach(track => track.stop());
 								document.querySelector('#videoDiv').hidden = true;
-								//document.querySelector('.konten').style.position = 'relative';
+								document.querySelector('.konten').style.position = 'static';
 							});
 						})
 						.catch(e => {
