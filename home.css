@@ -1,5 +1,6 @@
 .kontainerBrown {
-    background-color: #DBA797;
+    /*background-color: #DBA797;*/
+    background-color: #F5FBFF;
     width: 99%;
     height: 700px;
     display: block;
@@ -9,6 +10,7 @@
     margin-top: 30px;
     padding-top: 20px;
     text-align: center;
+    border : 3px solid #4682B4;
 }
 
 span {
@@ -17,14 +19,16 @@ span {
     padding-left: 10px;
     font-size: 30px;
     font-weight: 600;
-    color : #490206;
+    /*color : #490206;*/
+    color : #4682B4;
 }
 
 p {
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     font-weight: bold;
-    color : #490206;
+    /*color : #490206;*/
+    color : #4682B4;
     padding-left: 10px;
 
 }
@@ -82,7 +86,18 @@ img {
     color : #FFFFFF;
 }
 
-.menuPencarian1, .menuPencarian2 {
+.menuText2 a:link { text-decoration: none; }
+
+
+.menuText2 a:visited { text-decoration: none; }
+
+
+.menuText2 a:hover { text-decoration: none; }
+
+
+.menuText2 a:active { text-decoration: none; }
+
+.menuPencarian1, .menuPencarian2, .menuPencarian3 {
     padding-top: 7px;
     display: inline-block;
     width: 96%;
@@ -98,4 +113,8 @@ img {
 
 .menuPencarian2 {
     background-color: #152736;
+}
+
+.menuPencarian3 {
+    background-color: #D4672A;
 }
