@@ -12,7 +12,7 @@
 
 }
 
-#qrcode_str, #qrcode_str2 {
+#qrcode_str, #qrcode_str2, #qrcode_str_0 {
     padding-left: 9px;
     padding-right: 9px;
     padding-top: 3px;
@@ -31,12 +31,16 @@
 }
 
 
-.konten, .konten2 {
+/*.konten,*/ .konten2, .konten0 {
 	/*position : fixed;*/
     position : fixed;
     background-color : #26a7de; 
     color : #FFFFFF;
     border-radius: 3px;
+}
+
+.konten {
+    position: static;
 }
 
 .dataTabel {
