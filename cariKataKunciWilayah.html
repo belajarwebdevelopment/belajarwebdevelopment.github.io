@@ -133,11 +133,10 @@
 
             // fungsi utk handle confirm
             async function konfirm() {
-                //Last changed 2 Dec 2022
-                //let urlWebApp = 'https://script.google.com/macros/s/AKfycbyrR8Szb_mhaeWycCkC5GIhAg1FZpS7uayhhxZ4VYiTpOTfMpP8l7YvdlNogASPUYbl/exec';
-                
-                const urlWebApp = "https://script.google.com/macros/s/AKfycbxUP8b39sc4MHEUNxDykVp27MoPTAvaIJ7WewKcDwCg9mID4rIcyG_Y4AwEQouYKhFY/exec";
+                //const urlWebApp = "https://script.google.com/macros/s/AKfycbxUP8b39sc4MHEUNxDykVp27MoPTAvaIJ7WewKcDwCg9mID4rIcyG_Y4AwEQouYKhFY/exec";
 
+                const urlWebApp = "https://script.google.com/macros/s/AKfycbwvRsjFR6mx64XHzTTO6o0K2t0a2y4cMnD7eNvm_knxwdTNZRwgw4tWZk9X5M0pxj33/exec";
+                
                 const formdata = document.querySelectorAll('#editWtuForm input');
                 const barisKe = document.querySelector('.confirmBtn').id.split("-")[1];
                 let theData = Array.from(formdata).reduce((acc, input) => ({...acc,[input.id]: input.value}),{});
@@ -151,7 +150,7 @@
                 .then(respon => respon.json())
                 .then(respon => respon)
                 .catch(e => e);
-
+                
             }
         </script>
         <script>
