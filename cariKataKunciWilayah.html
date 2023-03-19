@@ -135,8 +135,10 @@
             async function konfirm() {
                 //const urlWebApp = "https://script.google.com/macros/s/AKfycbxUP8b39sc4MHEUNxDykVp27MoPTAvaIJ7WewKcDwCg9mID4rIcyG_Y4AwEQouYKhFY/exec";
 
-                const urlWebApp = "https://script.google.com/macros/s/AKfycbwvRsjFR6mx64XHzTTO6o0K2t0a2y4cMnD7eNvm_knxwdTNZRwgw4tWZk9X5M0pxj33/exec";
+                //const urlWebApp = "https://script.google.com/macros/s/AKfycbwvRsjFR6mx64XHzTTO6o0K2t0a2y4cMnD7eNvm_knxwdTNZRwgw4tWZk9X5M0pxj33/exec";
                 
+                const urlWebApp = "https://script.google.com/macros/s/AKfycbzJvgIIYQeMatqPKe4MWlzYJA7uN0Z8RYZ_47Du294ZkE5M_M4fn0OUdC0g9xdnGytyVw/exec";
+
                 const formdata = document.querySelectorAll('#editWtuForm input');
                 const barisKe = document.querySelector('.confirmBtn').id.split("-")[1];
                 let theData = Array.from(formdata).reduce((acc, input) => ({...acc,[input.id]: input.value}),{});
@@ -268,7 +270,10 @@
                                
                 //const webAppUrl = "https://script.google.com/macros/s/AKfycbxoUOTGUhouq_e3SceKZFCmzOxitnMy77CQsQ0wRU-4ZuHgPNQP8XUIFnA9XQR65YVT/exec";
                 
-                const webAppUrl = "https://script.google.com/macros/s/AKfycbx8Tjfxfw-zv_t10578-g20NTv-lZ9rYEWnjJn3j-eyX7mczKU6bdPTEZikxT424ibi/exec";
+                //const webAppUrl = "https://script.google.com/macros/s/AKfycbx8Tjfxfw-zv_t10578-g20NTv-lZ9rYEWnjJn3j-eyX7mczKU6bdPTEZikxT424ibi/exec";
+
+                const webAppUrl = "https://script.google.com/macros/s/AKfycbwZO3kmY6ik5z7dUaguIaDjGvUONBq-PxywBLuqu8L1WuDmin-bK_sZ6IodEIUiYxDerQ/exec";
+
                 let h = new Headers();
                 h.set('Content-Type','text/plain;charset=UTF-8');
                 h.set('Accept','application/json; charset=utf-8');
@@ -370,8 +375,10 @@
                 
                 //const webAppUrl2 = "https://script.google.com/macros/s/AKfycbzjkROO0A-7ysP_6ngApWJpOP-VqpISbn9-QgZ7IQW73Vup4lPb1GVnh4dL8g4HU9VH/exec";
                 
-                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbx6Zn7ul9Yj6UZryMtRogMUEUgsy4dw88iu27176fFF4siHJj64hAIhchei0cdwzcVz/exec";
+                //const webAppUrl2 = "https://script.google.com/macros/s/AKfycbx6Zn7ul9Yj6UZryMtRogMUEUgsy4dw88iu27176fFF4siHJj64hAIhchei0cdwzcVz/exec";
                 
+                const webAppUrl2 = "https://script.google.com/macros/s/AKfycbzpiRm3YeKl_m2ERYZBHY8X0YNDq-MaJw4flYtcBaUxFijLTQRAgPayc4-OTMawbjdNSg/exec";
+
                 return fetch(webAppUrl2, {
                     method : 'POST',
                     body : JSON.stringify({'nomorBaris' : nomorBaris})
@@ -388,8 +395,10 @@
                 
                 //const webAppUrl3 = "https://script.google.com/macros/s/AKfycbzWJFDDyYqgZhWqHoiws90gSJ4OlRKVxAXvZxqkmiPoK7OUhIEseEwOeu8HXxJPKS5O/exec";
 
-                const webAppUrl3 = "https://script.google.com/macros/s/AKfycbyJ5VUffewaAXBlYP4wU64aUay2nzEfysKh1gKVmCjzz3bGqJo510siubCTLchYzhY1/exec";
-
+                //const webAppUrl3 = "https://script.google.com/macros/s/AKfycbyJ5VUffewaAXBlYP4wU64aUay2nzEfysKh1gKVmCjzz3bGqJo510siubCTLchYzhY1/exec";
+                
+                const webAppUrl3 = "https://script.google.com/macros/s/AKfycbzddrxJyUc3o0rIeNIP9nYMvrpziXF7L0XyAeqaJcEtFxntridJxwvKK_WDV55eSEhmKQ/exec";
+                
                 return fetch(webAppUrl3, {
                     method : 'POST',
                     body : JSON.stringify({'nomorBaris' : nomorBaris, 'newQRCode' : newQRCode})
