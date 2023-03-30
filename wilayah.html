@@ -565,11 +565,12 @@
                 
                 const webAppUrl = "https://script.google.com/macros/s/AKfycbyA5gFGLNnhQXsJe5T3lQIEkHnyO3ysYAeCxQvzw-GJm0Lx9dkcGm74Gv5n-MfTNSn9MA/exec";
                 
+                
                 const btnKirim = document.getElementById('entry_the_data');
 				const btnLoading = document.getElementById('loading_data');
-				btnKirim.classList.toggle('d-none');
+				/*btnKirim.classList.toggle('d-none');
 				btnLoading.classList.toggle('d-none');
-
+                */
                 fetch(webAppUrl,{
 					method : 'POST',
 					body : JSON.stringify(dataObj)
@@ -605,8 +606,12 @@
 				const data = new FormData(form);
 				let SerializePair = {};
                 let xyz = {};
-
-				for (const [name, value] of data) {
+                
+                //Aktifkan tanda loading
+                document.getElementById('entry_the_data').classList.toggle('d-none');;
+				document.getElementById('loading_data').classList.toggle('d-none');;
+				
+                for (const [name, value] of data) {
                     switch(name) {
                         case 'alamat':
                             xyz[name] = value;
