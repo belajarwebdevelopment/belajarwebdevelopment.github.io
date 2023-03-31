@@ -552,7 +552,9 @@
                     //Aktifkan tanda loading
                     document.getElementById('entry_the_data').classList.toggle('d-none');
 	    			document.getElementById('loading_data').classList.toggle('d-none');
-                    siapkanData();
+                    setTimeout(() => {
+                        siapkanData();
+                    },200);
 
                 });
 
