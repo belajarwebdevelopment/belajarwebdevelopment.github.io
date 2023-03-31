@@ -548,7 +548,10 @@
 
                 });
 
-                $("#entry_the_data").on('click', function() {
+                $("#entry_the_data").on('click', function() 
+                    //Aktifkan tanda loading
+                    document.getElementById('entry_the_data').classList.toggle('d-none');;
+	    			document.getElementById('loading_data').classList.toggle('d-none');;
                     siapkanData();
 
                 });
@@ -601,10 +604,6 @@
             }
 
 			function siapkanData() {
-                //Aktifkan tanda loading
-                document.getElementById('entry_the_data').classList.toggle('d-none');;
-				document.getElementById('loading_data').classList.toggle('d-none');;
-
                 const form = document.querySelector('#pendataanForm');
 				const data = new FormData(form);
 				let SerializePair = {};
