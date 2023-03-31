@@ -467,10 +467,10 @@
 
             var resetFormDataWTU = function() {
                 $("#hp").val('');
-                //$("#los").val('');
 				$("#los").val('-');
+                $("#alamat").val('');
                 $("#Nama").val('');
-				$("#komoditi").val('');
+				$("#komoditi").val('').trigger('change');
             }
 
             var resetFormAll = function() {
