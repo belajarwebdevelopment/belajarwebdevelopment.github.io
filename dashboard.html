@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+        <link rel="stylesheet" href="dashboard.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="selectMenu">
+                <select name="kat" id="kat">
+                    <option value="">-- Pilih Kategori --</option>
+                    <option value="pasar">Pasar</option>
+                    <option value="wilayah">Wilayah</option>
+                </select>
+
+                <select name="detailKat" id="detailKat">
+
+                </select>
+            </div>
+
+            <div class="loadingSelect">
+                
+            </div>
+        </div>
+        <script>
+            async function getWilayah() {
+                const UrlKelurahan = "https://script.google.com/macros/s/AKfycbxxWf-43TUg5XvBOes_r89pANhi6fCOQgqhF_SwEmjJMWSIvv9BSDEsX2ZCpUGQDMRg/exec";
+
+                let str = '';
+                await fetch(UrlKelurahan)
+                    .then(datas => datas.json())
+                    .then(datas => {
+                        const optionElemen = document.createElement('option');
+                        optionElemen.value = '';
+                        optionElemen.innerHTML = '---Pilih Kelurahan---';    
+                        str += optionElemen.outerHTML;
+                        if (datas.result === 'success') {
+                            for (let k of datas.data) {
+                                if (k[0] != 'Kelurahan') {
+                                    let optionElemen = document.createElement('option');
+                                    optionElemen.value = `${k[0]} - ${k[1]}`;
+                                    optionElemen.innerHTML = k[0];
+                                    str += optionElemen.outerHTML;
+                                }
+                            }
+                        }
+                });
+
+                return str;
+            }
+
+            async function getPasar() {
+                const urlDataPasar = "https://script.google.com/macros/s/AKfycbwzVP84YKO62g10ShP-DKAqmOieh8VMJv_8L1FG6ZldOUNPnNFTTZgEKid6d8B6Dx6n/exec";
+
+                let str = '';
+                await fetch(urlDataPasar)
+                .then(datas => datas.json())
+                .then(datas => {
+                    const optionElemen = document.createElement('option');
+                    optionElemen.value = '';
+                    optionElemen.innerHTML = '---Pilih Pasar---';
+                    str += optionElemen.outerHTML;
+
+                    if (datas.result === 'success') {
+                        for (let k of datas.data) {
+                            if (k[0] != 'Daftar Pasar') {
+                                let optionElemen = document.createElement('option');
+                                optionElemen.value = k[0];
+                                optionElemen.innerHTML = k[0];
+                                str += optionElemen.outerHTML;
+                            }
+                        }
+                    }
+                });
+
+                return str;
+
+            }
+
+            (function main() {
+                let kategori = document.getElementById("kat");
+                kategori.addEventListener('change', async () => {
+
+                    switch($("#kat").val()) {
+                        case 'wilayah' :
+                            document.getElementById('detailKat').innerHTML = await getWilayah();    
+                            break;
+
+                        case 'pasar' :
+                            document.getElementById('detailKat').innerHTML = await getPasar();
+                            break;                            
+                    }
+
+                    $("#detailKat").val('').trigger('change');
+                });
+            })();
+
+
+        </script>
+    </body>
+</html>

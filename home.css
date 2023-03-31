@@ -97,7 +97,7 @@ img {
 
 .menuText2 a:active { text-decoration: none; }
 
-.menuPencarian1, .menuPencarian2, .menuPencarian3 {
+.menuPencarian1, .menuPencarian2, .menuPencarian3, .menuPencarian4 {
     padding-top: 7px;
     display: inline-block;
     width: 96%;
@@ -117,4 +117,8 @@ img {
 
 .menuPencarian3 {
     background-color: #D4672A;
+}
+
+.menuPencarian4 {
+    background-color: #296E01;
 }
