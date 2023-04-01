@@ -27,8 +27,8 @@
                 </select>
             </div>
 
-            <div class="loadingSelect">
-                
+            <div class="loadingSelect" hidden>
+                <div class="lds-facebook"><div></div><div></div><div></div></div>
             </div>
         </div>
         <script>
@@ -89,15 +89,24 @@
             (function main() {
                 let kategori = document.getElementById("kat");
                 kategori.addEventListener('change', async () => {
-
+                    let loading = document.querySelector('.loadingSelect');
+                    loading.hidden = false;
+                    
                     switch($("#kat").val()) {
                         case 'wilayah' :
-                            document.getElementById('detailKat').innerHTML = await getWilayah();    
+                            document.getElementById('detailKat').innerHTML = await getWilayah(); 
+                            loading.hidden = true;
                             break;
 
                         case 'pasar' :
                             document.getElementById('detailKat').innerHTML = await getPasar();
-                            break;                            
+                            loading.hidden = true;
+                            break;
+
+                        case '' :
+                            loading.hidden = true;
+                            document.getElementById('detailKat').innerHTML = `<option value=''>-- No Kategori Selected --</option>`;
+                            break;
                     }
 
                     $("#detailKat").val('').trigger('change');
