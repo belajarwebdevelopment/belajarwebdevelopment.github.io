@@ -37,7 +37,7 @@
         </div>
 
         <div class="resultDisplayer">
-            
+
         </div>
 
         <script>
@@ -95,12 +95,17 @@
 
             }
 
+            function clearResultDisplayer() {
+                document.querySelector(".resultDisplayer").innerHTML = "";
+            }
+
             (function main() {
                 let kategori = document.getElementById("kat");
                 kategori.addEventListener('change', async () => {
                     let loading = document.querySelector('.loadingSelect');
                     loading.hidden = false;
-                    
+                    clearResultDisplayer();
+
                     switch($("#kat").val()) {
                         case 'wilayah' :
                             document.getElementById('detailKat').innerHTML = await getWilayah(); 
@@ -119,6 +124,29 @@
                     }
 
                     $("#detailKat").val('').trigger('change');
+
+                    let detailKat = document.getElementById('detailKat');
+                    detailKat.addEventListener('change', async () => {
+                        loading.hidden = false;
+                        clearResultDisplayer();
+
+                        switch($("#kat").val()) {
+                            case 'wilayah':
+                                setTimeout(() => {
+                                    let a = $("#detailKat").val().split(" - ");
+                                    document.querySelector('.resultDisplayer').innerHTML = `Kel. ${a[0]} / Kec. ${a[1]}`; 
+                                    loading.hidden = true;
+                                }, 1800);
+                                break;
+                            case 'pasar':
+                                setTimeout(() => {
+                                    document.querySelector('.resultDisplayer').innerHTML = $("#detailKat").val(); 
+                                    loading.hidden = true;
+                                }, 1800);
+                                break;
+                        }
+
+                    });
                 });
             })();
 

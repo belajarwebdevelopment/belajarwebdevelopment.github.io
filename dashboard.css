@@ -13,8 +13,12 @@ div.summary {
   border-radius: 10px;
   top: 10px;
   color : #212121;
-  font-weight: 800;
+  /*font-weight: 800;*/
   text-align: left;
+}
+
+h5 {
+  font-weight: 800;
 }
 
 div.sumChild {
