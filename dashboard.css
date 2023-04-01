@@ -3,15 +3,55 @@
     border-color: #bbb;
 }
 
+div.summary {
+  position: relative;
+  width: 95%;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #4D4D4D;
+  border-radius: 10px;
+  top: 10px;
+  color : #212121;
+  font-weight: 800;
+  text-align: left;
+}
+
+div.sumChild {
+  position: relative;
+  width: 48%;
+  border-radius: 10px;
+  height: 100%;
+  display: inline-block;
+}
+
+div.sumChild:first-child {
+  background-color: #8f9a9d;
+  margin-right: 2%;
+}
+
+div.sumChild:nth-child(2) {
+  background-color: #68af7a;
+}
+
+h5 {
+  text-align: center;
+}
+
+.ui-page-theme-a {
+  text-shadow: none;
+}
+
 div.container {
     position: relative;
     width: 95%;
     height: fit-content;
     margin-left: auto;
     margin-right: auto;
-    top: 10px;
+    top: 20px;
     background-color: #212121;
     border-radius: 10px;
+    border: 1px solid #212121;
 }
 
 div.selectMenu {
@@ -24,11 +64,24 @@ div.selectMenu {
     border-radius: 10px;
 }
 
+div.resultDisplayer {
+  position: relative;
+  width: 95%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 30px;
+  background-color: #e3d45a;
+  border-radius: 10px;
+  border: 1px solid #e3d45a;
+  color : #212121;
+}
+
 body, select {
     font-size: 1em;
     line-height: 1.3;
     color : green;
-    font-family: 'Poppins', sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
 }
 
 span {
