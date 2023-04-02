@@ -169,3 +169,14 @@ span {
   table.secondTable td:nth-child(3) {
     text-align: right;
   }
+
+  .sumChild:nth-child(2) table.firstTable {
+    color : #212121;
+    font-weight: bold;
+  }
+
+  .sumChild:nth-child(2) table.secondTable {
+    border-top: 1px solid #893101;
+    color : #893101;
+    font-weight: bold;
+  }
