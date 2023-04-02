@@ -27,15 +27,20 @@ div.sumChild {
   border-radius: 10px;
   height: 100%;
   display: inline-block;
+  padding : 2px 2px 2px 2px;
 }
 
 div.sumChild:first-child {
-  background-color: #8f9a9d;
+  background-color: #212121;
   margin-right: 2%;
+  overflow-y: auto;
+  float: left;
+  color : #e3d45a;
 }
 
 div.sumChild:nth-child(2) {
   background-color: #68af7a;
+  float:right;
 }
 
 h5 {
@@ -141,4 +146,26 @@ span {
       height: 32px;
     }
   }
+
+  table.firstTable {
+    color : #FFFFFF;
+    width : 100%;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  table.secondTable {
+    color : #e3d45a;
+    width : 100%;
+    font-size: 12px;
+    font-weight: 500;
+    border-top: 1px solid #e3d45a;
+  }
+
+  table.secondTable td:nth-child(2) {
+    text-align: right;
+  }
   
+  table.secondTable td:nth-child(3) {
+    text-align: right;
+  }

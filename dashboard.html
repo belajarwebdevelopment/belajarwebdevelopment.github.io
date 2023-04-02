@@ -99,7 +99,40 @@
                 document.querySelector(".resultDisplayer").innerHTML = "";
             }
 
-            (function main() {
+            async function getTotalStat() {
+                const apiUrl = "https://script.google.com/macros/s/AKfycbwnzTHBtbArremc3Ax8W4s7QHHFvoHRXAcRBsWFiQsgvWseclpV8Dz7kYQUxtLzTibu/exec";
+
+                let a = {};
+                await fetch(apiUrl, {
+                    method : 'GET'
+                })
+                .then(data => data.json())
+                .then(data => {
+                    a = data;
+                });
+
+                return a;
+            }
+
+            (async function main() {
+                let dataTotal = await getTotalStat();
+                let pasarDiv = document.getElementsByClassName('sumChild')[0];
+                pasarDiv.innerHTML += `<table class='firstTable'>
+                    <tr><td>Total Uttp</td><td>${dataTotal.totalStat.totalUttp} unit</td></tr>
+                    <tr><td>Total Uttp Sdh Tera</td><td>${dataTotal.totalStat.totalUttpSdhTera} unit</td></tr>
+                    <tr><td>Persen Uttp Sdh Tera</td><td>${dataTotal.totalStat.persenSdhTera} %</td></tr>
+                </table>`;
+                
+                let str = `<table class='secondTable'><tr><th colspan=3 align="center">Jml Uttp Yang Belum Tera<th></tr>`;
+                for (k in dataTotal.uttpAllObj) {
+                    let persen = (dataTotal.uttpBlmTeraObj[k]/dataTotal.uttpAllObj[k])*100
+                    str += `<tr><td>${k}</td><td>${persen.toFixed(2)} %</td><td>${dataTotal.uttpBlmTeraObj[k]}/${dataTotal.uttpAllObj[k]} unit</td></tr>`;
+                }
+                str += `</table>`;
+                pasarDiv.innerHTML += str;
+                
+                console.log(dataTotal);
+
                 let kategori = document.getElementById("kat");
                 kategori.addEventListener('change', async () => {
                     let loading = document.querySelector('.loadingSelect');
