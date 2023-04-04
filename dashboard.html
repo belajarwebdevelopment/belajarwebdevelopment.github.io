@@ -131,7 +131,27 @@
                 return a;
             }
 
+            async function getTotalStatPerPasar(namaPasar) {
+                const apiUrl = "https://script.google.com/macros/s/AKfycbyqx1UWFQxKCYmtHm5hqj7ySZds1qk8vtwxnlkQYEt-ff6xer3WtD5FWNYuMPw3BLB5/exec";
+                
+                let a = {};
+                await fetch(apiUrl, {
+                    method : 'POST',
+                    body : JSON.stringify({'pasar' : namaPasar})
+                })
+                .then(data => data.json())
+                .then(data => {
+                    a = data;
+                });
+
+                //console.log(a);
+                return a;
+
+            }
+
             (async function main() {
+                let dataTotalPerPasar = await getTotalStatPerPasar('Pasar Joglo');
+                console.log(dataTotalPerPasar);
                 let dataTotal = await getTotalStat();
                 let pasarDiv = document.getElementsByClassName('sumChild')[0];
                 pasarDiv.innerHTML += `<table class='firstTable'>
