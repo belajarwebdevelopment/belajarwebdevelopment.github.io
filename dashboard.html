@@ -37,7 +37,7 @@
         </div>
 
         <div class="resultDisplayer">
-
+            <h5 id="JudulDetail"></h5>
         </div>
 
         <script>
@@ -150,8 +150,8 @@
             }
 
             (async function main() {
-                let dataTotalPerPasar = await getTotalStatPerPasar('Pasar Joglo');
-                console.log(dataTotalPerPasar);
+                //let dataTotalPerPasar = await getTotalStatPerPasar('Pasar Joglo');
+                //console.log(dataTotalPerPasar);
                 let dataTotal = await getTotalStat();
                 let pasarDiv = document.getElementsByClassName('sumChild')[0];
                 pasarDiv.innerHTML += `<table class='firstTable'>
@@ -217,7 +217,7 @@
                     detailKat.addEventListener('change', async () => {
                         loading.hidden = false;
                         clearResultDisplayer();
-
+                        let resultDisplayer = document.querySelector('.resultDisplayer');
                         switch($("#kat").val()) {
                             case 'wilayah':
                                 setTimeout(() => {
@@ -227,8 +227,22 @@
                                 }, 1800);
                                 break;
                             case 'pasar':
-                                setTimeout(() => {
-                                    document.querySelector('.resultDisplayer').innerHTML = $("#detailKat").val(); 
+                                setTimeout(async () => {
+                                    let dataTotalPerPasar = await getTotalStatPerPasar($("#detailKat").val());
+                                    resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
+                                    resultDisplayer.innerHTML += `<table class='thirdTable'>
+                                        <tr><td>Total Uttp</td><td>${dataTotalPerPasar.totalStat.totalUttp} unit</td></tr>
+                                        <tr><td>Total Uttp Sdh Tera</td><td>${dataTotalPerPasar.totalStat.totalUttpSdhTera} unit</td></tr>
+                                        <tr><td>Persen Uttp Sdh Tera</td><td>${dataTotalPerPasar.totalStat.persenSdhTera} %</td></tr>
+                                    </table>`;
+                                    let str = `<table class='forthTable'><tr><th colspan=3 align="center">Jml Uttp Yang Belum Tera<th></tr>`;
+                                    for (k in dataTotalPerPasar.uttpAllObj) {
+                                        let persen = (dataTotalPerPasar.uttpBlmTeraObj[k]/dataTotalPerPasar.uttpAllObj[k])*100
+                                        str += `<tr><td>${k}</td><td>${persen.toFixed(2)} %</td><td>${dataTotalPerPasar.uttpBlmTeraObj[k]}/${dataTotalPerPasar.uttpAllObj[k]} unit</td></tr>`;
+                                    }
+                                    str += `</table>`;
+                                    resultDisplayer.innerHTML += str;
+
                                     loading.hidden = true;
                                 }, 1800);
                                 break;
