@@ -3,6 +3,37 @@
     border-color: #bbb;
 }
 
+div.judulDashboard {
+  position: relative;
+  width: 95%;
+  height:auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #4D4D4D;
+  /*border-radius: 10px;*/
+  top: 10px;
+  color : #68af7a;
+  text-align: left;  
+  border-bottom: 4px solid #e3d45a;
+  margin-bottom: 6px;
+}
+
+#myspan {
+  float :right;
+  color : #e3d45a;
+  font-weight: 800;
+  border: 1px solid #e3d45a;
+  padding: 2px 4px 2px 4px;
+  top : auto;
+  bottom : auto;
+}
+
+h1 {
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
 div.summary {
   position: relative;
   width: 95%;
