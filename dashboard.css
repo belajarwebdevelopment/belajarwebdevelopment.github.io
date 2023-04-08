@@ -109,6 +109,20 @@ span {
     z-index: 5;
 }
 
+.ld1 {
+  width : 100%;
+  height : 100%;
+  top : 0;
+  left : 0;
+}
+
+.ld2 {
+  width : 100%;
+  height : 100%;
+  top : 0;
+  left : 0;
+}
+
 .lds-facebook {
     display: inline-block;
     position: relative;
@@ -116,92 +130,93 @@ span {
     height: 80px;
     left: 40%;
     top: 20%;
-  }
-  .lds-facebook div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 16px;
-    background: #0D98BA;
-    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-  }
-  .lds-facebook div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
-  }
-  .lds-facebook div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-  }
-  .lds-facebook div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-  }
-  @keyframes lds-facebook {
-    0% {
-      top: 8px;
-      height: 64px;
-    }
-    50%, 100% {
-      top: 24px;
-      height: 32px;
-    }
-  }
+}
 
-  table.firstTable {
-    color : #FFFFFF;
-    width : 100%;
-    font-size: 12px;
-    font-weight: 500;
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #0D98BA;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
   }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
+}
 
-  table.secondTable {
-    color : #e3d45a;
-    width : 100%;
-    font-size: 12px;
-    font-weight: 500;
-    border-top: 1px solid #e3d45a;
-  }
+table.firstTable {
+  color : #FFFFFF;
+  width : 100%;
+  font-size: 12px;
+  font-weight: 500;
+}
 
-  table.thirdTable {
-    color : green;
-    width : 100%;
-    font-size: 14px;
-    font-weight: bold;
-    border-top: 1px solid #e3d45a;
-    margin-left: auto;
-    margin-right: auto;
-  }
+table.secondTable {
+  color : #e3d45a;
+  width : 100%;
+  font-size: 12px;
+  font-weight: 500;
+  border-top: 1px solid #e3d45a;
+}
 
-  table.forthTable {
-    color : #e3d45a;
-    width : 100%;
-    font-size: 14px;
-    font-weight: 500;
-    background-color: #212121;
-    border-radius: 10px;
-    margin-top: 7px;
-  }
+table.thirdTable {
+  color : green;
+  width : 100%;
+  font-size: 14px;
+  font-weight: bold;
+  border-top: 1px solid #e3d45a;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  table.forthTable td{
-    padding : 2px 2px 2px 2px;
-  }
+table.forthTable {
+  color : #e3d45a;
+  width : 100%;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #212121;
+  border-radius: 10px;
+  margin-top: 7px;
+}
 
-  table.secondTable td:nth-child(2) {
-    text-align: right;
-  }
-  
-  table.secondTable td:nth-child(3) {
-    text-align: right;
-  }
+table.forthTable td{
+  padding : 2px 2px 2px 2px;
+}
 
-  .sumChild:nth-child(2) table.firstTable {
-    color : #212121;
-    font-weight: bold;
-  }
+table.secondTable td:nth-child(2) {
+  text-align: right;
+}
 
-  .sumChild:nth-child(2) table.secondTable {
-    border-top: 1px solid #893101;
-    color : #893101;
-    font-weight: bold;
-  }
+table.secondTable td:nth-child(3) {
+  text-align: right;
+}
+
+.sumChild:nth-child(2) table.firstTable {
+  color : #212121;
+  font-weight: bold;
+}
+
+.sumChild:nth-child(2) table.secondTable {
+  border-top: 1px solid #893101;
+  color : #893101;
+  font-weight: bold;
+}

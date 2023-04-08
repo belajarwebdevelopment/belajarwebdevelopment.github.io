@@ -15,8 +15,18 @@
 
     <body>
         <div class="summary">
-            <div class="sumChild"><h5>All Pasar</h5></div>
-            <div class="sumChild"><h5>All Wilayah</h5></div>
+            <div class="sumChild">
+                <h5>All Pasar</h5>
+                <div class="loadingselect ld1" hidden>
+                    <div class="lds-facebook"><div></div><div></div><div></div></div>
+                </div>  
+            </div>
+            <div class="sumChild">
+                <h5>All Wilayah</h5>
+                <div class="loadingselect ld2" hidden>
+                    <div class="lds-facebook"><div></div><div></div><div></div></div>
+                </div>  
+            </div>
         </div>
         <div class="container">
             <div class="selectMenu">
@@ -31,7 +41,7 @@
                 </select>
             </div>
 
-            <div class="loadingSelect" hidden>
+            <div class="loadingSelect ld0" hidden>
                 <div class="lds-facebook"><div></div><div></div><div></div></div>
             </div>
         </div>
@@ -154,7 +164,10 @@
             (async function main() {
                 //let dataTotalPerPasar = await getTotalStatPerPasar('Pasar Joglo');
                 //console.log(dataTotalPerPasar);
+                let loadingTotPsr = document.querySelector('.ld1');
+                loadingTotPsr.hidden = false;
                 let dataTotal = await getTotalStat();
+                loadingTotPsr.hidden = true;
                 let pasarDiv = document.getElementsByClassName('sumChild')[0];
                 pasarDiv.innerHTML += `<table class='firstTable'>
                     <tr><td>Total Uttp</td><td>${dataTotal.totalStat.totalUttp} unit</td></tr>
@@ -172,7 +185,10 @@
                 
                 //console.log(dataTotal);
 
+                let loadingTotWly = document.querySelector('.ld2');
+                loadingTotWly.hidden = false;
                 let dataTotalWilayah = await getTotalStatWilayah();
+                loadingTotWly.hidden = true;
                 let wilayahDiv = document.getElementsByClassName('sumChild')[1];
                 wilayahDiv.innerHTML += `<table class='firstTable'>
                     <tr><td>Total Uttp</td><td>${dataTotalWilayah.totalStat.totalUttp} unit</td></tr>
@@ -192,7 +208,7 @@
 
                 let kategori = document.getElementById("kat");
                 kategori.addEventListener('change', async () => {
-                    let loading = document.querySelector('.loadingSelect');
+                    let loading = document.querySelector('.ld0');
                     loading.hidden = false;
                     clearResultDisplayer();
 
