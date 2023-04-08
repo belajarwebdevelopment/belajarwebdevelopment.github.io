@@ -37,7 +37,7 @@ h1 {
 div.summary {
   position: relative;
   width: 95%;
-  height: 200px;
+  height: 220px;
   margin-left: auto;
   margin-right: auto;
   background-color: #4D4D4D;
@@ -250,4 +250,10 @@ table.secondTable td:nth-child(3) {
   border-top: 1px solid #893101;
   color : #893101;
   font-weight: bold;
+}
+
+img:active {
+  -webkit-transform: rotate(20deg) skewY(20deg); 
+  -moz-transform: rotate(20deg) skewY(20deg); 
+  -ms-transform: rotate(20deg) skewY(20deg); 
 }
