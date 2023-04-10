@@ -102,9 +102,6 @@ async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
         for (let k in a.uttpBlmTeraObj) {
             persenobj[k] = a.uttpBlmTeraObj[k]/a.uttpAllObj[k]*100;
         }
-        //console.log(persenobj);
-        //let sortedPersen = Object.keys(persenobj).sort((k1,k2) => persenobj[k2] - persenobj[k1]);
-        //console.log(sortedPersen);
         sortedBlmTera = Object.keys(persenobj).sort((k1,k2) => persenobj[k2] - persenobj[k1]);
     } else {
         let blmtera = Object.keys(a.uttpBlmTeraObj);
@@ -121,8 +118,8 @@ function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='
         <tr><td>Total Uttp Sdh Tera</td><td>${srcData[0].totalStat.totalUttpSdhTera} unit</td></tr>
         <tr><td>Persen Uttp Sdh Tera</td><td>${srcData[0].totalStat.persenSdhTera} %</td></tr>
     </table>`;
-    
-    let str = `<table class=${kelasTbl2}><tr><th colspan=3 align="center">Jml Uttp Yang Belum Tera<th></tr><tr><th></th><th style='text-align : right;'><img src='asc.png'></th><th></th></tr>`;
+
+    let str = `<table class=${kelasTbl2}><tr><th colspan=3 align='center'>Jml Uttp Yang Belum Tera<th></tr><tr><th></th><th style='text-align : right;'><a class='gb' href=#><img src='asc.png'></a></th><th></th></tr>`;
 
     for (k of srcData[1]) {
         let persen = (srcData[0].uttpBlmTeraObj[k]/srcData[0].uttpAllObj[k])*100
@@ -199,6 +196,20 @@ function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='
                     break;
             }
 
+        });
+    });
+
+    document.querySelectorAll('.gb').forEach(item => {
+        item.addEventListener('click', async () => {
+            let loadingTotPsr = document.querySelector('.ld1');
+            loadingTotPsr.hidden = false;
+            
+            let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzgTJb8Uvva00j2KNLDFGTHtdRAVK__b52rWC5f9AIaeoMgmAdR-UZ7wBaOaNRgI-CW/exec", true);
+            loadingTotPsr.hidden = true;
+            let pasarDiv = document.getElementsByClassName('sumChild')[0];
+            pasarDiv.removeChild(pasarDiv.children[2]);
+            pasarDiv.removeChild(pasarDiv.children[2]);
+            showinformation(pasarDiv, dataTotal);
         });
     });
 })();
