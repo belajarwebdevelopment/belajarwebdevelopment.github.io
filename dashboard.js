@@ -212,6 +212,10 @@ function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='
             showinformation(pasarDiv, dataTotal);
         });
     });
+
+    let menuUtamaLnk = document.querySelector('.mnUtama');
+    //menuUtamaLnk.addEventListener('click',() => console.log('klik'));
+    menuUtamaLnk.addEventListener('click', () => window.location = "index.html");
 })();
 
 
