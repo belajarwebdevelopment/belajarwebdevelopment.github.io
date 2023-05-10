@@ -404,15 +404,16 @@
                 });
 
                 $(".next_uttp").on("click", function() {
-                    /*if ($("#Nama").val() == '' || $("#komoditi").val() == '' || $("#hp").val() == '' || $("#alamat").val() == '') {
+                    if ($("#Nama").val() == '' || $("#komoditi").val() == '' || $("#hp").val() == '' || $("#alamat").val() == '') {
                         $.mobile.changePage('#page4', {allowSamePageTransition : true, role : "dialog"});
                         history.pushState({pageUrl : 'page4'}, null, '#');
                         init = 'page4';
                         $(".msg_container").html(`<p><h4>Maaf, belum bisa ke halaman selanjutnya....</h4><br>Nama wtu, jenis usaha, alamat, atau No. telepon masih ada yg kosong, silahkan diisi dahulu, atau isi dengan tanda '-' jika memang kosong.<br></p><p><a id='kembali2'><< Kembali</a></p>`);
                         return;
-                    }*/
+                    }
 
-                    const pattern1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/;
+                    //const pattern1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\.\?\\]/;
+                    const pattern1 = /[`~!@#$%^&*+=\{\}\[\]\(\)\:\;\"\|\<\,\>\?\\]/;
                     const pattern2 = /[a-z0-9/]/i;
                     let result1 = pattern1.test(document.getElementById('Nama').value);
                     let result2 = pattern2.test(document.getElementById('Nama').value);
