@@ -78,8 +78,24 @@ async function getTotalStat(apiUrl, sortByPersen = false) {
         let blmtera = Object.keys(a.uttpBlmTeraObj);
         sortedBlmTera = blmtera.sort((key1, key2) => a.uttpBlmTeraObj[key2] - a.uttpBlmTeraObj[key1]);
     }
-
+    //console.log([a,sortedBlmTera]);
     return [a,sortedBlmTera];
+}
+
+async function getTotalStatUnidentifiedPerPasar(namaPasar) {
+    const apiUrl = "https://script.google.com/macros/s/AKfycbydVJevc4rT4SuecbhnLTV4VR4j5rI9VOB2oOATIbJ5FCaMlHzKv9LoCK3m3qzLTFse/exec";
+
+    let b = {};
+    await fetch(apiUrl, {
+        method : 'POST',
+        body : JSON.stringify({'pasar' : namaPasar})
+    })
+    .then(data => data.json())
+    .then(data => {
+        b = data;
+    });
+    //console.log(b);
+    return b;
 }
 
 async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
@@ -107,23 +123,56 @@ async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
         let blmtera = Object.keys(a.uttpBlmTeraObj);
         sortedBlmTera = blmtera.sort((key1, key2) => a.uttpBlmTeraObj[key2] - a.uttpBlmTeraObj[key1]);
     }
-
+    //console.log([a,sortedBlmTera]);
     return [a,sortedBlmTera];
 
 }
 
-function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='secondTable') {
-    kontainer.innerHTML += `<table class=${kelasTbl1}>
-        <tr><td>Total Uttp</td><td>${srcData[0].totalStat.totalUttp} unit</td></tr>
-        <tr><td>Total Uttp Sdh Tera</td><td>${srcData[0].totalStat.totalUttpSdhTera} unit</td></tr>
-        <tr><td>Persen Uttp Sdh Tera</td><td>${srcData[0].totalStat.persenSdhTera} %</td></tr>
-    </table>`;
+function sumArray(arr) {
+    let sum = 0;
+    for (let k of arr) {
+        sum += k;
+    }
+    return sum;
+}
 
-    let str = `<table class=${kelasTbl2}><tr><th colspan=3 align='center'>Jml Uttp Yang Belum Tera<th></tr><tr><th></th><th style='text-align : right;'><a class='gb' href=#><img src='asc.png'></a></th><th></th></tr>`;
+function prosentase(a,b) {
+    return ((a/b) * 100).toFixed(2);
+}
 
-    for (k of srcData[1]) {
-        let persen = (srcData[0].uttpBlmTeraObj[k]/srcData[0].uttpAllObj[k])*100
-        str += `<tr><td>${k}</td><td style='text-align : right;'>${persen.toFixed(2)} %</td><td style='text-align : right;'>${srcData[0].uttpBlmTeraObj[k]}/${srcData[0].uttpAllObj[k]} unit</td></tr>`;
+async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='secondTable', srcData2) {
+    if (srcData2 != undefined) {
+        console.log(srcData2.uttpUndetected);
+        console.log(sumArray(Object.values(srcData2.uttpUndetected)));
+        let undetected =  sumArray(Object.values(srcData2.uttpUndetected));
+        kontainer.innerHTML += `<table class=${kelasTbl1}>
+            <tr><td>Total Uttp</td><td>${srcData[0].totalStat.totalUttp} unit</td></tr>
+            <tr><td>Total Uttp Sdh Tera</td><td>${srcData[0].totalStat.totalUttpSdhTera + undetected} unit</td></tr>
+            <tr><td>Persen Uttp Sdh Tera</td><td>${prosentase(srcData[0].totalStat.totalUttpSdhTera + undetected, srcData[0].totalStat.totalUttp)} %</td></tr>
+        </table>`;            
+    } else {
+        kontainer.innerHTML += `<table class=${kelasTbl1}>
+            <tr><td>Total Uttp</td><td>${srcData[0].totalStat.totalUttp} unit</td></tr>
+            <tr><td>Total Uttp Sdh Tera</td><td>${srcData[0].totalStat.totalUttpSdhTera} unit</td></tr>
+            <tr><td>Persen Uttp Sdh Tera</td><td>${srcData[0].totalStat.persenSdhTera} %</td></tr>
+        </table>`;
+    
+    }
+
+    let str = `<table class=${kelasTbl2}><tr><th colspan=3 align='center'>Jml Uttp Yang Belum Tera<th></tr><tr><th></th><th style='text-align : right;'><!--<a class='gb' href=#><img src='asc.png'></a>--></th><th></th></tr>`;
+    if (srcData2 != undefined) {
+        for (k of srcData[1]) {
+            srcData2.uttpUndetected[k] === undefined ? srcData2.uttpUndetected[k] = 0 : '';
+            let total = srcData[0].uttpBlmTeraObj[k] - srcData2.uttpUndetected[k];
+            let persen = prosentase(total, srcData[0].uttpAllObj[k]); 
+            
+            str += `<tr><td>${k}</td><td style='text-align : right;'>${persen} %</td><td style='text-align : right;'>${total}/${srcData[0].uttpAllObj[k]} unit</td></tr>`;
+        }
+    } else {
+        for (k of srcData[1]) {
+            let persen = (srcData[0].uttpBlmTeraObj[k]/srcData[0].uttpAllObj[k])*100
+            str += `<tr><td>${k}</td><td style='text-align : right;'>${persen.toFixed(2)} %</td><td style='text-align : right;'>${srcData[0].uttpBlmTeraObj[k]}/${srcData[0].uttpAllObj[k]} unit</td></tr>`;
+        }       
     }
     str += `</table>`;
     kontainer.innerHTML += str;             
@@ -188,9 +237,10 @@ function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='
                     break;
                 case 'pasar':
                     setTimeout(async () => {
+                        let dataTotalUnidentified = await getTotalStatUnidentifiedPerPasar($("#detailKat").val());
                         let dataTotalPerPasar = await getTotalStatPerPasar($("#detailKat").val());
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
-                        showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable');
+                        showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
                     }, 1800);
                     break;
