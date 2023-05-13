@@ -82,8 +82,22 @@ async function getTotalStat(apiUrl, sortByPersen = false) {
     return [a,sortedBlmTera];
 }
 
+async function getTotalStatUnidentified() {
+    let a = {};
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwlUaHq5TV3aomPLctIoH6snjIhT8l7wDv1h2GtA5_by4GrnzNwY5pirFTwnSX1vtsu/exec";
+    await fetch(apiUrl, {
+        method : 'GET'
+    })
+    .then(data => data.json())
+    .then(data => {
+        a = data;
+    });
+
+    return a;
+}
+
 async function getTotalStatUnidentifiedPerPasar(namaPasar) {
-    const apiUrl = "https://script.google.com/macros/s/AKfycbydVJevc4rT4SuecbhnLTV4VR4j5rI9VOB2oOATIbJ5FCaMlHzKv9LoCK3m3qzLTFse/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
 
     let b = {};
     await fetch(apiUrl, {
@@ -182,10 +196,12 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     let loadingTotPsr = document.querySelector('.ld1');
     loadingTotPsr.hidden = false;
     
+    let dataTotalUn = await getTotalStatUnidentified();
+    console.log(dataTotalUn);
     let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzgTJb8Uvva00j2KNLDFGTHtdRAVK__b52rWC5f9AIaeoMgmAdR-UZ7wBaOaNRgI-CW/exec");
     loadingTotPsr.hidden = true;
     let pasarDiv = document.getElementsByClassName('sumChild')[0];
-    showinformation(pasarDiv, dataTotal);
+    showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
 
 
     let loadingTotWly = document.querySelector('.ld2');
@@ -194,7 +210,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbwFc9WnhE6vBcyStokY4Z3gdmsSir1qGggQ-xKS2jnKdOf4xfyLnwJRZBIciJKMI-IB1A/exec");
     loadingTotWly.hidden = true;
     let wilayahDiv = document.getElementsByClassName('sumChild')[1];
-    showinformation(wilayahDiv, dataTotalWilayah);
+    showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable');
 
 
     let kategori = document.getElementById("kat");
