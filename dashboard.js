@@ -142,6 +142,36 @@ async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
 
 }
 
+async function getTotalStatPerWilayah(namaWilayah, sortByPersen = false) {
+
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwdd-DptsVsoqSUPhbMpZKFS1rY_E-Dh6ZmDwoQp01SjBekk7I92DUhMfHJ9WZhtAE/exec";
+    
+    let a = {};
+    let sortedBlmTera = [];
+    await fetch(apiUrl, {
+        method : 'POST',
+        body : JSON.stringify({'wilayah' : namaWilayah})
+    })
+    .then(data => data.json())
+    .then(data => {
+        a = data;
+    });
+
+    if (sortByPersen === true) {
+        let persenobj = {};
+        for (let k in a.uttpBlmTeraObj) {
+            persenobj[k] = a.uttpBlmTeraObj[k]/a.uttpAllObj[k]*100;
+        }
+        sortedBlmTera = Object.keys(persenobj).sort((k1,k2) => persenobj[k2] - persenobj[k1]);
+    } else {
+        let blmtera = Object.keys(a.uttpBlmTeraObj);
+        sortedBlmTera = blmtera.sort((key1, key2) => a.uttpBlmTeraObj[key2] - a.uttpBlmTeraObj[key1]);
+    }
+    
+    return [a,sortedBlmTera];
+
+}
+
 function sumArray(arr) {
     let sum = 0;
     for (let k of arr) {
@@ -208,6 +238,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     loadingTotWly.hidden = false;
     
     let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbwFc9WnhE6vBcyStokY4Z3gdmsSir1qGggQ-xKS2jnKdOf4xfyLnwJRZBIciJKMI-IB1A/exec");
+    
     loadingTotWly.hidden = true;
     let wilayahDiv = document.getElementsByClassName('sumChild')[1];
     showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable');
@@ -245,9 +276,12 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
             let resultDisplayer = document.querySelector('.resultDisplayer');
             switch($("#kat").val()) {
                 case 'wilayah':
-                    setTimeout(() => {
-                        let a = $("#detailKat").val().split(" - ");
-                        document.querySelector('.resultDisplayer').innerHTML = `Kel. ${a[0]} / Kec. ${a[1]}`; 
+                    setTimeout(async () => {
+                        let wly = $("#detailKat").val().split(" - ")[0];
+                        let dataTotalPerWilayah = await getTotalStatPerWilayah(wly);
+                        resultDisplayer.innerHTML = '';
+                        resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
+                        showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable');
                         loading.hidden = true;
                     }, 1800);
                     break;
@@ -255,6 +289,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                     setTimeout(async () => {
                         let dataTotalUnidentified = await getTotalStatUnidentifiedPerPasar($("#detailKat").val());
                         let dataTotalPerPasar = await getTotalStatPerPasar($("#detailKat").val());
+                        resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
                         showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
@@ -264,7 +299,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
 
         });
     });
-
+/*
     document.querySelectorAll('.gb').forEach(item => {
         item.addEventListener('click', async () => {
             let loadingTotPsr = document.querySelector('.ld1');
@@ -278,7 +313,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
             showinformation(pasarDiv, dataTotal);
         });
     });
-
+*/
     let menuUtamaLnk = document.querySelector('.mnUtama');
     //menuUtamaLnk.addEventListener('click',() => console.log('klik'));
     menuUtamaLnk.addEventListener('click', () => window.location = "index.html");
