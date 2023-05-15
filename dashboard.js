@@ -144,7 +144,8 @@ async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
 
 async function getTotalStatPerWilayah(namaWilayah, sortByPersen = false) {
 
-    const apiUrl = "https://script.google.com/macros/s/AKfycbwdd-DptsVsoqSUPhbMpZKFS1rY_E-Dh6ZmDwoQp01SjBekk7I92DUhMfHJ9WZhtAE/exec";
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbwdd-DptsVsoqSUPhbMpZKFS1rY_E-Dh6ZmDwoQp01SjBekk7I92DUhMfHJ9WZhtAE/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwA415JdFA8WE105eioF5hRzbZiHml4wACon32sx7QucDG3o8xT6ykID2B3yLM1DeYPTA/exec";
     
     let a = {};
     let sortedBlmTera = [];
@@ -238,6 +239,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     loadingTotWly.hidden = false;
     
     let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbwFc9WnhE6vBcyStokY4Z3gdmsSir1qGggQ-xKS2jnKdOf4xfyLnwJRZBIciJKMI-IB1A/exec");
+    
     
     loadingTotWly.hidden = true;
     let wilayahDiv = document.getElementsByClassName('sumChild')[1];
