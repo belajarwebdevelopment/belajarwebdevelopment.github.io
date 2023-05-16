@@ -11,7 +11,7 @@ async function getUttp() {
                 temporary.push(e[0]);
             });
 
-
+            temporary.shift();
             filtered = [...new Set(temporary)];
  
             let str = '';
@@ -35,14 +35,14 @@ async function getPasar() {
     await fetch(url)
     .then(data => data.json())
     .then(data => {
-        //console.log(data);
+        
         let temporary = [];
         if (data.result === "success") {
             data.data.forEach(e => {
                 temporary.push(e[0]);
             });
 
-
+            temporary.shift();
             filtered = [...new Set(temporary)];
  
             let str = '';
