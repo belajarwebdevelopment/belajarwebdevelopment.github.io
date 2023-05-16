@@ -721,3 +721,17 @@ form.editWtuForm-Class label{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.sbmt-btn {
+    background-color:#387999;
+    border : 2px solid #F98125;
+    color : #FFFFFF;
+    margin-top: 20px;
+}
+
+.sbmt-btn:active {
+    background-color:#FFFFFF;
+    border : 2px solid #387999;
+    color : #387999;
+    margin-top: 20px;
+}
