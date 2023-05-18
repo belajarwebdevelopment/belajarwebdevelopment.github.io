@@ -2,6 +2,7 @@ async function getUttp() {
     
     const url = "https://script.google.com/macros/s/AKfycbz_Je2ZXuIRFmxWdYpQTbgWbEa4iqU9ucJj1FrPK8hoql-UtKnFbBj-upEFOvWU7ZYH/exec";
     
+    
     await fetch(url)
     .then(data => data.json())
     .then(data => {
@@ -59,7 +60,34 @@ async function getPasar() {
 
 }
 
+async function inputData(uttp = "", pasar = "", jml = "") {
+    const url = "https://script.google.com/macros/s/AKfycbzScXcAfbHkfIzEnBMyuFP6bqXc0UfYtKx7PWTH40tNat_NyaqlJdycWagSxpng6Z4B/exec";
+
+    await fetch(url, {
+        method : 'POST',
+        body : JSON.stringify({'uttp' : uttp, 'pasar' : pasar, 'jml' : jml})
+    })
+    .then(data => data.json())
+    .then(data => {
+        //console.log(data);
+        if (data.result === "success") {
+            return data.msg;
+        } else {
+            return data.msg;
+        }
+    })
+}
+
 (function main() {
     getUttp();
     getPasar();
+
+    const sbBtn = document.querySelector('.sbmt-btn');
+    sbBtn.addEventListener("click", async () => {
+        
+        let uttp = document.getElementById('uttp').value;
+        let pasar = document.getElementById('pasar').value;
+        let jml = document.getElementById('jumlah').value;
+        document.querySelector(".konfirm").innerHTML = await inputData(uttp, pasar, jml);
+    });
 })();
