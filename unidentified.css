@@ -1,0 +1,44 @@
+.judul-edit .konfirm {
+    color : blue;
+}
+
+.topMenu {
+    background-color: #e5e8e5;
+    top : 0;
+    overflow: hidden;
+    position: fixed;
+    width : 100%;
+    height : 50px;
+    display: block;
+    left : 0;
+    right : 0;
+    text-align: center;
+    color : #FFFFFF;
+    padding-top: 7px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.topMenu a {
+    background-color: #5a8e99;
+    color: #FFFFFF;
+    text-align: center;
+    padding : 7px 4px 7px 4px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.topMenu a:hover, .topMenu a:active  {
+    background-color: #5a8e99;
+    color: white;
+    border-radius: 3px;
+    }
+
+#navigasi {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    color : #5a8e99;
+    display: inline-block;
+
+}

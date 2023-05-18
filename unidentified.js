@@ -60,7 +60,7 @@ async function getPasar() {
 
 }
 
-async function inputData(uttp = "", pasar = "", jml = "") {
+async function inputData(uttp = "", pasar = "", jml = "", container) {
     const url = "https://script.google.com/macros/s/AKfycbzScXcAfbHkfIzEnBMyuFP6bqXc0UfYtKx7PWTH40tNat_NyaqlJdycWagSxpng6Z4B/exec";
 
     await fetch(url, {
@@ -69,13 +69,13 @@ async function inputData(uttp = "", pasar = "", jml = "") {
     })
     .then(data => data.json())
     .then(data => {
-        //console.log(data);
+        console.log(data.msg);
         if (data.result === "success") {
-            return data.msg;
+            container.innerHTML = data.msg;
         } else {
-            return data.msg;
+            container.innerHTML = `Data gagal dimasukkan -> ${data.msg}`;
         }
-    })
+    });
 }
 
 (function main() {
@@ -88,6 +88,7 @@ async function inputData(uttp = "", pasar = "", jml = "") {
         let uttp = document.getElementById('uttp').value;
         let pasar = document.getElementById('pasar').value;
         let jml = document.getElementById('jumlah').value;
-        document.querySelector(".konfirm").innerHTML = await inputData(uttp, pasar, jml);
+        let konfirmKontainer = document.querySelector(".konfirm");
+        await inputData(uttp, pasar, jml, konfirmKontainer);
     });
 })();
