@@ -60,7 +60,24 @@ async function getPasar() {
 
 }
 
+function checkInput(uttp, pasar, jumlah) {
+    if (uttp === "" || pasar === "" || jumlah === "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function clearForm() {
+    document.getElementById("editWtuForm").reset();
+}
+
 async function inputData(uttp = "", pasar = "", jml = "", container) {
+    if (checkInput(uttp, pasar, jml) === false) {
+        container.innerHTML = `Data gagal dimasukkan. Isian uttp, pasar, atau jumlah masih ada yang kosong`;
+        return false;
+    } 
+
     const url = "https://script.google.com/macros/s/AKfycbzScXcAfbHkfIzEnBMyuFP6bqXc0UfYtKx7PWTH40tNat_NyaqlJdycWagSxpng6Z4B/exec";
 
     await fetch(url, {
@@ -69,14 +86,17 @@ async function inputData(uttp = "", pasar = "", jml = "", container) {
     })
     .then(data => data.json())
     .then(data => {
-        console.log(data.msg);
+     
         if (data.result === "success") {
             container.innerHTML = data.msg;
         } else {
             container.innerHTML = `Data gagal dimasukkan -> ${data.msg}`;
         }
+
+        clearForm();
     });
 }
+
 
 (function main() {
     getUttp();
