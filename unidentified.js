@@ -109,6 +109,8 @@ async function inputData(uttp = "", pasar = "", jml = "", container) {
         let pasar = document.getElementById('pasar').value;
         let jml = document.getElementById('jumlah').value;
         let konfirmKontainer = document.querySelector(".konfirm");
+        document.querySelector(".ld0").hidden = false;
         await inputData(uttp, pasar, jml, konfirmKontainer);
+        document.querySelector(".ld0").hidden = true;
     });
 })();
