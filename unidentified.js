@@ -61,22 +61,28 @@ async function getPasar() {
 }
 
 function checkInput(uttp, pasar, jumlah) {
-    if (uttp === "" || pasar === "" || jumlah === "") {
-        return false;
-    } else {
-        return true;
-    }
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if (uttp === "" || pasar === "" || jumlah === "") {
+                resolve("true");
+            } else {
+                resolve("false");
+            }
+        }, 1000);
+    })
+
 }
+
 
 function clearForm() {
     document.getElementById("editWtuForm").reset();
 }
 
 async function inputData(uttp = "", pasar = "", jml = "", container) {
-    if (checkInput(uttp, pasar, jml) === false) {
+    if (await checkInput(uttp, pasar, jml) === "true") {
         container.innerHTML = `Data gagal dimasukkan. Isian uttp, pasar, atau jumlah masih ada yang kosong`;
         return false;
-    } 
+    }
 
     const url = "https://script.google.com/macros/s/AKfycbzScXcAfbHkfIzEnBMyuFP6bqXc0UfYtKx7PWTH40tNat_NyaqlJdycWagSxpng6Z4B/exec";
 
@@ -98,7 +104,8 @@ async function inputData(uttp = "", pasar = "", jml = "", container) {
 }
 
 
-(function main() {
+(async function main() {
+    
     getUttp();
     getPasar();
 
