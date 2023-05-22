@@ -224,6 +224,11 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
 }
 
 (async function main() {
+    let year = new Date().getFullYear();
+    document.getElementById("teraBerlaku").append(` [${year - 1} & ${year}]`);
+    document.getElementById("teraSah").append(` ${year}`);
+    document.querySelector("h4").append(` ${year}`);
+
     let loadingTotPsr = document.querySelector('.ld1');
     loadingTotPsr.hidden = false;
     
@@ -317,8 +322,10 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     });
 */
     let menuUtamaLnk = document.querySelector('.mnUtama');
-    //menuUtamaLnk.addEventListener('click',() => console.log('klik'));
     menuUtamaLnk.addEventListener('click', () => window.location = "index.html");
+
+    let menuTeraSah = document.getElementById("teraSah");
+    menuTeraSah.addEventListener("click", () => window.location = "dashboard.html");
 })();
 
 

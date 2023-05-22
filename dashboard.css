@@ -34,8 +34,16 @@ div.judulDashboard {
 
 h1 {
   font-weight: bold;
-  display: inline-block;
+  display: block;
   margin-bottom: 0;
+  
+}
+
+h4 {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0;
+  color : orange;
 }
 
 div.summary {
@@ -260,4 +268,46 @@ img:active {
   -webkit-transform: rotate(20deg) skewY(20deg); 
   -moz-transform: rotate(20deg) skewY(20deg); 
   -ms-transform: rotate(20deg) skewY(20deg); 
+}
+
+.topMenu {
+  background-color: #e5e8e5;
+  top : 0;
+  overflow: hidden;
+  /*position: fixed;*/
+  position: relative;
+  width : 100%;
+  height : 50px;
+  display: block;
+  left : 0;
+  right : 0;
+  text-align: center;
+  color : #FFFFFF;
+  padding-top: 7px;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.topMenu a {
+  background-color: #5a8e99;
+  color: #FFFFFF;
+  text-align: center;
+  padding : 7px 4px 7px 4px;
+  text-decoration: none;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.topMenu a:hover, .topMenu a:active  {
+  background-color: #5a8e99;
+  color: white;
+  border-radius: 3px;
+}
+
+#navigasi {
+  margin-top: 2px;
+  margin-bottom: 10px;
+  color : #5a8e99;
+  display: inline-block;
+
 }
