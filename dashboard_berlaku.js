@@ -227,7 +227,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     let year = new Date().getFullYear();
     document.getElementById("teraBerlaku").append(` [${year - 1} & ${year}]`);
     document.getElementById("teraSah").append(` ${year}`);
-    document.querySelector("h4").append(` ${year}`);
+    document.querySelector("h4").append(` ${year - 1} & ${year}`);
 
     let loadingTotPsr = document.querySelector('.ld1');
     loadingTotPsr.hidden = false;

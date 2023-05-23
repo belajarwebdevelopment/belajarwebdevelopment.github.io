@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+        <link rel="stylesheet" href="dashboard_berlaku.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        </style>
+    </head>
+
+    <body>
+        <div class="topMenu">
+            <nav id="navigasi">
+                <a class="active mnUtama" href=#>Menu Utama</a> | 
+                <a class="active prevTeraMenu" id="teraBerlaku" href=#>Tera Berlaku</a> | 
+                <a class="active prevTeraMenu" id="teraSah" href=#>Tera Sah</a>
+            </nav>
+        </div>
+        <div class="juduldashboard">
+            <div>
+                <h1>Dashboard</h1> 
+                <h4>Tera Berlaku</h4>
+            </div>
+            <!--<div>
+                <span id="myspan"><a class="mnUtama" href=#>Menu Utama</a></span>
+                <span id="prevTera"><a class="prevTeraMenu" href=#>Last Year</a></span>
+            </div>-->
+            
+            
+        </div>
+        <div class="summary">
+            <div class="sumChild">
+                <h5>All Pasar</h5>
+                <div class="loadingselect ld1" hidden>
+                    <div class="lds-facebook"><div></div><div></div><div></div></div>
+                </div>  
+            </div>
+            <div class="sumChild">
+                <h5>All Wilayah</h5>
+                <div class="loadingselect ld2" hidden>
+                    <div class="lds-facebook"><div></div><div></div><div></div></div>
+                </div>  
+            </div>
+        </div>
+        <div class="container">
+            <div class="selectMenu">
+                <select name="kat" id="kat">
+                    <option value="">-- Pilih Kategori --</option>
+                    <option value="pasar">Pasar</option>
+                    <option value="wilayah">Wilayah</option>
+                </select>
+
+                <select name="detailKat" id="detailKat">
+
+                </select>
+            </div>
+
+            <div class="loadingSelect ld0" hidden>
+                <div class="lds-facebook"><div></div><div></div><div></div></div>
+            </div>
+        </div>
+
+        <div class="resultDisplayer">
+            <h5 id="JudulDetail"></h5>
+        </div>
+        <script src="dashboard_berlaku.js"></script>
+
+    </body>
+</html>
