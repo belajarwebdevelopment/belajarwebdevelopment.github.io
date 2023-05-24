@@ -127,7 +127,7 @@ div.resultDisplayer {
   background-color: #82ADE0;
   border-radius: 10px;
   border: 1px solid #82ADE0;
-  color : #212121;
+  color : #222B64;
   padding: 5px 5px 5px 5px;
 }
 
@@ -224,7 +224,7 @@ table.secondTable {
 }
 
 table.thirdTable {
-  color : green;
+  color : #BB1E27;
   width : 100%;
   font-size: 14px;
   font-weight: bold;
@@ -234,13 +234,18 @@ table.thirdTable {
 }
 
 table.forthTable {
-  color : #e3d45a;
+  color : #ffffff;
   width : 100%;
   font-size: 14px;
   font-weight: 500;
-  background-color: #212121;
+  background-color: #1855A6;;
   border-radius: 10px;
   margin-top: 7px;
+}
+
+table.forthTable tr, table.forthTable th {
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 table.forthTable td{
