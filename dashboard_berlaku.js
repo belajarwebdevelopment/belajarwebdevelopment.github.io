@@ -85,9 +85,12 @@ async function getTotalStat(apiUrl, sortByPersen = false) {
 
 async function getTotalStatUnidentified() {
     let a = {};
-    const apiUrl = "https://script.google.com/macros/s/AKfycbwlUaHq5TV3aomPLctIoH6snjIhT8l7wDv1h2GtA5_by4GrnzNwY5pirFTwnSX1vtsu/exec";
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbwlUaHq5TV3aomPLctIoH6snjIhT8l7wDv1h2GtA5_by4GrnzNwY5pirFTwnSX1vtsu/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
+    
     await fetch(apiUrl, {
-        method : 'GET'
+        method : 'POST',
+        body : JSON.stringify({'jenisData' : 'total', 'pasar' : ''})
     })
     .then(data => data.json())
     .then(data => {
@@ -98,12 +101,13 @@ async function getTotalStatUnidentified() {
 }
 
 async function getTotalStatUnidentifiedPerPasar(namaPasar) {
-    const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
 
     let b = {};
     await fetch(apiUrl, {
         method : 'POST',
-        body : JSON.stringify({'pasar' : namaPasar})
+        body : JSON.stringify({'jenisData' : 'perPasar', 'pasar' : namaPasar})
     })
     .then(data => data.json())
     .then(data => {
@@ -188,27 +192,30 @@ function prosentase(a,b) {
     return ((a/b) * 100).toFixed(2);
 }
 
-async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='secondTable'/*, srcData2*/) {
-    /*if (srcData2 != undefined) {
-        console.log(srcData2.uttpUndetected);
-        console.log(sumArray(Object.values(srcData2.uttpUndetected)));
+async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelasTbl2='secondTable', srcData2) {
+    if (srcData2 != undefined) {
+        //console.log(srcData);
+        //console.log(srcData2.uttpUndetected);
+        //console.log(sumArray(Object.values(srcData2.uttpUndetected)));
         let undetected =  sumArray(Object.values(srcData2.uttpUndetected));
         kontainer.innerHTML += `<table class=${kelasTbl1}>
             <tr><td>Total Uttp</td><td>${srcData[0].totalStat.totalUttp} unit</td></tr>
             <tr><td>Total Uttp Sdh Tera</td><td>${srcData[0].totalStat.totalUttpSdhTera + undetected} unit</td></tr>
             <tr><td>Persen Uttp Sdh Tera</td><td>${prosentase(srcData[0].totalStat.totalUttpSdhTera + undetected, srcData[0].totalStat.totalUttp)} %</td></tr>
         </table>`;            
-    } else {*/
+    } else {
         kontainer.innerHTML += `<table class=${kelasTbl1}>
             <tr><td>Total Uttp</td><td>${srcData[0].totalStat.totalUttp} unit</td></tr>
             <tr><td>Total Uttp Sdh Tera</td><td>${srcData[0].totalStat.totalUttpSdhTera} unit</td></tr>
             <tr><td>Persen Uttp Sdh Tera</td><td>${srcData[0].totalStat.persenSdhTera} %</td></tr>
         </table>`;
     
-    //}
+    }
 
     let str = `<table class=${kelasTbl2}><tr><th colspan=3 align='center'>Jml Uttp Yang Belum Tera<th></tr><tr><th></th><th style='text-align : right;'><!--<a class='gb' href=#><img src='asc.png'></a>--></th><th></th></tr>`;
-    /*if (srcData2 != undefined) {
+    if (srcData2 != undefined) {
+        console.log(srcData);
+        console.log(srcData2.uttpUndetected);
         for (k of srcData[1]) {
             srcData2.uttpUndetected[k] === undefined ? srcData2.uttpUndetected[k] = 0 : '';
             let total = srcData[0].uttpBlmTeraObj[k] - srcData2.uttpUndetected[k];
@@ -216,12 +223,12 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
             
             str += `<tr><td>${k}</td><td style='text-align : right;'>${persen} %</td><td style='text-align : right;'>${total}/${srcData[0].uttpAllObj[k]} unit</td></tr>`;
         }
-    } else {*/
+    } else {
         for (k of srcData[1]) {
             let persen = (srcData[0].uttpBlmTeraObj[k]/srcData[0].uttpAllObj[k])*100
             str += `<tr><td>${k}</td><td style='text-align : right;'>${persen.toFixed(2)} %</td><td style='text-align : right;'>${srcData[0].uttpBlmTeraObj[k]}/${srcData[0].uttpAllObj[k]} unit</td></tr>`;
         }       
-    //}
+    }
     str += `</table>`;
     kontainer.innerHTML += str;             
 }
@@ -235,13 +242,14 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     let loadingTotPsr = document.querySelector('.ld1');
     loadingTotPsr.hidden = false;
     
-    //let dataTotalUn = await getTotalStatUnidentified();
+    let dataTotalUn = await getTotalStatUnidentified();
     //console.log(dataTotalUn);
+
     let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzg7X13qGh1rjbAMCC0h7O1anZ0o6WQce8bASzxCPLHFy9Y95S81YG9XrrKQeTQxqQW/exec");
     loadingTotPsr.hidden = true;
     let pasarDiv = document.getElementsByClassName('sumChild')[0];
-    //showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
-    showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable');
+    showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
+    //showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable');
 
     let loadingTotWly = document.querySelector('.ld2');
     loadingTotWly.hidden = false;
@@ -297,11 +305,12 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                     break;
                 case 'pasar':
                     setTimeout(async () => {
-                        //let dataTotalUnidentified = await getTotalStatUnidentifiedPerPasar($("#detailKat").val());
+                        let dataTotalUnidentified = await getTotalStatUnidentifiedPerPasar($("#detailKat").val());
+                        //console.log(dataTotalUnidentified);
                         let dataTotalPerPasar = await getTotalStatPerPasar($("#detailKat").val());
                         resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
-                        showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable'/*, dataTotalUnidentified*/);
+                        showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
                     }, 1800);
                     break;
