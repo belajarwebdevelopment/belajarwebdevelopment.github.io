@@ -81,7 +81,7 @@ async function getWilayah() {
  
             let str = '';
             filtered.forEach(e => {
-                str += `<option value='${e}'>Kelurahan ${e}</option>`;
+                str += `<option value='Kelurahan ${e}'>Kelurahan ${e}</option>`;
                 
             });
 
@@ -113,7 +113,7 @@ function clearForm() {
 
 async function inputData(uttp = "", pasar = "", jml = "", container) {
     if (await checkInput(uttp, pasar, jml) === "true") {
-        container.innerHTML = `Data gagal dimasukkan. Isian uttp, pasar, atau jumlah masih ada yang kosong`;
+        container.innerHTML = `Data gagal dimasukkan. Isian uttp, pasar/kelurahan, atau jumlah masih ada yang kosong`;
         return false;
     }
 
@@ -136,6 +136,32 @@ async function inputData(uttp = "", pasar = "", jml = "", container) {
     });
 }
 
+async function inputDataWly(uttp = "", wilayah = "", jml = "", container) {
+    if (await checkInput(uttp, pasar, jml) === "true") {
+        container.innerHTML = `Data gagal dimasukkan. Isian uttp, pasar/kelurahan, atau jumlah masih ada yang kosong`;
+        return false;
+    }
+
+    const url = "https://script.google.com/macros/s/AKfycbyv8p_Exa1aWIrHSnHCIueqFTEvLDBWchA2HLjp7GrRibnPYbj2RwXN3gcTlQdNgpabOA/exec";
+
+    let wly = wilayah.split(" ")[1];
+
+    await fetch(url, {
+        method : 'POST',
+        body : JSON.stringify({'uttp' : uttp, 'wilayah' : wly, 'jml' : jml})
+    })
+    .then(data => data.json())
+    .then(data => {
+     
+        if (data.result === "success") {
+            container.innerHTML = data.msg;
+        } else {
+            container.innerHTML = `Data gagal dimasukkan -> ${data.msg}`;
+        }
+
+        clearForm();
+    });
+}
 
 (async function main() {
     
@@ -149,9 +175,11 @@ async function inputData(uttp = "", pasar = "", jml = "", container) {
         let uttp = document.getElementById('uttp').value;
         let pasar = document.getElementById('pasar').value;
         let jml = document.getElementById('jumlah').value;
+        
         let konfirmKontainer = document.querySelector(".konfirm");
         document.querySelector(".ld0").hidden = false;
-        await inputData(uttp, pasar, jml, konfirmKontainer);
+        pasar.includes("Kelurahan") ? await inputDataWly(uttp, pasar, jml, konfirmKontainer) : await inputData(uttp, pasar, jml, konfirmKontainer);
+
         document.querySelector(".ld0").hidden = true;
     });
 })();
