@@ -39,6 +39,7 @@ async function getPasar() {
         
         let temporary = [];
         if (data.result === "success") {
+            console.log(data);
             data.data.forEach(e => {
                 temporary.push(e[0]);
             });
@@ -53,6 +54,38 @@ async function getPasar() {
             });
 
             document.getElementById("pasarList").innerHTML = str;
+
+        }
+        
+    });
+
+}
+
+async function getWilayah() {
+    
+    const url = "https://script.google.com/macros/s/AKfycbxxWf-43TUg5XvBOes_r89pANhi6fCOQgqhF_SwEmjJMWSIvv9BSDEsX2ZCpUGQDMRg/exec";
+    
+    await fetch(url)
+    .then(data => data.json())
+    .then(data => {
+        
+        let temporary = [];
+        if (data.result === "success") {
+            console.log(data);
+            data.data.forEach(e => {
+                temporary.push(e[0]);
+            });
+
+            temporary.shift();
+            filtered = [...new Set(temporary)];
+ 
+            let str = '';
+            filtered.forEach(e => {
+                str += `<option value='${e}'>Kelurahan ${e}</option>`;
+                
+            });
+
+            document.getElementById("pasarList").innerHTML += str;
 
         }
         
@@ -106,8 +139,9 @@ async function inputData(uttp = "", pasar = "", jml = "", container) {
 
 (async function main() {
     
-    getUttp();
-    getPasar();
+    await getUttp();
+    await getPasar();
+    await getWilayah();
 
     const sbBtn = document.querySelector('.sbmt-btn');
     sbBtn.addEventListener("click", async () => {
