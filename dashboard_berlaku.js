@@ -86,7 +86,9 @@ async function getTotalStat(apiUrl, sortByPersen = false) {
 async function getTotalStatUnidentified() {
     let a = {};
     //const apiUrl = "https://script.google.com/macros/s/AKfycbwlUaHq5TV3aomPLctIoH6snjIhT8l7wDv1h2GtA5_by4GrnzNwY5pirFTwnSX1vtsu/exec";
-    const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
+
+    const apiUrl = "https://script.google.com/macros/s/AKfycbxOfCFj6qaD1AfYfG8KeBhXm2W-LVMkwim0eWcWYCBDs6CC10f6nKYAiphuVIOVwa3B/exec";
     
     await fetch(apiUrl, {
         method : 'POST',
@@ -102,7 +104,9 @@ async function getTotalStatUnidentified() {
 
 async function getTotalStatUnidentifiedPerPasar(namaPasar) {
     //const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
-    const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
+
+    const apiUrl = "https://script.google.com/macros/s/AKfycbxOfCFj6qaD1AfYfG8KeBhXm2W-LVMkwim0eWcWYCBDs6CC10f6nKYAiphuVIOVwa3B/exec";
 
     let b = {};
     await fetch(apiUrl, {
@@ -119,7 +123,8 @@ async function getTotalStatUnidentifiedPerPasar(namaPasar) {
 
 async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
 
-    const apiUrl = "https://script.google.com/macros/s/AKfycbzg7X13qGh1rjbAMCC0h7O1anZ0o6WQce8bASzxCPLHFy9Y95S81YG9XrrKQeTQxqQW/exec";
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbzg7X13qGh1rjbAMCC0h7O1anZ0o6WQce8bASzxCPLHFy9Y95S81YG9XrrKQeTQxqQW/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbxFtSd5upEblqWcvDVf0jLkMAfp5coj-xhjmtnL6VuF2puA7sAbalV53AW5gtXdaV4P/exec";
     
     
     let a = {};
@@ -245,7 +250,10 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     let dataTotalUn = await getTotalStatUnidentified();
     //console.log(dataTotalUn);
 
-    let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzg7X13qGh1rjbAMCC0h7O1anZ0o6WQce8bASzxCPLHFy9Y95S81YG9XrrKQeTQxqQW/exec");
+    //let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzg7X13qGh1rjbAMCC0h7O1anZ0o6WQce8bASzxCPLHFy9Y95S81YG9XrrKQeTQxqQW/exec");
+
+    let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbxFtSd5upEblqWcvDVf0jLkMAfp5coj-xhjmtnL6VuF2puA7sAbalV53AW5gtXdaV4P/exec");
+
     loadingTotPsr.hidden = true;
     let pasarDiv = document.getElementsByClassName('sumChild')[0];
     showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
