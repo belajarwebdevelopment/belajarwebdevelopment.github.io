@@ -112,6 +112,36 @@ async function getTotalStatUnidentifiedPerPasar(namaPasar) {
     return b;
 }
 
+async function getTotalStatUnidentifiedWilayah() {
+    let a = {};
+    const apiUrl = "https://script.google.com/macros/s/AKfycbyk4FzSpH-9uMFNfPXMmIm33uMDvkuCQZ2XO7O84iJe9Sm4D22_IvoP8iKsJMLTHZoq/exec";
+    await fetch(apiUrl, {
+        method : 'GET'
+    })
+    .then(data => data.json())
+    .then(data => {
+        a = data;
+    });
+
+    return a;
+}
+
+async function getTotalStatUnidentifiedPerWilayah(namaWly) {
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwM6T8mXxqs9yiOPWRYQVOaDsRiodmzph8UPT0RHzH4KODVg2RPClI_OiX2uMzQ7JpjyQ/exec";
+
+    let b = {};
+    await fetch(apiUrl, {
+        method : 'POST',
+        body : JSON.stringify({'wilayah' : namaWly.split(" - ")[0]})
+    })
+    .then(data => data.json())
+    .then(data => {
+        b = data;
+    });
+    //console.log(b);
+    return b;
+}
+
 async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
 
     const apiUrl = "https://script.google.com/macros/s/AKfycbyFL2mlam8gBdWGGyMjJH8PKoz0-lHZgGtOEWZK7E8rpFX2nQWWA-YPNkqzlCrC8mNS/exec";
@@ -233,22 +263,25 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     loadingTotPsr.hidden = false;
     
     let dataTotalUn = await getTotalStatUnidentified();
-    console.log(dataTotalUn);
+    //console.log(dataTotalUn);
     let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzgTJb8Uvva00j2KNLDFGTHtdRAVK__b52rWC5f9AIaeoMgmAdR-UZ7wBaOaNRgI-CW/exec");
     loadingTotPsr.hidden = true;
     let pasarDiv = document.getElementsByClassName('sumChild')[0];
-    showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
+    dataTotalUn.result === "error" ? showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable') : showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
 
 
     let loadingTotWly = document.querySelector('.ld2');
     loadingTotWly.hidden = false;
     
+    let dataTotalUnWilayah = await getTotalStatUnidentifiedWilayah();
+    console.log(dataTotalUnWilayah);
     let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbwFc9WnhE6vBcyStokY4Z3gdmsSir1qGggQ-xKS2jnKdOf4xfyLnwJRZBIciJKMI-IB1A/exec");
     
     
     loadingTotWly.hidden = true;
     let wilayahDiv = document.getElementsByClassName('sumChild')[1];
-    showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable');
+    
+    dataTotalUnWilayah.result === "error" ? showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable') : showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable', dataTotalUnWilayah);
 
 
     let kategori = document.getElementById("kat");
@@ -285,10 +318,12 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                 case 'wilayah':
                     setTimeout(async () => {
                         let wly = $("#detailKat").val().split(" - ")[0];
+                        let dataTotalUnidentified = await getTotalStatUnidentifiedPerWilayah($("#detailKat").val());
+                        console.log(dataTotalUnidentified);
                         let dataTotalPerWilayah = await getTotalStatPerWilayah(wly);
                         resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
-                        showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable');
+                        showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
                     }, 1800);
                     break;
