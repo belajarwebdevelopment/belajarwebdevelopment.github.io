@@ -102,6 +102,22 @@ async function getTotalStatUnidentified() {
     return a;
 }
 
+async function getTotalStatUnidentifiedWly() {
+    let a = {};
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwp76W1qYETlb3MKfHmckZlJUc_1QULHBi10WuJYbbcS4P8Q9nw6ytQHgj4Vp-8nxB0TQ/exec";
+    
+    await fetch(apiUrl, {
+        method : 'POST',
+        body : JSON.stringify({'jenisData' : 'total', 'wilayah' : ''})
+    })
+    .then(data => data.json())
+    .then(data => {
+        a = data;
+    });
+
+    return a;
+}
+
 async function getTotalStatUnidentifiedPerPasar(namaPasar) {
     //const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
     //const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
@@ -248,27 +264,26 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     loadingTotPsr.hidden = false;
     
     let dataTotalUn = await getTotalStatUnidentified();
-    //console.log(dataTotalUn);
-
-    //let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzg7X13qGh1rjbAMCC0h7O1anZ0o6WQce8bASzxCPLHFy9Y95S81YG9XrrKQeTQxqQW/exec");
 
     let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbxFtSd5upEblqWcvDVf0jLkMAfp5coj-xhjmtnL6VuF2puA7sAbalV53AW5gtXdaV4P/exec");
 
     loadingTotPsr.hidden = true;
     let pasarDiv = document.getElementsByClassName('sumChild')[0];
-    showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
+    dataTotalUn.result === "error" ? showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable') : showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable', dataTotalUn);
     //showinformation(pasarDiv, dataTotal, 'firstTable', 'secondTable');
 
+    //Menampilkan data total wilayah
     let loadingTotWly = document.querySelector('.ld2');
     loadingTotWly.hidden = false;
     
-    //let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbzEr9pJLiMW6-SyI-lcsWZ3q6VK3KgBB-3v-GdNz3SSqIuw2QSFu97QsStZLuhtDoLE/exec");
-    
+    let dataTotalUnWly = await getTotalStatUnidentifiedWly();
+
     let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbx4L_SopgUGZll686pE491AQHfp0ICUyC13-wVHL57FkSEYs-GJ7y1Gn_lxUkwEvyBTfg/exec");
 
     loadingTotWly.hidden = true;
     let wilayahDiv = document.getElementsByClassName('sumChild')[1];
-    showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable');
+    dataTotalUnWly.result === "error" ? showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable') : showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable', dataTotalUnWly);
+    //showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable');
 
 
     let kategori = document.getElementById("kat");
