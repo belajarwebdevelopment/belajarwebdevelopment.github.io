@@ -118,6 +118,22 @@ async function getTotalStatUnidentifiedWly() {
     return a;
 }
 
+async function getTotalStatUnidentifiedPerWilayah(namaWilayah) {
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwp76W1qYETlb3MKfHmckZlJUc_1QULHBi10WuJYbbcS4P8Q9nw6ytQHgj4Vp-8nxB0TQ/exec";
+
+    let b = {};
+    await fetch(apiUrl, {
+        method : 'POST',
+        body : JSON.stringify({'jenisData' : 'perWilayah', 'wilayah' : namaWilayah})
+    })
+    .then(data => data.json())
+    .then(data => {
+        b = data;
+    });
+    
+    return b;
+}
+
 async function getTotalStatUnidentifiedPerPasar(namaPasar) {
     //const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
     //const apiUrl = "https://script.google.com/macros/s/AKfycbyb6rnqIyGdJaKwQJLE3_jJS9JHBBR4bloPzjaVeckDXI9NV0yV4-WOdKSzDcTPaRK4/exec";
@@ -133,7 +149,7 @@ async function getTotalStatUnidentifiedPerPasar(namaPasar) {
     .then(data => {
         b = data;
     });
-    //console.log(b);
+
     return b;
 }
 
@@ -320,10 +336,11 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                 case 'wilayah':
                     setTimeout(async () => {
                         let wly = $("#detailKat").val().split(" - ")[0];
+                        let dataTotalUnidentified = await getTotalStatUnidentifiedPerWilayah(wly);
                         let dataTotalPerWilayah = await getTotalStatPerWilayah(wly);
                         resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
-                        showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable');
+                        dataTotalUnidentified.result === "error" ? showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable') : showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
                     }, 1800);
                     break;
@@ -334,7 +351,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                         let dataTotalPerPasar = await getTotalStatPerPasar($("#detailKat").val());
                         resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
-                        showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable', dataTotalUnidentified);
+                        dataTotalUnidentified.result === "error" ? showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable') : showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
                     }, 1800);
                     break;

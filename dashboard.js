@@ -318,12 +318,12 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                 case 'wilayah':
                     setTimeout(async () => {
                         let wly = $("#detailKat").val().split(" - ")[0];
-                        let dataTotalUnidentified = await getTotalStatUnidentifiedPerWilayah($("#detailKat").val());
+                        let dataTotalUnidentified = await getTotalStatUnidentifiedPerWilayah(wly);
                         console.log(dataTotalUnidentified);
                         let dataTotalPerWilayah = await getTotalStatPerWilayah(wly);
                         resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
-                        showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable', dataTotalUnidentified);
+                        dataTotalUnidentified.result === "error" ? showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable') : showinformation(resultDisplayer, dataTotalPerWilayah, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
                     }, 1800);
                     break;
@@ -333,7 +333,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                         let dataTotalPerPasar = await getTotalStatPerPasar($("#detailKat").val());
                         resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
-                        showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable', dataTotalUnidentified);
+                        dataTotalUnidentified.result === "error" ? showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable') : showinformation(resultDisplayer, dataTotalPerPasar, 'thirdTable', 'forthTable', dataTotalUnidentified);
                         loading.hidden = true;
                     }, 1800);
                     break;
