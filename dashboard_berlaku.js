@@ -79,7 +79,7 @@ async function getTotalStat(apiUrl, sortByPersen = false) {
         let blmtera = Object.keys(a.uttpBlmTeraObj);
         sortedBlmTera = blmtera.sort((key1, key2) => a.uttpBlmTeraObj[key2] - a.uttpBlmTeraObj[key1]);
     }
-    //console.log([a,sortedBlmTera]);
+    
     return [a,sortedBlmTera];
 }
 
@@ -156,8 +156,8 @@ async function getTotalStatPerPasar(namaPasar, sortByPersen = false) {
 async function getTotalStatPerWilayah(namaWilayah, sortByPersen = false) {
 
     //const apiUrl = "https://script.google.com/macros/s/AKfycbwdd-DptsVsoqSUPhbMpZKFS1rY_E-Dh6ZmDwoQp01SjBekk7I92DUhMfHJ9WZhtAE/exec";
-    const apiUrl = "https://script.google.com/macros/s/AKfycbzEr9pJLiMW6-SyI-lcsWZ3q6VK3KgBB-3v-GdNz3SSqIuw2QSFu97QsStZLuhtDoLE/exec";
-    
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbzEr9pJLiMW6-SyI-lcsWZ3q6VK3KgBB-3v-GdNz3SSqIuw2QSFu97QsStZLuhtDoLE/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbx4L_SopgUGZll686pE491AQHfp0ICUyC13-wVHL57FkSEYs-GJ7y1Gn_lxUkwEvyBTfg/exec";
     
     let a = {};
     let sortedBlmTera = [];
@@ -262,9 +262,10 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
     let loadingTotWly = document.querySelector('.ld2');
     loadingTotWly.hidden = false;
     
-    let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbzEr9pJLiMW6-SyI-lcsWZ3q6VK3KgBB-3v-GdNz3SSqIuw2QSFu97QsStZLuhtDoLE/exec");
+    //let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbzEr9pJLiMW6-SyI-lcsWZ3q6VK3KgBB-3v-GdNz3SSqIuw2QSFu97QsStZLuhtDoLE/exec");
     
-    
+    let dataTotalWilayah = await getTotalStat("https://script.google.com/macros/s/AKfycbx4L_SopgUGZll686pE491AQHfp0ICUyC13-wVHL57FkSEYs-GJ7y1Gn_lxUkwEvyBTfg/exec");
+
     loadingTotWly.hidden = true;
     let wilayahDiv = document.getElementsByClassName('sumChild')[1];
     showinformation(wilayahDiv, dataTotalWilayah, 'firstTable', 'secondTable');
@@ -314,7 +315,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
                 case 'pasar':
                     setTimeout(async () => {
                         let dataTotalUnidentified = await getTotalStatUnidentifiedPerPasar($("#detailKat").val());
-                        //console.log(dataTotalUnidentified);
+                        
                         let dataTotalPerPasar = await getTotalStatPerPasar($("#detailKat").val());
                         resultDisplayer.innerHTML = '';
                         resultDisplayer.innerHTML += `<h5>${$("#detailKat").val()}</h5>`;
@@ -326,21 +327,7 @@ async function showinformation(kontainer, srcData, kelasTbl1='firstTable', kelas
 
         });
     });
-/*
-    document.querySelectorAll('.gb').forEach(item => {
-        item.addEventListener('click', async () => {
-            let loadingTotPsr = document.querySelector('.ld1');
-            loadingTotPsr.hidden = false;
-            
-            let dataTotal = await getTotalStat("https://script.google.com/macros/s/AKfycbzgTJb8Uvva00j2KNLDFGTHtdRAVK__b52rWC5f9AIaeoMgmAdR-UZ7wBaOaNRgI-CW/exec", true);
-            loadingTotPsr.hidden = true;
-            let pasarDiv = document.getElementsByClassName('sumChild')[0];
-            pasarDiv.removeChild(pasarDiv.children[2]);
-            pasarDiv.removeChild(pasarDiv.children[2]);
-            showinformation(pasarDiv, dataTotal);
-        });
-    });
-*/
+
     let menuUtamaLnk = document.querySelector('.mnUtama');
     menuUtamaLnk.addEventListener('click', () => window.location = "index.html");
 
