@@ -84,7 +84,8 @@ async function getTotalStat(apiUrl, sortByPersen = false) {
 
 async function getTotalStatUnidentified() {
     let a = {};
-    const apiUrl = "https://script.google.com/macros/s/AKfycbwlUaHq5TV3aomPLctIoH6snjIhT8l7wDv1h2GtA5_by4GrnzNwY5pirFTwnSX1vtsu/exec";
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbwlUaHq5TV3aomPLctIoH6snjIhT8l7wDv1h2GtA5_by4GrnzNwY5pirFTwnSX1vtsu/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwSAFgxNV2Y3ARQTcAp2VVHy0FsS2xi5ZAh4tWwNM9_CJewdC8pL7mIA7flSYxyaZxA/exec";
     await fetch(apiUrl, {
         method : 'GET'
     })
