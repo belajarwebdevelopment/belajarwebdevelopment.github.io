@@ -98,8 +98,9 @@ async function getTotalStatUnidentified() {
 }
 
 async function getTotalStatUnidentifiedPerPasar(namaPasar) {
-    const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
-
+    //const apiUrl = "https://script.google.com/macros/s/AKfycbyEFbfL6UkXFAle2SbJ0ydbf7zg1N-WKSF8zs8igQJXwaXhoVT7k8fbo19xRPU3W1qi/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbz5INRbR42PRFxkeHUdHIWa_hypmCZbKzQ88uOYQd2rv8BuEbf5gVKLOtFDX09bJWM5/exec";
+    
     let b = {};
     await fetch(apiUrl, {
         method : 'POST',
