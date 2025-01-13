@@ -539,7 +539,8 @@
                     resetFormUTTP(this_Index);
 					ShowhideSomeInput(false);
                     let theString = $(this).children("option:selected").val().split("-");
-                    if (theString[0].trim() != 'TE' && theString[0].trim() != 'TP' && $(this).children("option:selected").val() != '') {
+                    //if (theString[0].trim() != 'TE' && theString[0].trim() != 'TP' && $(this).children("option:selected").val() != '') {
+                    if (theString[0].trim() != 'ATH' && theString[0].trim() != 'ATB' && theString[0].trim() != 'TE' && theString[0].trim() != 'TP' && $(this).children("option:selected").val() != '') {
                         let kap = theString[1].trim();
                         let d = theString[2].trim();
 
